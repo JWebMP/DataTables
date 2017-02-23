@@ -24,18 +24,28 @@ import za.co.mmagon.jwebswing.base.html.TableHeaderGroup;
 import za.co.mmagon.jwebswing.base.html.TableRow;
 import za.co.mmagon.jwebswing.base.html.attributes.TableAttributes;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
+import za.co.mmagon.jwebswing.plugins.ComponentInformation;
+import za.co.mmagon.jwebswing.plugins.PluginInformation;
 
 /**
  * The JWDataTable implementation
  *
  * @param <T> The table row type this table reflects
+ * @param <J>
  * @since 2014 09 30
  * @version 1.0
  * @author MMagon
  *
  *
  */
-public class JQDataTable<T extends TableRow> extends Table implements GlobalChildren
+@PluginInformation(pluginName = "JQ Data Table", pluginUniqueName = "data-tables", pluginDescription = "DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table.",
+        pluginVersion = "1.10.13",
+        pluginDependancyUniqueIDs = "", pluginCategories = "jquery,datatables, tables, ui, web, framework", pluginSubtitle = "",
+        pluginGitUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin", pluginSourceUrl = "",
+        pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin/wiki",
+        pluginOriginalHomepage = "https://www.datatables.net/")
+@ComponentInformation(name = "Data Tables", description = "The core data tables component", url = "https://www.datatables.net/")
+public class JQDataTable<T extends TableRow, J extends JQDataTable> extends Table<J> implements GlobalChildren
 {
 
     private static final long serialVersionUID = 1L;
