@@ -14,22 +14,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package za.co.mmagon.jwebswing.components.pools.jquerydatatables;
+package za.co.mmagon.jwebswing.plugins.pools.jquerydatatables;
 
-import za.co.mmagon.jwebswing.base.references.CSSReference;
+import za.co.mmagon.jwebswing.base.references.JavascriptReference;
 
 /**
  *
- * @author GedMarc
- * @since 10 May 2015
+ * @since
+ * @version
+ * @author MMagon
+ *
+ * <p>
  */
-class JQUIDataTablesCSSReference extends CSSReference
+class JQUIDataTablesJavaScriptReferenceKeyTable extends JavascriptReference
 {
 
     private static final long serialVersionUID = 1L;
 
-    public JQUIDataTablesCSSReference()
+    public JQUIDataTablesJavaScriptReferenceKeyTable()
     {
-        super("JQueryDataTablesCSS", 1.107, "css/datatables/jquery.dataTables.css", "https://cdn.datatables.net/1.10.7/css/jquery.dataTables.css");
+        super("DataTables", 1.107, "javascript/jquery.datatables/jquery.dataTables.js", "https://cdn.datatables.net/1.10.7/js/jquery.dataTables.js");
     }
+
 }

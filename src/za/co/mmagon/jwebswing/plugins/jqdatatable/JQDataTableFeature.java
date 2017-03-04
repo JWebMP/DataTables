@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package za.co.mmagon.jwebswing.components.jqdatatable;
+package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
 import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalFeatures;
-import za.co.mmagon.jwebswing.components.pools.jquerydatatables.JQDataTableReferencePool;
+import za.co.mmagon.jwebswing.plugins.pools.jquerydatatables.JQDataTableReferencePool;
 
 /**
  * Implements the jQuery DataTable plugin

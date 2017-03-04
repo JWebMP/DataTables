@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package za.co.mmagon.jwebswing.components.jqdatatable;
+package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
 import za.co.mmagon.jwebswing.base.html.Table;
 import za.co.mmagon.jwebswing.base.html.TableBodyGroup;
@@ -25,7 +25,6 @@ import za.co.mmagon.jwebswing.base.html.TableRow;
 import za.co.mmagon.jwebswing.base.html.attributes.TableAttributes;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
-import za.co.mmagon.jwebswing.plugins.PluginInformation;
 
 /**
  * The JWDataTable implementation
@@ -38,13 +37,9 @@ import za.co.mmagon.jwebswing.plugins.PluginInformation;
  *
  *
  */
-@PluginInformation(pluginName = "JQ Data Table", pluginUniqueName = "data-tables", pluginDescription = "DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table.",
-        pluginVersion = "1.10.13",
-        pluginDependancyUniqueIDs = "", pluginCategories = "jquery,datatables, tables, ui, web, framework", pluginSubtitle = "",
-        pluginGitUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin", pluginSourceUrl = "",
-        pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin/wiki",
-        pluginOriginalHomepage = "https://www.datatables.net/")
-@ComponentInformation(name = "Data Tables", description = "The core data tables component", url = "https://www.datatables.net/")
+@ComponentInformation(name = "Data Tables",
+                      description = "The core data tables component",
+                      url = "https://www.datatables.net/")
 public class JQDataTable<T extends TableRow, J extends JQDataTable> extends Table<J> implements GlobalChildren
 {
 
@@ -83,7 +78,7 @@ public class JQDataTable<T extends TableRow, J extends JQDataTable> extends Tabl
     /**
      * Construct a new interactive table that is theme compatible, with cell spacing and padding as 0.
      * <p>
-     * @param headerGroup The table header group creating for
+     * @param headerGroup          The table header group creating for
      * @param enableDynamicFeature Enables the JQDataTable Feature
      */
     public JQDataTable(TableHeaderGroup headerGroup, boolean enableDynamicFeature)
@@ -97,12 +92,13 @@ public class JQDataTable<T extends TableRow, J extends JQDataTable> extends Tabl
         }
     }
 
+    @Override
     public JQDataTableOptions getOptions()
     {
         return getFeature().getOptions();
     }
 
-    public JQDataTableFeature getFeature()
+    public final JQDataTableFeature getFeature()
     {
         if (feature == null)
         {
@@ -212,6 +208,8 @@ public class JQDataTable<T extends TableRow, J extends JQDataTable> extends Tabl
 
     /**
      * Sets the caption for the table
+     *
+     * @param captionOfTable
      */
     public void setCaptionOfTable(TableCaption captionOfTable)
     {

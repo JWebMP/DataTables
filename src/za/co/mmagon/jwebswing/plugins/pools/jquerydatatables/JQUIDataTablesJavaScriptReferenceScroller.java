@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package za.co.mmagon.jwebswing.components.pools.jquerydatatables;
+package za.co.mmagon.jwebswing.plugins.pools.jquerydatatables;
 
 import za.co.mmagon.jwebswing.base.references.JavascriptReference;
 
@@ -26,14 +26,14 @@ import za.co.mmagon.jwebswing.base.references.JavascriptReference;
  *
  * <p>
  */
-class JQDataTablesJavaScriptReference extends JavascriptReference
+class JQUIDataTablesJavaScriptReferenceScroller extends JavascriptReference
 {
 
     private static final long serialVersionUID = 1L;
 
-    public JQDataTablesJavaScriptReference()
+    public JQUIDataTablesJavaScriptReferenceScroller()
     {
-        super("DataTables", 1.1010, "javascript/jquery.datatables/jquery.dataTables.js", "https://cdn.datatables.net/1.10.10/js/jquery.dataTables.js");
+        super("DataTables", 1.107, "javascript/jquery.datatables/jquery.dataTables.js", "https://cdn.datatables.net/1.10.7/js/jquery.dataTables.js");
     }
 
 }

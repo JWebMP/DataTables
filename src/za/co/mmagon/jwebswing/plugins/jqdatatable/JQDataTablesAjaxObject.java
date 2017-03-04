@@ -14,4 +14,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package za.co.mmagon.jwebswing.components.jqdatatable;
+package za.co.mmagon.jwebswing.plugins.jqdatatable;
+
+import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavascriptPartType;
+
+/**
+ *
+ * @author GedMarc
+ * @since 10 May 2015
+ */
+public class JQDataTablesAjaxObject extends JavaScriptPart
+{
+
+    private static final long serialVersionUID = 1L;
+
+    public JQDataTablesAjaxObject()
+    {
+
+    }
+
+    @Override
+    public JavascriptPartType getJavascriptType()
+    {
+        return JavascriptPartType.Javascript;
+    }
+}
