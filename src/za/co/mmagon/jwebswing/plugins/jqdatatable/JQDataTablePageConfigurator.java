@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ import za.co.mmagon.jwebswing.plugins.PluginInformation;
  *
  * @author GedMarc
  */
-@PluginInformation(pluginName = "JQ Data Table",
+@PluginInformation(pluginName = "Data Tables",
                    pluginUniqueName = "data-tables",
                    pluginDescription = "DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table.",
                    pluginVersion = "1.10.13",
