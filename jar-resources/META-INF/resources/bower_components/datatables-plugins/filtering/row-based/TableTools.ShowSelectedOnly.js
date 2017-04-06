@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Used in combination with TableTools and selectable rows, this will allow you
  * to switch between showing all rows and just the selected ones.
  *
@@ -24,7 +24,7 @@
 
 (function (window, document, $, undefined) {
 
-    $.fn.dataTable.SelectedLengthMenu = function (oSettings) {
+    $.fn.dataTable.SelectedLengthMenu = function(oSettings) {
         if (oSettings.oScroll.bInfinite) {
             return null;
         }
@@ -36,7 +36,7 @@
         var aLengthMenu = oSettings.aLengthMenu;
 
         if (aLengthMenu.length == 2 && typeof aLengthMenu[0] === 'object' &&
-                typeof aLengthMenu[1] === 'object') {
+            typeof aLengthMenu[1] === 'object') {
             for (i = 0, iLen = aLengthMenu[0].length; i < iLen; i++) {
                 sStdMenu += '<option value="' + aLengthMenu[0][i] + '">' + aLengthMenu[1][i] + '</option>';
             }
@@ -50,7 +50,7 @@
         // select box to show all or only selected items
         var oFilterSelectedOptions = oSettings.oLanguage.oFilterSelectedOptions;
         if (!oFilterSelectedOptions)
-            oFilterSelectedOptions = {"AllText": "All Items", "SelectedText": "Selected Items"};
+            oFilterSelectedOptions = { "AllText": "All Items", "SelectedText": "Selected Items" };
 
         var sSelectedMenu = '<select name="' + oSettings.sTableId + '_selectedFilter">';
         if (typeof oFilterSelectedOptions === 'object') {
@@ -78,7 +78,7 @@
         var $lengthSelect = $('select[name="' + oSettings.sTableId + '_length"]', nLength);
         if ($lengthSelect.length == 0)
             $lengthSelect = $('select :eq(0)', nLength);
-
+        
         /*
          * Set the length to the current display length - thanks to Andrea Pavlovic for this fix,
          * and Stefan Skopnik for fixing the fix!
@@ -86,7 +86,7 @@
         $lengthSelect.find('option[value="' + oSettings._iDisplayLength + '"]', nLength).attr("selected", true);
 
 
-        $lengthSelect.bind('change.DT', function (e) {
+        $lengthSelect.bind('change.DT', function(e) {
             var iVal = $(this).val();
 
             /* Update all other length options for the new display */
@@ -127,7 +127,7 @@
             oSettings._sFilterSelected = $(this).val();
             $('#' + oSettings.sTableId).dataTable().fnDraw();
         });
-
+        
 
         $('select', nLength).attr('aria-controls', oSettings.sTableId);
 
@@ -135,22 +135,22 @@
     };
 
     $.fn.dataTableExt.afnFiltering.push(
-            function (oSettings, aData, iDataIndex) {
-                var $filterSelectedSelect = $('select[name="' + oSettings.sTableId + '_selectedFilter"]');
-                if ($filterSelectedSelect.length == 0)
-                    return true; // feature not enabled
+        function (oSettings, aData, iDataIndex) {
+            var $filterSelectedSelect = $('select[name="' + oSettings.sTableId + '_selectedFilter"]');
+            if ($filterSelectedSelect.length == 0)
+                return true; // feature not enabled
 
-                if ($filterSelectedSelect.val() == 'All')
-                    return true; // all items selected
+            if ($filterSelectedSelect.val() == 'All')
+                return true; // all items selected
 
 
-                var oTable = $('#' + oSettings.sTableId).dataTable();
-                var row = oTable.fnGetNodes(iDataIndex);
-                var oTableTools = TableTools.fnGetInstance(oSettings.sTableId);
-                var isSelected = oTableTools.fnIsSelected(row);
+            var oTable = $('#' + oSettings.sTableId).dataTable();
+            var row = oTable.fnGetNodes(iDataIndex);
+            var oTableTools = TableTools.fnGetInstance(oSettings.sTableId);
+            var isSelected = oTableTools.fnIsSelected(row);
 
-                return isSelected;
-            }
+            return isSelected;
+        }
     );
 
 
@@ -162,7 +162,7 @@
         "cFeature": "O",
         "sFeature": "SelectedLengthMenu"
     });
-
+    
 
 
 })(window, document, jQuery);

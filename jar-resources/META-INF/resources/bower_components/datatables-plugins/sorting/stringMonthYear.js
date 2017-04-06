@@ -1,4 +1,4 @@
-/**
+﻿/**
  * This sorting plug-in will sort, in calendar order, data which
  * is in the format "MMM yyyy" or "MMMM yyyy". Inspired by forum discussion:
  * http://datatables.net/forums/discussion/1242/sorting-dates-with-only-month-and-year
@@ -32,7 +32,7 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 
         var month = 0;
         for (var i = 0; i < months.length; i++) {
-            if (months[i].toLowerCase() == dateComponents[0].toLowerCase().substring(0, 3)) {
+            if (months[i].toLowerCase() == dateComponents[0].toLowerCase().substring(0,3)) {
                 month = i;
                 break;
             }
