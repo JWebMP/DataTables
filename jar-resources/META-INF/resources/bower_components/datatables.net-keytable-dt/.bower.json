@@ -36,12 +36,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "2.2.0",
-  "_release": "2.2.0",
+  "version": "2.2.1",
+  "_release": "2.2.1",
   "_resolution": {
     "type": "version",
-    "tag": "2.2.0",
-    "commit": "9d1ee737fb6c2fcbe9e596daec349d6c5df18d41"
+    "tag": "2.2.1",
+    "commit": "e5ca528048fcd0f650ecf2416789de2f6a322948"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-KeyTable-DataTables.git",
   "_target": "^2.1.3",
