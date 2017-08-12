@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,12 +16,7 @@
  */
 package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
-import za.co.mmagon.jwebswing.base.html.Table;
-import za.co.mmagon.jwebswing.base.html.TableBodyGroup;
-import za.co.mmagon.jwebswing.base.html.TableCaption;
-import za.co.mmagon.jwebswing.base.html.TableFooterGroup;
-import za.co.mmagon.jwebswing.base.html.TableHeaderGroup;
-import za.co.mmagon.jwebswing.base.html.TableRow;
+import za.co.mmagon.jwebswing.base.html.*;
 import za.co.mmagon.jwebswing.base.html.attributes.TableAttributes;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
@@ -31,6 +26,7 @@ import za.co.mmagon.jwebswing.plugins.ComponentInformation;
  *
  * @param <T> The table row type this table reflects
  * @param <J>
+ *
  * @since 2014 09 30
  * @version 1.0
  * @author MMagon
@@ -38,9 +34,9 @@ import za.co.mmagon.jwebswing.plugins.ComponentInformation;
  *
  */
 @ComponentInformation(name = "Data Tables",
-                      description = "The core data tables component",
-                      url = "https://www.datatables.net/")
-public class JQDataTable<T extends TableRow, J extends JQDataTable> extends Table<J> implements GlobalChildren
+		description = "The core data tables component",
+		url = "https://www.datatables.net/")
+public class JQDataTable<T extends TableRow, J extends JQDataTable<T, J>> extends Table<J> implements GlobalChildren
 {
 
     private static final long serialVersionUID = 1L;
