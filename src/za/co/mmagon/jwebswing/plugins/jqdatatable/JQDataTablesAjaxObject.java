@@ -20,23 +20,22 @@ import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavascriptPartType;
 
 /**
- *
  * @author GedMarc
  * @since 10 May 2015
  */
 public class JQDataTablesAjaxObject extends JavaScriptPart
 {
-
-    private static final long serialVersionUID = 1L;
-
-    public JQDataTablesAjaxObject()
-    {
-
-    }
-
-    @Override
-    public JavascriptPartType getJavascriptType()
-    {
-        return JavascriptPartType.Javascript;
-    }
+	
+	private static final long serialVersionUID = 1L;
+	
+	public JQDataTablesAjaxObject()
+	{
+	
+	}
+	
+	@Override
+	public JavascriptPartType getJavascriptType()
+	{
+		return JavascriptPartType.Javascript;
+	}
 }

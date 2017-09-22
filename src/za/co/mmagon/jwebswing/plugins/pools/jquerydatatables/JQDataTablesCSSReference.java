@@ -19,17 +19,16 @@ package za.co.mmagon.jwebswing.plugins.pools.jquerydatatables;
 import za.co.mmagon.jwebswing.base.references.CSSReference;
 
 /**
- *
  * @author GedMarc
  * @since 10 May 2015
  */
 class JQDataTablesCSSReference extends CSSReference
 {
-
-    private static final long serialVersionUID = 1L;
-
-    public JQDataTablesCSSReference()
-    {
-        super("JQueryDataTablesCSS", 1.1010, "css/datatables/jquery.dataTables.css", "https://cdn.datatables.net/1.10.10/css/jquery.dataTables.css");
-    }
+	
+	private static final long serialVersionUID = 1L;
+	
+	public JQDataTablesCSSReference()
+	{
+		super("JQueryDataTablesCSS", 1.1010, "css/datatables/jquery.dataTables.css", "https://cdn.datatables.net/1.10.10/css/jquery.dataTables.css");
+	}
 }
