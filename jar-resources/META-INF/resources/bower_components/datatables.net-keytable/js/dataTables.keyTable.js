@@ -275,7 +275,7 @@
                 dt.one('init', function () {
                     var cell = dt.cell(state.keyTable);
 
-                    // Ensure that the saved cell still exists
+                    // Ensure that the 
                     if (cell.any()) {
                         cell.focus();
                     }

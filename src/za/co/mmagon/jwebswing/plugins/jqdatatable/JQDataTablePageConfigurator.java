@@ -19,6 +19,7 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable;
 import za.co.mmagon.jwebswing.Page;
 import za.co.mmagon.jwebswing.PageConfigurator;
 import za.co.mmagon.jwebswing.plugins.PluginInformation;
+import za.co.mmagon.jwebswing.plugins.pools.jquerydatatables.JQDataTableReferencePool;
 
 /**
  * @author GedMarc
@@ -47,6 +48,13 @@ public class JQDataTablePageConfigurator extends PageConfigurator
 	@Override
 	public Page configure(Page page)
 	{
+		if (!page.isConfigured())
+		{
+			page.getBody().addJavaScriptReference(JQDataTableReferencePool.JQueryDataTables.getJavaScriptReference());
+			page.getBody().addJavaScriptReference(JQDataTableReferencePool.JQueryDataTablesUI.getJavaScriptReference());
+			page.getBody().addCssReference(JQDataTableReferencePool.JQueryDataTables.getCssReference());
+			page.getBody().addCssReference(JQDataTableReferencePool.JQueryDataTablesUI.getCssReference());
+		}
 		return page;
 	}
 

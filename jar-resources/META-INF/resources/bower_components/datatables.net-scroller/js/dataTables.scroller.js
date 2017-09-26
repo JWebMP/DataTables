@@ -553,7 +553,7 @@
              */
             var initialStateSave = true;
             this.s.dt.oApi._fnCallbackReg(this.s.dt, 'aoStateSaveParams', function (oS, oData) {
-                /* Set iScroller to saved scroll position on initialization.
+                /* Set iScroller to 
                  */
                 if (initialStateSave && that.s.dt.oLoadedState) {
                     oData.iScroller = that.s.dt.oLoadedState.iScroller;
@@ -838,7 +838,7 @@
 
             this.s.skip = false;
 
-            // Restore the scrolling position that was saved by DataTable's state
+            // Restore the scrolling position that was 
             // saving Note that this is done on the second draw when data is Ajax
             // sourced, and the first draw when DOM soured
             if (this.s.dt.oFeatures.bStateSave && this.s.dt.oLoadedState !== null &&

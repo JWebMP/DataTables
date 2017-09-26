@@ -19,7 +19,6 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable;
 import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalFeatures;
-import za.co.mmagon.jwebswing.plugins.pools.jquerydatatables.JQDataTableReferencePool;
 
 /**
  * Implements the jQuery DataTable plugin
@@ -47,10 +46,6 @@ public class JQDataTableFeature extends Feature<JQDataTableOptions, JQDataTableF
 	public JQDataTableFeature(Component component)
 	{
 		super("JWDataFeature");
-		addJavaScriptReference(JQDataTableReferencePool.JQueryDataTables.getJavaScriptReference());
-		addJavaScriptReference(JQDataTableReferencePool.JQueryDataTablesUI.getJavaScriptReference());
-		addCssReference(JQDataTableReferencePool.JQueryDataTables.getCssReference());
-		addCssReference(JQDataTableReferencePool.JQueryDataTablesUI.getCssReference());
 		component.addVariable(getDTID());
 		this.comp = component;
 	}
