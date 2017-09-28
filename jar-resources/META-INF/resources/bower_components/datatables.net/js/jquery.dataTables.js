@@ -1,11 +1,11 @@
-/*! DataTables 1.10.15
+/*! DataTables 1.10.16
  * ©2008-2017 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     DataTables
  * @description Paginate, search and order HTML tables
- * @version     1.10.15
+ * @version     1.10.16
  * @file        jquery.dataTables.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net
@@ -55,7 +55,7 @@
         // Browser
         factory(jQuery, window, document);
     }
-};
+}
 (function ($, window, document, undefined) {
     "use strict";
 
@@ -989,8 +989,7 @@
                 ["iCookieDuration", "iStateDuration"], // backwards compat
                 ["oSearch", "oPreviousSearch"],
                 ["aoSearchCols", "aoPreSearchCols"],
-                ["iDisplayLength", "_iDisplayLength"],
-                ["bJQueryUI", "bJUI"]
+                ["iDisplayLength", "_iDisplayLength"]
             ]);
             _fnMap(oSettings.oScroll, oInit, [
                 ["sScrollX", "sX"],
@@ -1020,28 +1019,7 @@
 
             var oClasses = oSettings.oClasses;
 
-            // @todo Remove in 1.11
-            if (oInit.bJQueryUI) {
-                /* Use the JUI classes object for display. You could clone the oStdClasses object if
-				 * you want to have multiple tables with multiple independent classes
-				 */
-                $.extend(oClasses, DataTable.ext.oJUIClasses, oInit.oClasses);
-
-                if (oInit.sDom === defaults.sDom && defaults.sDom === "lfrtip") {
-                    /* Set the DOM to use a layout suitable for jQuery UI's theming */
-                    oSettings.sDom = '<"H"lfr>t<"F"ip>';
-                }
-
-                if (!oSettings.renderer) {
-                    oSettings.renderer = 'jqueryui';
-                }
-                else if ($.isPlainObject(oSettings.renderer) && !oSettings.renderer.header) {
-                    oSettings.renderer.header = 'jqueryui';
-                }
-            }
-            else {
-                $.extend(oClasses, DataTable.ext.classes, oInit.oClasses);
-            }
+            $.extend(oClasses, DataTable.ext.classes, oInit.oClasses);
             $this.addClass(oClasses.sTable);
 
 
@@ -1985,6 +1963,9 @@
             // the ability to use a valid name for the camel case input
             if (oOptions.className && !oOptions.sClass) {
                 oOptions.sClass = oOptions.className;
+            }
+            if (oOptions.sClass) {
+                th.addClass(oOptions.sClass);
             }
 
             $.extend(oCol, oOptions);
@@ -4585,7 +4566,12 @@
         });
 
         for (var i = 0, ien = lengths.length; i < ien; i++) {
-            select[0][i] = new Option(language[i], lengths[i]);
+            select[0][i] = new Option(
+                typeof language[i] === 'number' ?
+                    settings.fnFormatNumber(language[i]) :
+                    language[i],
+                lengths[i]
+            );
         }
 
         var div = $('<div><label/></div>').addClass(classes.sLength);
@@ -6031,7 +6017,7 @@
 
 
     /**
-     * Attempt to load a 
+     * Attempt to load a saved table state
      *  @param {object} oSettings dataTables settings object
      *  @param {object} oInit DataTables init object so we can override settings
      *  @param {function} callback Callback to execute when the state has been loaded
@@ -6046,7 +6032,7 @@
                 return;
             }
 
-            // Allow custom and plug-in manipulation functions to alter the 
+            // Allow custom and plug-in manipulation functions to alter the saved data set and
             // cancelling of loading by returning false
             var abStateLoad = _fnCallbackFire(settings, 'aoStateLoadParams', 'stateLoadParams', [settings, s]);
             if ($.inArray(false, abStateLoad) !== -1) {
@@ -6067,7 +6053,7 @@
                 return;
             }
 
-            // Store the 
+            // Store the saved state so it might be accessed at any time
             settings.oLoadedState = $.extend(true, {}, s);
 
             // Restore key features - todo - for 1.11 this needs to be done by
@@ -6116,7 +6102,7 @@
 
             _fnCallbackFire(settings, 'aoStateLoaded', 'stateLoaded', [settings, s]);
             callback();
-        };
+        }
 
         if (!settings.oFeatures.bStateSave) {
             callback();
@@ -7712,6 +7698,11 @@
             _fnDeleteIndex(settings.aiDisplay, row);
             _fnDeleteIndex(that[thatIdx], row, false); // maintain local indexes
 
+            // For server-side processing tables - subtract the deleted row from the count
+            if (settings._iRecordsDisplay > 0) {
+                settings._iRecordsDisplay--;
+            }
+
             // Check for an 'overflow' they case for displaying the table
             _fnLengthOverflow(settings);
 
@@ -8970,15 +8961,6 @@
                 classes.sSortableAsc + ' ' + classes.sSortableDesc + ' ' + classes.sSortableNone
             );
 
-            if (settings.bJUI) {
-                $('th span.' + classes.sSortIcon + ', td span.' + classes.sSortIcon, thead).detach();
-                $('th, td', thead).each(function () {
-                    var wrapper = $('div.' + classes.sSortJUIWrapper, this);
-                    $(this).append(wrapper.contents());
-                    wrapper.detach();
-                });
-            }
-
             // Add the TR elements back into the table in their original order
             jqTbody.children().detach();
             jqTbody.append(rows);
@@ -9076,7 +9058,7 @@
      *  @type string
      *  @default Version number
      */
-    DataTable.version = "1.10.15";
+    DataTable.version = "1.10.16";
 
     /**
      * Private data store, containing all of the settings objects that are
@@ -10003,26 +9985,6 @@
 
 
         /**
-         * Enable jQuery UI ThemeRoller support (required as ThemeRoller requires some
-         * slightly different and additional mark-up from what DataTables has
-         * traditionally used).
-         *  @type boolean
-         *  @default false
-         *
-         *  @dtopt Features
-         *  @name DataTable.defaults.jQueryUI
-         *
-         *  @example
-         *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "jQueryUI": true
-		 *      } );
-		 *    } );
-         */
-        "bJQueryUI": false,
-
-
-        /**
          * Allows the end user to select the size of a formatted page from a select
          * menu (sizes are 10, 25, 50 and 100). Requires pagination (`paginate`).
          *  @type boolean
@@ -10617,9 +10579,9 @@
 
 
         /**
-         * Callback which allows modification of the 
+         * Callback which allows modification of the saved state prior to loading that state.
          * This callback is called when the table is loading state from the stored data, but
-         * prior to the settings object being modified by the 
+         * prior to the settings object being modified by the saved state. Note that for
          * plug-in authors, you should use the `stateLoadParams` event to load parameters for
          * a plug-in.
          *  @type function
@@ -10630,7 +10592,7 @@
          *  @name DataTable.defaults.stateLoadParams
          *
          *  @example
-         *    // Remove a 
+         *    // Remove a saved filter, so filtering is never loaded
          *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
@@ -10670,7 +10632,7 @@
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoaded": function (settings, data) {
-		 *          alert( '
+		 *          alert( 'Saved filter was: '+data.oSearch.sSearch );
 		 *        }
 		 *      } );
 		 *    } );
@@ -10732,7 +10694,7 @@
          *  @name DataTable.defaults.stateSaveParams
          *
          *  @example
-         *    // Remove a 
+         *    // Remove a saved filter, so filtering is never saved
          *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
@@ -10746,7 +10708,7 @@
 
 
         /**
-         * Duration for which the 
+         * Duration for which the saved state information is considered valid. After this period
          * has elapsed the state will be returned to the default.
          * Value is given in seconds.
          *  @type int
@@ -13002,7 +12964,7 @@
         "aoStateLoadParams": [],
 
         /**
-         * Callbacks for operating on the settings object once the 
+         * Callbacks for operating on the settings object once the saved state has been
          * loaded
          *  @type array
          *  @default []
@@ -13301,14 +13263,6 @@
          *  @private
          */
         "_iRecordsDisplay": 0,
-
-        /**
-         * Flag to indicate if jQuery UI marking and classes should be used.
-         * Note that this parameter will be set by the initialisation routine. To
-         * set a default use {@link DataTable.defaults}.
-         *  @type boolean
-         */
-        "bJUI": null,
 
         /**
          * The classes to use for the table
@@ -14084,58 +14038,6 @@
     });
 
 
-    (function () {
-
-        // Reused strings for better compression. Closure compiler appears to have a
-        // weird edge case where it is trying to expand strings rather than use the
-        // variable version. This results in about 200 bytes being added, for very
-        // little preference benefit since it this run on script load only.
-        var _empty = '';
-        _empty = '';
-
-        var _stateDefault = _empty + 'ui-state-default';
-        var _sortIcon = _empty + 'css_right ui-icon ui-icon-';
-        var _headerFooter = _empty + 'fg-toolbar ui-toolbar ui-widget-header ui-helper-clearfix';
-
-        $.extend(DataTable.ext.oJUIClasses, DataTable.ext.classes, {
-            /* Full numbers paging buttons */
-            "sPageButton": "fg-button ui-button " + _stateDefault,
-            "sPageButtonActive": "ui-state-disabled",
-            "sPageButtonDisabled": "ui-state-disabled",
-
-            /* Features */
-            "sPaging": "dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi " +
-            "ui-buttonset-multi paging_", /* Note that the type is postfixed */
-
-            /* Sorting */
-            "sSortAsc": _stateDefault + " sorting_asc",
-            "sSortDesc": _stateDefault + " sorting_desc",
-            "sSortable": _stateDefault + " sorting",
-            "sSortableAsc": _stateDefault + " sorting_asc_disabled",
-            "sSortableDesc": _stateDefault + " sorting_desc_disabled",
-            "sSortableNone": _stateDefault + " sorting_disabled",
-            "sSortJUIAsc": _sortIcon + "triangle-1-n",
-            "sSortJUIDesc": _sortIcon + "triangle-1-s",
-            "sSortJUI": _sortIcon + "carat-2-n-s",
-            "sSortJUIAscAllowed": _sortIcon + "carat-1-n",
-            "sSortJUIDescAllowed": _sortIcon + "carat-1-s",
-            "sSortJUIWrapper": "DataTables_sort_wrapper",
-            "sSortIcon": "DataTables_sort_icon",
-
-            /* Scrolling */
-            "sScrollHead": "dataTables_scrollHead " + _stateDefault,
-            "sScrollFoot": "dataTables_scrollFoot " + _stateDefault,
-
-            /* Misc */
-            "sHeaderTH": _stateDefault,
-            "sFooterTH": _stateDefault,
-            "sJUIHeader": _headerFooter + " ui-corner-tl ui-corner-tr",
-            "sJUIFooter": _headerFooter + " ui-corner-bl ui-corner-br"
-        });
-
-    }());
-
-
     var extPagination = DataTable.ext.pager;
 
     function _numbers(page, pages) {
@@ -14867,14 +14769,14 @@
 
     /**
      * State load event, fired when the table is loading state from the stored
-     * data, but prior to the settings object being modified by the
-     * - allowing modification of the 
+     * data, but prior to the settings object being modified by the saved state
+     * - allowing modification of the saved state is required or loading of
      * state for a plug-in.
      *  @name DataTable#stateLoadParams.dt
      *  @event
      *  @param {event} e jQuery event object
      *  @param {object} oSettings DataTables settings object
-     *  @param {object} json The 
+     *  @param {object} json The saved state information
      */
 
     /**
@@ -14884,7 +14786,7 @@
      *  @event
      *  @param {event} e jQuery event object
      *  @param {object} oSettings DataTables settings object
-     *  @param {object} json The 
+     *  @param {object} json The saved state information
      */
 
     /**
@@ -14969,5 +14871,4 @@
      */
 
     return $.fn.dataTable;
-});
-)
+}));

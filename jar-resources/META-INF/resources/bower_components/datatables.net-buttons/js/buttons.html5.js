@@ -231,34 +231,6 @@
      */
 
     /**
-     * Get the file name for an exported file.
-     *
-     * @param {object}    config Button configuration
-     * @param {boolean} incExtension Include the file name extension
-     */
-    var _filename = function (config, incExtension) {
-        // Backwards compatibility
-        var filename = config.filename === '*' && config.title !== '*' && config.title !== undefined ?
-            config.title :
-            config.filename;
-
-        if (typeof filename === 'function') {
-            filename = filename();
-        }
-
-        if (filename.indexOf('*') !== -1) {
-            filename = $.trim(filename.replace('*', $('title').text()));
-        }
-
-        // Strip characters which the OS will object to
-        filename = filename.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g, "");
-
-        return incExtension === undefined || incExtension === true ?
-            filename + config.extension :
-            filename;
-    };
-
-    /**
      * Get the sheet name for Excel exports.
      *
      * @param {object}    config Button configuration
@@ -271,23 +243,6 @@
         }
 
         return sheetName;
-    };
-
-    /**
-     * Get the title for an exported file.
-     *
-     * @param {object} config    Button configuration
-     */
-    var _title = function (config) {
-        var title = config.title;
-
-        if (typeof title === 'function') {
-            title = title();
-        }
-
-        return title.indexOf('*') !== -1 ?
-            title.replace('*', $('title').text() || 'Exported data') :
-            title;
     };
 
     /**
@@ -501,7 +456,7 @@
                 });
             }
 
-            if (opts.text) {
+            if (opts.text !== null && opts.text !== undefined) {
                 tempNode.appendChild(doc.createTextNode(opts.text));
             }
         }
@@ -602,6 +557,7 @@
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="x14ac" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac">' +
         '<sheetData/>' +
+        '<mergeCells count="0"/>' +
         '</worksheet>',
 
         "xl/styles.xml":
@@ -843,6 +799,8 @@
 
             var that = this;
             var exportData = _exportData(dt, config);
+            var info = dt.buttons.exportInfo(config);
+            var newline = _newLine(config);
             var output = exportData.str;
             var hiddenDiv = $('<div/>')
                 .css({
@@ -853,6 +811,18 @@
                     top: 0,
                     left: 0
                 });
+
+            if (info.title) {
+                output = info.title + newline + newline + output;
+            }
+
+            if (info.messageTop) {
+                output = info.messageTop + newline + newline + output;
+            }
+
+            if (info.messageBottom) {
+                output = output + newline + newline + info.messageBottom;
+            }
 
             if (config.customize) {
                 output = config.customize(output, config);
@@ -934,7 +904,13 @@
 
         header: true,
 
-        footer: false
+        footer: false,
+
+        title: '*',
+
+        messageTop: '*',
+
+        messageBottom: '*'
     };
 
 //
@@ -958,6 +934,7 @@
 
             // Set the text
             var output = _exportData(dt, config).str;
+            var info = dt.buttons.exportInfo(config);
             var charset = config.charset;
 
             if (config.customize) {
@@ -983,7 +960,7 @@
 
             _saveAs(
                 new Blob([output], {type: 'text/csv' + charset}),
-                _filename(config),
+                info.filename,
                 true
             );
 
@@ -1157,9 +1134,34 @@
                 config.customizeData(data);
             }
 
+            var mergeCells = function (row, colspan) {
+                var mergeCells = $('mergeCells', rels);
+
+                mergeCells[0].appendChild(_createNode(rels, 'mergeCell', {
+                    attr: {
+                        ref: 'A' + row + ':' + createCellPos(colspan) + row
+                    }
+                }));
+                mergeCells.attr('count', mergeCells.attr('count') + 1);
+                $('row:eq(' + (row - 1) + ') c', rels).attr('s', '51'); // centre
+            };
+
+            // Title and top messages
+            var exportInfo = dt.buttons.exportInfo(config);
+            if (exportInfo.title) {
+                addRow([exportInfo.title], rowPos);
+                mergeCells(rowPos, data.header.length - 1);
+            }
+
+            if (exportInfo.messageTop) {
+                addRow([exportInfo.messageTop], rowPos);
+                mergeCells(rowPos, data.header.length - 1);
+            }
+
+            // Table itself
             if (config.header) {
                 addRow(data.header, rowPos);
-                $('row c', rels).attr('s', '2'); // bold
+                $('row:last c', rels).attr('s', '2'); // bold
             }
 
             for (var n = 0, ie = data.body.length; n < ie; n++) {
@@ -1169,6 +1171,12 @@
             if (config.footer && data.footer) {
                 addRow(data.footer, rowPos);
                 $('row:last c', rels).attr('s', '2'); // bold
+            }
+
+            // Below the table
+            if (exportInfo.messageBottom) {
+                addRow([exportInfo.messageBottom], rowPos);
+                mergeCells(rowPos, data.header.length - 1);
             }
 
             // Set column widths
@@ -1205,7 +1213,7 @@
                 zip
                     .generateAsync(zipConfig)
                     .then(function (blob) {
-                        _saveAs(blob, _filename(config));
+                        _saveAs(blob, exportInfo.filename);
                         that.processing(false);
                     });
             }
@@ -1213,7 +1221,7 @@
                 // JSZip 2.5
                 _saveAs(
                     zip.generate(zipConfig),
-                    _filename(config)
+                    exportInfo.filename
                 );
                 this.processing(false);
             }
@@ -1227,7 +1235,13 @@
 
         header: true,
 
-        footer: false
+        footer: false,
+
+        title: '*',
+
+        messageTop: '*',
+
+        messageBottom: '*'
     };
 
 //
@@ -1249,6 +1263,7 @@
 
             var that = this;
             var data = dt.buttons.exportData(config.exportOptions);
+            var info = dt.buttons.exportInfo(config);
             var rows = [];
 
             if (config.header) {
@@ -1319,17 +1334,25 @@
                 }
             };
 
-            if (config.message) {
+            if (info.messageTop) {
                 doc.content.unshift({
-                    text: typeof config.message == 'function' ? config.message(dt, button, config) : config.message,
+                    text: info.messageTop,
                     style: 'message',
                     margin: [0, 0, 0, 12]
                 });
             }
 
-            if (config.title) {
+            if (info.messageBottom) {
+                doc.content.push({
+                    text: info.messageBottom,
+                    style: 'message',
+                    margin: [0, 0, 0, 12]
+                });
+            }
+
+            if (info.title) {
                 doc.content.unshift({
-                    text: _title(config, false),
+                    text: info.title,
                     style: 'title',
                     margin: [0, 0, 0, 12]
                 });
@@ -1349,7 +1372,7 @@
                 pdf.getBuffer(function (buffer) {
                     var blob = new Blob([buffer], {type: 'application/pdf'});
 
-                    _saveAs(blob, _filename(config));
+                    _saveAs(blob, info.filename);
                     that.processing(false);
                 });
             }
@@ -1371,7 +1394,9 @@
 
         footer: false,
 
-        message: null,
+        messageTop: '*',
+
+        messageBottom: '*',
 
         customize: null,
 

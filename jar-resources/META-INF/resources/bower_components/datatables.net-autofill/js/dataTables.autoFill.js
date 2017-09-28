@@ -1,15 +1,15 @@
-/*! AutoFill 2.2.0
- * ©2008-2016 SpryMedia Ltd - datatables.net/license
+/*! AutoFill 2.2.2
+ * ©2008-2017 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     AutoFill
  * @description Add Excel like click and drag auto-fill options to DataTables
- * @version     2.2.0
+ * @version     2.2.2
  * @file        dataTables.autoFill.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2016 SpryMedia Ltd.
+ * @copyright   Copyright 2010-2017 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -589,7 +589,7 @@
 
                 currNode = currOffsetParent; // for next loop
             }
-            while (currOffsetParent.get(0) !== targetParent.get(0));
+            while (currOffsetParent.get(0) !== targetParent.get(0))
 
             return {
                 top: top,
@@ -1034,7 +1034,7 @@
      * @static
      * @type      String
      */
-    AutoFill.version = '2.2.0';
+    AutoFill.version = '2.2.2';
 
 
     /**

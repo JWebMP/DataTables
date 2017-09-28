@@ -39,12 +39,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "1.10.15",
-  "_release": "1.10.15",
+  "version": "1.10.16",
+  "_release": "1.10.16",
   "_resolution": {
     "type": "version",
-    "tag": "1.10.15",
-    "commit": "1fa5f9285098d59251a97c0f3f3a2ef161cbdab9"
+    "tag": "1.10.16",
+    "commit": "52a5e4d6549eb6d51170618556b9333cb6cd28bf"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-DataTables.git",
   "_target": "^1.10.12",

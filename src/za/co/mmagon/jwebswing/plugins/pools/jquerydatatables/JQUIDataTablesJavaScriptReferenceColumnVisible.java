@@ -33,5 +33,5 @@ class JQUIDataTablesJavaScriptReferenceColumnVisible extends JavascriptReference
 	{
 		super("DataTables", 1.107, "javascript/jquery.datatables/jquery.dataTables.js", "https://cdn.datatables.net/1.10.7/js/jquery.dataTables.js");
 	}
-
+	
 }
