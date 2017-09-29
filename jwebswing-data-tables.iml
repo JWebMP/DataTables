@@ -61,5 +61,11 @@
     <orderEntry type="module" module-name="log-master" />
     <orderEntry type="module" module-name="jwebswing-interception" />
     <orderEntry type="module" module-name="jwebswing" scope="TEST" production-on-test="" />
+    <orderEntry type="module" module-name="jwebswing-jquery-ui" />
+    <orderEntry type="module" module-name="jwebswing-easing-effects" />
+    <orderEntry type="module" module-name="jwebswing-globalize" />
+    <orderEntry type="module" module-name="jwebswing-jquery-ui" scope="TEST" production-on-test="" />
+    <orderEntry type="module" module-name="jwebswing-bootstrap" />
+    <orderEntry type="module" module-name="jwebswing-bootstrap" scope="TEST" production-on-test="" />
   </component>
 </module>
