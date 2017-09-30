@@ -43,6 +43,5 @@
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-ColReorder-jQueryUI.git",
   "_target": "^1.4.1",
-  "_originalSource": "datatables.net-colreorder-jqui",
-  "_direct": true
+  "_originalSource": "datatables.net-colreorder-jqui"
 }

@@ -45,6 +45,5 @@
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-AutoFill-Bootstrap4.git",
   "_target": "^2.2.2",
-  "_originalSource": "datatables.net-autofill-bs4",
-  "_direct": true
+  "_originalSource": "datatables.net-autofill-bs4"
 }
