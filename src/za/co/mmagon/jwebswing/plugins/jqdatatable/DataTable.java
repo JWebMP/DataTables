@@ -16,10 +16,12 @@
  */
 package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
+import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
 import za.co.mmagon.jwebswing.base.html.*;
 import za.co.mmagon.jwebswing.base.html.attributes.TableAttributes;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableColumnOptions;
 
 /**
  * The JWDataTable implementation
@@ -86,7 +88,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		this.enableDynamicFeature = enableDynamicFeature;
 		addAttribute(TableAttributes.CellSpacing, 0);
 		addAttribute(TableAttributes.CellPadding, 0);
-		this.headerGroup = headerGroup;
+		setHeaderGroup(headerGroup);
 	}
 	
 	@Override
@@ -97,6 +99,19 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 			if (isEnableDynamicFeature())
 			{
 				addFeature(getFeature());
+				if(getOptions().getColumns().isEmpty())
+				{
+					TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
+					for(ComponentHierarchyBase child : group.getChildren())
+					{
+						TableRow<? extends TableRow> tr = (TableRow) child;
+						for(ComponentHierarchyBase rowChild : tr.getChildren())
+						{
+							DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0).toString());
+							getOptions().getColumns().add(columnOptions);
+						}
+					}
+				}
 			}
 		}
 		super.init();

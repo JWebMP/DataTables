@@ -43,6 +43,7 @@
     "commit": "62b938d8db1ab3a716589f102174f20db013e39c"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Responsive-Bootstrap.git",
-  "_target": "*",
-  "_originalSource": "datatables.net-responsive-bs"
+  "_target": "^2.2.0",
+  "_originalSource": "datatables.net-responsive-bs",
+  "_direct": true
 }

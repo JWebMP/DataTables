@@ -43,6 +43,7 @@
     "commit": "da51bd40963068955ff27d7118c8b3142f20a170"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Select-Bootstrap.git",
-  "_target": "*",
-  "_originalSource": "datatables.net-select-bs"
+  "_target": "^1.2.3",
+  "_originalSource": "datatables.net-select-bs",
+  "_direct": true
 }

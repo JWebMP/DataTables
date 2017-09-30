@@ -42,6 +42,7 @@
     "commit": "f765ad47f33c3f2b9571bed91e5359d78470a9ea"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Scroller-Bootstrap.git",
-  "_target": "*",
-  "_originalSource": "datatables.net-scroller-bs"
+  "_target": "^1.4.3",
+  "_originalSource": "datatables.net-scroller-bs",
+  "_direct": true
 }

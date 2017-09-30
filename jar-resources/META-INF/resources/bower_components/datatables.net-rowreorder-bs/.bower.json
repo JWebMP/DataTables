@@ -42,6 +42,7 @@
     "commit": "bd40a4203ca71df01856b5949963879542021d1a"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-RowReorder-Bootstrap.git",
-  "_target": "*",
-  "_originalSource": "datatables.net-rowreorder-bs"
+  "_target": "^1.2.3",
+  "_originalSource": "datatables.net-rowreorder-bs",
+  "_direct": true
 }

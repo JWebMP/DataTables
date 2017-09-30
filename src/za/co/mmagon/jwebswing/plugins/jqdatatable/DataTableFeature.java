@@ -57,6 +57,8 @@ public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature
 	@Override
 	public void assignFunctionsToComponent()
 	{
+		addQuery(getComponent().getJQueryID() + "DataTable(" + getOptions() + ");" + getNewLine());
+		
 		//Set a new ID for every call to render. Cannot re-initialize a data table
 		//String s = "if((" + getDTID() + " === null))" + getNewLine();
 		String s = "if (typeof " + getDTID() + " === \"undefined\")" + getNewLine();
@@ -71,7 +73,7 @@ public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature
 		s += getDTID() + " = " + getComponent().getJQueryID() + "DataTable(" + getOptions() + ");" + getNewLine();
 		s += "}" + getNewLine();
 		
-		addQuery(s);
+	//	addQuery(s);
 	}
 	
 	@Override
@@ -83,5 +85,5 @@ public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature
 		}
 		return options;
 	}
-
+	
 }

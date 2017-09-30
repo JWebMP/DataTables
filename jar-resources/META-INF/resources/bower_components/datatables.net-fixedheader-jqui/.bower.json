@@ -1,0 +1,49 @@
+{
+  "name": "datatables.net-fixedheader-jqui",
+  "description": "FixedHeader for DataTables with styling for [jQuery UI](http://jqueryui.com/)",
+  "main": [
+    "css/fixedHeader.jqueryui.css"
+  ],
+  "keywords": [
+    "fixed headers",
+    "sticky",
+    "DataTables",
+    "jQuery",
+    "table",
+    "jQuery UI"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7",
+    "datatables.net-jqui": ">=1.10.9",
+    "datatables.net-fixedheader": ">=3.0.0"
+  },
+  "moduleType": [
+    "globals",
+    "amd",
+    "node"
+  ],
+  "ignore": [
+    "composer.json",
+    "datatables.json",
+    "package.json"
+  ],
+  "authors": [
+    {
+      "name": "SpryMedia Ltd",
+      "homepage": "https://datatables.net"
+    }
+  ],
+  "homepage": "https://datatables.net",
+  "license": "MIT",
+  "version": "3.1.3",
+  "_release": "3.1.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.1.3",
+    "commit": "075edaf29f00ccac72ddc0342b4d579aa7cb2810"
+  },
+  "_source": "https://github.com/DataTables/Dist-DataTables-FixedHeader-jQueryUI.git",
+  "_target": "^3.1.3",
+  "_originalSource": "datatables.net-fixedheader-jqui",
+  "_direct": true
+}

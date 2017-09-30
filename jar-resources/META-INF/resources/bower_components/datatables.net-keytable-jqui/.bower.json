@@ -44,6 +44,7 @@
     "commit": "31ac396939ddaeedfd22551058a38da8b7bfb4ec"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-KeyTable-jQueryUI.git",
-  "_target": "*",
-  "_originalSource": "datatables.net-keytable-jqui"
+  "_target": "^2.3.2",
+  "_originalSource": "datatables.net-keytable-jqui",
+  "_direct": true
 }

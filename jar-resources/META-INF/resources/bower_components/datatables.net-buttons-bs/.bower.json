@@ -48,6 +48,7 @@
     "commit": "d5a7f02210dd6cc92015c53a1c560a542bc21baa"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Buttons-Bootstrap.git",
-  "_target": "*",
-  "_originalSource": "datatables.net-buttons-bs"
+  "_target": "^1.4.2",
+  "_originalSource": "datatables.net-buttons-bs",
+  "_direct": true
 }

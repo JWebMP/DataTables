@@ -17,6 +17,10 @@
 package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableColumnOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Options for the Data Table
@@ -49,6 +53,8 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * Data to use as the display data for the table.
 	 */
 	private String data;
+	
+	
 	/**
 	 * Feature control DataTables' smart column width handling
 	 */
@@ -119,6 +125,10 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * If the data table should be destroyed
 	 */
 	private Boolean destroy;
+	/**
+	 * The list of columns
+	 */
+	private List<DataTableColumnOptions> columns;
 	
 	public DataTableOptions()
 	{
@@ -133,7 +143,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setAutoWidth(Boolean autoWidth)
 	{
 		this.autoWidth = autoWidth;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getDeferRender()
@@ -144,7 +154,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setDeferRender(Boolean deferRender)
 	{
 		this.deferRender = deferRender;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getInfo()
@@ -155,7 +165,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setInfo(Boolean info)
 	{
 		this.info = info;
-		return (J)this;
+		return (J) this;
 	}
 	
 	/**
@@ -176,7 +186,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setjQueryUI(Boolean jQueryUI)
 	{
 		this.jQueryUI = jQueryUI;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getLengthChange()
@@ -187,7 +197,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setLengthChange(Boolean lengthChange)
 	{
 		this.lengthChange = lengthChange;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getOrdering()
@@ -198,7 +208,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setOrdering(Boolean ordering)
 	{
 		this.ordering = ordering;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getPaging()
@@ -209,7 +219,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setPaging(Boolean paging)
 	{
 		this.paging = paging;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getProcessing()
@@ -220,7 +230,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setProcessing(Boolean processing)
 	{
 		this.processing = processing;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getScrollX()
@@ -231,7 +241,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setScrollX(Boolean scrollX)
 	{
 		this.scrollX = scrollX;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Integer getScrollXNum()
@@ -242,7 +252,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setScrollXNum(Integer scrollXNum)
 	{
 		this.scrollXNum = scrollXNum;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getScrollY()
@@ -253,7 +263,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setScrollY(Boolean scrollY)
 	{
 		this.scrollY = scrollY;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Integer getScrollYNum()
@@ -264,7 +274,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setScrollYNum(Integer scrollYNum)
 	{
 		this.scrollYNum = scrollYNum;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getSearching()
@@ -275,7 +285,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setSearching(Boolean searching)
 	{
 		this.searching = searching;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getServerSide()
@@ -286,7 +296,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setServerSide(Boolean serverSide)
 	{
 		this.serverSide = serverSide;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getStateSave()
@@ -297,7 +307,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setStateSave(Boolean stateSave)
 	{
 		this.stateSave = stateSave;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public String getAjax_data()
@@ -308,7 +318,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setAjax_data(String ajax_data)
 	{
 		this.ajax_data = ajax_data;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public String getAjax_dataSrc()
@@ -319,7 +329,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setAjax_dataSrc(String ajax_dataSrc)
 	{
 		this.ajax_dataSrc = ajax_dataSrc;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public String getAjax()
@@ -330,7 +340,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setAjax(String ajax)
 	{
 		this.ajax = ajax;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public String getData()
@@ -341,7 +351,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setData(String data)
 	{
 		this.data = data;
-		return (J)this;
+		return (J) this;
 	}
 	
 	public Boolean getRetrieve()
@@ -352,11 +362,12 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setRetrieve(Boolean retrieve)
 	{
 		this.retrieve = retrieve;
-		return (J)this;
+		return (J) this;
 	}
 	
 	/**
 	 * If the data table should be destroyed
+	 *
 	 * @return
 	 */
 	public Boolean getDestroy()
@@ -374,7 +385,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setDestroy(Boolean destroy)
 	{
 		this.destroy = destroy;
-		return (J)this;
+		return (J) this;
 	}
 	
 	/**
@@ -407,7 +418,28 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setDom(String dom)
 	{
 		this.dom = dom;
+		return (J) this;
+	}
+	
+	/**
+	 * Returns the list of columns
+	 * @return
+	 */
+	public List<DataTableColumnOptions> getColumns()
+	{
+		if(columns == null)
+			columns = new ArrayList<>();
+		return columns;
+	}
+	
+	/**
+	 * Sets the list of columns
+	 * @param columns
+	 * @return
+	 */
+	public J setColumns(List<DataTableColumnOptions> columns)
+	{
+		this.columns = columns;
 		return (J)this;
 	}
-
 }

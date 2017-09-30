@@ -43,6 +43,6 @@
     "commit": "957a45f343ac2e69b00b31ac14808672e31b72e9"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Bootstrap4.git",
-  "_target": "*",
+  "_target": "^3.2.2",
   "_originalSource": "datatables.net-bs4"
 }

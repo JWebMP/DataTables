@@ -43,6 +43,6 @@
     "commit": "124db4b0710f53a880bf141de30249d1132d133e"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Select-DataTables.git",
-  "_target": "^1.2.0",
+  "_target": "^1.2.3",
   "_originalSource": "datatables.net-select-dt"
 }

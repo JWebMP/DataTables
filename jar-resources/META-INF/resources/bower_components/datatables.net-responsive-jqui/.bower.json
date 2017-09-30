@@ -43,6 +43,7 @@
     "commit": "5646609790abaf0458b0c7ec58fa94b48cbb8f30"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Responsive-jQueryUI.git",
-  "_target": "*",
-  "_originalSource": "datatables.net-responsive-jqui"
+  "_target": "^2.2.0",
+  "_originalSource": "datatables.net-responsive-jqui",
+  "_direct": true
 }
