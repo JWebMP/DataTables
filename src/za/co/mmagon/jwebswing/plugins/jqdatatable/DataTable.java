@@ -26,7 +26,8 @@ import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableColumnOptions
 /**
  * The JWDataTable implementation
  *
- * @param <T> The table row type this table reflects
+ * @param <T>
+ * 		The table row type this table reflects
  * @param <J>
  *
  * @author MMagon
@@ -38,7 +39,7 @@ import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableColumnOptions
 		url = "https://www.datatables.net/")
 public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Table<J> implements GlobalChildren
 {
-	
+
 	private static final long serialVersionUID = 1L;
 	/**
 	 * The associated feature for the data table
@@ -64,24 +65,27 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 * If the dynamic features are enabled on this data table
 	 */
 	private boolean enableDynamicFeature;
-	
+
 	/**
 	 * Construct a new interactive table that is theme compatible, with cell spacing and padding as 0. Sets dynamic feature to disabled
 	 * <p>
 	 *
-	 * @param headerGroup The table header group creating for
+	 * @param headerGroup
+	 * 		The table header group creating for
 	 */
 	public DataTable(TableHeaderGroup headerGroup)
 	{
 		this(headerGroup, true);
 	}
-	
+
 	/**
 	 * Construct a new interactive table that is theme compatible, with cell spacing and padding as 0.
 	 * <p>
 	 *
-	 * @param headerGroup          The table header group creating for
-	 * @param enableDynamicFeature Enables the DataTable Feature
+	 * @param headerGroup
+	 * 		The table header group creating for
+	 * @param enableDynamicFeature
+	 * 		Enables the DataTable Feature
 	 */
 	public DataTable(TableHeaderGroup headerGroup, boolean enableDynamicFeature)
 	{
@@ -90,62 +94,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		addAttribute(TableAttributes.CellPadding, 0);
 		setHeaderGroup(headerGroup);
 	}
-	
-	@Override
-	public void init()
-	{
-		if (!isInitialized())
-		{
-			if (isEnableDynamicFeature())
-			{
-				addFeature(getFeature());
-				if(getOptions().getColumns().isEmpty())
-				{
-					TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
-					for(ComponentHierarchyBase child : group.getChildren())
-					{
-						TableRow<? extends TableRow> tr = (TableRow) child;
-						for(ComponentHierarchyBase rowChild : tr.getChildren())
-						{
-							DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0).toString());
-							getOptions().getColumns().add(columnOptions);
-						}
-					}
-				}
-			}
-		}
-		super.init();
-	}
-	
-	@Override
-	public DataTableOptions getOptions()
-	{
-		return getFeature().getOptions();
-	}
-	
-	public final DataTableFeature getFeature()
-	{
-		if (feature == null)
-		{
-			feature = new DataTableFeature(this);
-		}
-		return feature;
-	}
-	
-	/**
-	 * Gets the header group for this Data Table
-	 *
-	 * @return
-	 */
-	public TableHeaderGroup getHeaderGroup()
-	{
-		if (headerGroup == null)
-		{
-			setHeaderGroup(new TableHeaderGroup());
-		}
-		return headerGroup;
-	}
-	
+
 	/**
 	 * Sets the header group for this table
 	 * <p>
@@ -160,25 +109,100 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		{
 			add(headerGroup);
 		}
-		
+
 		return (J) this;
 	}
-	
+
+	@Override
+	public DataTableOptions getOptions()
+	{
+		return getFeature().getOptions();
+	}
+
+	public final DataTableFeature getFeature()
+	{
+		if (feature == null)
+		{
+			feature = new DataTableFeature(this);
+		}
+		return feature;
+	}
+
 	/**
-	 * Gets the footer group for this data table
+	 * Gets the header group for this Data Table
 	 *
 	 * @return
 	 */
-	public TableFooterGroup getFooterGroup()
+	public TableHeaderGroup getHeaderGroup()
 	{
-		
-		if (footerGroup == null)
+		if (headerGroup == null)
 		{
-			setFooterGroup(new TableFooterGroup());
+			setHeaderGroup(new TableHeaderGroup());
 		}
-		return footerGroup;
+		return headerGroup;
 	}
-	
+
+	@Override
+	public void init()
+	{
+		if (!isInitialized() && isEnableDynamicFeature())
+		{
+			addFeature(getFeature());
+			if (getOptions().getColumns().isEmpty())
+			{
+				TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
+				for (ComponentHierarchyBase child : group.getChildren())
+				{
+					TableRow<? extends TableRow> tr = (TableRow) child;
+					for (ComponentHierarchyBase rowChild : tr.getChildren())
+					{
+						DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0).toString());
+						getOptions().getColumns().add(columnOptions);
+					}
+				}
+			}
+		}
+
+		super.init();
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof DataTable))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		DataTable<?, ?> dataTable = (DataTable<?, ?>) o;
+
+		if (isEnableDynamicFeature() != dataTable.isEnableDynamicFeature())
+		{
+			return false;
+		}
+		if (getHeaderGroup() != null ? !getHeaderGroup().equals(dataTable.getHeaderGroup()) : dataTable.getHeaderGroup() != null)
+		{
+			return false;
+		}
+		if (getFooterGroup() != null ? !getFooterGroup().equals(dataTable.getFooterGroup()) : dataTable.getFooterGroup() != null)
+		{
+			return false;
+		}
+		if (getBodyGroup() != null ? !getBodyGroup().equals(dataTable.getBodyGroup()) : dataTable.getBodyGroup() != null)
+		{
+			return false;
+		}
+		return getCaptionOfTable() != null ? getCaptionOfTable().equals(dataTable.getCaptionOfTable()) : dataTable.getCaptionOfTable() == null;
+	}
+
 	/**
 	 * sets the footer group for this table
 	 * <p>
@@ -195,7 +219,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		}
 		return (J) this;
 	}
-	
+
 	/**
 	 * Gets the body group for this data table
 	 *
@@ -209,7 +233,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		}
 		return bodyGroup;
 	}
-	
+
 	/**
 	 * Sets the body group for the table
 	 * <p>
@@ -226,7 +250,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		}
 		return (J) this;
 	}
-	
+
 	/**
 	 * Returns the Table Caption associated with this object plus positioning utilities
 	 *
@@ -240,7 +264,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		}
 		return captionOfTable;
 	}
-	
+
 	/**
 	 * Sets the caption for the table
 	 *
@@ -251,7 +275,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		this.captionOfTable = captionOfTable;
 		return (J) this;
 	}
-	
+
 	/**
 	 * If dynamic features are enabled
 	 *
@@ -261,7 +285,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	{
 		return enableDynamicFeature;
 	}
-	
+
 	/**
 	 * Sets if the dynamic features of this table must be rendered
 	 *
@@ -273,5 +297,32 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	{
 		this.enableDynamicFeature = enableDynamicFeature;
 		return (J) this;
+	}
+
+	/**
+	 * Gets the footer group for this data table
+	 *
+	 * @return
+	 */
+	public TableFooterGroup getFooterGroup()
+	{
+
+		if (footerGroup == null)
+		{
+			setFooterGroup(new TableFooterGroup());
+		}
+		return footerGroup;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (getHeaderGroup() != null ? getHeaderGroup().hashCode() : 0);
+		result = 31 * result + (getFooterGroup() != null ? getFooterGroup().hashCode() : 0);
+		result = 31 * result + (getBodyGroup() != null ? getBodyGroup().hashCode() : 0);
+		result = 31 * result + (getCaptionOfTable() != null ? getCaptionOfTable().hashCode() : 0);
+		result = 31 * result + (isEnableDynamicFeature() ? 1 : 0);
+		return result;
 	}
 }

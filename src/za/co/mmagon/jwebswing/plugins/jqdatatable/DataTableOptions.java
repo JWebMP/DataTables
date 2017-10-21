@@ -16,6 +16,7 @@
  */
 package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableColumnOptions;
 
@@ -40,11 +41,13 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	/**
 	 * Add or modify data submitted to the server upon an Ajax request
 	 */
-	private String ajax_data;
+	@JsonProperty("ajax_data")
+	private String ajaxData;
 	/**
 	 * Data property or manipulation method for table data
 	 */
-	private String ajax_dataSrc;
+	@JsonProperty("ajax_dataSrc")
+	private String ajaxDataSrc;
 	/**
 	 * Load data for the table's content from an Ajax source
 	 */
@@ -69,8 +72,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	private Boolean info;
 	/**
 	 * Use markup and classes for the table to be themed by jQuery UI ThemeRoller.
-	 *
-	 * @deprecated
 	 */
 	private Boolean jQueryUI;
 	/**
@@ -129,10 +130,13 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * The list of columns
 	 */
 	private List<DataTableColumnOptions> columns;
-	
+
+	/**
+	 * The list of data table options
+	 */
 	public DataTableOptions()
 	{
-	
+		//Nothing Needed
 	}
 	
 	public Boolean getAutoWidth()
@@ -170,8 +174,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	
 	/**
 	 * @return
-	 *
-	 * @deprecated
 	 */
 	public Boolean getjQueryUI()
 	{
@@ -180,8 +182,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	
 	/**
 	 * @param jQueryUI
-	 *
-	 * @deprecated
 	 */
 	public J setjQueryUI(Boolean jQueryUI)
 	{
@@ -309,26 +309,26 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 		this.stateSave = stateSave;
 		return (J) this;
 	}
-	
-	public String getAjax_data()
+
+	public String getAjaxData()
 	{
-		return ajax_data;
+		return ajaxData;
 	}
-	
-	public J setAjax_data(String ajax_data)
+
+	public J setAjaxData(String ajaxData)
 	{
-		this.ajax_data = ajax_data;
+		this.ajaxData = ajaxData;
 		return (J) this;
 	}
-	
-	public String getAjax_dataSrc()
+
+	public String getAjaxDataSrc()
 	{
-		return ajax_dataSrc;
+		return ajaxDataSrc;
 	}
-	
-	public J setAjax_dataSrc(String ajax_dataSrc)
+
+	public J setAjaxDataSrc(String ajaxDataSrc)
 	{
-		this.ajax_dataSrc = ajax_dataSrc;
+		this.ajaxDataSrc = ajaxDataSrc;
 		return (J) this;
 	}
 	

@@ -25,22 +25,25 @@ import za.co.mmagon.jwebswing.base.html.interfaces.GlobalFeatures;
  * <p>
  *
  * @author MMagon
- * <p>
- * <p>
+ * 		<p>
+ * 		<p>
  * @version 1.0
  * @since 2014 09 30
  */
 public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature> implements GlobalFeatures
 {
-	
+
 	private static final long serialVersionUID = 1L;
 	private DataTableOptions options;
-	
+
+	private static final String DataTableOpeningString = "DataTable(";
+
 	/**
 	 * Construct a new JW Data Table
 	 * <p>
 	 *
-	 * @param component The Table to apply the Data Table features to.
+	 * @param component
+	 * 		The Table to apply the Data Table features to.
 	 */
 	public DataTableFeature(Component component)
 	{
@@ -48,34 +51,31 @@ public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature
 		setComponent(component);
 		component.addVariable(getDTID());
 	}
-	
+
 	public String getDTID()
 	{
 		return "dt_" + getComponent().getID();
 	}
-	
+
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		addQuery(getComponent().getJQueryID() + "DataTable(" + getOptions() + ");" + getNewLine());
-		
-		//Set a new ID for every call to render. Cannot re-initialize a data table
-		//String s = "if((" + getDTID() + " === null))" + getNewLine();
-		String s = "if (typeof " + getDTID() + " === \"undefined\")" + getNewLine();
-		s += "{" + getNewLine();
-		s += getDTID() + " = " + getComponent().getJQueryID() + "DataTable(" + getOptions() + ");" + getNewLine();
-		s += "}" + getNewLine();
-		s += "else" + getNewLine();
-		s += "{" + getNewLine();
-		//s += "alert('dt variable ' + " + getDTID() + ");" + getNewLine();
-		// s += getDTID() + ".dataTable('refresh');" + getNewLine();
-		s += getComponent().getJQueryID() + "DataTable(" + getOptions() + ");" + getNewLine();
-		s += getDTID() + " = " + getComponent().getJQueryID() + "DataTable(" + getOptions() + ");" + getNewLine();
-		s += "}" + getNewLine();
-		
-	//	addQuery(s);
+		addQuery(getComponent().getJQueryID() + DataTableOpeningString + getOptions() + ");" + getNewLine());
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("if (typeof " + getDTID() + " === \"undefined\")" + getNewLine());
+		sb.append("{" + getNewLine());
+		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + ");" + getNewLine());
+		sb.append("}" + getNewLine());
+		sb.append("else" + getNewLine());
+		sb.append("{" + getNewLine());
+		sb.append(getComponent().getJQueryID() + DataTableOpeningString + getOptions() + ");" + getNewLine());
+		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + ");" + getNewLine());
+		sb.append("}" + getNewLine());
+
+		addQuery(sb.toString());
 	}
-	
+
 	@Override
 	public DataTableOptions getOptions()
 	{
@@ -85,5 +85,33 @@ public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature
 		}
 		return options;
 	}
-	
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof DataTableFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		DataTableFeature that = (DataTableFeature) o;
+
+		return getOptions() != null ? getOptions().equals(that.getOptions()) : that.getOptions() == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (getOptions() != null ? getOptions().hashCode() : 0);
+		return result;
+	}
 }

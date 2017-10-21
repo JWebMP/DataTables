@@ -26,9 +26,12 @@ public class DataTablesAjaxObject extends JavaScriptPart
 {
 	
 	private static final long serialVersionUID = 1L;
-	
+
+	/**
+	 * The generic ajax object for jquery
+	 */
 	public DataTablesAjaxObject()
 	{
-	
+		//Nothing Needed
 	}
 }
