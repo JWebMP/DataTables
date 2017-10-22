@@ -148,21 +148,18 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		if (!isInitialized() && isEnableDynamicFeature())
 		{
 			addFeature(getFeature());
-			if (getOptions().getColumns().isEmpty())
+			TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
+			for (ComponentHierarchyBase child : group.getChildren())
 			{
-				TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
-				for (ComponentHierarchyBase child : group.getChildren())
+				TableRow<? extends TableRow> tr = (TableRow) child;
+				for (ComponentHierarchyBase rowChild : tr.getChildren())
 				{
-					TableRow<? extends TableRow> tr = (TableRow) child;
-					for (ComponentHierarchyBase rowChild : tr.getChildren())
-					{
-						DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0).toString());
-						getOptions().getColumns().add(columnOptions);
-					}
+					DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0).toString());
+					getOptions().getColumns().add(columnOptions);
 				}
 			}
-		}
 
+		}
 		super.init();
 	}
 
