@@ -101,6 +101,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @param headerGroup
 	 */
+	@SuppressWarnings("unchecked")
 	public J setHeaderGroup(TableHeaderGroup headerGroup)
 	{
 		getChildren().remove(this.headerGroup);
@@ -143,6 +144,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void init()
 	{
 		if (!isInitialized() && isEnableDynamicFeature())
@@ -201,20 +203,14 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
-	 * sets the footer group for this table
-	 * <p>
+	 * If dynamic features are enabled
 	 *
-	 * @param footerGroup
+	 * @return
 	 */
-	public J setFooterGroup(TableFooterGroup footerGroup)
+	@SuppressWarnings("unchecked")
+	public boolean isEnableDynamicFeature()
 	{
-		getChildren().remove(this.footerGroup);
-		this.footerGroup = footerGroup;
-		if (!getChildren().contains(footerGroup))
-		{
-			add(footerGroup);
-		}
-		return (J) this;
+		return enableDynamicFeature;
 	}
 
 	/**
@@ -232,18 +228,19 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
-	 * Sets the body group for the table
+	 * sets the footer group for this table
 	 * <p>
 	 *
-	 * @param bodyGroup
+	 * @param footerGroup
 	 */
-	public J setBodyGroup(TableBodyGroup bodyGroup)
+	@SuppressWarnings("unchecked")
+	public J setFooterGroup(TableFooterGroup footerGroup)
 	{
-		getChildren().remove(this.bodyGroup);
-		this.bodyGroup = bodyGroup;
-		if (!getChildren().contains(bodyGroup))
+		getChildren().remove(this.footerGroup);
+		this.footerGroup = footerGroup;
+		if (!getChildren().contains(footerGroup))
 		{
-			add(bodyGroup);
+			add(footerGroup);
 		}
 		return (J) this;
 	}
@@ -263,24 +260,33 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
-	 * Sets the caption for the table
+	 * Sets the body group for the table
+	 * <p>
 	 *
-	 * @param captionOfTable
+	 * @param bodyGroup
 	 */
-	public J setCaptionOfTable(TableCaption captionOfTable)
+	@SuppressWarnings("unchecked")
+	public J setBodyGroup(TableBodyGroup bodyGroup)
 	{
-		this.captionOfTable = captionOfTable;
+		getChildren().remove(this.bodyGroup);
+		this.bodyGroup = bodyGroup;
+		if (!getChildren().contains(bodyGroup))
+		{
+			add(bodyGroup);
+		}
 		return (J) this;
 	}
 
 	/**
-	 * If dynamic features are enabled
+	 * Sets the caption for the table
 	 *
-	 * @return
+	 * @param captionOfTable
 	 */
-	public boolean isEnableDynamicFeature()
+	@SuppressWarnings("unchecked")
+	public J setCaptionOfTable(TableCaption captionOfTable)
 	{
-		return enableDynamicFeature;
+		this.captionOfTable = captionOfTable;
+		return (J) this;
 	}
 
 	/**
@@ -314,12 +320,6 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	@Override
 	public int hashCode()
 	{
-		int result = super.hashCode();
-		result = 31 * result + (getHeaderGroup() != null ? getHeaderGroup().hashCode() : 0);
-		result = 31 * result + (getFooterGroup() != null ? getFooterGroup().hashCode() : 0);
-		result = 31 * result + (getBodyGroup() != null ? getBodyGroup().hashCode() : 0);
-		result = 31 * result + (getCaptionOfTable() != null ? getCaptionOfTable().hashCode() : 0);
-		result = 31 * result + (isEnableDynamicFeature() ? 1 : 0);
-		return result;
+		return super.hashCode();
 	}
 }
