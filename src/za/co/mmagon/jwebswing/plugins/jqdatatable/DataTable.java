@@ -228,6 +228,24 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
+	 * Sets the body group for the table
+	 * <p>
+	 *
+	 * @param bodyGroup
+	 */
+	@SuppressWarnings("unchecked")
+	public J setBodyGroup(TableBodyGroup bodyGroup)
+	{
+		getChildren().remove(this.bodyGroup);
+		this.bodyGroup = bodyGroup;
+		if (!getChildren().contains(bodyGroup))
+		{
+			add(bodyGroup);
+		}
+		return (J) this;
+	}
+
+	/**
 	 * sets the footer group for this table
 	 * <p>
 	 *
@@ -257,24 +275,6 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 			setCaptionOfTable(new TableCaption(null));
 		}
 		return captionOfTable;
-	}
-
-	/**
-	 * Sets the body group for the table
-	 * <p>
-	 *
-	 * @param bodyGroup
-	 */
-	@SuppressWarnings("unchecked")
-	public J setBodyGroup(TableBodyGroup bodyGroup)
-	{
-		getChildren().remove(this.bodyGroup);
-		this.bodyGroup = bodyGroup;
-		if (!getChildren().contains(bodyGroup))
-		{
-			add(bodyGroup);
-		}
-		return (J) this;
 	}
 
 	/**
