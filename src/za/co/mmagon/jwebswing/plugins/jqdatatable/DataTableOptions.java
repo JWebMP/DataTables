@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptPart<J>
 {
-	
+
 	private static final long serialVersionUID = 1L;
 	/**
 	 * the document object model layout
@@ -56,8 +56,8 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * Data to use as the display data for the table.
 	 */
 	private String data;
-	
-	
+
+
 	/**
 	 * Feature control DataTables' smart column width handling
 	 */
@@ -138,40 +138,40 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	{
 		//Nothing Needed
 	}
-	
+
 	public Boolean getAutoWidth()
 	{
 		return autoWidth;
 	}
-	
+
 	public J setAutoWidth(Boolean autoWidth)
 	{
 		this.autoWidth = autoWidth;
 		return (J) this;
 	}
-	
+
 	public Boolean getDeferRender()
 	{
 		return deferRender;
 	}
-	
+
 	public J setDeferRender(Boolean deferRender)
 	{
 		this.deferRender = deferRender;
 		return (J) this;
 	}
-	
+
 	public Boolean getInfo()
 	{
 		return info;
 	}
-	
+
 	public J setInfo(Boolean info)
 	{
 		this.info = info;
 		return (J) this;
 	}
-	
+
 	/**
 	 * @return
 	 */
@@ -179,7 +179,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	{
 		return jQueryUI;
 	}
-	
+
 	/**
 	 * @param jQueryUI
 	 */
@@ -188,122 +188,122 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 		this.jQueryUI = jQueryUI;
 		return (J) this;
 	}
-	
+
 	public Boolean getLengthChange()
 	{
 		return lengthChange;
 	}
-	
+
 	public J setLengthChange(Boolean lengthChange)
 	{
 		this.lengthChange = lengthChange;
 		return (J) this;
 	}
-	
+
 	public Boolean getOrdering()
 	{
 		return ordering;
 	}
-	
+
 	public J setOrdering(Boolean ordering)
 	{
 		this.ordering = ordering;
 		return (J) this;
 	}
-	
+
 	public Boolean getPaging()
 	{
 		return paging;
 	}
-	
+
 	public J setPaging(Boolean paging)
 	{
 		this.paging = paging;
 		return (J) this;
 	}
-	
+
 	public Boolean getProcessing()
 	{
 		return processing;
 	}
-	
+
 	public J setProcessing(Boolean processing)
 	{
 		this.processing = processing;
 		return (J) this;
 	}
-	
+
 	public Boolean getScrollX()
 	{
 		return scrollX;
 	}
-	
+
 	public J setScrollX(Boolean scrollX)
 	{
 		this.scrollX = scrollX;
 		return (J) this;
 	}
-	
+
 	public Integer getScrollXNum()
 	{
 		return scrollXNum;
 	}
-	
+
 	public J setScrollXNum(Integer scrollXNum)
 	{
 		this.scrollXNum = scrollXNum;
 		return (J) this;
 	}
-	
+
 	public Boolean getScrollY()
 	{
 		return scrollY;
 	}
-	
+
 	public J setScrollY(Boolean scrollY)
 	{
 		this.scrollY = scrollY;
 		return (J) this;
 	}
-	
+
 	public Integer getScrollYNum()
 	{
 		return scrollYNum;
 	}
-	
+
 	public J setScrollYNum(Integer scrollYNum)
 	{
 		this.scrollYNum = scrollYNum;
 		return (J) this;
 	}
-	
+
 	public Boolean getSearching()
 	{
 		return searching;
 	}
-	
+
 	public J setSearching(Boolean searching)
 	{
 		this.searching = searching;
 		return (J) this;
 	}
-	
+
 	public Boolean getServerSide()
 	{
 		return serverSide;
 	}
-	
+
 	public J setServerSide(Boolean serverSide)
 	{
 		this.serverSide = serverSide;
 		return (J) this;
 	}
-	
+
 	public Boolean getStateSave()
 	{
 		return stateSave;
 	}
-	
+
 	public J setStateSave(Boolean stateSave)
 	{
 		this.stateSave = stateSave;
@@ -331,40 +331,40 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 		this.ajaxDataSrc = ajaxDataSrc;
 		return (J) this;
 	}
-	
+
 	public String getAjax()
 	{
 		return ajax;
 	}
-	
+
 	public J setAjax(String ajax)
 	{
 		this.ajax = ajax;
 		return (J) this;
 	}
-	
+
 	public String getData()
 	{
 		return data;
 	}
-	
+
 	public J setData(String data)
 	{
 		this.data = data;
 		return (J) this;
 	}
-	
+
 	public Boolean getRetrieve()
 	{
 		return retrieve;
 	}
-	
+
 	public J setRetrieve(Boolean retrieve)
 	{
 		this.retrieve = retrieve;
 		return (J) this;
 	}
-	
+
 	/**
 	 * If the data table should be destroyed
 	 *
@@ -374,7 +374,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	{
 		return destroy;
 	}
-	
+
 	/**
 	 * If the data table should be destroyed
 	 *
@@ -387,7 +387,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 		this.destroy = destroy;
 		return (J) this;
 	}
-	
+
 	/**
 	 * <p>
 	 * As is described by the basic DOM positioning example you can use the dom initialisation parameter to move DataTables features around the table to where you want them.
@@ -403,7 +403,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	{
 		return dom;
 	}
-	
+
 	/**
 	 * <p>
 	 * As is described by the basic DOM positioning example you can use the dom initialisation parameter to move DataTables features around the table to where you want them.
@@ -420,26 +420,31 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 		this.dom = dom;
 		return (J) this;
 	}
-	
+
 	/**
 	 * Returns the list of columns
+	 *
 	 * @return
 	 */
 	public List<DataTableColumnOptions> getColumns()
 	{
-		if(columns == null)
+		if (columns == null)
+		{
 			columns = new ArrayList<>();
+		}
 		return columns;
 	}
-	
+
 	/**
 	 * Sets the list of columns
+	 *
 	 * @param columns
+	 *
 	 * @return
 	 */
 	public J setColumns(List<DataTableColumnOptions> columns)
 	{
 		this.columns = columns;
-		return (J)this;
+		return (J) this;
 	}
 }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,9 +34,8 @@ public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature
 {
 
 	private static final long serialVersionUID = 1L;
-	private DataTableOptions options;
-
 	private static final String DataTableOpeningString = "DataTable(";
+	private DataTableOptions options;
 
 	/**
 	 * Construct a new JW Data Table

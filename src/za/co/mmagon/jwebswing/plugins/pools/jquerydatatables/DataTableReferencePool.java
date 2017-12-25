@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,50 +26,49 @@ import za.co.mmagon.jwebswing.base.servlets.interfaces.ReferencePool;
  */
 public enum DataTableReferencePool implements ReferencePool
 {
-	
-	JQueryDataTables(new JavascriptReference("JQueryDataTables", 1.1010, "bower_components/datatables.net/js/jquery.dataTables.js", "https://cdn.datatables.net/1.10.10/js/jquery.datatables.js"),
-	                 new CSSReference("JQueryDTCss", 1.1010, "bower_components/datatables.net-dt/css/jquery.dataTables.css", "https://cdn.datatables.net/1.10.10/css/jquery.dataTables.css"), 15),
-	;
+
+	JQueryDataTables(new JavascriptReference("JQueryDataTables", 1.1010, "bower_components/datatables.net/js/jquery.dataTables.min.js", "https://cdn.datatables.net/1.10.10/js/jquery.datatables.js"),
+	                 new CSSReference("JQueryDTCss", 1.1010, "bower_components/datatables.net-dt/css/jquery.dataTables.min.css", "https://cdn.datatables.net/1.10.10/css/jquery.dataTables.css"), 15),;
 	private JavascriptReference javaScriptReference;
 	private CSSReference cssReference;
-	
+
 	DataTableReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference, int sortOrder)
 	{
 		this.javaScriptReference = javaScriptReference;
 		this.cssReference = cssReference;
-		
+
 		if (this.javaScriptReference != null)
 		{
 			this.javaScriptReference.setSortOrder(sortOrder);
 		}
-		
+
 		if (this.cssReference != null)
 		{
 			this.cssReference.setSortOrder(sortOrder);
 		}
 	}
-	
-	@Override
-	public JavascriptReference getJavaScriptReference()
-	{
-		return javaScriptReference;
-	}
-	
-	@Override
-	public void setJavaScriptReference(JavascriptReference javaScriptReference)
-	{
-		this.javaScriptReference = javaScriptReference;
-	}
-	
+
 	@Override
 	public CSSReference getCssReference()
 	{
 		return cssReference;
 	}
-	
+
 	@Override
 	public void setCssReference(CSSReference cssReference)
 	{
 		this.cssReference = cssReference;
+	}
+
+	@Override
+	public JavascriptReference getJavaScriptReference()
+	{
+		return javaScriptReference;
+	}
+
+	@Override
+	public void setJavaScriptReference(JavascriptReference javaScriptReference)
+	{
+		this.javaScriptReference = javaScriptReference;
 	}
 }

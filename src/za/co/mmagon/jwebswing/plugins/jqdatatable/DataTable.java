@@ -95,29 +95,36 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		setHeaderGroup(headerGroup);
 	}
 
-	/**
-	 * Sets the header group for this table
-	 * <p>
-	 *
-	 * @param headerGroup
-	 */
+	@Override
 	@SuppressWarnings("unchecked")
-	public J setHeaderGroup(TableHeaderGroup headerGroup)
+	public void init()
 	{
-		getChildren().remove(this.headerGroup);
-		this.headerGroup = headerGroup;
-		if (!getChildren().contains(headerGroup))
+		if (!isInitialized() && isEnableDynamicFeature())
 		{
-			add(headerGroup);
+			addFeature(getFeature());
+			TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
+			for (ComponentHierarchyBase child : group.getChildren())
+			{
+				TableRow<? extends TableRow> tr = (TableRow) child;
+				for (ComponentHierarchyBase rowChild : tr.getChildren())
+				{
+					DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0).toString());
+					getOptions().getColumns().add(columnOptions);
+				}
+			}
 		}
-
-		return (J) this;
+		super.init();
 	}
 
-	@Override
-	public DataTableOptions getOptions()
+	/**
+	 * If dynamic features are enabled
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public boolean isEnableDynamicFeature()
 	{
-		return getFeature().getOptions();
+		return enableDynamicFeature;
 	}
 
 	public final DataTableFeature getFeature()
@@ -143,26 +150,42 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		return headerGroup;
 	}
 
-	@Override
+	/**
+	 * Sets the header group for this table
+	 * <p>
+	 *
+	 * @param headerGroup
+	 */
 	@SuppressWarnings("unchecked")
-	public void init()
+	public J setHeaderGroup(TableHeaderGroup headerGroup)
 	{
-		if (!isInitialized() && isEnableDynamicFeature())
+		getChildren().remove(this.headerGroup);
+		this.headerGroup = headerGroup;
+		if (!getChildren().contains(headerGroup))
 		{
-			addFeature(getFeature());
-			TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
-			for (ComponentHierarchyBase child : group.getChildren())
-			{
-				TableRow<? extends TableRow> tr = (TableRow) child;
-				for (ComponentHierarchyBase rowChild : tr.getChildren())
-				{
-					DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0).toString());
-					getOptions().getColumns().add(columnOptions);
-				}
-			}
-
+			add(headerGroup);
 		}
-		super.init();
+
+		return (J) this;
+	}
+
+	@Override
+	public DataTableOptions getOptions()
+	{
+		return getFeature().getOptions();
+	}
+
+	/**
+	 * Sets if the dynamic features of this table must be rendered
+	 *
+	 * @param enableDynamicFeature
+	 *
+	 * @return
+	 */
+	public J setEnableDynamicFeature(boolean enableDynamicFeature)
+	{
+		this.enableDynamicFeature = enableDynamicFeature;
+		return (J) this;
 	}
 
 	@Override
@@ -203,14 +226,18 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
-	 * If dynamic features are enabled
+	 * Gets the footer group for this data table
 	 *
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
-	public boolean isEnableDynamicFeature()
+	public TableFooterGroup getFooterGroup()
 	{
-		return enableDynamicFeature;
+
+		if (footerGroup == null)
+		{
+			setFooterGroup(new TableFooterGroup());
+		}
+		return footerGroup;
 	}
 
 	/**
@@ -246,24 +273,6 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
-	 * sets the footer group for this table
-	 * <p>
-	 *
-	 * @param footerGroup
-	 */
-	@SuppressWarnings("unchecked")
-	public J setFooterGroup(TableFooterGroup footerGroup)
-	{
-		getChildren().remove(this.footerGroup);
-		this.footerGroup = footerGroup;
-		if (!getChildren().contains(footerGroup))
-		{
-			add(footerGroup);
-		}
-		return (J) this;
-	}
-
-	/**
 	 * Returns the Table Caption associated with this object plus positioning utilities
 	 *
 	 * @return
@@ -290,31 +299,21 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
-	 * Sets if the dynamic features of this table must be rendered
+	 * sets the footer group for this table
+	 * <p>
 	 *
-	 * @param enableDynamicFeature
-	 *
-	 * @return
+	 * @param footerGroup
 	 */
-	public J setEnableDynamicFeature(boolean enableDynamicFeature)
+	@SuppressWarnings("unchecked")
+	public J setFooterGroup(TableFooterGroup footerGroup)
 	{
-		this.enableDynamicFeature = enableDynamicFeature;
-		return (J) this;
-	}
-
-	/**
-	 * Gets the footer group for this data table
-	 *
-	 * @return
-	 */
-	public TableFooterGroup getFooterGroup()
-	{
-
-		if (footerGroup == null)
+		getChildren().remove(this.footerGroup);
+		this.footerGroup = footerGroup;
+		if (!getChildren().contains(footerGroup))
 		{
-			setFooterGroup(new TableFooterGroup());
+			add(footerGroup);
 		}
-		return footerGroup;
+		return (J) this;
 	}
 
 	@Override
