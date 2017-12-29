@@ -24,11 +24,14 @@ import za.co.mmagon.jwebswing.plugins.PluginInformation;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablePlugins;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTableThemes;
 import za.co.mmagon.jwebswing.plugins.pools.jquerydatatables.DataTableReferencePool;
-import za.co.mmagon.jwebswing.utilities.StaticStrings;
 
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
+
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.STRING_DASH;
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.STRING_DOT;
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.STRING_EMPTY;
 
 /**
  * @author GedMarc
@@ -54,6 +57,13 @@ public class DataTablePageConfigurator extends PageConfigurator
 
 	private static final String DataTablesOperatorString = "dataTables.";
 	private static final String DataTablesNameString = "DataTables";
+	private static final String BowerComponentsString = "bower_components/";
+	private static final String BowerComponentDataTablesString = "datatables.net-";
+	private static final String CssString = "/css/";
+
+	private static final String JsMinString = ".min.js";
+	private static final String CssMinString = ".min.css";
+
 	private static final long serialVersionUID = 1L;
 
 	private static EnumSet<DataTableThemes> themes;
@@ -96,7 +106,7 @@ public class DataTablePageConfigurator extends PageConfigurator
 			{
 				String themeBasePath = "bower_components/datatables.net-" + theme.getData() + "/js/dataTables." + theme.getFilename();
 
-				String themeBaseCssPath = "bower_components/datatables.net-" + theme.getData() + "/css/";
+				String themeBaseCssPath = "bower_components/datatables.net-" + theme.getData() + CssString;
 				if (theme.getFilenameOverride() == null || theme.getFilenameOverride().isEmpty())
 				{
 					themeBaseCssPath += DataTablesOperatorString + theme.getFilename();
@@ -108,10 +118,10 @@ public class DataTablePageConfigurator extends PageConfigurator
 
 				if (!themeBasePath.contains("dataTables.dataTables"))
 				{
-					page.getBody().addJavaScriptReference(new JavascriptReference(DataTablesNameString + theme.toString(), 1.1016, themeBasePath + ".min.js"));
+					page.getBody().addJavaScriptReference(new JavascriptReference(DataTablesNameString + theme.toString(), 1.1016, themeBasePath + JsMinString));
 				}
 
-				page.getBody().addCssReference(new CSSReference(DataTablesNameString + theme.toString(), 1.1016, themeBaseCssPath + ".min.css"));
+				page.getBody().addCssReference(new CSSReference(DataTablesNameString + theme.toString(), 1.1016, themeBaseCssPath + CssMinString));
 
 				configurePlugins(page, theme);
 			}
@@ -132,11 +142,11 @@ public class DataTablePageConfigurator extends PageConfigurator
 			String jsPath = null;
 			if (theme == DataTableThemes.DataTables)
 			{
-				jsPath = "bower_components/" + ("datatables.net-") + plugin.getFilename() + "/js/" + (!plugin.isPlugin() ? DataTablesOperatorString : "") + plugin.getFilename() + ".min.js";
+				jsPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + "/js/" + (!plugin.isPlugin() ? DataTablesOperatorString : STRING_EMPTY) + plugin.getFilename() + JsMinString;
 			}
 			else
 			{
-				jsPath = "bower_components/" + ("datatables.net-") + plugin.getFilename() + "-" + theme.getData() + "/js/" + (!plugin.isPlugin() ? DataTablesOperatorString : "") + plugin.getFilename() + ".min.js";
+				jsPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() + "/js/" + (!plugin.isPlugin() ? DataTablesOperatorString : STRING_EMPTY) + plugin.getFilename() + JsMinString;
 			}
 
 			page.getBody().addJavaScriptReference(new JavascriptReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, jsPath));
@@ -145,11 +155,11 @@ public class DataTablePageConfigurator extends PageConfigurator
 				String cssPath = null;
 				if (theme == DataTableThemes.DataTables)
 				{
-					cssPath = "bower_components/" + ("datatables.net-") + plugin.getFilename() + "-" + theme.getData() + "/css/" + plugin.getFilename() + StaticStrings.STRING_DOT + (!plugin.isPlugin() ? DataTablesOperatorString : "") + "min.css";
+					cssPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() + CssString + plugin.getFilename() + STRING_DOT + (!plugin.isPlugin() ? DataTablesOperatorString : STRING_EMPTY) + CssMinString;
 				}
 				else
 				{
-					cssPath = "bower_components/" + ("datatables.net-") + plugin.getFilename() + "-" + theme.getData() + "/css/" + plugin.getFilename() + "." + theme.getFilename() + "." + "min.css";
+					cssPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() + CssString + plugin.getFilename() + STRING_DOT + theme.getFilename() + STRING_DOT + CssMinString;
 				}
 				page.getBody().addCssReference(new CSSReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, cssPath));
 			}
@@ -165,7 +175,7 @@ public class DataTablePageConfigurator extends PageConfigurator
 	{
 		if (plugins == null)
 		{
-			plugins = new HashSet();
+			plugins = new HashSet<>();
 		}
 		return plugins;
 	}
