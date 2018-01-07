@@ -20,6 +20,8 @@ import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalFeatures;
 
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.STRING_CLOSING_BRACKET_SEMICOLON;
+
 /**
  * Implements the jQuery DataTable plugin
  * <p>
@@ -59,17 +61,17 @@ public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		addQuery(getComponent().getJQueryID() + DataTableOpeningString + getOptions() + ");" + getNewLine());
+		addQuery(getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("if (typeof " + getDTID() + " === \"undefined\")" + getNewLine());
 		sb.append("{" + getNewLine());
-		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + ");" + getNewLine());
+		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
 		sb.append("}" + getNewLine());
 		sb.append("else" + getNewLine());
 		sb.append("{" + getNewLine());
-		sb.append(getComponent().getJQueryID() + DataTableOpeningString + getOptions() + ");" + getNewLine());
-		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + ");" + getNewLine());
+		sb.append(getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
+		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
 		sb.append("}" + getNewLine());
 
 		addQuery(sb.toString());
