@@ -3,8 +3,10 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable;
 import org.junit.jupiter.api.Test;
 import za.co.mmagon.jwebswing.Page;
 import za.co.mmagon.jwebswing.base.html.TableHeaderGroup;
-import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablePlugins;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTableThemes;
+
+import static za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablePlugins.Responsive;
+import static za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTableThemes.JQueryUI;
 
 public class DataTableTest
 {
@@ -25,7 +27,8 @@ public class DataTableTest
 		TableHeaderGroup thg = new TableHeaderGroup();
 		DataTable dt = new DataTable(thg);
 
-		DataTablePageConfigurator.getPlugins().add(DataTablePlugins.Responsive);
+		DataTablePageConfigurator.getPlugins()
+				.add(Responsive);
 
 		Page p = new Page();
 		p.add(dt);
@@ -38,7 +41,8 @@ public class DataTableTest
 		TableHeaderGroup thg = new TableHeaderGroup();
 		DataTable dt = new DataTable(thg);
 
-		DataTablePageConfigurator.getPlugins().add(DataTablePlugins.Responsive);
+		DataTablePageConfigurator.getPlugins()
+				.add(Responsive);
 		DataTablePageConfigurator.switchTheme(DataTableThemes.Bootstrap4);
 
 		Page p = new Page();
@@ -52,8 +56,9 @@ public class DataTableTest
 		TableHeaderGroup thg = new TableHeaderGroup();
 		DataTable dt = new DataTable(thg);
 
-		DataTablePageConfigurator.getPlugins().add(DataTablePlugins.Responsive);
-		DataTablePageConfigurator.switchTheme(DataTableThemes.JQueryUI);
+		DataTablePageConfigurator.getPlugins()
+				.add(Responsive);
+		DataTablePageConfigurator.switchTheme(JQueryUI);
 
 		Page p = new Page();
 		p.add(dt);
