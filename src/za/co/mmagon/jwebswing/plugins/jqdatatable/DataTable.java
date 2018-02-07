@@ -23,6 +23,8 @@ import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableColumnOptions;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * The JWDataTable implementation
  *
@@ -34,9 +36,7 @@ import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableColumnOptions
  * @version 1.0
  * @since 2014 09 30
  */
-@ComponentInformation(name = "Data Tables",
-		description = "The core data tables component",
-		url = "https://www.datatables.net/")
+@ComponentInformation(name = "Data Tables", description = "The core data tables component", url = "https://www.datatables.net/")
 public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Table<J> implements GlobalChildren
 {
 
@@ -108,8 +108,10 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 				TableRow<? extends TableRow> tr = (TableRow) child;
 				for (ComponentHierarchyBase rowChild : tr.getChildren())
 				{
-					DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0).toString());
-					getOptions().getColumns().add(columnOptions);
+					DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0)
+							                                                                  .toString());
+					getOptions().getColumns()
+							.add(columnOptions);
 				}
 			}
 		}
@@ -127,6 +129,8 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		return enableDynamicFeature;
 	}
 
+	@SuppressWarnings({"unchecked"})
+	@NotNull
 	public final DataTableFeature getFeature()
 	{
 		if (feature == null)
@@ -141,6 +145,8 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @return
 	 */
+	@SuppressWarnings({"unchecked"})
+	@NotNull
 	public TableHeaderGroup getHeaderGroup()
 	{
 		if (headerGroup == null)
@@ -156,7 +162,8 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @param headerGroup
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"unchecked"})
+	@NotNull
 	public J setHeaderGroup(TableHeaderGroup headerGroup)
 	{
 		getChildren().remove(this.headerGroup);
@@ -182,6 +189,8 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @return
 	 */
+	@SuppressWarnings({"unchecked"})
+	@NotNull
 	public J setEnableDynamicFeature(boolean enableDynamicFeature)
 	{
 		this.enableDynamicFeature = enableDynamicFeature;
@@ -191,38 +200,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	@Override
 	public boolean equals(Object o)
 	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof DataTable))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		DataTable<?, ?> dataTable = (DataTable<?, ?>) o;
-
-		if (isEnableDynamicFeature() != dataTable.isEnableDynamicFeature())
-		{
-			return false;
-		}
-		if (getHeaderGroup() != null ? !getHeaderGroup().equals(dataTable.getHeaderGroup()) : dataTable.getHeaderGroup() != null)
-		{
-			return false;
-		}
-		if (getFooterGroup() != null ? !getFooterGroup().equals(dataTable.getFooterGroup()) : dataTable.getFooterGroup() != null)
-		{
-			return false;
-		}
-		if (getBodyGroup() != null ? !getBodyGroup().equals(dataTable.getBodyGroup()) : dataTable.getBodyGroup() != null)
-		{
-			return false;
-		}
-		return getCaptionOfTable() != null ? getCaptionOfTable().equals(dataTable.getCaptionOfTable()) : dataTable.getCaptionOfTable() == null;
+		return super.equals(o);
 	}
 
 	/**
@@ -230,6 +208,8 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @return
 	 */
+	@SuppressWarnings({"unchecked"})
+	@NotNull
 	public TableFooterGroup getFooterGroup()
 	{
 
@@ -241,10 +221,31 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
+	 * sets the footer group for this table
+	 * <p>
+	 *
+	 * @param footerGroup
+	 */
+	@SuppressWarnings({"unchecked"})
+	@NotNull
+	public J setFooterGroup(TableFooterGroup footerGroup)
+	{
+		getChildren().remove(this.footerGroup);
+		this.footerGroup = footerGroup;
+		if (!getChildren().contains(footerGroup))
+		{
+			add(footerGroup);
+		}
+		return (J) this;
+	}
+
+	/**
 	 * Gets the body group for this data table
 	 *
 	 * @return
 	 */
+	@SuppressWarnings({"unchecked"})
+	@NotNull
 	public TableBodyGroup getBodyGroup()
 	{
 		if (bodyGroup == null)
@@ -252,24 +253,6 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 			setBodyGroup(new TableBodyGroup());
 		}
 		return bodyGroup;
-	}
-
-	/**
-	 * Sets the body group for the table
-	 * <p>
-	 *
-	 * @param bodyGroup
-	 */
-	@SuppressWarnings("unchecked")
-	public J setBodyGroup(TableBodyGroup bodyGroup)
-	{
-		getChildren().remove(this.bodyGroup);
-		this.bodyGroup = bodyGroup;
-		if (!getChildren().contains(bodyGroup))
-		{
-			add(bodyGroup);
-		}
-		return (J) this;
 	}
 
 	/**
@@ -287,32 +270,34 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
-	 * Sets the caption for the table
+	 * Sets the body group for the table
+	 * <p>
 	 *
-	 * @param captionOfTable
+	 * @param bodyGroup
 	 */
-	@SuppressWarnings("unchecked")
-	public J setCaptionOfTable(TableCaption captionOfTable)
+	@SuppressWarnings({"unchecked"})
+	@NotNull
+	public J setBodyGroup(TableBodyGroup bodyGroup)
 	{
-		this.captionOfTable = captionOfTable;
+		getChildren().remove(this.bodyGroup);
+		this.bodyGroup = bodyGroup;
+		if (!getChildren().contains(bodyGroup))
+		{
+			add(bodyGroup);
+		}
 		return (J) this;
 	}
 
 	/**
-	 * sets the footer group for this table
-	 * <p>
+	 * Sets the caption for the table
 	 *
-	 * @param footerGroup
+	 * @param captionOfTable
 	 */
-	@SuppressWarnings("unchecked")
-	public J setFooterGroup(TableFooterGroup footerGroup)
+	@SuppressWarnings({"unchecked"})
+	@NotNull
+	public J setCaptionOfTable(TableCaption captionOfTable)
 	{
-		getChildren().remove(this.footerGroup);
-		this.footerGroup = footerGroup;
-		if (!getChildren().contains(footerGroup))
-		{
-			add(footerGroup);
-		}
+		this.captionOfTable = captionOfTable;
 		return (J) this;
 	}
 

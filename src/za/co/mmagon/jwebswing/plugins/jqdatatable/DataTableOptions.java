@@ -34,10 +34,12 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 {
 
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * the document object model layout
 	 */
 	private String dom;
+
 	/**
 	 * Add or modify data submitted to the server upon an Ajax request
 	 */
@@ -56,8 +58,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * Data to use as the display data for the table.
 	 */
 	private String data;
-
-
 	/**
 	 * Feature control DataTables' smart column width handling
 	 */
@@ -129,7 +129,9 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	/**
 	 * The list of columns
 	 */
+	@JsonProperty("columnDefs")
 	private List<DataTableColumnOptions> columns;
+
 
 	/**
 	 * The list of data table options

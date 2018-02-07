@@ -66,12 +66,16 @@ public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature
 		StringBuilder sb = new StringBuilder();
 		sb.append("if (typeof " + getDTID() + " === \"undefined\")" + getNewLine());
 		sb.append("{" + getNewLine());
-		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
+		sb.append(
+				getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() +
+						STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
 		sb.append("}" + getNewLine());
 		sb.append("else" + getNewLine());
 		sb.append("{" + getNewLine());
 		sb.append(getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
-		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
+		sb.append(
+				getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() +
+						STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
 		sb.append("}" + getNewLine());
 
 		addQuery(sb.toString());
@@ -90,29 +94,12 @@ public class DataTableFeature extends Feature<DataTableOptions, DataTableFeature
 	@Override
 	public boolean equals(Object o)
 	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof DataTableFeature))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		DataTableFeature that = (DataTableFeature) o;
-
-		return getOptions() != null ? getOptions().equals(that.getOptions()) : that.getOptions() == null;
+		return super.equals(o);
 	}
 
 	@Override
 	public int hashCode()
 	{
-		int result = super.hashCode();
-		result = 31 * result + (getOptions() != null ? getOptions().hashCode() : 0);
-		return result;
+		return super.hashCode();
 	}
 }

@@ -16,7 +16,8 @@ public enum DataTablePlugins
 	RowGroup("rowGroup"),
 	RowReorder("rowReorder"),
 	Scroller("scroller"),
-	Select("select"),;
+	Select("select"),
+	Sortable("select"),;
 
 
 	private String filename;
