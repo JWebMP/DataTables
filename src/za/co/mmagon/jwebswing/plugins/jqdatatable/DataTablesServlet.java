@@ -4,7 +4,6 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import za.co.mmagon.guiceinjection.GuiceContext;
 import za.co.mmagon.jwebswing.base.servlets.JWDefaultServlet;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.events.DataTableDataFetchEvent;
-import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableData;
 import za.co.mmagon.jwebswing.utilities.StaticStrings;
 import za.co.mmagon.logger.LogFactory;
 
