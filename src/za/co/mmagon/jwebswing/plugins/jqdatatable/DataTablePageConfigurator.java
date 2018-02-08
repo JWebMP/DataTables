@@ -40,11 +40,7 @@ import static za.co.mmagon.jwebswing.utilities.StaticStrings.*;
 		                                                                                                     + "It is a highly flexible "
 		                                                                                                     + "tool, based upon the " +
 		                                                                                                     "foundations of progressive "
-		                                                                                                     + "enhancement, and will add " +
-		                                                                                                     "" + "" + "" + "advanced " +
-		                                                                                                     "interaction " + "controls " +
-		                                                                                                     "to" + " any HTML " + "table"
-		                                                                                                     + ".", pluginVersion = "1.10.16", pluginDependancyUniqueIDs = "jquery", pluginCategories = "jquery,datatables, tables, ui, " + "web, framework", pluginSubtitle = "DataTables is very simple to use as a jQuery plug-in with a huge range of customisable option", pluginGitUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin", pluginSourceUrl = "https://datatables" + ".net/download/index", pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin/wiki", pluginOriginalHomepage = "https://www.datatables.net/", pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/DataTablesPlugin.jar/download", pluginIconUrl = "bower_components/datatables/icon.jpg", pluginIconImageUrl = "bower_components/datatables/jqdatatables_logo.png", pluginLastUpdatedDate = "2017/09/29")
+		                                                                                                     + "enhancement, and will add " + "" + "" + "" + "" + "" + "advanced" + " " + "interaction " + "controls " + "to" + " any " + "HTML " + "table" + ".", pluginVersion = "1.10.16", pluginDependancyUniqueIDs = "jquery", pluginCategories = "jquery,datatables, tables, ui, " + "web, framework", pluginSubtitle = "DataTables is very simple to use as a jQuery plug-in with a huge range of customisable option", pluginGitUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin", pluginSourceUrl = "https://datatables" + "" + ".net/download/index", pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin/wiki", pluginOriginalHomepage = "https://www.datatables.net/", pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/DataTablesPlugin.jar/download", pluginIconUrl = "bower_components/datatables/icon.jpg", pluginIconImageUrl = "bower_components/datatables/jqdatatables_logo.png", pluginLastUpdatedDate = "2017/09/29")
 public class DataTablePageConfigurator extends PageConfigurator
 {
 
@@ -180,11 +176,8 @@ public class DataTablePageConfigurator extends PageConfigurator
 						.addCssReference(new CSSReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, cssPath));
 			}
 
-			getSortables().forEach(a ->
-			                       {
-				                       page.getBody()
-						                       .addJavaScriptReference(a.getReference());
-			                       });
+			getSortables().forEach(a -> page.getBody()
+					                            .addJavaScriptReference(a.getReference()));
 		}
 	}
 
@@ -207,7 +200,7 @@ public class DataTablePageConfigurator extends PageConfigurator
 	 *
 	 * @return
 	 */
-	protected static Set<DataTablesSortables> getSortables()
+	public static Set<DataTablesSortables> getSortables()
 	{
 		if (sortables == null)
 		{

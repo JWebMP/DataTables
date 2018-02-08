@@ -60,7 +60,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * object - Define properties for jQuery.ajax.
 	 * function - Custom data get function
 	 */
-	private DataTablesAjaxOptions ajax;
+	private DataTablesAjaxOptions<?> ajax;
 
 	/**
 	 * Data to use as the display data for the table.
@@ -557,6 +557,52 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 */
 	private DataTablesButtonsOptions buttons;
 
+	/**
+	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
+	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
+	 * easier comparison.
+	 * <p>
+	 * It is worth noting that the underlying column data structure of the DataTable is modified as part of this process - this is
+	 * important if you are interacting with the table using the API.
+	 */
+	private DataTableColReOrderOptions colReorder;
+	/**
+	 * FixedColumns
+	 * When making use of DataTables' x-axis scrolling feature (scrollX), you may wish to fix the left or right most columns in place.
+	 * This extension for DataTables provides exactly this option (for non-scrolling tables, please use the FixedHeader extension, which
+	 * will create sticky headers and footers for tables).
+	 * <p>
+	 * Additional complexity
+	 * It is important to state up front that utilising FixedColumns in your DataTable can significantly increase the complexity of the
+	 * table and its use should not be undertaken lightly, particularly for complex tables. The reason for this is in how FixedColumns
+	 * operates - the fixed columns are actually separate tables from the original DataTable (i.e. they are separate table elements) which
+	 * are styled to look like they are visually part of the original table. These fixed tables are then positioned over the original
+	 * DataTable.
+	 * <p>
+	 * This means that any events attached to the DataTable need to also take into account the fixed tables. Equally, any updates that are
+	 * made to the original DataTable needs to also update the fixed tables!
+	 * <p>
+	 * If you refer to the DataTables compatibility chart you will be able to see that most incompatibilities are between FixedColumns and
+	 * the other extensions for exactly this reason.
+	 * <p>
+	 * This is not to say that FixedColumns is not useful - it absolutely can be. But you need to be aware of the additional complexity
+	 * that it will introduce into your software.
+	 */
+	private DataTableFixedColumnsOptions fixedColumns;
+	/**
+	 * When displaying tables with a particularly large amount of data shown on each page, it can be useful to have the table's header and
+	 * / or footer fixed to the top or bottom of the scrolling window. This lets your users quickly determine what each column refers to
+	 * rather than needing to scroll back to the top of the table.
+	 * <p>
+	 * FixedHeader provides the ability to perform this action with DataTables tables. It operates by detaching the header and footer
+	 * elements from the host table and attaching them to the top or bottom of the screen as required by the scrolling position of the
+	 * window. This ensures that FixedColumns is fully compatible with DataTables and you can add complex interactions such as search
+	 * elements in the table footer, just as you would with any other table.
+	 * <p>
+	 * Please note that FixedHeader is not currently compatible with tables that have the scrolling features of DataTables enabled
+	 * (scrollX / scrollY). Please refer to the compatibility table for full compatibility details.
+	 */
+	private DataTableFixedHeaderOptions fixedHeader;
 
 	/**
 	 * The list of data table options
@@ -2425,24 +2471,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	}
 
 	/**
-	 * <p>
-	 * As is described by the basic DOM positioning example you can use the dom initialisation parameter to move DataTables features
-	 * around the table to where you want them.
-	 * <p>
-	 * In addition to this, you can also use dom to create multiple instances of these table controls. Simply include the feature's
-	 * identification letter where you want it to appear, as many times as
-	 * you wish, and the controls will all sync up (note that obviously the table (t) should be included only once).
-	 * <p>
-	 * This is shown in the demo below where for four key build-in features are duplicated above and below the table.
-	 *
-	 * @param dom
-	 */
-	public J setDom(String dom)
-	{
-		return (J) this;
-	}
-
-	/**
 	 * Returns the list of columns
 	 *
 	 * @return
@@ -2533,6 +2561,175 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setButtons(DataTablesButtonsOptions buttons)
 	{
 		this.buttons = buttons;
+		return (J) this;
+	}
+
+	/**
+	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
+	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
+	 * easier comparison.
+	 * <p>
+	 * It is worth noting that the underlying column data structure of the DataTable is modified as part of this process - this is
+	 * important if you are interacting with the table using the API.
+	 *
+	 * @return
+	 */
+	public DataTableColReOrderOptions getColReorder()
+	{
+		if (colReorder == null)
+		{
+			colReorder = new DataTableColReOrderOptions();
+		}
+		return colReorder;
+	}
+
+	/**
+	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
+	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
+	 * easier comparison.
+	 * <p>
+	 * It is worth noting that the underlying column data structure of the DataTable is modified as part of this process - this is
+	 * important if you are interacting with the table using the API.
+	 *
+	 * @param colReorder
+	 *
+	 * @return
+	 */
+	public J setColReorder(DataTableColReOrderOptions colReorder)
+	{
+		this.colReorder = colReorder;
+		return (J) this;
+	}
+
+	/**
+	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
+	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
+	 * easier comparison.
+	 * <p>
+	 * It is worth noting that the underlying column data structure of the DataTable is modified as part of this process - this is
+	 * important if you are interacting with the table using the API.
+	 *
+	 * @param dom
+	 *
+	 * @return
+	 */
+	public J setDom(EnumSet<DataTablesDomOptions> dom)
+	{
+		this.dom = dom;
+		return (J) this;
+	}
+
+	/**
+	 * FixedColumns
+	 * When making use of DataTables' x-axis scrolling feature (scrollX), you may wish to fix the left or right most columns in place.
+	 * This extension for DataTables provides exactly this option (for non-scrolling tables, please use the FixedHeader extension, which
+	 * will create sticky headers and footers for tables).
+	 * <p>
+	 * Additional complexity
+	 * It is important to state up front that utilising FixedColumns in your DataTable can significantly increase the complexity of the
+	 * table and its use should not be undertaken lightly, particularly for complex tables. The reason for this is in how FixedColumns
+	 * operates - the fixed columns are actually separate tables from the original DataTable (i.e. they are separate table elements) which
+	 * are styled to look like they are visually part of the original table. These fixed tables are then positioned over the original
+	 * DataTable.
+	 * <p>
+	 * This means that any events attached to the DataTable need to also take into account the fixed tables. Equally, any updates that are
+	 * made to the original DataTable needs to also update the fixed tables!
+	 * <p>
+	 * If you refer to the DataTables compatibility chart you will be able to see that most incompatibilities are between FixedColumns and
+	 * the other extensions for exactly this reason.
+	 * <p>
+	 * This is not to say that FixedColumns is not useful - it absolutely can be. But you need to be aware of the additional complexity
+	 * that it will introduce into your software.
+	 *
+	 * @return
+	 */
+	public DataTableFixedColumnsOptions getFixedColumns()
+	{
+		if (fixedColumns == null)
+		{
+			fixedColumns = new DataTableFixedColumnsOptions();
+		}
+		return fixedColumns;
+	}
+
+	/**
+	 * FixedColumns
+	 * When making use of DataTables' x-axis scrolling feature (scrollX), you may wish to fix the left or right most columns in place.
+	 * This extension for DataTables provides exactly this option (for non-scrolling tables, please use the FixedHeader extension, which
+	 * will create sticky headers and footers for tables).
+	 * <p>
+	 * Additional complexity
+	 * It is important to state up front that utilising FixedColumns in your DataTable can significantly increase the complexity of the
+	 * table and its use should not be undertaken lightly, particularly for complex tables. The reason for this is in how FixedColumns
+	 * operates - the fixed columns are actually separate tables from the original DataTable (i.e. they are separate table elements) which
+	 * are styled to look like they are visually part of the original table. These fixed tables are then positioned over the original
+	 * DataTable.
+	 * <p>
+	 * This means that any events attached to the DataTable need to also take into account the fixed tables. Equally, any updates that are
+	 * made to the original DataTable needs to also update the fixed tables!
+	 * <p>
+	 * If you refer to the DataTables compatibility chart you will be able to see that most incompatibilities are between FixedColumns and
+	 * the other extensions for exactly this reason.
+	 * <p>
+	 * This is not to say that FixedColumns is not useful - it absolutely can be. But you need to be aware of the additional complexity
+	 * that it will introduce into your software.
+	 *
+	 * @param fixedColumns
+	 *
+	 * @return
+	 */
+	public J setFixedColumns(DataTableFixedColumnsOptions fixedColumns)
+	{
+		this.fixedColumns = fixedColumns;
+		return (J) this;
+	}
+
+	/**
+	 * When displaying tables with a particularly large amount of data shown on each page, it can be useful to have the table's header and
+	 * / or footer fixed to the top or bottom of the scrolling window. This lets your users quickly determine what each column refers to
+	 * rather than needing to scroll back to the top of the table.
+	 * <p>
+	 * FixedHeader provides the ability to perform this action with DataTables tables. It operates by detaching the header and footer
+	 * elements from the host table and attaching them to the top or bottom of the screen as required by the scrolling position of the
+	 * window. This ensures that FixedColumns is fully compatible with DataTables and you can add complex interactions such as search
+	 * elements in the table footer, just as you would with any other table.
+	 * <p>
+	 * Please note that FixedHeader is not currently compatible with tables that have the scrolling features of DataTables enabled
+	 * (scrollX / scrollY). Please refer to the compatibility table for full compatibility details.
+	 *
+	 * @return
+	 */
+	public DataTableFixedHeaderOptions getFixedHeader()
+	{
+		if (fixedHeader == null)
+		{
+			fixedHeader = new DataTableFixedHeaderOptions();
+		}
+		return fixedHeader;
+	}
+
+	/**
+	 * When displaying tables with a particularly large amount of data shown on each page, it can be useful to have the table's header and
+	 * / or footer fixed to the top or bottom of the scrolling window. This lets your users quickly determine what each column refers to
+	 * rather than needing to scroll back to the top of the table.
+	 * <p>
+	 * FixedHeader provides the ability to perform this action with DataTables tables. It operates by detaching the header and footer
+	 * elements from the host table and attaching them to the top or bottom of the screen as required by the scrolling position of the
+	 * window. This ensures that FixedColumns is fully compatible with DataTables and you can add complex interactions such as search
+	 * elements in the table footer, just as you would with any other table.
+	 * <p>
+	 * Please note that FixedHeader is not currently compatible with tables that have the scrolling features of DataTables enabled
+	 * (scrollX / scrollY). Please refer to the compatibility table for full compatibility details.
+	 *
+	 * @param fixedHeader
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J setFixedHeader(DataTableFixedHeaderOptions fixedHeader)
+	{
+		this.fixedHeader = fixedHeader;
 		return (J) this;
 	}
 }
