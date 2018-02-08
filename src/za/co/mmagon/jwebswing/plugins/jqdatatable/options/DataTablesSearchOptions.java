@@ -2,6 +2,8 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable.options;
 
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * searchSince: DataTables 1.10
  * Set an initial filter in DataTables and / or filtering options.
@@ -135,6 +137,8 @@ public class DataTablesSearchOptions<J extends DataTablesSearchOptions<J>> exten
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setCaseInsensitive(Boolean caseInsensitive)
 	{
 		this.caseInsensitive = caseInsensitive;
@@ -190,6 +194,8 @@ public class DataTablesSearchOptions<J extends DataTablesSearchOptions<J>> exten
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setRegex(Boolean regex)
 	{
 		this.regex = regex;
@@ -231,6 +237,8 @@ public class DataTablesSearchOptions<J extends DataTablesSearchOptions<J>> exten
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setSearch(String search)
 	{
 		this.search = search;
@@ -286,6 +294,8 @@ public class DataTablesSearchOptions<J extends DataTablesSearchOptions<J>> exten
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setSmart(Boolean smart)
 	{
 		this.smart = smart;

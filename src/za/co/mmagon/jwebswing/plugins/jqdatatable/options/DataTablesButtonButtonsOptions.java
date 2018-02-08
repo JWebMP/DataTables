@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablesButtonKeys;
 
+import javax.validation.constraints.NotNull;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -162,6 +163,8 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setButtonAttributes(Map<String, String> buttonAttributes)
 	{
 		this.buttonAttributes = buttonAttributes;
@@ -215,6 +218,8 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setClassName(String className)
 	{
 		this.className = className;
@@ -252,6 +257,8 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setEnabled(Boolean enabled)
 	{
 		this.enabled = enabled;
@@ -299,6 +306,8 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setKey(DataTablesButtonKeys key)
 	{
 		this.key = key;
@@ -340,6 +349,8 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setName(String name)
 	{
 		this.name = name;
@@ -373,6 +384,8 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setText(String text)
 	{
 		this.text = text;
@@ -406,6 +419,8 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setTitleAttribute(String titleAttribute)
 	{
 		this.titleAttribute = titleAttribute;
