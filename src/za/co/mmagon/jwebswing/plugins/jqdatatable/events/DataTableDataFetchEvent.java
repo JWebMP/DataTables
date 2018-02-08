@@ -2,7 +2,7 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable.events;
 
 import za.co.mmagon.jwebswing.Event;
 import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
-import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableData;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.DataTableData;
 
 /**
  * Data Tables Ajax fetch data.
