@@ -22,6 +22,7 @@ import za.co.mmagon.jwebswing.base.html.attributes.TableAttributes;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableColumnOptions;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableOptions;
 
 import javax.validation.constraints.NotNull;
 

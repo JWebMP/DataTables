@@ -204,6 +204,27 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>> extends
 	 * Auto-detected from the table's content.
 	 */
 	private Integer width;
+	/**
+	 * columns.responsivePrioritySince: Responsive Responsive 2.0.0
+	 * Set column's visibility priority. Please note - this property requires the Responsive extension for DataTables.
+	 * <p>
+	 * Description
+	 * Responsive will automatically remove columns from the right-hand-side of the table when it needs to hide columns when a table is
+	 * too wide for a given display. Although this is a useful default, this behaviour might not always suit your needs and you want to
+	 * control the order in which columns are hidden. This parameter provides that ability by setting a visibility priority order.
+	 * <p>
+	 * The value given will set the column's visibility priority with a lower number representing a higher priority in terms of staying
+	 * visible in the table. For example a column with a priority of 2 will be removed from the display before a column with priority 1,
+	 * regardless of the order that they appear in the table.
+	 * <p>
+	 * This can be particularly useful for cases where you wish to keep the right hand column(s) visible if they contain action buttons or
+	 * other important information.
+	 * <p>
+	 * The column priority can also be defined by a data-priority attribute on the column's header cell (for example <th
+	 * data-priority="1">First name</th>). If both a data-priority attribute and a columns.responsivePriority value has been set for a
+	 * single column, the columns.responsivePriority value will always be used.
+	 */
+	private Integer responsivePriority;
 
 	/**
 	 * This columnDefs.targets option provides the information required by DataTables for which columns in the table the column definition
@@ -823,6 +844,65 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>> extends
 	public J setWidth(Integer width)
 	{
 		this.width = width;
+		return (J) this;
+	}
+
+	/**
+	 * columns.responsivePrioritySince: Responsive Responsive 2.0.0
+	 * Set column's visibility priority. Please note - this property requires the Responsive extension for DataTables.
+	 * <p>
+	 * Description
+	 * Responsive will automatically remove columns from the right-hand-side of the table when it needs to hide columns when a table is
+	 * too wide for a given display. Although this is a useful default, this behaviour might not always suit your needs and you want to
+	 * control the order in which columns are hidden. This parameter provides that ability by setting a visibility priority order.
+	 * <p>
+	 * The value given will set the column's visibility priority with a lower number representing a higher priority in terms of staying
+	 * visible in the table. For example a column with a priority of 2 will be removed from the display before a column with priority 1,
+	 * regardless of the order that they appear in the table.
+	 * <p>
+	 * This can be particularly useful for cases where you wish to keep the right hand column(s) visible if they contain action buttons or
+	 * other important information.
+	 * <p>
+	 * The column priority can also be defined by a data-priority attribute on the column's header cell (for example <th
+	 * data-priority="1">First name</th>). If both a data-priority attribute and a columns.responsivePriority value has been set for a
+	 * single column, the columns.responsivePriority value will always be used.
+	 *
+	 * @return
+	 */
+	public Integer getResponsivePriority()
+	{
+		return responsivePriority;
+	}
+
+	/**
+	 * columns.responsivePrioritySince: Responsive Responsive 2.0.0
+	 * Set column's visibility priority. Please note - this property requires the Responsive extension for DataTables.
+	 * <p>
+	 * Description
+	 * Responsive will automatically remove columns from the right-hand-side of the table when it needs to hide columns when a table is
+	 * too wide for a given display. Although this is a useful default, this behaviour might not always suit your needs and you want to
+	 * control the order in which columns are hidden. This parameter provides that ability by setting a visibility priority order.
+	 * <p>
+	 * The value given will set the column's visibility priority with a lower number representing a higher priority in terms of staying
+	 * visible in the table. For example a column with a priority of 2 will be removed from the display before a column with priority 1,
+	 * regardless of the order that they appear in the table.
+	 * <p>
+	 * This can be particularly useful for cases where you wish to keep the right hand column(s) visible if they contain action buttons or
+	 * other important information.
+	 * <p>
+	 * The column priority can also be defined by a data-priority attribute on the column's header cell (for example <th
+	 * data-priority="1">First name</th>). If both a data-priority attribute and a columns.responsivePriority value has been set for a
+	 * single column, the columns.responsivePriority value will always be used.
+	 *
+	 * @param responsivePriority
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J setResponsivePriority(Integer responsivePriority)
+	{
+		this.responsivePriority = responsivePriority;
 		return (J) this;
 	}
 }

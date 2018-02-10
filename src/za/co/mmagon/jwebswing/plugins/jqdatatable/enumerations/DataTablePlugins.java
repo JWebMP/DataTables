@@ -55,4 +55,6 @@ public enum DataTablePlugins
 	{
 		return isCss;
 	}
+
+
 }

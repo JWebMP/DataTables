@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package za.co.mmagon.jwebswing.plugins.jqdatatable;
+package za.co.mmagon.jwebswing.plugins.jqdatatable.options;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +22,6 @@ import za.co.mmagon.jwebswing.htmlbuilder.css.measurement.MeasurementCSSImpl;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTableThemes;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablesPagingTypes;
-import za.co.mmagon.jwebswing.plugins.jqdatatable.options.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -603,6 +602,72 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * (scrollX / scrollY). Please refer to the compatibility table for full compatibility details.
 	 */
 	private DataTableFixedHeaderOptions fixedHeader;
+	/**
+	 * keysSince: KeyTable KeyTable 2.0.0
+	 * Enable and configure the KeyTable extension for DataTables. Please note - this property requires the KeyTable extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * KeyTable is an extension for DataTables that provides spreadsheet like keyboard navigation in a table, with the focused cell being
+	 * movable with arrow keys, tab, home, end and page up / down. KeyTable will automatically adjust the table's paging and other
+	 * parameters to show the focused cell as the user navigates around the table. Combined with Editor it makes it super easy to create
+	 * an Excel like user interface in the browser.
+	 * <p>
+	 * This option provides the ability to enable and configure KeyTable for DataTables. In its simplest form as the boolean true it will
+	 * enable KeyTable with the default configuration options (as defined by $.fn.dataTable.KeyTable.defaults). It can also be used as an
+	 * object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for KeyTable, this option is an extension to the default set of DataTables
+	 * options. This property should be set in the DataTables initialisation object.
+	 */
+	private DataTableKeyTableOptions keys;
+	/**
+	 * responsiveSince: Responsive Responsive 1.0.0
+	 * Enable and configure the Responsive extension for DataTables. Please note - this property requires the Responsive extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * This option provides the ability to enable and configure Responsive for DataTables. In its simplest form as the boolean true it
+	 * will enable Responsive with the default configuration options (as defined by $.fn.dataTable.Responsive.defaults). It can also be
+	 * used as an object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for Responsive, this option is an extension to the default set of
+	 * DataTables options. This property should be set in the DataTables initialisation object.
+	 */
+	private DataTablesResponsiveOptions responsive;
+	/**
+	 * rowGroupSince: RowGroup RowGroup 1.0.0
+	 * Enable and configure the RowGroup extension for DataTables. Please note - this property requires the RowGroup extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * RowGroup is an extension for DataTables that provides grouping capabilities (like all other DataTables extensions, the clue is in
+	 * the name!). A data point in the table's data is used to group information and then display grouping rows before and / or after the
+	 * group, with options to customise the display of those rows.
+	 * <p>
+	 * This option provides the ability to enable and configure RowGroup for DataTables. In its simplest form as the boolean true it will
+	 * enable RowGroup with the default configuration options (as defined by $.fn.dataTable.RowGroup.defaults). However, it is more likely
+	 * that you will wish to use it as an object to provide custom configuration options, particularly for the data parameter to use for
+	 * the grouping (rowGroup.dataSrc).
+	 * <p>
+	 * Please note that as with all other configuration options for RowGroup, this option is an extension to the default set of DataTables
+	 * options. This property should be set in the DataTables initialisation object.
+	 */
+	private DataTablesRowGroupOptions<?> rowGroup;
+	/**
+	 * rowReorder
+	 * Enable and configure the RowReorder extension for DataTables. Please note - this property requires the RowReorder extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * This option provides the ability to enable and configure RowReorder for DataTables. In its simplest form as the boolean true it
+	 * will enable RowReorder with the default configuration options (as defined by $.fn.dataTable.RowReorder.defaults). It can also be
+	 * used as an object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for RowReorder, this option is an extension to the default set of
+	 * DataTables options. This property should be set in the DataTables initialisation object.
+	 */
+	private DataTablesRowReorder<?> rowReorder;
 
 	/**
 	 * The list of data table options
@@ -2730,6 +2795,211 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setFixedHeader(DataTableFixedHeaderOptions fixedHeader)
 	{
 		this.fixedHeader = fixedHeader;
+		return (J) this;
+	}
+
+	/**
+	 * keysSince: KeyTable KeyTable 2.0.0
+	 * Enable and configure the KeyTable extension for DataTables. Please note - this property requires the KeyTable extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * KeyTable is an extension for DataTables that provides spreadsheet like keyboard navigation in a table, with the focused cell being
+	 * movable with arrow keys, tab, home, end and page up / down. KeyTable will automatically adjust the table's paging and other
+	 * parameters to show the focused cell as the user navigates around the table. Combined with Editor it makes it super easy to create
+	 * an Excel like user interface in the browser.
+	 * <p>
+	 * This option provides the ability to enable and configure KeyTable for DataTables. In its simplest form as the boolean true it will
+	 * enable KeyTable with the default configuration options (as defined by $.fn.dataTable.KeyTable.defaults). It can also be used as an
+	 * object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for KeyTable, this option is an extension to the default set of DataTables
+	 * options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @return
+	 */
+	public DataTableKeyTableOptions getKeys()
+	{
+		if (keys == null)
+		{
+			keys = new DataTableKeyTableOptions();
+		}
+		return keys;
+	}
+
+	/**
+	 * keysSince: KeyTable KeyTable 2.0.0
+	 * Enable and configure the KeyTable extension for DataTables. Please note - this property requires the KeyTable extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * KeyTable is an extension for DataTables that provides spreadsheet like keyboard navigation in a table, with the focused cell being
+	 * movable with arrow keys, tab, home, end and page up / down. KeyTable will automatically adjust the table's paging and other
+	 * parameters to show the focused cell as the user navigates around the table. Combined with Editor it makes it super easy to create
+	 * an Excel like user interface in the browser.
+	 * <p>
+	 * This option provides the ability to enable and configure KeyTable for DataTables. In its simplest form as the boolean true it will
+	 * enable KeyTable with the default configuration options (as defined by $.fn.dataTable.KeyTable.defaults). It can also be used as an
+	 * object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for KeyTable, this option is an extension to the default set of DataTables
+	 * options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @param keys
+	 *
+	 * @return
+	 */
+	public J setKeys(DataTableKeyTableOptions keys)
+	{
+		this.keys = keys;
+		return (J) this;
+	}
+
+	/**
+	 * responsiveSince: Responsive Responsive 1.0.0
+	 * Enable and configure the Responsive extension for DataTables. Please note - this property requires the Responsive extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * This option provides the ability to enable and configure Responsive for DataTables. In its simplest form as the boolean true it
+	 * will enable Responsive with the default configuration options (as defined by $.fn.dataTable.Responsive.defaults). It can also be
+	 * used as an object to provide custom configuration options as described below.
+	 * <p>
+	 * <p>
+	 * Please note that as with all other configuration options for Responsive, this option is an extension to the default set of
+	 * DataTables options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @return
+	 */
+	public DataTablesResponsiveOptions getResponsive()
+	{
+		if (responsive == null)
+		{
+			responsive = new DataTablesResponsiveOptions();
+		}
+		return responsive;
+	}
+
+	/**
+	 * responsiveSince: Responsive Responsive 1.0.0
+	 * Enable and configure the Responsive extension for DataTables. Please note - this property requires the Responsive extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * This option provides the ability to enable and configure Responsive for DataTables. In its simplest form as the boolean true it
+	 * will enable Responsive with the default configuration options (as defined by $.fn.dataTable.Responsive.defaults). It can also be
+	 * used as an object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for Responsive, this option is an extension to the default set of
+	 * DataTables options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @param responsive
+	 *
+	 * @return
+	 */
+	public J setResponsive(DataTablesResponsiveOptions responsive)
+	{
+		this.responsive = responsive;
+		return (J) this;
+	}
+
+	/**
+	 * rowGroupSince: RowGroup RowGroup 1.0.0
+	 * Enable and configure the RowGroup extension for DataTables. Please note - this property requires the RowGroup extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * RowGroup is an extension for DataTables that provides grouping capabilities (like all other DataTables extensions, the clue is in
+	 * the name!). A data point in the table's data is used to group information and then display grouping rows before and / or after the
+	 * group, with options to customise the display of those rows.
+	 * <p>
+	 * This option provides the ability to enable and configure RowGroup for DataTables. In its simplest form as the boolean true it will
+	 * enable RowGroup with the default configuration options (as defined by $.fn.dataTable.RowGroup.defaults). However, it is more likely
+	 * that you will wish to use it as an object to provide custom configuration options, particularly for the data parameter to use for
+	 * the grouping (rowGroup.dataSrc).
+	 * <p>
+	 * Please note that as with all other configuration options for RowGroup, this option is an extension to the default set of DataTables
+	 * options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @return
+	 */
+	public DataTablesRowGroupOptions<?> getRowGroup()
+	{
+		if (rowGroup == null)
+		{
+			rowGroup = new DataTablesRowGroupOptions<>();
+		}
+		return rowGroup;
+	}
+
+	/**
+	 * rowGroupSince: RowGroup RowGroup 1.0.0
+	 * Enable and configure the RowGroup extension for DataTables. Please note - this property requires the RowGroup extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * RowGroup is an extension for DataTables that provides grouping capabilities (like all other DataTables extensions, the clue is in
+	 * the name!). A data point in the table's data is used to group information and then display grouping rows before and / or after the
+	 * group, with options to customise the display of those rows.
+	 * <p>
+	 * This option provides the ability to enable and configure RowGroup for DataTables. In its simplest form as the boolean true it will
+	 * enable RowGroup with the default configuration options (as defined by $.fn.dataTable.RowGroup.defaults). However, it is more likely
+	 * that you will wish to use it as an object to provide custom configuration options, particularly for the data parameter to use for
+	 * the grouping (rowGroup.dataSrc).
+	 * <p>
+	 * Please note that as with all other configuration options for RowGroup, this option is an extension to the default set of DataTables
+	 * options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @param rowGroup
+	 *
+	 * @return
+	 */
+	public J setRowGroup(DataTablesRowGroupOptions<?> rowGroup)
+	{
+		this.rowGroup = rowGroup;
+		return (J) this;
+	}
+
+	/**
+	 * rowReorder
+	 * Enable and configure the RowReorder extension for DataTables. Please note - this property requires the RowReorder extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * This option provides the ability to enable and configure RowReorder for DataTables. In its simplest form as the boolean true it
+	 * will enable RowReorder with the default configuration options (as defined by $.fn.dataTable.RowReorder.defaults). It can also be
+	 * used as an object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for RowReorder, this option is an extension to the default set of
+	 * DataTables options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @return
+	 */
+	public DataTablesRowReorder<?> getRowReorder()
+	{
+		return rowReorder;
+	}
+
+	/**
+	 * rowReorder
+	 * Enable and configure the RowReorder extension for DataTables. Please note - this property requires the RowReorder extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * This option provides the ability to enable and configure RowReorder for DataTables. In its simplest form as the boolean true it
+	 * will enable RowReorder with the default configuration options (as defined by $.fn.dataTable.RowReorder.defaults). It can also be
+	 * used as an object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for RowReorder, this option is an extension to the default set of
+	 * DataTables options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @param rowReorder
+	 *
+	 * @return
+	 */
+	public J setRowReorder(DataTablesRowReorder<?> rowReorder)
+	{
+		this.rowReorder = rowReorder;
 		return (J) this;
 	}
 }
