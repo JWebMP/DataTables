@@ -57,7 +57,8 @@ public class DataTablesResponsiveDetailOptions<J extends DataTablesResponsiveDet
 	 * Types
 	 * number
 	 * Description:
-	 * Column index to which the show / hide control should be attached. This can be >=0 to count columns from the left, or <0 to count
+	 * Column index to which the show / hide control should be attached. This can be &gt;0 to count columns from the left, or &lt;0 to
+	 * count
 	 * from the right.
 	 * <p>
 	 * Please note that the column defined here should have the class control added to it. This allows the Responsive CSS to display a
@@ -173,7 +174,7 @@ public class DataTablesResponsiveDetailOptions<J extends DataTablesResponsiveDet
 	 * Types
 	 * number
 	 * Description:
-	 * Column index to which the show / hide control should be attached. This can be >=0 to count columns from the left, or <0 to count
+	 * Column index to which the show / hide control should be attached. This can be &gt;0 to count columns from the left, or &lt;0 to count
 	 * from the right.
 	 * <p>
 	 * Please note that the column defined here should have the class control added to it. This allows the Responsive CSS to display a
@@ -204,7 +205,7 @@ public class DataTablesResponsiveDetailOptions<J extends DataTablesResponsiveDet
 	 * Types
 	 * number
 	 * Description:
-	 * Column index to which the show / hide control should be attached. This can be >=0 to count columns from the left, or <0 to count
+	 * Column index to which the show / hide control should be attached. This can be &gt;0 to count columns from the left, or &lt;0 to count
 	 * from the right.
 	 * <p>
 	 * Please note that the column defined here should have the class control added to it. This allows the Responsive CSS to display a

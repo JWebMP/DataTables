@@ -17,9 +17,12 @@
 package za.co.mmagon.jwebswing.plugins.jqdatatable.options;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import za.co.mmagon.jwebswing.htmlbuilder.css.measurement.MeasurementCSSImpl;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.DataTablePageConfigurator;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablePlugins;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTableThemes;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablesPagingTypes;
 
@@ -41,7 +44,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	/**
 	 * the document object model layout
 	 */
-	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
+	@JsonIgnore
 	private EnumSet<DataTablesDomOptions> dom;
 
 	/**
@@ -60,7 +63,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * function - Custom data get function
 	 */
 	private DataTablesAjaxOptions<?> ajax;
-
 	/**
 	 * Data to use as the display data for the table.
 	 */
@@ -118,7 +120,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * (false - default) to attach the default order listener. This is useful when using complex headers.
 	 */
 	private Boolean orderCellsTop;
-
 	/**
 	 * Description
 	 * DataTables highlight the columns which are used to order the content in the table's body by adding a class to the cells in that
@@ -133,7 +134,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * to be disabled with working with old browsers or large data sets.
 	 */
 	private Boolean orderClasses;
-
 	/**
 	 * orderFixedSince: DataTables 1.10
 	 * Ordering to always be applied to the table.
@@ -177,7 +177,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * true
 	 */
 	private Boolean orderMulti;
-
 	/**
 	 * Feature control ordering (sorting) abilities in DataTables.
 	 */
@@ -225,7 +224,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * string
 	 */
 	private DataTablesPagingTypes pagingType;
-
 	/**
 	 * Enable or disable table pagination.
 	 */
@@ -348,7 +346,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * boolean
 	 */
 	private Boolean scrollCollapse;
-
 	/**
 	 * Horizontal scrolling
 	 */
@@ -361,7 +358,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * Vertical scrolling
 	 */
 	private MeasurementCSSImpl scrollY;
-
 	/**
 	 * searchSince: DataTables 1.10
 	 * Set an initial filter in DataTables and / or filtering options.
@@ -379,8 +375,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * <p>
 	 * search.search - Set an initial global filter.
 	 */
-	private DataTablesSearchOptions search;
-
+	private DataTablesSearchOptions<?> search;
 	/**
 	 * searchColsSince: DataTables 1.10
 	 * Define an initial search for individual columns.
@@ -397,8 +392,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * <p>
 	 * array
 	 */
-	private List<DataTablesSearchOptions> searchCols;
-
+	private List<DataTablesSearchOptions<?>> searchCols;
 	/**
 	 * searchDelaySince: DataTables 1.10.3
 	 * Set a throttle frequency for searching.
@@ -520,7 +514,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * The list of columns
 	 */
 	@JsonProperty("columnDefs")
-	private List<DataTableColumnOptions> columns;
+	private List<DataTableColumnOptions<?>> columns;
 
 
 	/**
@@ -539,7 +533,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * Please note that as with all other configuration options for AutoFill, this option is an extension to the default set of DataTables
 	 * options. This property should be set in the DataTables initialisation object.
 	 */
-	private DataTableAutoFillOptions autoFill;
+	private DataTableAutoFillOptions<?> autoFill;
 	/**
 	 * Buttons
 	 * A common UI paradigm to use with interactive tables is to present buttons that will trigger some action - that may be to alter the
@@ -554,7 +548,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * provide buttons for use with this library, with actions unique to their own behaviours. This ensures a consistent interface for the
 	 * interactions performed with your tables.
 	 */
-	private DataTablesButtonsOptions buttons;
+	private DataTablesButtonsOptions<?> buttons;
 
 	/**
 	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
@@ -564,7 +558,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * It is worth noting that the underlying column data structure of the DataTable is modified as part of this process - this is
 	 * important if you are interacting with the table using the API.
 	 */
-	private DataTableColReOrderOptions colReorder;
+	private DataTableColReOrderOptions<?> colReorder;
 	/**
 	 * FixedColumns
 	 * When making use of DataTables' x-axis scrolling feature (scrollX), you may wish to fix the left or right most columns in place.
@@ -587,7 +581,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * This is not to say that FixedColumns is not useful - it absolutely can be. But you need to be aware of the additional complexity
 	 * that it will introduce into your software.
 	 */
-	private DataTableFixedColumnsOptions fixedColumns;
+	private DataTableFixedColumnsOptions<?> fixedColumns;
 	/**
 	 * When displaying tables with a particularly large amount of data shown on each page, it can be useful to have the table's header and
 	 * / or footer fixed to the top or bottom of the scrolling window. This lets your users quickly determine what each column refers to
@@ -601,7 +595,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * Please note that FixedHeader is not currently compatible with tables that have the scrolling features of DataTables enabled
 	 * (scrollX / scrollY). Please refer to the compatibility table for full compatibility details.
 	 */
-	private DataTableFixedHeaderOptions fixedHeader;
+	private DataTableFixedHeaderOptions<?> fixedHeader;
 	/**
 	 * keysSince: KeyTable KeyTable 2.0.0
 	 * Enable and configure the KeyTable extension for DataTables. Please note - this property requires the KeyTable extension for
@@ -620,7 +614,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * Please note that as with all other configuration options for KeyTable, this option is an extension to the default set of DataTables
 	 * options. This property should be set in the DataTables initialisation object.
 	 */
-	private DataTableKeyTableOptions keys;
+	private DataTableKeyTableOptions<?> keys;
 	/**
 	 * responsiveSince: Responsive Responsive 1.0.0
 	 * Enable and configure the Responsive extension for DataTables. Please note - this property requires the Responsive extension for
@@ -634,7 +628,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * Please note that as with all other configuration options for Responsive, this option is an extension to the default set of
 	 * DataTables options. This property should be set in the DataTables initialisation object.
 	 */
-	private DataTablesResponsiveOptions responsive;
+	private DataTablesResponsiveOptions<?> responsive;
 	/**
 	 * rowGroupSince: RowGroup RowGroup 1.0.0
 	 * Enable and configure the RowGroup extension for DataTables. Please note - this property requires the RowGroup extension for
@@ -668,6 +662,43 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * DataTables options. This property should be set in the DataTables initialisation object.
 	 */
 	private DataTablesRowReorder<?> rowReorder;
+	/**
+	 * scroller
+	 * Enable and configure the Scroller extension for DataTables. Please note - this property requires the Scroller extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * Scroller is an extension for DataTables that provides virtual rendering support - i.e. it will draw only the small visible section
+	 * of the table (plus a small overlap for smooth scrolling), even although in the scrolling viewport it will appear visually to the
+	 * end user that the whole table is available. This can significantly improve performance for large data sets where you don't wish to
+	 * display paging controls.
+	 * <p>
+	 * There are two important requirements to consider when using Scroller:
+	 * <p>
+	 * Paging must be enabled in DataTables (paging - it is by default)
+	 * All rows must be of equal height. This is to allow row height calculations for rows which have not yet been rendered.
+	 * This option provides the ability to enable and configure Scroller for DataTables. In its simplest form as the boolean true it will
+	 * enable Scroller with the default configuration options (as defined by $.fn.dataTable.Scroller.defaults). It can also be used as an
+	 * object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for Scroller, this option is an extension to the default set of DataTables
+	 * options. This property should be set in the DataTables initialisation object.
+	 */
+	private DataTablesScrollerOptions<?> scroller;
+	/**
+	 * selectSince: Select 1.0.0
+	 * Select configuration object. Please note - this property requires the Select extension for DataTables.
+	 * <p>
+	 * Description
+	 * This option can be used to configure the Select extension for DataTables during the initialisation of a DataTable.
+	 * <p>
+	 * When Select has been loaded on a page, all DataTables on that page have the ability to have items selected, but by default this can
+	 * only be done through the API - i.e. the end user will have no ability to select items in a table by default. To enable end user
+	 * selection, this option should be used (the select.style() method can also be used after initialisation).
+	 * <p>
+	 * Exactly what selection the user can make and how depends upon the options selected.
+	 */
+	private DataTablesSelectOptions<?> select;
 
 	/**
 	 * The list of data table options
@@ -1838,119 +1869,6 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	}
 
 	/**
-	 * searchSince: DataTables 1.10
-	 * Set an initial filter in DataTables and / or filtering options.
-	 * <p>
-	 * Description
-	 * The search option allows the way DataTables performs filtering to be set during the initialisation, and to set an initial global
-	 * filter.
-	 * <p>
-	 * The options that control how the filtering is performs are:
-	 * <p>
-	 * search.caseInsensitive - Indicate is case-insensitive sorting should be performed.
-	 * search.regex - Treat the search as a regular expression or not
-	 * search.smart - Use DataTables' smart filtering or not
-	 * Additionally, to set an initial filter:
-	 * <p>
-	 * search.search - Set an initial global filter.
-	 *
-	 * @return
-	 */
-	@NotNull
-	public DataTablesSearchOptions getSearch()
-	{
-		if (search == null)
-		{
-			search = new DataTablesSearchOptions();
-		}
-		return search;
-	}
-
-	/**
-	 * searchSince: DataTables 1.10
-	 * Set an initial filter in DataTables and / or filtering options.
-	 * <p>
-	 * Description
-	 * The search option allows the way DataTables performs filtering to be set during the initialisation, and to set an initial global
-	 * filter.
-	 * <p>
-	 * The options that control how the filtering is performs are:
-	 * <p>
-	 * search.caseInsensitive - Indicate is case-insensitive sorting should be performed.
-	 * search.regex - Treat the search as a regular expression or not
-	 * search.smart - Use DataTables' smart filtering or not
-	 * Additionally, to set an initial filter:
-	 * <p>
-	 * search.search - Set an initial global filter.
-	 *
-	 * @param search
-	 *
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	@NotNull
-	public J setSearch(DataTablesSearchOptions search)
-	{
-		this.search = search;
-		return (J) this;
-	}
-
-	/**
-	 * searchColsSince: DataTables 1.10
-	 * Define an initial search for individual columns.
-	 * <p>
-	 * Description
-	 * Basically the same as the search option, but in this case for individual columns, rather than the global filter, this option
-	 * defined the filtering to apply to the table during initialisation.
-	 * <p>
-	 * The array must be of the same size as the number of columns, and each element be an object with the parameters search and
-	 * escapeRegex (the latter is optional). 'null' is also accepted and the default will be used.
-	 * <p>
-	 * Type
-	 * This option can be given in the following type(s):
-	 * <p>
-	 * array
-	 *
-	 * @return
-	 */
-	public List<DataTablesSearchOptions> getSearchCols()
-	{
-		if (searchCols == null)
-		{
-			searchCols = new ArrayList<>();
-		}
-		return searchCols;
-	}
-
-	/**
-	 * searchColsSince: DataTables 1.10
-	 * Define an initial search for individual columns.
-	 * <p>
-	 * Description
-	 * Basically the same as the search option, but in this case for individual columns, rather than the global filter, this option
-	 * defined the filtering to apply to the table during initialisation.
-	 * <p>
-	 * The array must be of the same size as the number of columns, and each element be an object with the parameters search and
-	 * escapeRegex (the latter is optional). 'null' is also accepted and the default will be used.
-	 * <p>
-	 * Type
-	 * This option can be given in the following type(s):
-	 * <p>
-	 * array
-	 *
-	 * @param searchCols
-	 *
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	@NotNull
-	public J setSearchCols(List<DataTablesSearchOptions> searchCols)
-	{
-		this.searchCols = searchCols;
-		return (J) this;
-	}
-
-	/**
 	 * searchDelaySince: DataTables 1.10.3
 	 * Set a throttle frequency for searching.
 	 * <p>
@@ -2447,11 +2365,13 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public DataTablesAjaxOptions getAjax()
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public DataTablesAjaxOptions<?> getAjax()
 	{
 		if (ajax == null)
 		{
-			ajax = new DataTablesAjaxOptions();
+			setAjax(new DataTablesAjaxOptions());
 		}
 		return ajax;
 	}
@@ -2477,7 +2397,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setAjax(DataTablesAjaxOptions ajax)
+	public J setAjax(DataTablesAjaxOptions<?> ajax)
 	{
 		this.ajax = ajax;
 		return (J) this;
@@ -2488,6 +2408,8 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 		return data;
 	}
 
+	@NotNull
+	@SuppressWarnings("unchecked")
 	public J setData(String data)
 	{
 		this.data = data;
@@ -2511,6 +2433,8 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
+	@NotNull
+	@SuppressWarnings("unchecked")
 	public J setDestroy(Boolean destroy)
 	{
 		this.destroy = destroy;
@@ -2530,9 +2454,45 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("all")
+	@NotNull
 	public EnumSet<DataTablesDomOptions> getDom()
 	{
 		return dom;
+	}
+
+	/**
+	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
+	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
+	 * easier comparison.
+	 * <p>
+	 * It is worth noting that the underlying column data structure of the DataTable is modified as part of this process - this is
+	 * important if you are interacting with the table using the API.
+	 *
+	 * @param dom
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("all")
+	@NotNull
+	public J setDom(EnumSet<DataTablesDomOptions> dom)
+	{
+		this.dom = dom;
+		return (J) this;
+	}
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
+	@JsonProperty("dom")
+	private String jsonDom()
+	{
+		StringBuilder sb = new StringBuilder();
+		if (dom != null)
+		{
+			dom.forEach(a -> sb.append(a.toString()));
+		}
+		else
+		{ return null; }
+		return sb.toString();
 	}
 
 	/**
@@ -2540,11 +2500,12 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public List<DataTableColumnOptions> getColumns()
+	@NotNull
+	public List<DataTableColumnOptions<?>> getColumns()
 	{
 		if (columns == null)
 		{
-			columns = new ArrayList<>();
+			setColumns(new ArrayList<>());
 		}
 		return columns;
 	}
@@ -2556,31 +2517,58 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public J setColumns(List<DataTableColumnOptions> columns)
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public J setColumns(List<DataTableColumnOptions<?>> columns)
 	{
 		this.columns = columns;
 		return (J) this;
 	}
 
-	public DataTableAutoFillOptions getAutoFill()
+	/**
+	 * Spreadsheets such as Excel and Google Docs have a very handy data duplication option of an auto fill tool. The AutoFill library for
+	 * DataTables provides a similar interface for DataTables and extends upon this interface paradigm to provide complex data
+	 * interaction options that the user can select between.
+	 * <p>
+	 * Download
+	 * The easiest way to get and use AutoFill is to use the DataTables download builder where you can select the software that you wish
+	 * to use on your page and have a single Javascript and CSS file created and hosted for you.
+	 *
+	 * @return
+	 */
+	@NotNull
+	public DataTableAutoFillOptions<?> getAutoFill()
 	{
 		if (autoFill == null)
 		{
-			autoFill = new DataTableAutoFillOptions();
+			setAutoFill(new DataTableAutoFillOptions());
 		}
 		return autoFill;
 	}
 
 	/**
-	 * Sets the auto fill object
+	 * Spreadsheets such as Excel and Google Docs have a very handy data duplication option of an auto fill tool. The AutoFill library for
+	 * DataTables provides a similar interface for DataTables and extends upon this interface paradigm to provide complex data
+	 * interaction options that the user can select between.
+	 * <p>
+	 * Download
+	 * The easiest way to get and use AutoFill is to use the DataTables download builder where you can select the software that you wish
+	 * to use on your page and have a single Javascript and CSS file created and hosted for you.
 	 *
 	 * @param autoFill
 	 *
 	 * @return
 	 */
-	public J setAutoFill(DataTableAutoFillOptions autoFill)
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public J setAutoFill(DataTableAutoFillOptions<?> autoFill)
 	{
 		this.autoFill = autoFill;
+		if (autoFill == null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.AutoFill);
+		}
 		return (J) this;
 	}
 
@@ -2600,8 +2588,13 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public DataTablesButtonsOptions getButtons()
+	@NotNull
+	public DataTablesButtonsOptions<?> getButtons()
 	{
+		if (buttons == null)
+		{
+			setButtons(new DataTablesButtonsOptions<>());
+		}
 		return buttons;
 	}
 
@@ -2623,9 +2616,16 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public J setButtons(DataTablesButtonsOptions buttons)
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public J setButtons(DataTablesButtonsOptions<?> buttons)
 	{
 		this.buttons = buttons;
+		if (buttons == null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.Buttons);
+		}
 		return (J) this;
 	}
 
@@ -2639,11 +2639,12 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public DataTableColReOrderOptions getColReorder()
+	@NotNull
+	public DataTableColReOrderOptions<?> getColReorder()
 	{
 		if (colReorder == null)
 		{
-			colReorder = new DataTableColReOrderOptions();
+			setColReorder(new DataTableColReOrderOptions());
 		}
 		return colReorder;
 	}
@@ -2660,27 +2661,16 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public J setColReorder(DataTableColReOrderOptions colReorder)
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public J setColReorder(DataTableColReOrderOptions<?> colReorder)
 	{
 		this.colReorder = colReorder;
-		return (J) this;
-	}
-
-	/**
-	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
-	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
-	 * easier comparison.
-	 * <p>
-	 * It is worth noting that the underlying column data structure of the DataTable is modified as part of this process - this is
-	 * important if you are interacting with the table using the API.
-	 *
-	 * @param dom
-	 *
-	 * @return
-	 */
-	public J setDom(EnumSet<DataTablesDomOptions> dom)
-	{
-		this.dom = dom;
+		if (colReorder == null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.ColReorder);
+		}
 		return (J) this;
 	}
 
@@ -2708,11 +2698,13 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public DataTableFixedColumnsOptions getFixedColumns()
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public DataTableFixedColumnsOptions<?> getFixedColumns()
 	{
 		if (fixedColumns == null)
 		{
-			fixedColumns = new DataTableFixedColumnsOptions();
+			setFixedColumns(new DataTableFixedColumnsOptions());
 		}
 		return fixedColumns;
 	}
@@ -2743,9 +2735,16 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public J setFixedColumns(DataTableFixedColumnsOptions fixedColumns)
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public J setFixedColumns(DataTableFixedColumnsOptions<?> fixedColumns)
 	{
 		this.fixedColumns = fixedColumns;
+		if (fixedColumns == null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.FixedColumns);
+		}
 		return (J) this;
 	}
 
@@ -2764,11 +2763,13 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public DataTableFixedHeaderOptions getFixedHeader()
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public DataTableFixedHeaderOptions<?> getFixedHeader()
 	{
 		if (fixedHeader == null)
 		{
-			fixedHeader = new DataTableFixedHeaderOptions();
+			setFixedHeader(new DataTableFixedHeaderOptions());
 		}
 		return fixedHeader;
 	}
@@ -2790,11 +2791,16 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setFixedHeader(DataTableFixedHeaderOptions fixedHeader)
+	@SuppressWarnings("unchecked")
+	public J setFixedHeader(DataTableFixedHeaderOptions<?> fixedHeader)
 	{
 		this.fixedHeader = fixedHeader;
+		if (fixedHeader == null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.FixedHeader);
+		}
 		return (J) this;
 	}
 
@@ -2818,11 +2824,12 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public DataTableKeyTableOptions getKeys()
+	@NotNull
+	public DataTableKeyTableOptions<?> getKeys()
 	{
 		if (keys == null)
 		{
-			keys = new DataTableKeyTableOptions();
+			setKeys(new DataTableKeyTableOptions());
 		}
 		return keys;
 	}
@@ -2849,9 +2856,15 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public J setKeys(DataTableKeyTableOptions keys)
+	@SuppressWarnings("unchecked")
+	public J setKeys(DataTableKeyTableOptions<?> keys)
 	{
 		this.keys = keys;
+		if (keys == null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.KeyTable);
+		}
 		return (J) this;
 	}
 
@@ -2871,11 +2884,12 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public DataTablesResponsiveOptions getResponsive()
+	@NotNull
+	public DataTablesResponsiveOptions<?> getResponsive()
 	{
 		if (responsive == null)
 		{
-			responsive = new DataTablesResponsiveOptions();
+			setResponsive(new DataTablesResponsiveOptions());
 		}
 		return responsive;
 	}
@@ -2897,9 +2911,130 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
-	public J setResponsive(DataTablesResponsiveOptions responsive)
+	@SuppressWarnings("unchecked")
+	public J setResponsive(DataTablesResponsiveOptions<?> responsive)
 	{
 		this.responsive = responsive;
+		if (responsive == null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.Responsive);
+		}
+		return (J) this;
+	}
+
+
+	/**
+	 * searchSince: DataTables 1.10
+	 * Set an initial filter in DataTables and / or filtering options.
+	 * <p>
+	 * Description
+	 * The search option allows the way DataTables performs filtering to be set during the initialisation, and to set an initial global
+	 * filter.
+	 * <p>
+	 * The options that control how the filtering is performs are:
+	 * <p>
+	 * search.caseInsensitive - Indicate is case-insensitive sorting should be performed.
+	 * search.regex - Treat the search as a regular expression or not
+	 * search.smart - Use DataTables' smart filtering or not
+	 * Additionally, to set an initial filter:
+	 * <p>
+	 * search.search - Set an initial global filter.
+	 *
+	 * @return
+	 */
+	@NotNull
+	public DataTablesSearchOptions<?> getSearch()
+	{
+		if (search == null)
+		{
+			setSearch(new DataTablesSearchOptions());
+		}
+		return search;
+	}
+
+	/**
+	 * searchSince: DataTables 1.10
+	 * Set an initial filter in DataTables and / or filtering options.
+	 * <p>
+	 * Description
+	 * The search option allows the way DataTables performs filtering to be set during the initialisation, and to set an initial global
+	 * filter.
+	 * <p>
+	 * The options that control how the filtering is performs are:
+	 * <p>
+	 * search.caseInsensitive - Indicate is case-insensitive sorting should be performed.
+	 * search.regex - Treat the search as a regular expression or not
+	 * search.smart - Use DataTables' smart filtering or not
+	 * Additionally, to set an initial filter:
+	 * <p>
+	 * search.search - Set an initial global filter.
+	 *
+	 * @param search
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J setSearch(DataTablesSearchOptions<?> search)
+	{
+		this.search = search;
+		return (J) this;
+	}
+
+	/**
+	 * searchColsSince: DataTables 1.10
+	 * Define an initial search for individual columns.
+	 * <p>
+	 * Description
+	 * Basically the same as the search option, but in this case for individual columns, rather than the global filter, this option
+	 * defined the filtering to apply to the table during initialisation.
+	 * <p>
+	 * The array must be of the same size as the number of columns, and each element be an object with the parameters search and
+	 * escapeRegex (the latter is optional). 'null' is also accepted and the default will be used.
+	 * <p>
+	 * Type
+	 * This option can be given in the following type(s):
+	 * <p>
+	 * array
+	 *
+	 * @return
+	 */
+	@NotNull
+	public List<DataTablesSearchOptions<?>> getSearchCols()
+	{
+		if (searchCols == null)
+		{
+			setSearchCols(new ArrayList<>());
+		}
+		return searchCols;
+	}
+
+	/**
+	 * searchColsSince: DataTables 1.10
+	 * Define an initial search for individual columns.
+	 * <p>
+	 * Description
+	 * Basically the same as the search option, but in this case for individual columns, rather than the global filter, this option
+	 * defined the filtering to apply to the table during initialisation.
+	 * <p>
+	 * The array must be of the same size as the number of columns, and each element be an object with the parameters search and
+	 * escapeRegex (the latter is optional). 'null' is also accepted and the default will be used.
+	 * <p>
+	 * Type
+	 * This option can be given in the following type(s):
+	 * <p>
+	 * array
+	 *
+	 * @param searchCols
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J setSearchCols(List<DataTablesSearchOptions<?>> searchCols)
+	{
+		this.searchCols = searchCols;
 		return (J) this;
 	}
 
@@ -2923,11 +3058,12 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
+	@NotNull
 	public DataTablesRowGroupOptions<?> getRowGroup()
 	{
 		if (rowGroup == null)
 		{
-			rowGroup = new DataTablesRowGroupOptions<>();
+			setRowGroup(new DataTablesRowGroupOptions<>());
 		}
 		return rowGroup;
 	}
@@ -2954,9 +3090,16 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
+	@NotNull
+	@SuppressWarnings("unchecked")
 	public J setRowGroup(DataTablesRowGroupOptions<?> rowGroup)
 	{
 		this.rowGroup = rowGroup;
+		if (rowGroup != null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.RowGroup);
+		}
 		return (J) this;
 	}
 
@@ -2975,8 +3118,13 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
+	@NotNull
 	public DataTablesRowReorder<?> getRowReorder()
 	{
+		if (rowReorder == null)
+		{
+			setRowReorder(new DataTablesRowReorder<>());
+		}
 		return rowReorder;
 	}
 
@@ -2997,9 +3145,147 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 *
 	 * @return
 	 */
+	@NotNull
+	@SuppressWarnings("unchecked")
 	public J setRowReorder(DataTablesRowReorder<?> rowReorder)
 	{
 		this.rowReorder = rowReorder;
+		if (rowReorder != null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.RowReorder);
+		}
 		return (J) this;
 	}
+
+	/**
+	 * scroller
+	 * Enable and configure the Scroller extension for DataTables. Please note - this property requires the Scroller extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * Scroller is an extension for DataTables that provides virtual rendering support - i.e. it will draw only the small visible section
+	 * of the table (plus a small overlap for smooth scrolling), even although in the scrolling viewport it will appear visually to the
+	 * end user that the whole table is available. This can significantly improve performance for large data sets where you don't wish to
+	 * display paging controls.
+	 * <p>
+	 * There are two important requirements to consider when using Scroller:
+	 * <p>
+	 * Paging must be enabled in DataTables (paging - it is by default)
+	 * All rows must be of equal height. This is to allow row height calculations for rows which have not yet been rendered.
+	 * This option provides the ability to enable and configure Scroller for DataTables. In its simplest form as the boolean true it will
+	 * enable Scroller with the default configuration options (as defined by $.fn.dataTable.Scroller.defaults). It can also be used as an
+	 * object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for Scroller, this option is an extension to the default set of DataTables
+	 * options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @return
+	 */
+	@NotNull
+	public DataTablesScrollerOptions<?> getScroller()
+	{
+		if (scroller == null)
+		{
+			setScroller(new DataTablesScrollerOptions<>());
+		}
+		return scroller;
+	}
+
+	/**
+	 * scroller
+	 * Enable and configure the Scroller extension for DataTables. Please note - this property requires the Scroller extension for
+	 * DataTables.
+	 * <p>
+	 * Description
+	 * Scroller is an extension for DataTables that provides virtual rendering support - i.e. it will draw only the small visible section
+	 * of the table (plus a small overlap for smooth scrolling), even although in the scrolling viewport it will appear visually to the
+	 * end user that the whole table is available. This can significantly improve performance for large data sets where you don't wish to
+	 * display paging controls.
+	 * <p>
+	 * There are two important requirements to consider when using Scroller:
+	 * <p>
+	 * Paging must be enabled in DataTables (paging - it is by default)
+	 * All rows must be of equal height. This is to allow row height calculations for rows which have not yet been rendered.
+	 * This option provides the ability to enable and configure Scroller for DataTables. In its simplest form as the boolean true it will
+	 * enable Scroller with the default configuration options (as defined by $.fn.dataTable.Scroller.defaults). It can also be used as an
+	 * object to provide custom configuration options as described below.
+	 * <p>
+	 * Please note that as with all other configuration options for Scroller, this option is an extension to the default set of DataTables
+	 * options. This property should be set in the DataTables initialisation object.
+	 *
+	 * @param scroller
+	 *
+	 * @return
+	 */
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public J setScroller(DataTablesScrollerOptions<?> scroller)
+	{
+		this.scroller = scroller;
+		if (scroller != null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.Scroller);
+		}
+		return (J) this;
+	}
+
+	/**
+	 * selectSince: Select 1.0.0
+	 * Select configuration object. Please note - this property requires the Select extension for DataTables.
+	 * <p>
+	 * Description
+	 * This option can be used to configure the Select extension for DataTables during the initialisation of a DataTable.
+	 * <p>
+	 * When Select has been loaded on a page, all DataTables on that page have the ability to have items selected, but by default this can
+	 * only be done through the API - i.e. the end user will have no ability to select items in a table by default. To enable end user
+	 * selection, this option should be used (the select.style() method can also be used after initialisation).
+	 * <p>
+	 * Exactly what selection the user can make and how depends upon the options selected.
+	 *
+	 * @return
+	 */
+	@NotNull
+	public DataTablesSelectOptions<?> getSelect()
+	{
+		if (select == null)
+		{
+			setSelect(new DataTablesSelectOptions<>());
+		}
+
+		return select;
+	}
+
+	/**
+	 * selectSince: Select 1.0.0
+	 * Select configuration object. Please note - this property requires the Select extension for DataTables.
+	 * <p>
+	 * Description
+	 * This option can be used to configure the Select extension for DataTables during the initialisation of a DataTable.
+	 * <p>
+	 * When Select has been loaded on a page, all DataTables on that page have the ability to have items selected, but by default this can
+	 * only be done through the API - i.e. the end user will have no ability to select items in a table by default. To enable end user
+	 * selection, this option should be used (the select.style() method can also be used after initialisation).
+	 * <p>
+	 * Exactly what selection the user can make and how depends upon the options selected.
+	 *
+	 * @param select
+	 *
+	 * @return
+	 */
+	@NotNull
+	@SuppressWarnings("unchecked")
+	public J setSelect(DataTablesSelectOptions<?> select)
+	{
+		this.select = select;
+		if (select != null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.Select);
+		}
+		return (J) this;
+	}
+
+
 }

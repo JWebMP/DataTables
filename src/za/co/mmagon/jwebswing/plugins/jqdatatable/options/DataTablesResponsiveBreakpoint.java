@@ -41,7 +41,7 @@ public class DataTablesResponsiveBreakpoint<J extends DataTablesResponsiveBreakp
 	/**
 	 * width - the width (pixels) of the page viewport at which this breakpoint will apply. The value given is the maximum size at which
 	 * this breakpoint will be applied, and it will be used until the next breakpoint is found. For example, if using the default
-	 * breakpoints (above), the tablet-l breakpoint will be applied for 768 < x <= 1024 (where x is the viewport width).
+	 * breakpoints (above), the tablet-l breakpoint will be applied for 768 &lt; x &lt;= 1024 (where x is the viewport width).
 	 */
 	private Integer width;
 
@@ -76,7 +76,7 @@ public class DataTablesResponsiveBreakpoint<J extends DataTablesResponsiveBreakp
 	/**
 	 * width - the width (pixels) of the page viewport at which this breakpoint will apply. The value given is the maximum size at which
 	 * this breakpoint will be applied, and it will be used until the next breakpoint is found. For example, if using the default
-	 * breakpoints (above), the tablet-l breakpoint will be applied for 768 < x <= 1024 (where x is the viewport width).
+	 * breakpoints (above), the tablet-l breakpoint will be applied for 768 &lt; x &lt;= 1024 (where x is the viewport width).
 	 *
 	 * @return
 	 */
@@ -88,7 +88,7 @@ public class DataTablesResponsiveBreakpoint<J extends DataTablesResponsiveBreakp
 	/**
 	 * width - the width (pixels) of the page viewport at which this breakpoint will apply. The value given is the maximum size at which
 	 * this breakpoint will be applied, and it will be used until the next breakpoint is found. For example, if using the default
-	 * breakpoints (above), the tablet-l breakpoint will be applied for 768 < x <= 1024 (where x is the viewport width).
+	 * breakpoints (above), the tablet-l breakpoint will be applied for 768 &lt; x &lt;= 1024 (where x is the viewport width).
 	 *
 	 * @param width
 	 *

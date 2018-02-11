@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.*;
 import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
 import za.co.mmagon.jwebswing.base.servlets.enumarations.ComponentTypes;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.DataTablePageConfigurator;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablePlugins;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTableSorts;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablesSortables;
 
@@ -220,8 +222,9 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>> extends
 	 * This can be particularly useful for cases where you wish to keep the right hand column(s) visible if they contain action buttons or
 	 * other important information.
 	 * <p>
-	 * The column priority can also be defined by a data-priority attribute on the column's header cell (for example <th
-	 * data-priority="1">First name</th>). If both a data-priority attribute and a columns.responsivePriority value has been set for a
+	 * The column priority can also be defined by a data-priority attribute on the column's header cell (for example&gt;th
+	 * data-priority="1"&lt;First name&gt;/th&lt;). If both a data-priority attribute and a columns.responsivePriority value has been set
+	 * for a
 	 * single column, the columns.responsivePriority value will always be used.
 	 */
 	private Integer responsivePriority;
@@ -863,8 +866,8 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>> extends
 	 * This can be particularly useful for cases where you wish to keep the right hand column(s) visible if they contain action buttons or
 	 * other important information.
 	 * <p>
-	 * The column priority can also be defined by a data-priority attribute on the column's header cell (for example <th
-	 * data-priority="1">First name</th>). If both a data-priority attribute and a columns.responsivePriority value has been set for a
+	 * The column priority can also be defined by a data-priority attribute on the column's header cell (for example th
+	 * data-priority="1"First name"th). If both a data-priority attribute and a columns.responsivePriority value has been set for a
 	 * single column, the columns.responsivePriority value will always be used.
 	 *
 	 * @return
@@ -890,8 +893,8 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>> extends
 	 * This can be particularly useful for cases where you wish to keep the right hand column(s) visible if they contain action buttons or
 	 * other important information.
 	 * <p>
-	 * The column priority can also be defined by a data-priority attribute on the column's header cell (for example <th
-	 * data-priority="1">First name</th>). If both a data-priority attribute and a columns.responsivePriority value has been set for a
+	 * The column priority can also be defined by a data-priority attribute on the column's header cell (for example&gt;th
+	 * data-priority="1"&lt;First name&gt;/th&lt;). If both a data-priority attribute and a columns.responsivePriority value has been set for a
 	 * single column, the columns.responsivePriority value will always be used.
 	 *
 	 * @param responsivePriority
@@ -903,6 +906,11 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>> extends
 	public J setResponsivePriority(Integer responsivePriority)
 	{
 		this.responsivePriority = responsivePriority;
+		if (this.responsivePriority != null)
+		{
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.Responsive);
+		}
 		return (J) this;
 	}
 }
