@@ -18,6 +18,7 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable.options;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import za.co.mmagon.jwebswing.htmlbuilder.css.measurement.MeasurementCSSImpl;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
@@ -514,12 +515,8 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * The list of columns
 	 */
 	@JsonProperty("columnDefs")
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private List<DataTableColumnOptions<?>> columns;
-
-
-	/**
-	 * AUTO FILL STUFF
-	 */
 	/**
 	 * autoFillSince: AutoFill 2.0.0
 	 * Enable and configure the AutoFill extension for DataTables. Please note - this property requires the AutoFill extension for
@@ -2621,7 +2618,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setButtons(DataTablesButtonsOptions<?> buttons)
 	{
 		this.buttons = buttons;
-		if (buttons == null)
+		if (buttons != null)
 		{
 			DataTablePageConfigurator.getPlugins()
 					.add(DataTablePlugins.Buttons);
@@ -2666,7 +2663,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setColReorder(DataTableColReOrderOptions<?> colReorder)
 	{
 		this.colReorder = colReorder;
-		if (colReorder == null)
+		if (colReorder != null)
 		{
 			DataTablePageConfigurator.getPlugins()
 					.add(DataTablePlugins.ColReorder);
@@ -2740,7 +2737,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setFixedColumns(DataTableFixedColumnsOptions<?> fixedColumns)
 	{
 		this.fixedColumns = fixedColumns;
-		if (fixedColumns == null)
+		if (fixedColumns != null)
 		{
 			DataTablePageConfigurator.getPlugins()
 					.add(DataTablePlugins.FixedColumns);
@@ -2796,7 +2793,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setFixedHeader(DataTableFixedHeaderOptions<?> fixedHeader)
 	{
 		this.fixedHeader = fixedHeader;
-		if (fixedHeader == null)
+		if (fixedHeader != null)
 		{
 			DataTablePageConfigurator.getPlugins()
 					.add(DataTablePlugins.FixedHeader);
@@ -2860,7 +2857,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setKeys(DataTableKeyTableOptions<?> keys)
 	{
 		this.keys = keys;
-		if (keys == null)
+		if (keys != null)
 		{
 			DataTablePageConfigurator.getPlugins()
 					.add(DataTablePlugins.KeyTable);
@@ -2915,7 +2912,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	public J setResponsive(DataTablesResponsiveOptions<?> responsive)
 	{
 		this.responsive = responsive;
-		if (responsive == null)
+		if (responsive != null)
 		{
 			DataTablePageConfigurator.getPlugins()
 					.add(DataTablePlugins.Responsive);

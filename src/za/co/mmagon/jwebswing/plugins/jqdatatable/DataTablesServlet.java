@@ -1,5 +1,6 @@
 package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
+import com.google.inject.Singleton;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import za.co.mmagon.guiceinjection.GuiceContext;
 import za.co.mmagon.jwebswing.base.servlets.JWDefaultServlet;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
 
 import static za.co.mmagon.jwebswing.utilities.StaticStrings.UTF8;
 
-
+@Singleton
 public class DataTablesServlet extends JWDefaultServlet
 {
 	private static final Logger log = LogFactory.getInstance()

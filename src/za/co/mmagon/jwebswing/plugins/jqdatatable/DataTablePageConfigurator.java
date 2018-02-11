@@ -18,12 +18,14 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
 import za.co.mmagon.jwebswing.Page;
 import za.co.mmagon.jwebswing.PageConfigurator;
+import za.co.mmagon.jwebswing.base.angular.AngularPageConfigurator;
 import za.co.mmagon.jwebswing.base.references.CSSReference;
 import za.co.mmagon.jwebswing.base.references.JavascriptReference;
 import za.co.mmagon.jwebswing.plugins.PluginInformation;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablePlugins;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTableThemes;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablesSortables;
+import za.co.mmagon.jwebswing.plugins.jquery.JQueryPageConfigurator;
 import za.co.mmagon.jwebswing.plugins.pools.jquerydatatables.DataTableReferencePool;
 
 import java.util.EnumSet;
@@ -88,6 +90,8 @@ public class DataTablePageConfigurator extends PageConfigurator
 	{
 		if (!page.isConfigured())
 		{
+			JQueryPageConfigurator.setRequired(true);
+			AngularPageConfigurator.setRequired(true);
 			page.getBody()
 					.addJavaScriptReference(DataTableReferencePool.JQueryDataTables.getJavaScriptReference());
 

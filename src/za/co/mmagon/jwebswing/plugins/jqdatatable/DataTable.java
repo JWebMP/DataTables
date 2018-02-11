@@ -74,9 +74,9 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 * @param headerGroup
 	 * 		The table header group creating for
 	 */
-	public DataTable(TableHeaderGroup headerGroup)
+	public DataTable(String id, TableHeaderGroup headerGroup)
 	{
-		this(headerGroup, true);
+		this(id, headerGroup, false);
 	}
 
 	/**
@@ -88,12 +88,14 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 * @param enableDynamicFeature
 	 * 		Enables the DataTable Feature
 	 */
-	public DataTable(TableHeaderGroup headerGroup, boolean enableDynamicFeature)
+	public DataTable(String id, TableHeaderGroup headerGroup, boolean enableDynamicFeature)
 	{
 		this.enableDynamicFeature = enableDynamicFeature;
 		addAttribute(TableAttributes.CellSpacing, 0);
 		addAttribute(TableAttributes.CellPadding, 0);
 		setHeaderGroup(headerGroup);
+		setID(id);
+		addFeature(getFeature());
 	}
 
 	@Override
@@ -102,7 +104,6 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	{
 		if (!isInitialized() && isEnableDynamicFeature())
 		{
-			addFeature(getFeature());
 			TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
 			for (ComponentHierarchyBase child : group.getChildren())
 			{

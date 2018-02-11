@@ -1,6 +1,11 @@
 package za.co.mmagon.jwebswing.plugins.jqdatatable.options;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+
+import javax.validation.constraints.NotNull;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * buttonsSince: Buttons 1.0.0
@@ -53,8 +58,10 @@ public class DataTablesButtonsOptions<J extends DataTablesButtonsOptions<J>> ext
 	 * in configuration options for each button, but the various button types may provide additional options. Please refer to the
 	 * documentation for each button type for information on the further options they provide.
 	 */
-	private DataTablesButtonButtonsOptions buttons;
-
+	@JsonProperty("buttonsActual")
+	private Set<DataTablesButtonButtonsOptions<?>> buttons;
+	@JsonProperty("buttons")
+	private Set<String> buttonString;
 
 	/**
 	 * buttonsSince: Buttons 1.0.0
@@ -105,6 +112,8 @@ public class DataTablesButtonsOptions<J extends DataTablesButtonsOptions<J>> ext
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setName(String name)
 	{
 		this.name = name;
@@ -142,6 +151,8 @@ public class DataTablesButtonsOptions<J extends DataTablesButtonsOptions<J>> ext
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setDom(DataTablesButtonsDomOptions dom)
 	{
 		this.dom = dom;
@@ -164,8 +175,13 @@ public class DataTablesButtonsOptions<J extends DataTablesButtonsOptions<J>> ext
 	 *
 	 * @return
 	 */
-	public DataTablesButtonButtonsOptions getButtons()
+	@NotNull
+	public Set<DataTablesButtonButtonsOptions<?>> getButtons()
 	{
+		if (buttons == null)
+		{
+			buttons = new LinkedHashSet<>();
+		}
 		return buttons;
 	}
 
@@ -187,11 +203,41 @@ public class DataTablesButtonsOptions<J extends DataTablesButtonsOptions<J>> ext
 	 *
 	 * @return
 	 */
-	public J setButtons(DataTablesButtonButtonsOptions buttons)
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J setButtons(Set<DataTablesButtonButtonsOptions<?>> buttons)
 	{
 		this.buttons = buttons;
 		return (J) this;
 	}
 
+	/**
+	 * Gets the current list of button strings to display
+	 *
+	 * @return
+	 */
+	@NotNull
+	public Set<String> getButtonString()
+	{
+		if (buttonString == null)
+		{
+			buttonString = new LinkedHashSet<>();
+		}
+		return buttonString;
+	}
 
+	/**
+	 * A list of string buttons to display
+	 *
+	 * @param buttonString
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J setButtonString(Set<String> buttonString)
+	{
+		this.buttonString = buttonString;
+		return (J) this;
+	}
 }
