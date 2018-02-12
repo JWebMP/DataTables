@@ -5,12 +5,14 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import za.co.mmagon.guiceinjection.GuiceContext;
 import za.co.mmagon.jwebswing.base.servlets.JWDefaultServlet;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.events.DataTableDataFetchEvent;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.search.DataTableSearchRequest;
 import za.co.mmagon.jwebswing.utilities.StaticStrings;
 import za.co.mmagon.logger.LogFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.Charset;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,9 +62,10 @@ public class DataTablesServlet extends JWDefaultServlet
 		StringBuilder output = new StringBuilder();
 		Set<Class<? extends DataTableDataFetchEvent>> allEvents = GuiceContext.reflect()
 				                                                          .getSubTypesOf(DataTableDataFetchEvent.class);
+		Map<String, String[]> params = request.getParameterMap();
+		String className = params.get("c")[0];
 		allEvents.removeIf(a -> !a.getCanonicalName()
-				                         .equals(request.getParameter("clazz")
-						                                 .replace('_', '.')));
+				                         .equals(className.replace('_', '.')));
 		if (allEvents.isEmpty())
 		{
 			writeOutput(output, StaticStrings.HTML_HEADER_JAVASCRIPT, Charset.forName(UTF8));
@@ -70,12 +73,14 @@ public class DataTablesServlet extends JWDefaultServlet
 		}
 		else
 		{
+			DataTableSearchRequest searchRequest = new DataTableSearchRequest();
+			searchRequest.fromRequestMap(params);
 			try
 			{
 				Class<? extends DataTableDataFetchEvent> event = allEvents.iterator()
 						                                                 .next();
 				DataTableDataFetchEvent dtd = GuiceContext.getInstance(event);
-				DataTableData d = dtd.returnData();
+				DataTableData d = dtd.returnData(searchRequest);
 				output.append(d.toString());
 				writeOutput(output, StaticStrings.HTML_HEADER_JSON, Charset.forName(UTF8));
 			}

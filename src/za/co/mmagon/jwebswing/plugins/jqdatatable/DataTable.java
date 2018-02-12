@@ -16,15 +16,20 @@
  */
 package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
+import com.google.common.base.Strings;
 import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
 import za.co.mmagon.jwebswing.base.html.*;
 import za.co.mmagon.jwebswing.base.html.attributes.TableAttributes;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.events.DataTableDataFetchEvent;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableColumnOptions;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.options.DataTableOptions;
 
 import javax.validation.constraints.NotNull;
+
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_DOT;
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_UNDERSCORE;
 
 /**
  * The JWDataTable implementation
@@ -38,7 +43,7 @@ import javax.validation.constraints.NotNull;
  * @since 2014 09 30
  */
 @ComponentInformation(name = "Data Tables", description = "The core data tables component", url = "https://www.datatables.net/")
-public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Table<J> implements GlobalChildren
+public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Table<J> implements GlobalChildren, IDataTable<T, J>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -98,6 +103,16 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		addFeature(getFeature());
 	}
 
+	/**
+	 * Returns this class as a trimmed down accessor for ease of use
+	 *
+	 * @return
+	 */
+	public IDataTable<T, J> asMe()
+	{
+		return this;
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void init()
@@ -121,10 +136,63 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
+	 * Configures the data table to use the AJAX data loading
+	 *
+	 * @param event
+	 *
+	 * @return
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J addServerDataSource(Class<? extends DataTableDataFetchEvent> event)
+	{
+		getOptions().setServerSide(true);
+		getOptions().getAjax()
+				.setUrl("/jwdatatables?c=" + event.getCanonicalName()
+						                             .replace(CHAR_DOT, CHAR_UNDERSCORE));
+
+		TableRow row = (TableRow) getHeaderGroup().getChildren()
+				                          .iterator()
+				                          .next();
+
+		int headers = row.getChildren()
+				              .size();
+
+		for (int i = 0; i < headers; i++)
+		{
+			ComponentHierarchyBase[] arrs = new ComponentHierarchyBase[headers];
+			arrs = (ComponentHierarchyBase[]) row.getChildren()
+					                                  .toArray(arrs);
+			ComponentHierarchyBase me = arrs[i];
+			String text = me.getText(0)
+					              .toString();
+			if (Strings.isNullOrEmpty(text))
+			{
+				if (!me.getChildren()
+						     .isEmpty())
+				{
+					me = (ComponentHierarchyBase) me.getChildren()
+							                              .iterator()
+							                              .next();
+					text = me.getText(0)
+							       .toString();
+				}
+			}
+			getOptions().getColumns()
+					.add(new DataTableColumnOptions<>(text));
+		}
+
+
+		return (J) this;
+	}
+
+	/**
 	 * If dynamic features are enabled
 	 *
 	 * @return
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public boolean isEnableDynamicFeature()
 	{
@@ -147,6 +215,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @return
 	 */
+	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
 	public TableHeaderGroup getHeaderGroup()
@@ -164,6 +233,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @param headerGroup
 	 */
+	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
 	public J setHeaderGroup(TableHeaderGroup headerGroup)
@@ -178,12 +248,6 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		return (J) this;
 	}
 
-	@Override
-	public DataTableOptions getOptions()
-	{
-		return getFeature().getOptions();
-	}
-
 	/**
 	 * Sets if the dynamic features of this table must be rendered
 	 *
@@ -191,6 +255,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @return
 	 */
+	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
 	public J setEnableDynamicFeature(boolean enableDynamicFeature)
@@ -199,17 +264,12 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		return (J) this;
 	}
 
-	@Override
-	public boolean equals(Object o)
-	{
-		return super.equals(o);
-	}
-
 	/**
 	 * Gets the footer group for this data table
 	 *
 	 * @return
 	 */
+	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
 	public TableFooterGroup getFooterGroup()
@@ -222,12 +282,19 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		return footerGroup;
 	}
 
+	@Override
+	public boolean equals(Object o)
+	{
+		return super.equals(o);
+	}
+
 	/**
 	 * sets the footer group for this table
 	 * <p>
 	 *
 	 * @param footerGroup
 	 */
+	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
 	public J setFooterGroup(TableFooterGroup footerGroup)
@@ -246,6 +313,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @return
 	 */
+	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
 	public TableBodyGroup getBodyGroup()
@@ -262,6 +330,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	 *
 	 * @return
 	 */
+	@Override
 	public TableCaption getCaptionOfTable()
 	{
 		if (captionOfTable == null)
@@ -272,11 +341,26 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	/**
+	 * Sets the caption for the table
+	 *
+	 * @param captionOfTable
+	 */
+	@Override
+	@SuppressWarnings({"unchecked"})
+	@NotNull
+	public J setCaptionOfTable(TableCaption captionOfTable)
+	{
+		this.captionOfTable = captionOfTable;
+		return (J) this;
+	}
+
+	/**
 	 * Sets the body group for the table
 	 * <p>
 	 *
 	 * @param bodyGroup
 	 */
+	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
 	public J setBodyGroup(TableBodyGroup bodyGroup)
@@ -290,17 +374,10 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		return (J) this;
 	}
 
-	/**
-	 * Sets the caption for the table
-	 *
-	 * @param captionOfTable
-	 */
-	@SuppressWarnings({"unchecked"})
-	@NotNull
-	public J setCaptionOfTable(TableCaption captionOfTable)
+	@Override
+	public DataTableOptions<?> getOptions()
 	{
-		this.captionOfTable = captionOfTable;
-		return (J) this;
+		return getFeature().getOptions();
 	}
 
 	@Override
