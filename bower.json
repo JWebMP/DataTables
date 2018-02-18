@@ -75,6 +75,8 @@
     "datatables.net-scroller-jqui": "^1.4.3",
     "datatables.net-select-jqui": "^1.2.3",
     "datatables.net-rowgroup-dt": "^1.0.2",
-    "datatables.net-rowreorder-dt": "^1.2.3"
+    "datatables.net-rowreorder-dt": "^1.2.3",
+    "jszip": "^3.1.5",
+    "pdfmake": "^0.1.35"
   }
 }

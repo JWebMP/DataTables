@@ -2,12 +2,10 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations;
 
 public enum DataTablePlugins
 {
-	AutoFill("autoFill"),
-	ButtonsColVis("buttons.colVis", true),
-	ButtonsFlash("buttons.flash", true),
-	ButtonsHtml("buttons.html5", true),
-	ButtonsPrint("buttons.print", true),
-	Buttons("buttons"),
+	AutoFill("autoFill", true, true),
+
+	Buttons("buttons", true, true),
+
 	ColReorder("colreorder"),
 	FixedColumns("fixedcolumns"),
 	FixedHeader("fixedheader"),
@@ -17,7 +15,7 @@ public enum DataTablePlugins
 	RowReorder("rowReorder"),
 	Scroller("scroller"),
 	Select("select"),
-	Sortable("select"),;
+	Sortable("sortable"),;
 
 
 	private String filename;

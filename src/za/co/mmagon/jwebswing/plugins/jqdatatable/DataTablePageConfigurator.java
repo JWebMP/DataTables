@@ -26,7 +26,6 @@ import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablePlugins;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTableThemes;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablesSortables;
 import za.co.mmagon.jwebswing.plugins.jquery.JQueryPageConfigurator;
-import za.co.mmagon.jwebswing.plugins.pools.jquerydatatables.DataTableReferencePool;
 
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
@@ -40,8 +39,7 @@ import static za.co.mmagon.jwebswing.utilities.StaticStrings.*;
 @PluginInformation(pluginName = "Data Tables", pluginUniqueName = "data-tables", pluginDescription = "DataTables is a plug-in for the " +
 		                                                                                                     "jQuery Javascript library. "
 		                                                                                                     + "It is a highly flexible "
-		                                                                                                     + "tool, based upon the " +
-		                                                                                                     "foundations of progressive " + "enhancement, and will add " + "" + "" + "" + "" + "" + "" + "advanced" + " " + "interaction " + "controls " + "to" + " any " + "HTML " + "table" + ".", pluginVersion = "1.10.16", pluginDependancyUniqueIDs = "jquery", pluginCategories = "jquery,datatables, tables, ui, " + "web, framework", pluginSubtitle = "DataTables is very simple to use as a jQuery plug-in with a huge range of customisable option", pluginGitUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin", pluginSourceUrl = "https://datatables" + "" + ".net/download/index", pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin/wiki", pluginOriginalHomepage = "https://www.datatables.net/", pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/DataTablesPlugin.jar/download", pluginIconUrl = "bower_components/datatables/icon.jpg", pluginIconImageUrl = "bower_components/datatables/jqdatatables_logo.png", pluginLastUpdatedDate = "2017/09/29")
+		                                                                                                     + "tool, based upon the " + "foundations of progressive " + "enhancement, and will add " + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "advanced" + "" + "" + " " + "interaction " + "" + "controls " + "to" + " " + "any " + "HTML " + "table" + ".", pluginVersion = "1.10.16", pluginDependancyUniqueIDs = "jquery", pluginCategories = "jquery,datatables, tables, ui, " + "web, framework", pluginSubtitle = "DataTables is very simple to use as a jQuery plug-in with a huge range of customisable option", pluginGitUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin", pluginSourceUrl = "https://datatables" + "" + ".net/download/index", pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin/wiki", pluginOriginalHomepage = "https://www.datatables.net/", pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/DataTablesPlugin.jar/download", pluginIconUrl = "bower_components/datatables/icon.jpg", pluginIconImageUrl = "bower_components/datatables/jqdatatables_logo.png", pluginLastUpdatedDate = "2017/09/29")
 public class DataTablePageConfigurator extends PageConfigurator
 {
 
@@ -59,6 +57,7 @@ public class DataTablePageConfigurator extends PageConfigurator
 	private static EnumSet<DataTableThemes> themes;
 	private static Set<DataTablePlugins> plugins;
 	private static Set<DataTablesSortables> sortables;
+	private static Set<JavascriptReference> extensions;
 
 	/**
 	 * Switches the theme used for the data table
@@ -83,6 +82,29 @@ public class DataTablePageConfigurator extends PageConfigurator
 			themes = EnumSet.of(DataTableThemes.DataTables);
 		}
 		return themes;
+	}
+
+	/**
+	 * Configure buttons JS References
+	 */
+	public static void configureButtons()
+	{
+		DataTablePageConfigurator.getExtensions()
+				.add(DataTableReferencePool.JSZip.getJavaScriptReference());
+
+		DataTablePageConfigurator.getExtensions()
+				.add(DataTableReferencePool.JSZip.getJavaScriptReference());
+		DataTablePageConfigurator.getExtensions()
+				.add(DataTableReferencePool.PDFMake.getJavaScriptReference());
+		DataTablePageConfigurator.getExtensions()
+				.add(DataTableReferencePool.PDFMakeVFSFonts.getJavaScriptReference());
+
+		DataTablePageConfigurator.getExtensions()
+				.add(DataTableReferencePool.ButtonsColVis.getJavaScriptReference());
+		DataTablePageConfigurator.getExtensions()
+				.add(DataTableReferencePool.ButtonsHtml.getJavaScriptReference());
+		DataTablePageConfigurator.getExtensions()
+				.add(DataTableReferencePool.ButtonsPrint.getJavaScriptReference());
 	}
 
 	@Override
@@ -114,8 +136,8 @@ public class DataTablePageConfigurator extends PageConfigurator
 				if (!themeBasePath.contains("dataTables.dataTables"))
 				{
 					page.getBody()
-							.addJavaScriptReference(
-									new JavascriptReference(DataTablesNameString + theme.toString(), 1.1016, themeBasePath + JsMinString));
+							.addJavaScriptReference(new JavascriptReference(DataTablesNameString + theme.toString(), 1.1016,
+							                                                themeBasePath + JsMinString,16));
 				}
 
 				page.getBody()
@@ -124,64 +146,16 @@ public class DataTablePageConfigurator extends PageConfigurator
 
 				configurePlugins(page, theme);
 			}
+
+			DataTablePageConfigurator.getExtensions()
+					.forEach(a ->
+					         {
+						         page.getBody()
+								         .addJavaScriptReference(a);
+					         });
+
 		}
 		return page;
-	}
-
-	/**
-	 * Configures all the page plugins with the theme
-	 *
-	 * @param page
-	 * @param theme
-	 */
-	private void configurePlugins(Page page, DataTableThemes theme)
-	{
-		for (DataTablePlugins plugin : getPlugins())
-		{
-			String jsPath = null;
-			if (theme == DataTableThemes.DataTables)
-			{
-				jsPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + "/js/" + (!plugin.isPlugin()
-				                                                                                                   ?
-				                                                                                                   DataTablesOperatorString
-				                                                                                                   : STRING_EMPTY) +
-						         plugin.getFilename() + JsMinString;
-			}
-			else
-			{
-				jsPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() +
-						         "/js/" + (
-						!plugin.isPlugin()
-						? DataTablesOperatorString
-						: STRING_EMPTY) + plugin.getFilename() + JsMinString;
-			}
-
-			page.getBody()
-					.addJavaScriptReference(
-							new JavascriptReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, jsPath));
-
-			if (plugin.isCss())
-			{
-				String cssPath = null;
-				if (theme == DataTableThemes.DataTables)
-				{
-					cssPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() + CssString + plugin.getFilename() + STRING_DOT + (
-							!plugin.isPlugin()
-							? DataTablesOperatorString
-							: STRING_EMPTY) + CssMinString;
-				}
-				else
-				{
-					cssPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData
-							                                                                                                              () + CssString + plugin.getFilename() + STRING_DOT + theme.getFilename() + STRING_DOT + CssMinString;
-				}
-				page.getBody()
-						.addCssReference(new CSSReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, cssPath));
-			}
-
-			getSortables().forEach(a -> page.getBody()
-					                            .addJavaScriptReference(a.getReference()));
-		}
 	}
 
 	/**
@@ -210,5 +184,80 @@ public class DataTablePageConfigurator extends PageConfigurator
 			sortables = new LinkedHashSet<>();
 		}
 		return sortables;
+	}
+
+	/**
+	 * Configures all the page plugins with the theme
+	 *
+	 * @param page
+	 * @param theme
+	 */
+	private void configurePlugins(Page page, DataTableThemes theme)
+	{
+		for (DataTablePlugins plugin : getPlugins())
+		{
+			String jsPath = null;
+			if (theme == DataTableThemes.DataTables)
+			{
+				jsPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + "/js/" + (plugin.isPlugin()
+				                                                                                                   ?
+				                                                                                                   DataTablesOperatorString + plugin.getFilename() + JsMinString
+
+
+
+
+				                                                                                                   : STRING_EMPTY);
+			}
+			else
+			{
+				jsPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() +
+						         "/js/" + (
+						plugin.isPlugin()
+						? plugin.getFilename() + "." + theme.getFilename() + JsMinString
+						: STRING_EMPTY);
+			}
+
+			page.getBody()
+					.addJavaScriptReference(
+							new JavascriptReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, jsPath));
+
+			if (plugin.isCss())
+			{
+				String cssPath = null;
+				if (theme == DataTableThemes.DataTables)
+				{
+					cssPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData
+							                                                                                                              () + CssString + plugin.getFilename() + STRING_DOT + (
+							plugin.isPlugin()
+							? DataTablesOperatorString + CssMinString
+							: STRING_EMPTY);
+				}
+				else
+				{
+					cssPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() + CssString + plugin.getFilename() + STRING_DOT + theme.getFilename()+ CssMinString;
+				}
+				page.getBody()
+						.addCssReference(new CSSReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, cssPath));
+			}
+
+			getSortables().forEach(a -> page.getBody()
+					                            .addJavaScriptReference(a.getReference()));
+		}
+	}
+
+	/**
+	 * Any additional JavaScript references to apply
+	 * <p>
+	 * Usually with getOptions().getButtons() to addon the required buttons javascripts
+	 *
+	 * @return
+	 */
+	public static Set<JavascriptReference> getExtensions()
+	{
+		if (extensions == null)
+		{
+			extensions = new LinkedHashSet<>();
+		}
+		return extensions;
 	}
 }

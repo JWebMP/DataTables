@@ -155,7 +155,7 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>> extends
 				}
 				case "dir":
 				{
-					column.setDir(DataTableSorts.fromValue(value));
+					column.setDirection(DataTableSorts.fromValue(value));
 					break;
 				}
 			}

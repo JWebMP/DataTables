@@ -16,10 +16,7 @@
  */
 package za.co.mmagon.jwebswing.plugins.jqdatatable.options;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import za.co.mmagon.jwebswing.htmlbuilder.css.measurement.MeasurementCSSImpl;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.DataTablePageConfigurator;
@@ -30,6 +27,10 @@ import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablesPagingT
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
+import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY;
+import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE;
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 /**
  * The Options for the Data Table
  * <p>
@@ -37,6 +38,9 @@ import java.util.*;
  * @author GedMarc
  * @since 09 May 2015
  */
+@JsonAutoDetect(fieldVisibility = ANY, getterVisibility = NONE, setterVisibility = NONE)
+@JsonInclude(NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptPart<J>
 {
 
@@ -46,7 +50,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * the document object model layout
 	 */
 	@JsonIgnore
-	private EnumSet<DataTablesDomOptions> dom;
+	private List<DataTablesDomOptions> dom;
 
 	/**
 	 * ajaxSince: DataTables 1.10
@@ -545,8 +549,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * provide buttons for use with this library, with actions unique to their own behaviours. This ensures a consistent interface for the
 	 * interactions performed with your tables.
 	 */
-	private DataTablesButtonsOptions<?> buttons;
-
+	private Set<DataTablesButtonsOptions<?>> buttons;
 	/**
 	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
 	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
@@ -2453,7 +2456,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 */
 	@SuppressWarnings("all")
 	@NotNull
-	public EnumSet<DataTablesDomOptions> getDom()
+	public List<DataTablesDomOptions> getDom()
 	{
 		return dom;
 	}
@@ -2472,7 +2475,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 */
 	@SuppressWarnings("all")
 	@NotNull
-	public J setDom(EnumSet<DataTablesDomOptions> dom)
+	public J setDom(List<DataTablesDomOptions> dom)
 	{
 		this.dom = dom;
 		return (J) this;
@@ -2484,9 +2487,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	{
 		StringBuilder sb = new StringBuilder();
 		if (dom != null)
-		{
-			dom.forEach(a -> sb.append(a.toString()));
-		}
+		{ dom.forEach(a -> sb.append(a.toString())); }
 		else
 		{ return null; }
 		return sb.toString();
@@ -2539,6 +2540,8 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 		if (autoFill == null)
 		{
 			setAutoFill(new DataTableAutoFillOptions());
+			DataTablePageConfigurator.getPlugins()
+					.add(DataTablePlugins.AutoFill);
 		}
 		return autoFill;
 	}
@@ -2586,11 +2589,11 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * @return
 	 */
 	@NotNull
-	public DataTablesButtonsOptions<?> getButtons()
+	public Set<DataTablesButtonsOptions<?>> getButtons()
 	{
 		if (buttons == null)
 		{
-			setButtons(new DataTablesButtonsOptions<>());
+			setButtons(new TreeSet<>());
 		}
 		return buttons;
 	}
@@ -2615,13 +2618,15 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 */
 	@NotNull
 	@SuppressWarnings("unchecked")
-	public J setButtons(DataTablesButtonsOptions<?> buttons)
+	public J setButtons(Set<DataTablesButtonsOptions<?>> buttons)
 	{
 		this.buttons = buttons;
 		if (buttons != null)
 		{
 			DataTablePageConfigurator.getPlugins()
 					.add(DataTablePlugins.Buttons);
+
+			DataTablePageConfigurator.configureButtons();
 		}
 		return (J) this;
 	}
