@@ -18,6 +18,7 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable;
 
 import za.co.mmagon.jwebswing.base.references.CSSReference;
 import za.co.mmagon.jwebswing.base.references.JavascriptReference;
+import za.co.mmagon.jwebswing.base.servlets.enumarations.RequirementsPriority;
 import za.co.mmagon.jwebswing.base.servlets.interfaces.ReferencePool;
 
 /**
@@ -28,26 +29,26 @@ public enum DataTableReferencePool implements ReferencePool
 {
 
 	JQueryDataTables(new JavascriptReference("JQueryDataTables", 1.1010, "bower_components/datatables.net/js/jquery.dataTables.min.js",
-	                                         "https://cdn.datatables.net/1.10.10/js/jquery.datatables.js"),
+	                                         "https://cdn.datatables.net/1.10.10/js/jquery.datatables.js", 15).setPriority(
+			RequirementsPriority.Second),
 	                 new CSSReference("JQueryDTCss", 1.1010, "bower_components/datatables.net-dt/css/jquery.dataTables.min.css",
 	                                  "https://cdn.datatables.net/1.10.10/css/jquery.dataTables.css"), 15),
 
 
-	PDFMake(new JavascriptReference("PDFMake", 1.1010, "bower_components/pdfmake/build/pdfmake.min.js"), null, 16),
-	PDFMakeVFSFonts(new JavascriptReference("PDFMakeVSFonts", 1.1010, "bower_components/pdfmake/build/vfs_fonts.min.js"), null, 17),
+	PDFMake(new JavascriptReference("PDFMake", 1.1010, "bower_components/pdfmake/build/pdfmake.min.js"), null, 19),
+	PDFMakeVFSFonts(new JavascriptReference("PDFMakeVSFonts", 1.1010, "bower_components/pdfmake/build/vfs_fonts.min.js"), null, 19),
 
 
 	Buttons(new JavascriptReference("DTButtons", 1.0, "bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"), null, 18),
 	ButtonsColVis(new JavascriptReference("DYButtonsColVis", 1.0, "bower_components/datatables.net-buttons/js/buttons.colVis.min.js"),
-	              null,
-	              18),
+	              null, 21),
 	ButtonsHtml(new JavascriptReference("DTButtonsHtml5", 1.0, "bower_components/datatables.net-buttons/js/buttons.html5.min.js"), null,
-	            18),
+	            20),
 	ButtonsPrint(new JavascriptReference("DTButtonsPrint", 1.0, "bower_components/datatables.net-buttons/js/buttons.print.min.js"), null,
-	             18),
+	             22),
 
 
-	JSZip(new JavascriptReference("JSZip", 1.1010, "bower_components/jszip/dist/jszip.min.js"), null, 16),;
+	JSZip(new JavascriptReference("JSZip", 1.1010, "bower_components/jszip/dist/jszip.min.js"), null, 17),;
 
 
 	private JavascriptReference javaScriptReference;

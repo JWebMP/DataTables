@@ -2,6 +2,7 @@ package za.co.mmagon.jwebswing.plugins.jqdatatable.options;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTableButtons;
 import za.co.mmagon.jwebswing.plugins.jqdatatable.enumerations.DataTablesButtonKeys;
 
 import javax.validation.constraints.NotNull;
@@ -25,6 +26,7 @@ import java.util.Map;
  * @param <J>
  */
 public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOptions<J>> extends JavaScriptPart<J>
+		implements Comparable<DataTablesButtonButtonsOptions<J>>
 {
 	private static final long serialVersionUID = 1L;
 
@@ -109,6 +111,10 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 	private String text;
 	@JsonProperty("titleAttr")
 	private String titleAttribute;
+	/**
+	 * A predefined button to extend
+	 */
+	private DataTableButtons extend;
 
 
 	/**
@@ -425,5 +431,39 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 	{
 		this.titleAttribute = titleAttribute;
 		return (J) this;
+	}
+
+	/**
+	 * Returns the current button extending if specified
+	 *
+	 * @return
+	 */
+	public DataTableButtons getExtend()
+	{
+		return extend;
+	}
+
+	/**
+	 * Sets the predefined button to extend
+	 *
+	 * @param extend
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J setExtend(DataTableButtons extend)
+	{
+		this.extend = extend;
+		return (J) this;
+	}
+
+	@Override
+	public int compareTo(DataTablesButtonButtonsOptions<J> o)
+	{
+		if (o == null)
+		{ return -1; }
+
+		return 1;
 	}
 }

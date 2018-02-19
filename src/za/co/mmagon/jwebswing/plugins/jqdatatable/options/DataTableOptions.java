@@ -549,7 +549,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * provide buttons for use with this library, with actions unique to their own behaviours. This ensures a consistent interface for the
 	 * interactions performed with your tables.
 	 */
-	private Set<DataTablesButtonsOptions<?>> buttons;
+	private Set<DataTablesButtonButtonsOptions<?>> buttons;
 	/**
 	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
 	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
@@ -2589,7 +2589,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 * @return
 	 */
 	@NotNull
-	public Set<DataTablesButtonsOptions<?>> getButtons()
+	public Set<DataTablesButtonButtonsOptions<?>> getButtons()
 	{
 		if (buttons == null)
 		{
@@ -2618,7 +2618,7 @@ public class DataTableOptions<J extends DataTableOptions<J>> extends JavaScriptP
 	 */
 	@NotNull
 	@SuppressWarnings("unchecked")
-	public J setButtons(Set<DataTablesButtonsOptions<?>> buttons)
+	public J setButtons(Set<DataTablesButtonButtonsOptions<?>> buttons)
 	{
 		this.buttons = buttons;
 		if (buttons != null)
