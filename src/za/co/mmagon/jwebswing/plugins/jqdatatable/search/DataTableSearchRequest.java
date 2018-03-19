@@ -14,7 +14,8 @@ import java.util.regex.Pattern;
  *
  * @param <J>
  */
-public class DataTableSearchRequest<J extends DataTableSearchRequest<J>> extends JavaScriptPart<J>
+public class DataTableSearchRequest<J extends DataTableSearchRequest<J>>
+		extends JavaScriptPart<J>
 {
 	private static final long serialVersionUID = 1L;
 
@@ -37,14 +38,19 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>> extends
 		params.forEach((key, value) ->
 		               {
 			               if (value != null)
-			               { readable.put(key, value[0]); }
+			               {
+				               readable.put(key, value[0]);
+			               }
 		               });
 
 		readable.forEach((key, value) ->
 		                 {
 			                 switch (key)
 			                 {
-				                 case "c": {break;}
+				                 case "c":
+				                 {
+					                 break;
+				                 }
 				                 case "length":
 				                 {
 					                 length = Integer.parseInt(value);
@@ -94,7 +100,7 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>> extends
 			String group1 = match.group(1);
 			String group2 = match.group(2);
 			group2 = group2.replaceAll("\\]", "\\.")
-					         .replaceAll("\\[", "");
+			               .replaceAll("\\[", "");
 
 			if (getColumns().get(Integer.parseInt(group1)) == null)
 			{
@@ -128,6 +134,10 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>> extends
 					column.setSearchable(Boolean.parseBoolean(value));
 					break;
 				}
+				default:
+				{
+					break;
+				}
 			}
 		}
 	}
@@ -140,7 +150,7 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>> extends
 			String group1 = match.group(1);
 			String group2 = match.group(2);
 			group2 = group2.replaceAll("\\]", "\\.")
-					         .replaceAll("\\[", "");
+			               .replaceAll("\\[", "");
 			if (getOrderBys().get(Integer.parseInt(group1)) == null)
 			{
 				getOrderBys().put(Integer.parseInt(group1), new DataTableSearchOrderByCriteria());
@@ -156,6 +166,10 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>> extends
 				case "dir":
 				{
 					column.setDirection(DataTableSorts.fromValue(value));
+					break;
+				}
+				default:
+				{
 					break;
 				}
 			}

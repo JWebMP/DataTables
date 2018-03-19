@@ -19,7 +19,8 @@ import javax.validation.constraints.NotNull;
  *
  * @param <J>
  */
-public class DataTablesRowReorder<J extends DataTablesRowReorder<J>> extends JavaScriptPart<J>
+public class DataTablesRowReorder<J extends DataTablesRowReorder<J>>
+		extends JavaScriptPart<J>
 {
 	private static final long serialVersionUID = 1L;
 
@@ -114,6 +115,7 @@ public class DataTablesRowReorder<J extends DataTablesRowReorder<J>> extends Jav
 	 */
 	public DataTablesRowReorder()
 	{
+		//no config required
 	}
 
 	/**

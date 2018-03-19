@@ -5,7 +5,9 @@ import java.io.Serializable;
 /**
  * IOrderType values for defaults, and extensions through Sortable plugin
  */
-public interface IOrderDataType extends Serializable
+@FunctionalInterface
+public interface IOrderDataType
+		extends Serializable
 {
 	String name();
 }

@@ -42,8 +42,12 @@ import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_UNDERSCORE;
  * @version 1.0
  * @since 2014 09 30
  */
-@ComponentInformation(name = "Data Tables", description = "The core data tables component", url = "https://www.datatables.net/")
-public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Table<J> implements GlobalChildren, IDataTable<T, J>
+@ComponentInformation(name = "Data Tables",
+		description = "The core data tables component",
+		url = "https://www.datatables.net/")
+public class DataTable<T extends TableRow, J extends DataTable<T, J>>
+		extends Table<J>
+		implements GlobalChildren, IDataTable<T, J>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -103,6 +107,17 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 		addFeature(getFeature());
 	}
 
+	@SuppressWarnings({"unchecked"})
+	@NotNull
+	public final DataTableFeature getFeature()
+	{
+		if (feature == null)
+		{
+			feature = new DataTableFeature(this);
+		}
+		return feature;
+	}
+
 	/**
 	 * Returns this class as a trimmed down accessor for ease of use
 	 *
@@ -126,13 +141,19 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 				for (ComponentHierarchyBase rowChild : tr.getChildren())
 				{
 					DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0)
-							                                                                  .toString());
+					                                                                          .toString());
 					getOptions().getColumns()
-							.add(columnOptions);
+					            .add(columnOptions);
 				}
 			}
 		}
 		super.init();
+	}
+
+	@Override
+	public DataTableOptions<?> getOptions()
+	{
+		return getFeature().getOptions();
 	}
 
 	/**
@@ -149,38 +170,37 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	{
 		getOptions().setServerSide(true);
 		getOptions().getAjax()
-				.setUrl("/jwdatatables?c=" + event.getCanonicalName()
-						                             .replace(CHAR_DOT, CHAR_UNDERSCORE));
+		            .setUrl("/jwdatatables?c=" + event.getCanonicalName()
+		                                              .replace(CHAR_DOT, CHAR_UNDERSCORE));
 
 		TableRow row = (TableRow) getHeaderGroup().getChildren()
-				                          .iterator()
-				                          .next();
+		                                          .iterator()
+		                                          .next();
 
 		int headers = row.getChildren()
-				              .size();
+		                 .size();
 
 		for (int i = 0; i < headers; i++)
 		{
 			ComponentHierarchyBase[] arrs = new ComponentHierarchyBase[headers];
 			arrs = (ComponentHierarchyBase[]) row.getChildren()
-					                                  .toArray(arrs);
+			                                     .toArray(arrs);
 			ComponentHierarchyBase me = arrs[i];
 			String text = me.getText(0)
-					              .toString();
-			if (Strings.isNullOrEmpty(text))
+			                .toString();
+
+			if (Strings.isNullOrEmpty(text) && !me.getChildren()
+			                                      .isEmpty())
 			{
-				if (!me.getChildren()
-						     .isEmpty())
-				{
-					me = (ComponentHierarchyBase) me.getChildren()
-							                              .iterator()
-							                              .next();
-					text = me.getText(0)
-							       .toString();
-				}
+				me = (ComponentHierarchyBase) me.getChildren()
+				                                .iterator()
+				                                .next();
+				text = me.getText(0)
+				         .toString();
 			}
+
 			getOptions().getColumns()
-					.add(new DataTableColumnOptions<>(text));
+			            .add(new DataTableColumnOptions<>(text));
 		}
 
 
@@ -197,17 +217,6 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	public boolean isEnableDynamicFeature()
 	{
 		return enableDynamicFeature;
-	}
-
-	@SuppressWarnings({"unchecked"})
-	@NotNull
-	public final DataTableFeature getFeature()
-	{
-		if (feature == null)
-		{
-			feature = new DataTableFeature(this);
-		}
-		return feature;
 	}
 
 	/**
@@ -280,12 +289,6 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 			setFooterGroup(new TableFooterGroup());
 		}
 		return footerGroup;
-	}
-
-	@Override
-	public boolean equals(Object o)
-	{
-		return super.equals(o);
 	}
 
 	/**
@@ -375,9 +378,9 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>> extends Ta
 	}
 
 	@Override
-	public DataTableOptions<?> getOptions()
+	public boolean equals(Object o)
 	{
-		return getFeature().getOptions();
+		return super.equals(o);
 	}
 
 	@Override
