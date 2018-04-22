@@ -1,10 +1,9 @@
 package com.jwebmp.plugins.jqdatatable.options;
 
-import com.jwebmp.BaseTestClass;
 import org.junit.jupiter.api.Test;
 
 class DataTablesResponsiveBreakpointTest
-		extends BaseTestClass
+
 {
 
 	@Test
