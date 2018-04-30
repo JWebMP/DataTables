@@ -173,9 +173,9 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 		            .setUrl("/jwdatatables?c=" + event.getCanonicalName()
 		                                              .replace(CHAR_DOT, CHAR_UNDERSCORE));
 
-		TableRow row = (TableRow) getHeaderGroup().getChildren()
-		                                          .iterator()
-		                                          .next();
+		TableRow<?> row = (TableRow) getHeaderGroup().getChildren()
+		                                             .iterator()
+		                                             .next();
 
 		int headers = row.getChildren()
 		                 .size();
@@ -183,8 +183,8 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 		for (int i = 0; i < headers; i++)
 		{
 			ComponentHierarchyBase[] arrs = new ComponentHierarchyBase[headers];
-			arrs = (ComponentHierarchyBase[]) row.getChildren()
-			                                     .toArray(arrs);
+			arrs = row.getChildren()
+			          .toArray(arrs);
 			ComponentHierarchyBase me = arrs[i];
 			String text = me.getText(0)
 			                .toString();
@@ -378,14 +378,14 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	}
 
 	@Override
-	public int hashCode()
-	{
-		return super.hashCode();
-	}
-
-	@Override
 	public boolean equals(Object o)
 	{
 		return super.equals(o);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return super.hashCode();
 	}
 }
