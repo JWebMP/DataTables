@@ -19,12 +19,12 @@ package com.jwebmp.plugins.jqdatatable;
 
 import com.google.inject.Singleton;
 import com.jwebmp.base.servlets.JWDefaultServlet;
+import com.jwebmp.guiceinjection.GuiceContext;
+import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.jqdatatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.jqdatatable.search.DataTableSearchRequest;
 import com.jwebmp.utilities.StaticStrings;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import za.co.mmagon.guiceinjection.GuiceContext;
-import za.co.mmagon.logger.LogFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +34,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.jwebmp.utilities.StaticStrings.UTF8;
+import static com.jwebmp.utilities.StaticStrings.*;
 
 @Singleton
 public class DataTablesServlet
