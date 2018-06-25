@@ -23,12 +23,9 @@ import com.jwebmp.guiceinjection.GuiceContext;
 import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.jqdatatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.jqdatatable.search.DataTableSearchRequest;
-import com.jwebmp.utilities.StaticStrings;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -43,40 +40,10 @@ public class DataTablesServlet
 	private static final Logger log = LogFactory.getInstance()
 	                                            .getLogger("DataTablesServlet");
 
-	/**
-	 * Post handler
-	 *
-	 * @param request
-	 * @param response
-	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void perform()
 	{
-		super.doGet(request, response);
-		processRequest(request);
-	}
-
-	/**
-	 * Post handler
-	 *
-	 * @param request
-	 * @param response
-	 */
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	{
-		super.doGet(request, response);
-		processRequest(request);
-	}
-
-	/**
-	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-	 *
-	 * @param request
-	 * 		Servlet request
-	 */
-	protected void processRequest(HttpServletRequest request)
-	{
+		HttpServletRequest request = GuiceContext.get(HttpServletRequest.class);
 		StringBuilder output = new StringBuilder();
 		Set<Class<? extends DataTableDataFetchEvent>> allEvents = GuiceContext.reflect()
 		                                                                      .getSubTypesOf(DataTableDataFetchEvent.class);
@@ -86,7 +53,7 @@ public class DataTablesServlet
 		                          .equals(className.replace('_', '.')));
 		if (allEvents.isEmpty())
 		{
-			writeOutput(output, StaticStrings.HTML_HEADER_JAVASCRIPT, Charset.forName(UTF8));
+			writeOutput(output, HTML_HEADER_JAVASCRIPT, UTF8_CHARSET);
 			log.fine("DataTablesServlet could not find any specified data search class");
 		}
 		else
@@ -100,14 +67,15 @@ public class DataTablesServlet
 				DataTableDataFetchEvent dtd = GuiceContext.getInstance(event);
 				DataTableData d = dtd.returnData(searchRequest);
 				output.append(d.toString());
-				writeOutput(output, StaticStrings.HTML_HEADER_JSON, Charset.forName(UTF8));
+				writeOutput(output, HTML_HEADER_JSON, UTF8_CHARSET);
 			}
 			catch (Exception e)
 			{
 				output.append(ExceptionUtils.getStackTrace(e));
-				writeOutput(output, StaticStrings.HTML_HEADER_JAVASCRIPT, Charset.forName(UTF8));
+				writeOutput(output, HTML_HEADER_JAVASCRIPT, UTF8_CHARSET);
 				log.log(Level.SEVERE, "Unable to execute datatables ajax data fetch", e);
 			}
 		}
 	}
+
 }
