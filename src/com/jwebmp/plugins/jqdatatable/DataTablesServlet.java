@@ -19,7 +19,7 @@ package com.jwebmp.plugins.jqdatatable;
 
 import com.google.inject.Singleton;
 import com.jwebmp.base.servlets.JWDefaultServlet;
-import com.jwebmp.guiceinjection.GuiceContext;
+import com.jwebmp.guicedinjection.GuiceContext;
 import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.jqdatatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.jqdatatable.search.DataTableSearchRequest;
