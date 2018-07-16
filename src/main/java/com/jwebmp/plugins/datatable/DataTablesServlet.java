@@ -50,7 +50,7 @@ public class DataTablesServlet
 		Map<String, String[]> params = request.getParameterMap();
 		String className = params.get("c")[0];
 		allEvents.removeIf(a -> !a.getCanonicalName()
-		                          .equals(className.replace('_', '.')));
+		                          .equals(className.replace(CHAR_UNDERSCORE, CHAR_DOT)));
 		if (allEvents.isEmpty())
 		{
 			writeOutput(output, HTML_HEADER_JAVASCRIPT, UTF8_CHARSET);
