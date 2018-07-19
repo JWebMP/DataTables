@@ -42,6 +42,7 @@
             <version>${project.version}</version>
             <type>jar</type>
             <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -49,6 +50,7 @@
             <version>${project.version}</version>
             <type>jar</type>
             <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -57,6 +59,7 @@
             <version>${project.version}</version>
             <type>jar</type>
             <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -64,6 +67,7 @@
             <artifactId>jwebmp-log-master</artifactId>
             <version>${project.version}</version>
             <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
             <type>jar</type>
         </dependency>
 
@@ -72,6 +76,7 @@
             <artifactId>guiced-injection</artifactId>
             <version>${project.version}</version>
             <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -79,6 +84,7 @@
             <artifactId>guiced-servlets</artifactId>
             <version>${project.version}</version>
             <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
             <type>jar</type>
         </dependency>
     </dependencies>
