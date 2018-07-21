@@ -16,23 +16,23 @@
  */
 package com.jwebmp.plugins.datatable;
 
-import com.jwebmp.Page;
-import com.jwebmp.PageConfigurator;
-import com.jwebmp.base.angular.AngularPageConfigurator;
-import com.jwebmp.base.references.CSSReference;
-import com.jwebmp.base.references.JavascriptReference;
-import com.jwebmp.base.servlets.enumarations.RequirementsPriority;
-import com.jwebmp.plugins.PluginInformation;
+import com.jwebmp.core.Page;
+import com.jwebmp.core.PageConfigurator;
+import com.jwebmp.core.base.angular.AngularPageConfigurator;
+import com.jwebmp.core.base.references.CSSReference;
+import com.jwebmp.core.base.references.JavascriptReference;
+import com.jwebmp.core.base.servlets.enumarations.RequirementsPriority;
+import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.plugins.jquery.JQueryPageConfigurator;
 import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesSortables;
-import com.jwebmp.plugins.jquery.JQueryPageConfigurator;
 
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * @author GedMarc

@@ -17,18 +17,18 @@
 package com.jwebmp.plugins.datatable;
 
 import com.google.common.base.Strings;
-import com.jwebmp.base.ComponentHierarchyBase;
-import com.jwebmp.base.html.*;
-import com.jwebmp.base.html.attributes.TableAttributes;
-import com.jwebmp.base.html.interfaces.GlobalChildren;
-import com.jwebmp.plugins.ComponentInformation;
+import com.jwebmp.core.base.ComponentHierarchyBase;
+import com.jwebmp.core.base.html.*;
+import com.jwebmp.core.base.html.attributes.TableAttributes;
+import com.jwebmp.core.base.html.interfaces.GlobalChildren;
+import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.options.DataTableColumnOptions;
 import com.jwebmp.plugins.datatable.options.DataTableOptions;
 
 import javax.validation.constraints.NotNull;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * The JWDataTable implementation

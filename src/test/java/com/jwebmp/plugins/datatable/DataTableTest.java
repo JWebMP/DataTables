@@ -17,8 +17,8 @@
 
 package com.jwebmp.plugins.datatable;
 
-import com.jwebmp.Page;
-import com.jwebmp.base.html.TableHeaderGroup;
+import com.jwebmp.core.Page;
+import com.jwebmp.core.base.html.TableHeaderGroup;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
 import org.junit.jupiter.api.Test;
 

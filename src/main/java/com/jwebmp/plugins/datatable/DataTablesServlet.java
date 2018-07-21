@@ -18,7 +18,7 @@
 package com.jwebmp.plugins.datatable;
 
 import com.google.inject.Singleton;
-import com.jwebmp.base.servlets.JWDefaultServlet;
+import com.jwebmp.core.base.servlets.JWDefaultServlet;
 import com.jwebmp.guicedinjection.GuiceContext;
 import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
@@ -31,7 +31,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 @Singleton
 public class DataTablesServlet

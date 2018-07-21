@@ -17,7 +17,7 @@
 
 package com.jwebmp.plugins.datatable.enumerations;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * select.styleSince: Select 1.0.0

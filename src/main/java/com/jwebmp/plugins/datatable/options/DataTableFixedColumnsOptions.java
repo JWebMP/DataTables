@@ -17,7 +17,7 @@
 
 package com.jwebmp.plugins.datatable.options;
 
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesFixedColumnsHeightMatch;
 
 import javax.validation.constraints.NotNull;

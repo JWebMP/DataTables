@@ -1,6 +1,6 @@
 package com.jwebmp.plugins.datatable.options;
 
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.enumerations.DataTableAutoFillFocusType;
 
 import javax.validation.constraints.NotNull;

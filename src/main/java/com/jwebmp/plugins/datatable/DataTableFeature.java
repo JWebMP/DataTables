@@ -16,12 +16,12 @@
  */
 package com.jwebmp.plugins.datatable;
 
-import com.jwebmp.Component;
-import com.jwebmp.Feature;
-import com.jwebmp.base.html.interfaces.GlobalFeatures;
+import com.jwebmp.core.Component;
+import com.jwebmp.core.Feature;
+import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.plugins.datatable.options.DataTableOptions;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * Implements the jQuery DataTable plugin

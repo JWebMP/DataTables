@@ -17,7 +17,7 @@
 
 package com.jwebmp.plugins.datatable;
 
-import com.jwebmp.base.html.*;
+import com.jwebmp.core.base.html.*;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.options.DataTableOptions;
 

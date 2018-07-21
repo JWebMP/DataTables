@@ -17,7 +17,7 @@
 
 package com.jwebmp.plugins.datatable.enumerations;
 
-import com.jwebmp.base.references.JavascriptReference;
+import com.jwebmp.core.base.references.JavascriptReference;
 
 public enum DataTablesSortables
 {

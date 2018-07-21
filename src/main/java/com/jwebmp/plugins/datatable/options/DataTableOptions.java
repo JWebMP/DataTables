@@ -17,8 +17,8 @@
 package com.jwebmp.plugins.datatable.options;
 
 import com.fasterxml.jackson.annotation.*;
-import com.jwebmp.htmlbuilder.css.measurement.MeasurementCSSImpl;
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.htmlbuilder.css.measurement.MeasurementCSSImpl;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
 import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;

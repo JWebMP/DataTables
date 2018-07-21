@@ -18,7 +18,7 @@
 package com.jwebmp.plugins.datatable.options;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.enumerations.DataTableButtons;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesButtonKeys;
 

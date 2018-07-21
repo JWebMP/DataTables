@@ -17,8 +17,8 @@
 
 package com.jwebmp.plugins.datatable.events;
 
-import com.jwebmp.Event;
-import com.jwebmp.base.ComponentHierarchyBase;
+import com.jwebmp.core.Event;
+import com.jwebmp.core.base.ComponentHierarchyBase;
 import com.jwebmp.plugins.datatable.DataTableData;
 import com.jwebmp.plugins.datatable.search.DataTableSearchRequest;
 

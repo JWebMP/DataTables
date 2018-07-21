@@ -18,9 +18,9 @@
 package com.jwebmp.plugins.datatable.options;
 
 import com.fasterxml.jackson.annotation.*;
-import com.jwebmp.base.ComponentHierarchyBase;
-import com.jwebmp.base.servlets.enumarations.ComponentTypes;
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.base.ComponentHierarchyBase;
+import com.jwebmp.core.base.servlets.enumarations.ComponentTypes;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
 import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableSorts;
