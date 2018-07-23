@@ -17,13 +17,13 @@
 package com.jwebmp.plugins.datatable;
 
 import com.jwebmp.core.Page;
-import com.jwebmp.core.PageConfigurator;
 import com.jwebmp.core.base.angular.AngularPageConfigurator;
 import com.jwebmp.core.base.references.CSSReference;
 import com.jwebmp.core.base.references.JavascriptReference;
 import com.jwebmp.core.base.servlets.enumarations.RequirementsPriority;
 import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.plugins.jquery.JQueryPageConfigurator;
+import com.jwebmp.core.services.IPageConfigurator;
 import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesSortables;
@@ -88,7 +88,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
 		pluginIconImageUrl = "bower_components/datatables/jqdatatables_logo.png",
 		pluginLastUpdatedDate = "2017/09/29")
 public class DataTablePageConfigurator
-		extends PageConfigurator
+		implements IPageConfigurator
 {
 
 	private static final String DataTablesOperatorString = "dataTables.";

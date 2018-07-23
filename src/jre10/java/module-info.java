@@ -1,3 +1,6 @@
+import com.jwebmp.core.services.IPageConfigurator;
+import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
+
 module com.jwebmp.plugins.datatable {
 	exports com.jwebmp.plugins.datatable;
 
@@ -11,4 +14,7 @@ module com.jwebmp.plugins.datatable {
 	requires commons.lang3;
 	requires javax.servlet.api;
 	requires java.logging;
+
+	provides IPageConfigurator with DataTablePageConfigurator;
+
 }
