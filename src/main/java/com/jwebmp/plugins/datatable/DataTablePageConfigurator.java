@@ -28,6 +28,7 @@ import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesSortables;
 
+import javax.validation.constraints.NotNull;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -171,6 +172,7 @@ public class DataTablePageConfigurator
 		return extensions;
 	}
 
+	@NotNull
 	@Override
 	public Page configure(Page page)
 	{
