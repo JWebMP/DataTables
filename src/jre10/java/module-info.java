@@ -11,14 +11,14 @@ module com.jwebmp.plugins.datatable {
 	requires java.validation;
 	requires com.google.guice;
 	requires com.jwebmp.guicedinjection;
-	requires commons.lang3;
+	
 	requires javax.servlet.api;
 	requires java.logging;
 
 	provides IPageConfigurator with DataTablePageConfigurator;
-	opens com.jwebmp.plugins.datatable to com.fasterxml.jackson.databind,com.jwebmp.core;
-	opens com.jwebmp.plugins.datatable.enumerations to com.fasterxml.jackson.databind,com.jwebmp.core;
-	opens com.jwebmp.plugins.datatable.events to com.fasterxml.jackson.databind,com.jwebmp.core;
-	opens com.jwebmp.plugins.datatable.options to com.fasterxml.jackson.databind,com.jwebmp.core;
-	opens com.jwebmp.plugins.datatable.search to com.fasterxml.jackson.databind,com.jwebmp.core;
+	opens com.jwebmp.plugins.datatable to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.datatable.enumerations to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.datatable.events to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.datatable.options to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.datatable.search to com.fasterxml.jackson.databind, com.jwebmp.core;
 }
