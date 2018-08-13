@@ -11,7 +11,7 @@ module com.jwebmp.plugins.datatable {
 	requires java.validation;
 	requires com.google.guice;
 	requires com.jwebmp.guicedinjection;
-	
+
 	requires javax.servlet.api;
 	requires java.logging;
 
