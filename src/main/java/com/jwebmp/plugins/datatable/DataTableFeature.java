@@ -86,19 +86,6 @@ public class DataTableFeature
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		addQuery(getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
-
-		StringBuilder sb = new StringBuilder();
-		sb.append("if (typeof " + getDTID() + " === \"undefined\")" + getNewLine());
-		sb.append("{" + getNewLine());
-		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
-		sb.append("}" + getNewLine());
-		sb.append("else" + getNewLine());
-		sb.append("{" + getNewLine());
-		sb.append(getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
-		sb.append(getDTID() + " = " + getComponent().getJQueryID() + DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
-		sb.append("}" + getNewLine());
-
-		addQuery(sb.toString());
+		addQuery(getComponent().getJQueryID() + DataTableFeature.DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
 	}
 }

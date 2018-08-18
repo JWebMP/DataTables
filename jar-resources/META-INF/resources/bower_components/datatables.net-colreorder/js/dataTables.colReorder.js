@@ -1,15 +1,15 @@
-/*! ColReorder 1.4.1
- * ©2010-2017 SpryMedia Ltd - datatables.net/license
+/*! ColReorder 1.5.1
+ * ©2010-2018 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     ColReorder
  * @description Provide the ability to reorder columns in a DataTable
- * @version     1.4.1
+ * @version     1.5.1
  * @file        dataTables.colReorder.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2017 SpryMedia Ltd.
+ * @copyright   Copyright 2010-2018 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -309,7 +309,7 @@
 
         /* Sort listener */
         for (i = 0, iLen = iCols; i < iLen; i++) {
-            $(oSettings.aoColumns[i].nTh).off('click.DT');
+            $(oSettings.aoColumns[i].nTh).off('.DT');
             this.oApi._fnSortAttachListener(oSettings, oSettings.aoColumns[i].nTh, i);
         }
 
@@ -371,6 +371,14 @@
              *  @default  null
              */
             "dt": null,
+
+            /**
+             * Enable flag
+             *  @property dt
+             *  @type     Object
+             *  @default  null
+             */
+            "enable": null,
 
             /**
              * Initialisation object used for this instance
@@ -451,8 +459,8 @@
             "pointer": null
         };
 
-
         /* Constructor logic */
+        this.s.enable = this.s.init.bEnable;
         this.s.dt = settings;
         this.s.dt._colReorder = this;
         this._fnConstruct();
@@ -467,6 +475,24 @@
          * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
         /**
+         * Enable / disable end user interaction
+         */
+        fnEnable: function (flag) {
+            if (flag === false) {
+                return fnDisable();
+            }
+
+            this.s.enable = true;
+        },
+
+        /**
+         * Disable end user interaction
+         */
+        fnDisable: function () {
+            this.s.enable = false;
+        },
+
+        /**
          * Reset the column ordering to the original ordering that was detected on
          * start up.
          *  @return {this} Returns `this` for chaining.
@@ -474,14 +500,14 @@
          *  @example
          *    // DataTables initialisation with ColReorder
          *    var table = $('#example').dataTable( {
-	 *        "sDom": 'Rlfrtip'
-	 *    } );
+         *        "sDom": 'Rlfrtip'
+         *    } );
          *
          *    // Add click event to a button to reset the ordering
          *    $('#resetOrdering').click( function (e) {
-	 *        e.preventDefault();
-	 *        $.fn.dataTable.ColReorder( table ).fnReset();
-	 *    } );
+         *        e.preventDefault();
+         *        $.fn.dataTable.ColReorder( table ).fnReset();
+         *    } );
          */
         "fnReset": function () {
             this._fnOrderColumns(this.fnOrder());
@@ -690,9 +716,9 @@
             // Destroy clean up
             $(table).on('destroy.dt.colReorder', function () {
                 $(table).off('destroy.dt.colReorder draw.dt.colReorder');
-                $(that.s.dt.nTHead).find('*').off('.ColReorder');
 
                 $.each(that.s.dt.aoColumns, function (i, column) {
+                    $(column.nTh).off('.ColReorder');
                     $(column.nTh).removeAttr('data-column-index');
                 });
 
@@ -731,14 +757,14 @@
                 }
             }
 
-            $.fn.dataTable.Api(this.s.dt).rows().invalidate();
-
             this._fnSetColumnIndexes();
 
             // Has anything actually changed? If not, then nothing else to do
             if (!changed) {
                 return;
             }
+
+            $.fn.dataTable.Api(this.s.dt).rows().invalidate();
 
             /* When scrolling we need to recalculate the column sizes to allow for the shift */
             if (this.s.dt.oScroll.sX !== "" || this.s.dt.oScroll.sY !== "") {
@@ -829,10 +855,14 @@
             var that = this;
             $(nTh)
                 .on('mousedown.ColReorder', function (e) {
-                    that._fnMouseDown.call(that, e, nTh);
+                    if (that.s.enable) {
+                        that._fnMouseDown.call(that, e, nTh);
+                    }
                 })
                 .on('touchstart.ColReorder', function (e) {
-                    that._fnMouseDown.call(that, e, nTh);
+                    if (that.s.enable) {
+                        that._fnMouseDown.call(that, e, nTh);
+                    }
                 });
         },
 
@@ -894,8 +924,8 @@
                  * possibly confusing drag element showing up
                  */
                 if (Math.pow(
-                        Math.pow(this._fnCursorPosition(e, 'pageX') - this.s.mouse.startX, 2) +
-                        Math.pow(this._fnCursorPosition(e, 'pageY') - this.s.mouse.startY, 2), 0.5) < 5) {
+                    Math.pow(this._fnCursorPosition(e, 'pageX') - this.s.mouse.startX, 2) +
+                    Math.pow(this._fnCursorPosition(e, 'pageY') - this.s.mouse.startY, 2), 0.5) < 5) {
                     return;
                 }
                 this._fnCreateDragNode();
@@ -929,8 +959,14 @@
 
             // Perform reordering if realtime updating is on and the column has moved
             if (this.s.init.bRealtime && lastToIndex !== this.s.mouse.toIndex) {
-                this.s.dt.oInstance.fnColReorder(this.s.mouse.fromIndex, this.s.mouse.toIndex, false);
+                this.s.dt.oInstance.fnColReorder(this.s.mouse.fromIndex, this.s.mouse.toIndex);
                 this.s.mouse.fromIndex = this.s.mouse.toIndex;
+
+                // Not great for performance, but required to keep everything in alignment
+                if (this.s.dt.oScroll.sX !== "" || this.s.dt.oScroll.sY !== "") {
+                    this.s.dt.oInstance.fnAdjustColumnSizing(false);
+                }
+
                 this._fnRegions();
             }
         },
@@ -1127,6 +1163,14 @@
         aiOrder: null,
 
         /**
+         * ColReorder enable on initialisation
+         *  @type boolean
+         *  @default true
+         *  @static
+         */
+        bEnable: true,
+
+        /**
          * Redraw the table's column ordering as the end user draws the column
          * (`true`) or wait until the mouse is released (`false` - default). Note
          * that this will perform a redraw on each reordering, which involves an
@@ -1176,7 +1220,7 @@
      *  @type      String
      *  @default   As code
      */
-    ColReorder.version = "1.4.1";
+    ColReorder.version = "1.5.1";
 
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1268,6 +1312,22 @@
             this.context[0]._colReorder.s.dt.oInstance.fnColReorder(from, to, drop, invalidateRows);
         }
         return this;
+    });
+
+    $.fn.dataTable.Api.register('colReorder.enable()', function (flag) {
+        return this.iterator('table', function (ctx) {
+            if (ctx._colReorder) {
+                ctx._colReorder.fnEnable(flag);
+            }
+        });
+    });
+
+    $.fn.dataTable.Api.register('colReorder.disable()', function () {
+        return this.iterator('table', function (ctx) {
+            if (ctx._colReorder) {
+                ctx._colReorder.fnDisable();
+            }
+        });
     });
 
 

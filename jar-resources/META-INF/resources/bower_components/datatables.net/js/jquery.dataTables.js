@@ -1,15 +1,15 @@
-/*! DataTables 1.10.16
- * ©2008-2017 SpryMedia Ltd - datatables.net/license
+/*! DataTables 1.10.19
+ * ©2008-2018 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     DataTables
  * @description Paginate, search and order HTML tables
- * @version     1.10.16
+ * @version     1.10.19
  * @file        jquery.dataTables.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net
- * @copyright   Copyright 2008-2017 SpryMedia Ltd.
+ * @copyright   Copyright 2008-2018 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license
@@ -55,7 +55,7 @@
         // Browser
         factory(jQuery, window, document);
     }
-};
+}
 (function ($, window, document, undefined) {
     "use strict";
 
@@ -78,18 +78,18 @@
      *  @example
      *    // Basic initialisation
      *    $(document).ready( function {
-	 *      $('#example').dataTable();
-	 *    } );
+     *      $('#example').dataTable();
+     *    } );
      *
      *  @example
      *    // Initialisation with configuration options - in this case, disable
      *    // pagination and sorting.
      *    $(document).ready( function {
-	 *      $('#example').dataTable( {
-	 *        "paginate": false,
-	 *        "sort": false
-	 *      } );
-	 *    } );
+     *      $('#example').dataTable( {
+     *        "paginate": false,
+     *        "sort": false
+     *      } );
+     *    } );
      */
     var DataTable = function (options) {
         /**
@@ -111,22 +111,22 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Highlight every second row
-		 *      oTable.$('tr:odd').css('backgroundColor', 'blue');
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Highlight every second row
+         *      oTable.$('tr:odd').css('backgroundColor', 'blue');
+         *    } );
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Filter to rows with 'Webkit' in them, add a background colour and then
-		 *      // remove the filter, thus highlighting the 'Webkit' rows only.
-		 *      oTable.fnFilter('Webkit');
-		 *      oTable.$('tr', {"search": "applied"}).css('backgroundColor', 'blue');
-		 *      oTable.fnFilter('');
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Filter to rows with 'Webkit' in them, add a background colour and then
+         *      // remove the filter, thus highlighting the 'Webkit' rows only.
+         *      oTable.fnFilter('Webkit');
+         *      oTable.$('tr', {"search": "applied"}).css('backgroundColor', 'blue');
+         *      oTable.fnFilter('');
+         *    } );
          */
         this.$ = function (sSelector, oOpts) {
             return this.api(true).$(sSelector, oOpts);
@@ -160,26 +160,26 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Get the data from the first row in the table
-		 *      var data = oTable._('tr:first');
-		 *
-		 *      // Do something useful with the data
-		 *      alert( "First cell is: "+data[0] );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Get the data from the first row in the table
+         *      var data = oTable._('tr:first');
+         *
+         *      // Do something useful with the data
+         *      alert( "First cell is: "+data[0] );
+         *    } );
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Filter to 'Webkit' and get all data for
-		 *      oTable.fnFilter('Webkit');
-		 *      var data = oTable._('tr', {"search": "applied"});
-		 *
-		 *      // Do something with the data
-		 *      alert( data.length+" rows matched the search" );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Filter to 'Webkit' and get all data for
+         *      oTable.fnFilter('Webkit');
+         *      var data = oTable._('tr', {"search": "applied"});
+         *
+         *      // Do something with the data
+         *      alert( data.length+" rows matched the search" );
+         *    } );
          */
         this._ = function (sSelector, oOpts) {
             return this.api(true).rows(sSelector, oOpts).data();
@@ -228,19 +228,19 @@
          *    var giCount = 2;
          *
          *    $(document).ready(function() {
-		 *      $('#example').dataTable();
-		 *    } );
+         *      $('#example').dataTable();
+         *    } );
          *
          *    function fnClickAddRow() {
-		 *      $('#example').dataTable().fnAddData( [
-		 *        giCount+".1",
-		 *        giCount+".2",
-		 *        giCount+".3",
-		 *        giCount+".4" ]
-		 *      );
-		 *
-		 *      giCount++;
-		 *    }
+         *      $('#example').dataTable().fnAddData( [
+         *        giCount+".1",
+         *        giCount+".2",
+         *        giCount+".3",
+         *        giCount+".4" ]
+         *      );
+         *
+         *      giCount++;
+         *    }
          */
         this.fnAddData = function (data, redraw) {
             var api = this.api(true);
@@ -269,15 +269,15 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable( {
-		 *        "sScrollY": "200px",
-		 *        "bPaginate": false
-		 *      } );
-		 *
-		 *      $(window).on('resize', function () {
-		 *        oTable.fnAdjustColumnSizing();
-		 *      } );
-		 *    } );
+         *      var oTable = $('#example').dataTable( {
+         *        "sScrollY": "200px",
+         *        "bPaginate": false
+         *      } );
+         *
+         *      $(window).on('resize', function () {
+         *        oTable.fnAdjustColumnSizing();
+         *      } );
+         *    } );
          */
         this.fnAdjustColumnSizing = function (bRedraw) {
             var api = this.api(true).columns.adjust();
@@ -302,11 +302,11 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Immediately 'nuke' the current rows (perhaps waiting for an Ajax callback...)
-		 *      oTable.fnClearTable();
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Immediately 'nuke' the current rows (perhaps waiting for an Ajax callback...)
+         *      oTable.fnClearTable();
+         *    } );
          */
         this.fnClearTable = function (bRedraw) {
             var api = this.api(true).clear();
@@ -327,19 +327,19 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable;
-		 *
-		 *      // 'open' an information row when a row is clicked on
-		 *      $('#example tbody tr').click( function () {
-		 *        if ( oTable.fnIsOpen(this) ) {
-		 *          oTable.fnClose( this );
-		 *        } else {
-		 *          oTable.fnOpen( this, "Temporary row opened", "info_row" );
-		 *        }
-		 *      } );
-		 *
-		 *      oTable = $('#example').dataTable();
-		 *    } );
+         *      var oTable;
+         *
+         *      // 'open' an information row when a row is clicked on
+         *      $('#example tbody tr').click( function () {
+         *        if ( oTable.fnIsOpen(this) ) {
+         *          oTable.fnClose( this );
+         *        } else {
+         *          oTable.fnOpen( this, "Temporary row opened", "info_row" );
+         *        }
+         *      } );
+         *
+         *      oTable = $('#example').dataTable();
+         *    } );
          */
         this.fnClose = function (nTr) {
             this.api(true).row(nTr).child.hide();
@@ -358,11 +358,11 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Immediately remove the first row
-		 *      oTable.fnDeleteRow( 0 );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Immediately remove the first row
+         *      oTable.fnDeleteRow( 0 );
+         *    } );
          */
         this.fnDeleteRow = function (target, callback, redraw) {
             var api = this.api(true);
@@ -393,10 +393,10 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      // This example is fairly pointless in reality, but shows how fnDestroy can be used
-		 *      var oTable = $('#example').dataTable();
-		 *      oTable.fnDestroy();
-		 *    } );
+         *      // This example is fairly pointless in reality, but shows how fnDestroy can be used
+         *      var oTable = $('#example').dataTable();
+         *      oTable.fnDestroy();
+         *    } );
          */
         this.fnDestroy = function (remove) {
             this.api(true).destroy(remove);
@@ -411,11 +411,11 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Re-draw the table - you wouldn't want to do it here, but it's an example :-)
-		 *      oTable.fnDraw();
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Re-draw the table - you wouldn't want to do it here, but it's an example :-)
+         *      oTable.fnDraw();
+         *    } );
          */
         this.fnDraw = function (complete) {
             // Note that this isn't an exact match to the old call to _fnDraw - it takes
@@ -437,11 +437,11 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Sometime later - filter...
-		 *      oTable.fnFilter( 'test string' );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Sometime later - filter...
+         *      oTable.fnFilter( 'test string' );
+         *    } );
          */
         this.fnFilter = function (sInput, iColumn, bRegex, bSmart, bShowGlobal, bCaseInsensitive) {
             var api = this.api(true);
@@ -475,24 +475,24 @@
          *  @example
          *    // Row data
          *    $(document).ready(function() {
-		 *      oTable = $('#example').dataTable();
-		 *
-		 *      oTable.$('tr').click( function () {
-		 *        var data = oTable.fnGetData( this );
-		 *        // ... do something with the array / object of data for the row
-		 *      } );
-		 *    } );
+         *      oTable = $('#example').dataTable();
+         *
+         *      oTable.$('tr').click( function () {
+         *        var data = oTable.fnGetData( this );
+         *        // ... do something with the array / object of data for the row
+         *      } );
+         *    } );
          *
          *  @example
          *    // Individual cell data
          *    $(document).ready(function() {
-		 *      oTable = $('#example').dataTable();
-		 *
-		 *      oTable.$('td').click( function () {
-		 *        var sData = oTable.fnGetData( this );
-		 *        alert( 'The cell clicked on had the value of '+sData );
-		 *      } );
-		 *    } );
+         *      oTable = $('#example').dataTable();
+         *
+         *      oTable.$('td').click( function () {
+         *        var sData = oTable.fnGetData( this );
+         *        alert( 'The cell clicked on had the value of '+sData );
+         *      } );
+         *    } );
          */
         this.fnGetData = function (src, col) {
             var api = this.api(true);
@@ -521,11 +521,11 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Get the nodes from the table
-		 *      var nNodes = oTable.fnGetNodes( );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Get the nodes from the table
+         *      var nNodes = oTable.fnGetNodes( );
+         *    } );
          */
         this.fnGetNodes = function (iRow) {
             var api = this.api(true);
@@ -548,21 +548,21 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      $('#example tbody td').click( function () {
-		 *        // Get the position of the current data from the node
-		 *        var aPos = oTable.fnGetPosition( this );
-		 *
-		 *        // Get the data array for this row
-		 *        var aData = oTable.fnGetData( aPos[0] );
-		 *
-		 *        // Update the data array and return the value
-		 *        aData[ aPos[1] ] = 'clicked';
-		 *        this.innerHTML = 'clicked';
-		 *      } );
-		 *
-		 *      // Init DataTables
-		 *      oTable = $('#example').dataTable();
-		 *    } );
+         *      $('#example tbody td').click( function () {
+         *        // Get the position of the current data from the node
+         *        var aPos = oTable.fnGetPosition( this );
+         *
+         *        // Get the data array for this row
+         *        var aData = oTable.fnGetData( aPos[0] );
+         *
+         *        // Update the data array and return the value
+         *        aData[ aPos[1] ] = 'clicked';
+         *        this.innerHTML = 'clicked';
+         *      } );
+         *
+         *      // Init DataTables
+         *      oTable = $('#example').dataTable();
+         *    } );
          */
         this.fnGetPosition = function (node) {
             var api = this.api(true);
@@ -593,19 +593,19 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable;
-		 *
-		 *      // 'open' an information row when a row is clicked on
-		 *      $('#example tbody tr').click( function () {
-		 *        if ( oTable.fnIsOpen(this) ) {
-		 *          oTable.fnClose( this );
-		 *        } else {
-		 *          oTable.fnOpen( this, "Temporary row opened", "info_row" );
-		 *        }
-		 *      } );
-		 *
-		 *      oTable = $('#example').dataTable();
-		 *    } );
+         *      var oTable;
+         *
+         *      // 'open' an information row when a row is clicked on
+         *      $('#example tbody tr').click( function () {
+         *        if ( oTable.fnIsOpen(this) ) {
+         *          oTable.fnClose( this );
+         *        } else {
+         *          oTable.fnOpen( this, "Temporary row opened", "info_row" );
+         *        }
+         *      } );
+         *
+         *      oTable = $('#example').dataTable();
+         *    } );
          */
         this.fnIsOpen = function (nTr) {
             return this.api(true).row(nTr).child.isShown();
@@ -628,19 +628,19 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable;
-		 *
-		 *      // 'open' an information row when a row is clicked on
-		 *      $('#example tbody tr').click( function () {
-		 *        if ( oTable.fnIsOpen(this) ) {
-		 *          oTable.fnClose( this );
-		 *        } else {
-		 *          oTable.fnOpen( this, "Temporary row opened", "info_row" );
-		 *        }
-		 *      } );
-		 *
-		 *      oTable = $('#example').dataTable();
-		 *    } );
+         *      var oTable;
+         *
+         *      // 'open' an information row when a row is clicked on
+         *      $('#example tbody tr').click( function () {
+         *        if ( oTable.fnIsOpen(this) ) {
+         *          oTable.fnClose( this );
+         *        } else {
+         *          oTable.fnOpen( this, "Temporary row opened", "info_row" );
+         *        }
+         *      } );
+         *
+         *      oTable = $('#example').dataTable();
+         *    } );
          */
         this.fnOpen = function (nTr, mHtml, sClass) {
             return this.api(true)
@@ -663,9 +663,9 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *      oTable.fnPageChange( 'next' );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *      oTable.fnPageChange( 'next' );
+         *    } );
          */
         this.fnPageChange = function (mAction, bRedraw) {
             var api = this.api(true).page(mAction);
@@ -686,11 +686,11 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Hide the second column after initialisation
-		 *      oTable.fnSetColumnVis( 1, false );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Hide the second column after initialisation
+         *      oTable.fnSetColumnVis( 1, false );
+         *    } );
          */
         this.fnSetColumnVis = function (iCol, bShow, bRedraw) {
             var api = this.api(true).column(iCol).visible(bShow);
@@ -710,12 +710,12 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *      var oSettings = oTable.fnSettings();
-		 *
-		 *      // Show an example parameter from the settings
-		 *      alert( oSettings._iDisplayStart );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *      var oSettings = oTable.fnSettings();
+         *
+         *      // Show an example parameter from the settings
+         *      alert( oSettings._iDisplayStart );
+         *    } );
          */
         this.fnSettings = function () {
             return _fnSettingsFromNode(this[_ext.iApiIndex]);
@@ -731,11 +731,11 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Sort immediately with columns 0 and 1
-		 *      oTable.fnSort( [ [0,'asc'], [1,'asc'] ] );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Sort immediately with columns 0 and 1
+         *      oTable.fnSort( [ [0,'asc'], [1,'asc'] ] );
+         *    } );
          */
         this.fnSort = function (aaSort) {
             this.api(true).order(aaSort).draw();
@@ -752,11 +752,11 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *
-		 *      // Sort on column 1, when 'sorter' is clicked on
-		 *      oTable.fnSortListener( document.getElementById('sorter'), 1 );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *
+         *      // Sort on column 1, when 'sorter' is clicked on
+         *      oTable.fnSortListener( document.getElementById('sorter'), 1 );
+         *    } );
          */
         this.fnSortListener = function (nNode, iColumn, fnCallback) {
             this.api(true).order.listener(nNode, iColumn, fnCallback);
@@ -780,10 +780,10 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *      oTable.fnUpdate( 'Example update', 0, 0 ); // Single cell
-		 *      oTable.fnUpdate( ['a', 'b', 'c', 'd', 'e'], $('tbody tr')[0] ); // Row
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *      oTable.fnUpdate( 'Example update', 0, 0 ); // Single cell
+         *      oTable.fnUpdate( ['a', 'b', 'c', 'd', 'e'], $('tbody tr')[0] ); // Row
+         *    } );
          */
         this.fnUpdate = function (mData, mRow, iColumn, bRedraw, bAction) {
             var api = this.api(true);
@@ -819,9 +819,9 @@
          *
          *  @example
          *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
-		 *      alert( oTable.fnVersionCheck( '1.9.0' ) );
-		 *    } );
+         *      var oTable = $('#example').dataTable();
+         *      alert( oTable.fnVersionCheck( '1.9.0' ) );
+         *    } );
          */
         this.fnVersionCheck = _ext.fnVersionCheck;
 
@@ -883,7 +883,11 @@
                 var s = allSettings[i];
 
                 /* Base check on table node */
-                if (s.nTable == this || s.nTHead.parentNode == this || (s.nTFoot && s.nTFoot.parentNode == this)) {
+                if (
+                    s.nTable == this ||
+                    (s.nTHead && s.nTHead.parentNode == this) ||
+                    (s.nTFoot && s.nTFoot.parentNode == this)
+                ) {
                     var bRetrieve = oInit.bRetrieve !== undefined ? oInit.bRetrieve : defaults.bRetrieve;
                     var bDestroy = oInit.bDestroy !== undefined ? oInit.bDestroy : defaults.bDestroy;
 
@@ -935,10 +939,7 @@
 
             // Backwards compatibility, before we apply all the defaults
             _fnCompatOpts(oInit);
-
-            if (oInit.oLanguage) {
-                _fnLanguageCompat(oInit.oLanguage);
-            }
+            _fnLanguageCompat(oInit.oLanguage);
 
             // If the length menu is given, but the init display length is not, use the length menu
             if (oInit.aLengthMenu && !oInit.iDisplayLength) {
@@ -1076,8 +1077,8 @@
             var stripeClasses = oSettings.asStripeClasses;
             var rowOne = $this.children('tbody').find('tr').eq(0);
             if ($.inArray(true, $.map(stripeClasses, function (el, i) {
-                    return rowOne.hasClass(el);
-                })) !== -1) {
+                return rowOne.hasClass(el);
+            })) !== -1) {
                 $('tbody tr', this).removeClass(stripeClasses.join(' '));
                 oSettings.asDestroyStripes = stripeClasses.slice();
             }
@@ -1310,8 +1311,10 @@
     // - fr - Swiss Franc
     // - kr - Swedish krona, Norwegian krone and Danish krone
     // - \u2009 is thin space and \u202F is narrow no-break space, both used in many
+    // - Ƀ - Bitcoin
+    // - Ξ - Ethereum
     //   standards as thousands separators.
-    var _re_formatted_numeric = /[',$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfk]/gi;
+    var _re_formatted_numeric = /[',$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfkɃΞ]/gi;
 
 
     var _empty = function (d) {
@@ -1674,31 +1677,41 @@
      *  @memberof DataTable#oApi
      */
     function _fnLanguageCompat(lang) {
+        // Note the use of the Hungarian notation for the parameters in this method as
+        // this is called after the mapping of camelCase to Hungarian
         var defaults = DataTable.defaults.oLanguage;
-        var zeroRecords = lang.sZeroRecords;
 
-        /* Backwards compatibility - if there is no sEmptyTable given, then use the same as
-		 * sZeroRecords - assuming that is given.
-		 */
-        if (!lang.sEmptyTable && zeroRecords &&
-            defaults.sEmptyTable === "No data available in table") {
-            _fnMap(lang, lang, 'sZeroRecords', 'sEmptyTable');
+        // Default mapping
+        var defaultDecimal = defaults.sDecimal;
+        if (defaultDecimal) {
+            _addNumericSort(defaultDecimal);
         }
 
-        /* Likewise with loading records */
-        if (!lang.sLoadingRecords && zeroRecords &&
-            defaults.sLoadingRecords === "Loading...") {
-            _fnMap(lang, lang, 'sZeroRecords', 'sLoadingRecords');
-        }
+        if (lang) {
+            var zeroRecords = lang.sZeroRecords;
 
-        // Old parameter name of the thousands separator mapped onto the new
-        if (lang.sInfoThousands) {
-            lang.sThousands = lang.sInfoThousands;
-        }
+            // Backwards compatibility - if there is no sEmptyTable given, then use the same as
+            // sZeroRecords - assuming that is given.
+            if (!lang.sEmptyTable && zeroRecords &&
+                defaults.sEmptyTable === "No data available in table") {
+                _fnMap(lang, lang, 'sZeroRecords', 'sEmptyTable');
+            }
 
-        var decimal = lang.sDecimal;
-        if (decimal) {
-            _addNumericSort(decimal);
+            // Likewise with loading records
+            if (!lang.sLoadingRecords && zeroRecords &&
+                defaults.sLoadingRecords === "Loading...") {
+                _fnMap(lang, lang, 'sZeroRecords', 'sLoadingRecords');
+            }
+
+            // Old parameter name of the thousands separator mapped onto the new
+            if (lang.sInfoThousands) {
+                lang.sThousands = lang.sInfoThousands;
+            }
+
+            var decimal = lang.sDecimal;
+            if (decimal && defaultDecimal !== decimal) {
+                _addNumericSort(decimal);
+            }
         }
     }
 
@@ -2487,7 +2500,7 @@
             };
         }
         else if (typeof mSource === 'string' && (mSource.indexOf('.') !== -1 ||
-                mSource.indexOf('[') !== -1 || mSource.indexOf('(') !== -1)) {
+            mSource.indexOf('[') !== -1 || mSource.indexOf('(') !== -1)) {
             /* If there is a . in the source string then the data source is in a
 			 * nested object so we loop over the data for each level to get the next
 			 * level down. On each loop we test for undefined, and if found immediately
@@ -2592,7 +2605,7 @@
             };
         }
         else if (typeof mSource === 'string' && (mSource.indexOf('.') !== -1 ||
-                mSource.indexOf('[') !== -1 || mSource.indexOf('(') !== -1)) {
+            mSource.indexOf('[') !== -1 || mSource.indexOf('(') !== -1)) {
             /* Like the get, we need to get data from a nested object */
             var setData = function (data, val, src) {
                 var a = _fnSplitObjNotation(src), b;
@@ -2983,7 +2996,7 @@
                 }
             }
 
-            _fnCallbackFire(oSettings, 'aoRowCreatedCallback', null, [nTr, rowData, iRow]);
+            _fnCallbackFire(oSettings, 'aoRowCreatedCallback', null, [nTr, rowData, iRow, cells]);
         }
 
         // Remove once webkit bug 131819 and Chromium bug 365619 have been resolved
@@ -3281,7 +3294,7 @@
                 // iRowCount and j are not currently documented. Are they at all
                 // useful?
                 _fnCallbackFire(oSettings, 'aoRowCallback', null,
-                    [nRow, aoData._aData, iRowCount, j]);
+                    [nRow, aoData._aData, iRowCount, j, iDataIndex]);
 
                 anRows.push(nRow);
                 iRowCount++;
@@ -3646,12 +3659,12 @@
         if ($.isPlainObject(ajax) && ajax.data) {
             ajaxData = ajax.data;
 
-            var newData = $.isFunction(ajaxData) ?
+            var newData = typeof ajaxData === 'function' ?
                 ajaxData(data, oSettings) :  // fn can manipulate data or return
                 ajaxData;                      // an object object or array to merge
 
             // If the function returned something, use that alone
-            data = $.isFunction(ajaxData) && newData ?
+            data = typeof ajaxData === 'function' && newData ?
                 newData :
                 $.extend(true, data, newData);
 
@@ -3713,7 +3726,7 @@
                 url: ajax || oSettings.sAjaxSource
             }));
         }
-        else if ($.isFunction(ajax)) {
+        else if (typeof ajax === 'function') {
             // Is a function - let the caller define what needs to be done
             oSettings.jqXHR = ajax.call(instance, data, callback, oSettings);
         }
@@ -5030,7 +5043,7 @@
             // - which is shouldn't. When there is a scrollbar we need to take this
             // into account.
             if (ie67 && (table.find('tbody').height() > divBodyEl.offsetHeight ||
-                    divBody.css('overflow-y') == "scroll")
+                divBody.css('overflow-y') == "scroll")
             ) {
                 tableStyle.width = _fnStringToCss(table.outerWidth() - barWidth);
             }
@@ -5095,13 +5108,17 @@
         // both match, but we want to hide it completely. We want to also fix their
         // width to what they currently are
         _fnApplyToChildren(function (nSizer, i) {
-            nSizer.innerHTML = '<div class="dataTables_sizing" style="height:0;overflow:hidden;">' + headerContent[i] + '</div>';
+            nSizer.innerHTML = '<div class="dataTables_sizing">' + headerContent[i] + '</div>';
+            nSizer.childNodes[0].style.height = "0";
+            nSizer.childNodes[0].style.overflow = "hidden";
             nSizer.style.width = headerWidths[i];
         }, headerSrcEls);
 
         if (footer) {
             _fnApplyToChildren(function (nSizer, i) {
-                nSizer.innerHTML = '<div class="dataTables_sizing" style="height:0;overflow:hidden;">' + footerContent[i] + '</div>';
+                nSizer.innerHTML = '<div class="dataTables_sizing">' + footerContent[i] + '</div>';
+                nSizer.childNodes[0].style.height = "0";
+                nSizer.childNodes[0].style.overflow = "hidden";
                 nSizer.style.width = footerWidths[i];
             }, footerSrcEls);
         }
@@ -5117,7 +5134,7 @@
 
             // IE6/7 are a law unto themselves...
             if (ie67 && (divBodyEl.scrollHeight >
-                    divBodyEl.offsetHeight || divBody.css('overflow-y') == "scroll")
+                divBodyEl.offsetHeight || divBody.css('overflow-y') == "scroll")
             ) {
                 tableStyle.width = _fnStringToCss(correction - barWidth);
             }
@@ -6102,7 +6119,7 @@
 
             _fnCallbackFire(settings, 'aoStateLoaded', 'stateLoaded', [settings, s]);
             callback();
-        };
+        }
 
         if (!settings.oFeatures.bStateSave) {
             callback();
@@ -6263,7 +6280,7 @@
     function _fnBindAction(n, oData, fn) {
         $(n)
             .on('click.DT', oData, function (e) {
-                n.blur(); // Remove focus outline for mouse users
+                $(n).blur(); // Remove focus outline for mouse users
                 fn(e);
             })
             .on('keypress.DT', oData, function (e) {
@@ -6406,25 +6423,25 @@
      *
      *     [
      *       {
-	 *         name:      'data'                -- string   - Property name
-	 *         val:       function () {},       -- function - Api method (or undefined if just an object
-	 *         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method result
-	 *         propExt:   [ ... ]               -- array    - Array of Api object definitions to extend the property
-	 *       },
+     *         name:      'data'                -- string   - Property name
+     *         val:       function () {},       -- function - Api method (or undefined if just an object
+     *         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method result
+     *         propExt:   [ ... ]               -- array    - Array of Api object definitions to extend the property
+     *       },
      *       {
-	 *         name:     'row'
-	 *         val:       {},
-	 *         methodExt: [ ... ],
-	 *         propExt:   [
-	 *           {
-	 *             name:      'data'
-	 *             val:       function () {},
-	 *             methodExt: [ ... ],
-	 *             propExt:   [ ... ]
-	 *           },
-	 *           ...
-	 *         ]
-	 *       }
+     *         name:     'row'
+     *         val:       {},
+     *         methodExt: [ ... ],
+     *         propExt:   [
+     *           {
+     *             name:      'data'
+     *             val:       function () {},
+     *             methodExt: [ ... ],
+     *             propExt:   [ ... ]
+     *           },
+     *           ...
+     *         ]
+     *       }
      *     ]
      *
      * @type {Array}
@@ -7465,13 +7482,26 @@
             }
         }
         else if (order == 'current' || order == 'applied') {
-            a = search == 'none' ?
-                displayMaster.slice() :                      // no search
-                search == 'applied' ?
-                    displayFiltered.slice() :                // applied search
-                    $.map(displayMaster, function (el, i) { // removed search
-                        return $.inArray(el, displayFiltered) === -1 ? el : null;
-                    });
+            if (search == 'none') {
+                a = displayMaster.slice();
+            }
+            else if (search == 'applied') {
+                a = displayFiltered.slice();
+            }
+            else if (search == 'removed') {
+                // O(n+m) solution by creating a hash map
+                var displayFilteredMap = {};
+
+                for (var i = 0, ien = displayFiltered.length; i < ien; i++) {
+                    displayFilteredMap[displayFiltered[i]] = null;
+                }
+
+                a = $.map(displayMaster, function (el) {
+                    return !displayFilteredMap.hasOwnProperty(el) ?
+                        el :
+                        null;
+                });
+            }
         }
         else if (order == 'index' || order == 'original') {
             for (i = 0, ien = settings.aoData.length; i < ien; i++) {
@@ -7503,13 +7533,12 @@
 	 * {array}     - jQuery array of nodes, or simply an array of TR nodes
 	 *
 	 */
-
-
     var __row_selector = function (settings, selector, opts) {
         var rows;
         var run = function (sel) {
             var selInt = _intVal(sel);
             var i, ien;
+            var aoData = settings.aoData;
 
             // Short cut - selector is a number and no options provided (default is
             // all records, so no need to check if the index is in there, since it
@@ -7534,23 +7563,26 @@
             // Selector - function
             if (typeof sel === 'function') {
                 return $.map(rows, function (idx) {
-                    var row = settings.aoData[idx];
+                    var row = aoData[idx];
                     return sel(idx, row._aData, row.nTr) ? idx : null;
                 });
             }
 
-            // Get nodes in the order from the `rows` array with null values removed
-            var nodes = _removeEmpty(
-                _pluck_order(settings.aoData, rows, 'nTr')
-            );
-
             // Selector - node
             if (sel.nodeName) {
-                if (sel._DT_RowIndex !== undefined) {
-                    return [sel._DT_RowIndex]; // Property added by DT for fast lookup
+                var rowIdx = sel._DT_RowIndex;  // Property added by DT for fast lookup
+                var cellIdx = sel._DT_CellIndex;
+
+                if (rowIdx !== undefined) {
+                    // Make sure that the row is actually still present in the table
+                    return aoData[rowIdx] && aoData[rowIdx].nTr === sel ?
+                        [rowIdx] :
+                        [];
                 }
-                else if (sel._DT_CellIndex) {
-                    return [sel._DT_CellIndex.row];
+                else if (cellIdx) {
+                    return aoData[cellIdx.row] && aoData[cellIdx.row].nTr === sel ?
+                        [cellIdx.row] :
+                        [];
                 }
                 else {
                     var host = $(sel).closest('*[data-dt-row]');
@@ -7579,6 +7611,11 @@
                 // need to fall through to jQuery in case there is DOM id that
                 // matches
             }
+
+            // Get nodes in the order from the `rows` array with null values removed
+            var nodes = _removeEmpty(
+                _pluck_order(settings.aoData, rows, 'nTr')
+            );
 
             // Selector - jQuery selector string, array of nodes or jQuery object/
             // As jQuery's .filter() allows jQuery objects to be passed in filter,
@@ -7770,7 +7807,13 @@
         }
 
         // Set
-        ctx[0].aoData[this[0]]._aData = data;
+        var row = ctx[0].aoData[this[0]];
+        row._aData = data;
+
+        // If the DOM has an id, and the data source is an array
+        if ($.isArray(data) && row.nTr.id) {
+            _fnSetObjectDataFn(ctx[0].rowId)(data, row.nTr.id);
+        }
 
         // Automatically invalidate
         _fnInvalidate(ctx[0], this[0], 'data');
@@ -8190,6 +8233,12 @@
         _fnDrawHead(settings, settings.aoHeader);
         _fnDrawHead(settings, settings.aoFooter);
 
+        // Update colspan for no records display. Child rows and extensions will use their own
+        // listeners to do this - only need to update the empty table item here
+        if (!settings.aiDisplay.length) {
+            $(settings.nTBody).find('td[colspan]').attr('colspan', _fnVisbleColumns(settings));
+        }
+
         _fnSaveState(settings);
     };
 
@@ -8353,7 +8402,10 @@
 
             // Selector - index
             if ($.isPlainObject(s)) {
-                return [s];
+                // Valid cell index and its in the array of selectable rows
+                return s.column !== undefined && s.row !== undefined && $.inArray(s.row, rows) !== -1 ?
+                    [s] :
+                    [];
             }
 
             // Selector - jQuery filtered cells
@@ -8415,11 +8467,11 @@
         }
 
         // Row + column selector
-        var columns = this.columns(columnSelector, opts);
-        var rows = this.rows(rowSelector, opts);
+        var columns = this.columns(columnSelector);
+        var rows = this.rows(rowSelector);
         var a, i, ien, j, jen;
 
-        var cells = this.iterator('table', function (settings, idx) {
+        this.iterator('table', function (settings, idx) {
             a = [];
 
             for (i = 0, ien = rows[idx].length; i < ien; i++) {
@@ -8430,9 +8482,10 @@
                     });
                 }
             }
-
-            return a;
         }, 1);
+
+        // Now pass through the cell selector for options
+        var cells = this.cells(a, opts);
 
         $.extend(cells.selector, {
             cols: columnSelector,
@@ -8769,8 +8822,8 @@
      *
      *  @example
      *    if ( ! $.fn.DataTable.isDataTable( '#example' ) ) {
-	 *      $('#example').dataTable();
-	 *    }
+     *      $('#example').dataTable();
+     *    }
      */
     DataTable.isDataTable = DataTable.fnIsDataTable = function (table) {
         var t = $(table).get(0);
@@ -8806,8 +8859,8 @@
      *
      *  @example
      *    $.each( $.fn.dataTable.tables(true), function () {
-	 *      $(table).DataTable().columns.adjust();
-	 *    } );
+     *      $(table).DataTable().columns.adjust();
+     *    } );
      */
     DataTable.tables = DataTable.fnTables = function (visible) {
         var api = false;
@@ -9058,7 +9111,7 @@
      *  @type string
      *  @default Version number
      */
-    DataTable.version = "1.10.16";
+    DataTable.version = "1.10.19";
 
     /**
      * Private data store, containing all of the settings objects that are
@@ -9501,50 +9554,50 @@
          *  @example
          *    // Using a 2D array data source
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "data": [
-		 *          ['Trident', 'Internet Explorer 4.0', 'Win 95+', 4, 'X'],
-		 *          ['Trident', 'Internet Explorer 5.0', 'Win 95+', 5, 'C'],
-		 *        ],
-		 *        "columns": [
-		 *          { "title": "Engine" },
-		 *          { "title": "Browser" },
-		 *          { "title": "Platform" },
-		 *          { "title": "Version" },
-		 *          { "title": "Grade" }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "data": [
+         *          ['Trident', 'Internet Explorer 4.0', 'Win 95+', 4, 'X'],
+         *          ['Trident', 'Internet Explorer 5.0', 'Win 95+', 5, 'C'],
+         *        ],
+         *        "columns": [
+         *          { "title": "Engine" },
+         *          { "title": "Browser" },
+         *          { "title": "Platform" },
+         *          { "title": "Version" },
+         *          { "title": "Grade" }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using an array of objects as a data source (`data`)
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "data": [
-		 *          {
-		 *            "engine":   "Trident",
-		 *            "browser":  "Internet Explorer 4.0",
-		 *            "platform": "Win 95+",
-		 *            "version":  4,
-		 *            "grade":    "X"
-		 *          },
-		 *          {
-		 *            "engine":   "Trident",
-		 *            "browser":  "Internet Explorer 5.0",
-		 *            "platform": "Win 95+",
-		 *            "version":  5,
-		 *            "grade":    "C"
-		 *          }
-		 *        ],
-		 *        "columns": [
-		 *          { "title": "Engine",   "data": "engine" },
-		 *          { "title": "Browser",  "data": "browser" },
-		 *          { "title": "Platform", "data": "platform" },
-		 *          { "title": "Version",  "data": "version" },
-		 *          { "title": "Grade",    "data": "grade" }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "data": [
+         *          {
+         *            "engine":   "Trident",
+         *            "browser":  "Internet Explorer 4.0",
+         *            "platform": "Win 95+",
+         *            "version":  4,
+         *            "grade":    "X"
+         *          },
+         *          {
+         *            "engine":   "Trident",
+         *            "browser":  "Internet Explorer 5.0",
+         *            "platform": "Win 95+",
+         *            "version":  5,
+         *            "grade":    "C"
+         *          }
+         *        ],
+         *        "columns": [
+         *          { "title": "Engine",   "data": "engine" },
+         *          { "title": "Browser",  "data": "browser" },
+         *          { "title": "Platform", "data": "platform" },
+         *          { "title": "Version",  "data": "version" },
+         *          { "title": "Grade",    "data": "grade" }
+         *        ]
+         *      } );
+         *    } );
          */
         "aaData": null,
 
@@ -9564,17 +9617,17 @@
          *  @example
          *    // Sort by 3rd column first, and then 4th column
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "order": [[2,'asc'], [3,'desc']]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "order": [[2,'asc'], [3,'desc']]
+         *      } );
+         *    } );
          *
          *    // No initial sorting
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "order": []
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "order": []
+         *      } );
+         *    } );
          */
         "aaSorting": [[0, 'asc']],
 
@@ -9594,10 +9647,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "orderFixed": [[0,'asc']]
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "orderFixed": [[0,'asc']]
+         *      } );
+         *    } )
          */
         "aaSortingFixed": [],
 
@@ -9684,77 +9737,77 @@
          *   // Get JSON data from a file via Ajax.
          *   // Note DataTables expects data in the form `{ data: [ ...data... ] }` by default).
          *   $('#example').dataTable( {
-		 *     "ajax": "data.json"
-		 *   } );
+         *     "ajax": "data.json"
+         *   } );
          *
          * @example
          *   // Get JSON data from a file via Ajax, using `dataSrc` to change
          *   // `data` to `tableData` (i.e. `{ tableData: [ ...data... ] }`)
          *   $('#example').dataTable( {
-		 *     "ajax": {
-		 *       "url": "data.json",
-		 *       "dataSrc": "tableData"
-		 *     }
-		 *   } );
+         *     "ajax": {
+         *       "url": "data.json",
+         *       "dataSrc": "tableData"
+         *     }
+         *   } );
          *
          * @example
          *   // Get JSON data from a file via Ajax, using `dataSrc` to read data
          *   // from a plain array rather than an array in an object
          *   $('#example').dataTable( {
-		 *     "ajax": {
-		 *       "url": "data.json",
-		 *       "dataSrc": ""
-		 *     }
-		 *   } );
+         *     "ajax": {
+         *       "url": "data.json",
+         *       "dataSrc": ""
+         *     }
+         *   } );
          *
          * @example
          *   // Manipulate the data returned from the server - add a link to data
          *   // (note this can, should, be done using `render` for the column - this
          *   // is just a simple example of how the data can be manipulated).
          *   $('#example').dataTable( {
-		 *     "ajax": {
-		 *       "url": "data.json",
-		 *       "dataSrc": function ( json ) {
-		 *         for ( var i=0, ien=json.length ; i<ien ; i++ ) {
-		 *           json[i][0] = '<a href="/message/'+json[i][0]+'>View message</a>';
-		 *         }
-		 *         return json;
-		 *       }
-		 *     }
-		 *   } );
+         *     "ajax": {
+         *       "url": "data.json",
+         *       "dataSrc": function ( json ) {
+         *         for ( var i=0, ien=json.length ; i<ien ; i++ ) {
+         *           json[i][0] = '<a href="/message/'+json[i][0]+'>View message</a>';
+         *         }
+         *         return json;
+         *       }
+         *     }
+         *   } );
          *
          * @example
          *   // Add data to the request
          *   $('#example').dataTable( {
-		 *     "ajax": {
-		 *       "url": "data.json",
-		 *       "data": function ( d ) {
-		 *         return {
-		 *           "extra_search": $('#extra').val()
-		 *         };
-		 *       }
-		 *     }
-		 *   } );
+         *     "ajax": {
+         *       "url": "data.json",
+         *       "data": function ( d ) {
+         *         return {
+         *           "extra_search": $('#extra').val()
+         *         };
+         *       }
+         *     }
+         *   } );
          *
          * @example
          *   // Send request as POST
          *   $('#example').dataTable( {
-		 *     "ajax": {
-		 *       "url": "data.json",
-		 *       "type": "POST"
-		 *     }
-		 *   } );
+         *     "ajax": {
+         *       "url": "data.json",
+         *       "type": "POST"
+         *     }
+         *   } );
          *
          * @example
          *   // Get the data from localStorage (could interface with a form for
          *   // adding, editing and removing rows).
          *   $('#example').dataTable( {
-		 *     "ajax": function (data, callback, settings) {
-		 *       callback(
-		 *         JSON.parse( localStorage.getItem('dataTablesData') )
-		 *       );
-		 *     }
-		 *   } );
+         *     "ajax": function (data, callback, settings) {
+         *       callback(
+         *         JSON.parse( localStorage.getItem('dataTablesData') )
+         *       );
+         *     }
+         *   } );
          */
         "ajax": null,
 
@@ -9777,10 +9830,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+         *      } );
+         *    } );
          */
         "aLengthMenu": [10, 25, 50, 100],
 
@@ -9835,15 +9888,15 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "searchCols": [
-		 *          null,
-		 *          { "search": "My filter" },
-		 *          null,
-		 *          { "search": "^[0-9]", "escapeRegex": false }
-		 *        ]
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "searchCols": [
+         *          null,
+         *          { "search": "My filter" },
+         *          null,
+         *          { "search": "^[0-9]", "escapeRegex": false }
+         *        ]
+         *      } );
+         *    } )
          */
         "aoSearchCols": [],
 
@@ -9861,10 +9914,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "stripeClasses": [ 'strip1', 'strip2', 'strip3' ]
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "stripeClasses": [ 'strip1', 'strip2', 'strip3' ]
+         *      } );
+         *    } )
          */
         "asStripeClasses": null,
 
@@ -9881,10 +9934,10 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "autoWidth": false
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "autoWidth": false
+         *      } );
+         *    } );
          */
         "bAutoWidth": true,
 
@@ -9903,11 +9956,11 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "ajax": "sources/arrays.txt",
-		 *        "deferRender": true
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "ajax": "sources/arrays.txt",
+         *        "deferRender": true
+         *      } );
+         *    } );
          */
         "bDeferRender": false,
 
@@ -9925,17 +9978,17 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "srollY": "200px",
-		 *        "paginate": false
-		 *      } );
-		 *
-		 *      // Some time later....
-		 *      $('#example').dataTable( {
-		 *        "filter": false,
-		 *        "destroy": true
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "srollY": "200px",
+         *        "paginate": false
+         *      } );
+         *
+         *      // Some time later....
+         *      $('#example').dataTable( {
+         *        "filter": false,
+         *        "destroy": true
+         *      } );
+         *    } );
          */
         "bDestroy": false,
 
@@ -9956,10 +10009,10 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "searching": false
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "searching": false
+         *      } );
+         *    } );
          */
         "bFilter": true,
 
@@ -9976,10 +10029,10 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "info": false
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "info": false
+         *      } );
+         *    } );
          */
         "bInfo": true,
 
@@ -9995,10 +10048,10 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "lengthChange": false
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "lengthChange": false
+         *      } );
+         *    } );
          */
         "bLengthChange": true,
 
@@ -10013,10 +10066,10 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "paging": false
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "paging": false
+         *      } );
+         *    } );
          */
         "bPaginate": true,
 
@@ -10034,10 +10087,10 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "processing": true
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "processing": true
+         *      } );
+         *    } );
          */
         "bProcessing": false,
 
@@ -10058,24 +10111,24 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      initTable();
-		 *      tableActions();
-		 *    } );
+         *      initTable();
+         *      tableActions();
+         *    } );
          *
          *    function initTable ()
          *    {
-		 *      return $('#example').dataTable( {
-		 *        "scrollY": "200px",
-		 *        "paginate": false,
-		 *        "retrieve": true
-		 *      } );
-		 *    }
+         *      return $('#example').dataTable( {
+         *        "scrollY": "200px",
+         *        "paginate": false,
+         *        "retrieve": true
+         *      } );
+         *    }
          *
          *    function tableActions ()
          *    {
-		 *      var table = initTable();
-		 *      // perform API operations with oTable
-		 *    }
+         *      var table = initTable();
+         *      // perform API operations with oTable
+         *    }
          */
         "bRetrieve": false,
 
@@ -10095,11 +10148,11 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "scrollY": "200",
-		 *        "scrollCollapse": true
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "scrollY": "200",
+         *        "scrollCollapse": true
+         *      } );
+         *    } );
          */
         "bScrollCollapse": false,
 
@@ -10117,11 +10170,11 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "serverSide": true,
-		 *        "ajax": "xhr.php"
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "serverSide": true,
+         *        "ajax": "xhr.php"
+         *      } );
+         *    } );
          */
         "bServerSide": false,
 
@@ -10137,10 +10190,10 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "ordering": false
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "ordering": false
+         *      } );
+         *    } );
          */
         "bSort": true,
 
@@ -10157,10 +10210,10 @@
          *  @example
          *    // Disable multiple column sorting ability
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "orderMulti": false
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "orderMulti": false
+         *      } );
+         *    } );
          */
         "bSortMulti": true,
 
@@ -10177,10 +10230,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "orderCellsTop": true
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "orderCellsTop": true
+         *      } );
+         *    } );
          */
         "bSortCellsTop": false,
 
@@ -10199,10 +10252,10 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "orderClasses": false
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "orderClasses": false
+         *      } );
+         *    } );
          */
         "bSortClasses": true,
 
@@ -10224,10 +10277,10 @@
          *
          *  @example
          *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
-		 *        "stateSave": true
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "stateSave": true
+         *      } );
+         *    } );
          */
         "bStateSave": false,
 
@@ -10246,16 +10299,16 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "createdRow": function( row, data, dataIndex ) {
-		 *          // Bold the grade for all 'A' grade browsers
-		 *          if ( data[4] == "A" )
-		 *          {
-		 *            $('td:eq(4)', row).html( '<b>A</b>' );
-		 *          }
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "createdRow": function( row, data, dataIndex ) {
+         *          // Bold the grade for all 'A' grade browsers
+         *          if ( data[4] == "A" )
+         *          {
+         *            $('td:eq(4)', row).html( '<b>A</b>' );
+         *          }
+         *        }
+         *      } );
+         *    } );
          */
         "fnCreatedRow": null,
 
@@ -10271,12 +10324,12 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "drawCallback": function( settings ) {
-		 *          alert( 'DataTables has redrawn the table' );
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "drawCallback": function( settings ) {
+         *          alert( 'DataTables has redrawn the table' );
+         *        }
+         *      } );
+         *    } );
          */
         "fnDrawCallback": null,
 
@@ -10299,12 +10352,12 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "footerCallback": function( tfoot, data, start, end, display ) {
-		 *          tfoot.getElementsByTagName('th')[0].innerHTML = "Starting index is "+start;
-		 *        }
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "footerCallback": function( tfoot, data, start, end, display ) {
+         *          tfoot.getElementsByTagName('th')[0].innerHTML = "Starting index is "+start;
+         *        }
+         *      } );
+         *    } )
          */
         "fnFooterCallback": null,
 
@@ -10327,14 +10380,14 @@
          *    // Format a number using a single quote for the separator (note that
          *    // this can also be done with the language.thousands option)
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "formatNumber": function ( toFormat ) {
-		 *          return toFormat.toString().replace(
-		 *            /\B(?=(\d{3})+(?!\d))/g, "'"
-		 *          );
-		 *        };
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "formatNumber": function ( toFormat ) {
+         *          return toFormat.toString().replace(
+         *            /\B(?=(\d{3})+(?!\d))/g, "'"
+         *          );
+         *        };
+         *      } );
+         *    } );
          */
         "fnFormatNumber": function (toFormat) {
             return toFormat.toString().replace(
@@ -10363,12 +10416,12 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "fheaderCallback": function( head, data, start, end, display ) {
-		 *          head.getElementsByTagName('th')[0].innerHTML = "Displaying "+(end-start)+" records";
-		 *        }
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "fheaderCallback": function( head, data, start, end, display ) {
+         *          head.getElementsByTagName('th')[0].innerHTML = "Displaying "+(end-start)+" records";
+         *        }
+         *      } );
+         *    } )
          */
         "fnHeaderCallback": null,
 
@@ -10395,10 +10448,10 @@
          *
          *  @example
          *    $('#example').dataTable( {
-		 *      "infoCallback": function( settings, start, end, max, total, pre ) {
-		 *        return start +" to "+ end;
-		 *      }
-		 *    } );
+         *      "infoCallback": function( settings, start, end, max, total, pre ) {
+         *        return start +" to "+ end;
+         *      }
+         *    } );
          */
         "fnInfoCallback": null,
 
@@ -10418,12 +10471,12 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "initComplete": function(settings, json) {
-		 *          alert( 'DataTables has finished its initialisation.' );
-		 *        }
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "initComplete": function(settings, json) {
+         *          alert( 'DataTables has finished its initialisation.' );
+         *        }
+         *      } );
+         *    } )
          */
         "fnInitComplete": null,
 
@@ -10442,14 +10495,14 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "preDrawCallback": function( settings ) {
-		 *          if ( $('#test').val() == 1 ) {
-		 *            return false;
-		 *          }
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "preDrawCallback": function( settings ) {
+         *          if ( $('#test').val() == 1 ) {
+         *            return false;
+         *          }
+         *        }
+         *      } );
+         *    } );
          */
         "fnPreDrawCallback": null,
 
@@ -10470,15 +10523,15 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "rowCallback": function( row, data, displayIndex, displayIndexFull ) {
-		 *          // Bold the grade for all 'A' grade browsers
-		 *          if ( data[4] == "A" ) {
-		 *            $('td:eq(4)', row).html( '<b>A</b>' );
-		 *          }
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "rowCallback": function( row, data, displayIndex, displayIndexFull ) {
+         *          // Bold the grade for all 'A' grade browsers
+         *          if ( data[4] == "A" ) {
+         *            $('td:eq(4)', row).html( '<b>A</b>' );
+         *          }
+         *        }
+         *      } );
+         *    } );
          */
         "fnRowCallback": null,
 
@@ -10552,19 +10605,19 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "stateSave": true,
-		 *        "stateLoadCallback": function (settings, callback) {
-		 *          $.ajax( {
-		 *            "url": "/state_load",
-		 *            "dataType": "json",
-		 *            "success": function (json) {
-		 *              callback( json );
-		 *            }
-		 *          } );
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "stateSave": true,
+         *        "stateLoadCallback": function (settings, callback) {
+         *          $.ajax( {
+         *            "url": "/state_load",
+         *            "dataType": "json",
+         *            "success": function (json) {
+         *              callback( json );
+         *            }
+         *          } );
+         *        }
+         *      } );
+         *    } );
          */
         "fnStateLoadCallback": function (settings) {
             try {
@@ -10594,24 +10647,24 @@
          *  @example
          *    // Remove a saved filter, so filtering is never loaded
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "stateSave": true,
-		 *        "stateLoadParams": function (settings, data) {
-		 *          data.oSearch.sSearch = "";
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "stateSave": true,
+         *        "stateLoadParams": function (settings, data) {
+         *          data.oSearch.sSearch = "";
+         *        }
+         *      } );
+         *    } );
          *
          *  @example
          *    // Disallow state loading by returning false
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "stateSave": true,
-		 *        "stateLoadParams": function (settings, data) {
-		 *          return false;
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "stateSave": true,
+         *        "stateLoadParams": function (settings, data) {
+         *          return false;
+         *        }
+         *      } );
+         *    } );
          */
         "fnStateLoadParams": null,
 
@@ -10629,13 +10682,13 @@
          *  @example
          *    // Show an alert with the filtering value that was saved
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "stateSave": true,
-		 *        "stateLoaded": function (settings, data) {
-		 *          alert( 'Saved filter was: '+data.oSearch.sSearch );
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "stateSave": true,
+         *        "stateLoaded": function (settings, data) {
+         *          alert( 'Saved filter was: '+data.oSearch.sSearch );
+         *        }
+         *      } );
+         *    } );
          */
         "fnStateLoaded": null,
 
@@ -10654,20 +10707,20 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "stateSave": true,
-		 *        "stateSaveCallback": function (settings, data) {
-		 *          // Send an Ajax request to the server with the state object
-		 *          $.ajax( {
-		 *            "url": "/state_save",
-		 *            "data": data,
-		 *            "dataType": "json",
-		 *            "method": "POST"
-		 *            "success": function () {}
-		 *          } );
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "stateSave": true,
+         *        "stateSaveCallback": function (settings, data) {
+         *          // Send an Ajax request to the server with the state object
+         *          $.ajax( {
+         *            "url": "/state_save",
+         *            "data": data,
+         *            "dataType": "json",
+         *            "method": "POST"
+         *            "success": function () {}
+         *          } );
+         *        }
+         *      } );
+         *    } );
          */
         "fnStateSaveCallback": function (settings, data) {
             try {
@@ -10696,13 +10749,13 @@
          *  @example
          *    // Remove a saved filter, so filtering is never saved
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "stateSave": true,
-		 *        "stateSaveParams": function (settings, data) {
-		 *          data.oSearch.sSearch = "";
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "stateSave": true,
+         *        "stateSaveParams": function (settings, data) {
+         *          data.oSearch.sSearch = "";
+         *        }
+         *      } );
+         *    } );
          */
         "fnStateSaveParams": null,
 
@@ -10719,10 +10772,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "stateDuration": 60*60*24; // 1 day
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "stateDuration": 60*60*24; // 1 day
+         *      } );
+         *    } )
          */
         "iStateDuration": 7200,
 
@@ -10748,25 +10801,25 @@
          *  @example
          *    // 57 records available in the table, no filtering applied
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "serverSide": true,
-		 *        "ajax": "scripts/server_processing.php",
-		 *        "deferLoading": 57
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "serverSide": true,
+         *        "ajax": "scripts/server_processing.php",
+         *        "deferLoading": 57
+         *      } );
+         *    } );
          *
          *  @example
          *    // 57 records after filtering, 100 without filtering (an initial filter applied)
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "serverSide": true,
-		 *        "ajax": "scripts/server_processing.php",
-		 *        "deferLoading": [ 57, 100 ],
-		 *        "search": {
-		 *          "search": "my_filter"
-		 *        }
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "serverSide": true,
+         *        "ajax": "scripts/server_processing.php",
+         *        "deferLoading": [ 57, 100 ],
+         *        "search": {
+         *          "search": "my_filter"
+         *        }
+         *      } );
+         *    } );
          */
         "iDeferLoading": null,
 
@@ -10783,10 +10836,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "pageLength": 50
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "pageLength": 50
+         *      } );
+         *    } )
          */
         "iDisplayLength": 10,
 
@@ -10804,10 +10857,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "displayStart": 20
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "displayStart": 20
+         *      } );
+         *    } )
          */
         "iDisplayStart": 0,
 
@@ -10827,10 +10880,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "tabIndex": 1
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "tabIndex": 1
+         *      } );
+         *    } );
          */
         "iTabIndex": 0,
 
@@ -10874,14 +10927,14 @@
                  *
                  *  @example
                  *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
-				 *        "language": {
-				 *          "aria": {
-				 *            "sortAscending": " - click/return to sort ascending"
-				 *          }
-				 *        }
-				 *      } );
-				 *    } );
+                 *      $('#example').dataTable( {
+                 *        "language": {
+                 *          "aria": {
+                 *            "sortAscending": " - click/return to sort ascending"
+                 *          }
+                 *        }
+                 *      } );
+                 *    } );
                  */
                 "sSortAscending": ": activate to sort column ascending",
 
@@ -10897,14 +10950,14 @@
                  *
                  *  @example
                  *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
-				 *        "language": {
-				 *          "aria": {
-				 *            "sortDescending": " - click/return to sort descending"
-				 *          }
-				 *        }
-				 *      } );
-				 *    } );
+                 *      $('#example').dataTable( {
+                 *        "language": {
+                 *          "aria": {
+                 *            "sortDescending": " - click/return to sort descending"
+                 *          }
+                 *        }
+                 *      } );
+                 *    } );
                  */
                 "sSortDescending": ": activate to sort column descending"
             },
@@ -10927,14 +10980,14 @@
                  *
                  *  @example
                  *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
-				 *        "language": {
-				 *          "paginate": {
-				 *            "first": "First page"
-				 *          }
-				 *        }
-				 *      } );
-				 *    } );
+                 *      $('#example').dataTable( {
+                 *        "language": {
+                 *          "paginate": {
+                 *            "first": "First page"
+                 *          }
+                 *        }
+                 *      } );
+                 *    } );
                  */
                 "sFirst": "First",
 
@@ -10950,14 +11003,14 @@
                  *
                  *  @example
                  *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
-				 *        "language": {
-				 *          "paginate": {
-				 *            "last": "Last page"
-				 *          }
-				 *        }
-				 *      } );
-				 *    } );
+                 *      $('#example').dataTable( {
+                 *        "language": {
+                 *          "paginate": {
+                 *            "last": "Last page"
+                 *          }
+                 *        }
+                 *      } );
+                 *    } );
                  */
                 "sLast": "Last",
 
@@ -10973,14 +11026,14 @@
                  *
                  *  @example
                  *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
-				 *        "language": {
-				 *          "paginate": {
-				 *            "next": "Next page"
-				 *          }
-				 *        }
-				 *      } );
-				 *    } );
+                 *      $('#example').dataTable( {
+                 *        "language": {
+                 *          "paginate": {
+                 *            "next": "Next page"
+                 *          }
+                 *        }
+                 *      } );
+                 *    } );
                  */
                 "sNext": "Next",
 
@@ -10996,14 +11049,14 @@
                  *
                  *  @example
                  *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
-				 *        "language": {
-				 *          "paginate": {
-				 *            "previous": "Previous page"
-				 *          }
-				 *        }
-				 *      } );
-				 *    } );
+                 *      $('#example').dataTable( {
+                 *        "language": {
+                 *          "paginate": {
+                 *            "previous": "Previous page"
+                 *          }
+                 *        }
+                 *      } );
+                 *    } );
                  */
                 "sPrevious": "Previous"
             },
@@ -11021,12 +11074,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "emptyTable": "No data available in table"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "emptyTable": "No data available in table"
+             *        }
+             *      } );
+             *    } );
              */
             "sEmptyTable": "No data available in table",
 
@@ -11053,12 +11106,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "info": "Showing page _PAGE_ of _PAGES_"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "info": "Showing page _PAGE_ of _PAGES_"
+             *        }
+             *      } );
+             *    } );
              */
             "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
 
@@ -11074,12 +11127,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "infoEmpty": "No entries to show"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "infoEmpty": "No entries to show"
+             *        }
+             *      } );
+             *    } );
              */
             "sInfoEmpty": "Showing 0 to 0 of 0 entries",
 
@@ -11096,12 +11149,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "infoFiltered": " - filtering from _MAX_ records"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "infoFiltered": " - filtering from _MAX_ records"
+             *        }
+             *      } );
+             *    } );
              */
             "sInfoFiltered": "(filtered from _MAX_ total entries)",
 
@@ -11119,12 +11172,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "infoPostFix": "All records shown are derived from real information."
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "infoPostFix": "All records shown are derived from real information."
+             *        }
+             *      } );
+             *    } );
              */
             "sInfoPostFix": "",
 
@@ -11149,13 +11202,13 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "decimal": ","
-			 *          "thousands": "."
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "decimal": ","
+             *          "thousands": "."
+             *        }
+             *      } );
+             *    } );
              */
             "sDecimal": "",
 
@@ -11173,12 +11226,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "thousands": "'"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "thousands": "'"
+             *        }
+             *      } );
+             *    } );
              */
             "sThousands": ",",
 
@@ -11197,29 +11250,29 @@
              *  @example
              *    // Language change only
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "lengthMenu": "Display _MENU_ records"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "lengthMenu": "Display _MENU_ records"
+             *        }
+             *      } );
+             *    } );
              *
              *  @example
              *    // Language and options change
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "lengthMenu": 'Display <select>'+
-			 *            '<option value="10">10</option>'+
-			 *            '<option value="20">20</option>'+
-			 *            '<option value="30">30</option>'+
-			 *            '<option value="40">40</option>'+
-			 *            '<option value="50">50</option>'+
-			 *            '<option value="-1">All</option>'+
-			 *            '</select> records'
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "lengthMenu": 'Display <select>'+
+             *            '<option value="10">10</option>'+
+             *            '<option value="20">20</option>'+
+             *            '<option value="30">30</option>'+
+             *            '<option value="40">40</option>'+
+             *            '<option value="50">50</option>'+
+             *            '<option value="-1">All</option>'+
+             *            '</select> records'
+             *        }
+             *      } );
+             *    } );
              */
             "sLengthMenu": "Show _MENU_ entries",
 
@@ -11238,12 +11291,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "loadingRecords": "Please wait - loading..."
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "loadingRecords": "Please wait - loading..."
+             *        }
+             *      } );
+             *    } );
              */
             "sLoadingRecords": "Loading...",
 
@@ -11259,12 +11312,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "processing": "DataTables is currently busy"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "processing": "DataTables is currently busy"
+             *        }
+             *      } );
+             *    } );
              */
             "sProcessing": "Processing...",
 
@@ -11284,22 +11337,22 @@
              *  @example
              *    // Input text box will be appended at the end automatically
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "search": "Filter records:"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "search": "Filter records:"
+             *        }
+             *      } );
+             *    } );
              *
              *  @example
              *    // Specify where the filter should appear
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "search": "Apply filter _INPUT_ to table"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "search": "Apply filter _INPUT_ to table"
+             *        }
+             *      } );
+             *    } );
              */
             "sSearch": "Search:",
 
@@ -11330,12 +11383,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "url": "http://www.sprymedia.co.uk/dataTables/lang.txt"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "url": "http://www.sprymedia.co.uk/dataTables/lang.txt"
+             *        }
+             *      } );
+             *    } );
              */
             "sUrl": "",
 
@@ -11352,12 +11405,12 @@
              *
              *  @example
              *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
-			 *        "language": {
-			 *          "zeroRecords": "No records to display"
-			 *        }
-			 *      } );
-			 *    } );
+             *      $('#example').dataTable( {
+             *        "language": {
+             *          "zeroRecords": "No records to display"
+             *        }
+             *      } );
+             *    } );
              */
             "sZeroRecords": "No matching records found"
         },
@@ -11379,10 +11432,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "search": {"search": "Initial search"}
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "search": {"search": "Initial search"}
+         *      } );
+         *    } )
          */
         "oSearch": $.extend({}, DataTable.models.oSearch),
 
@@ -11473,10 +11526,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "dom": '&lt;"top"i&gt;rt&lt;"bottom"flp&gt;&lt;"clear"&gt;'
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "dom": '&lt;"top"i&gt;rt&lt;"bottom"flp&gt;&lt;"clear"&gt;'
+         *      } );
+         *    } );
          */
         "sDom": "lfrtip",
 
@@ -11493,10 +11546,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "searchDelay": 200
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "searchDelay": 200
+         *      } );
+         *    } )
          */
         "searchDelay": null,
 
@@ -11521,10 +11574,10 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "pagingType": "full_numbers"
-		 *      } );
-		 *    } )
+         *      $('#example').dataTable( {
+         *        "pagingType": "full_numbers"
+         *      } );
+         *    } )
          */
         "sPaginationType": "simple_numbers",
 
@@ -11545,11 +11598,11 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "scrollX": true,
-		 *        "scrollCollapse": true
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "scrollX": true,
+         *        "scrollCollapse": true
+         *      } );
+         *    } );
          */
         "sScrollX": "",
 
@@ -11569,11 +11622,11 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "scrollX": "100%",
-		 *        "scrollXInner": "110%"
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "scrollX": "100%",
+         *        "scrollXInner": "110%"
+         *      } );
+         *    } );
          */
         "sScrollXInner": "",
 
@@ -11593,11 +11646,11 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "scrollY": "200px",
-		 *        "paginate": false
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "scrollY": "200px",
+         *        "paginate": false
+         *      } );
+         *    } );
          */
         "sScrollY": "",
 
@@ -11677,28 +11730,28 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "orderData": [ 0, 1 ], "targets": [ 0 ] },
-		 *          { "orderData": [ 1, 0 ], "targets": [ 1 ] },
-		 *          { "orderData": 2, "targets": [ 2 ] }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "orderData": [ 0, 1 ], "targets": [ 0 ] },
+         *          { "orderData": [ 1, 0 ], "targets": [ 1 ] },
+         *          { "orderData": 2, "targets": [ 2 ] }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          { "orderData": [ 0, 1 ] },
-		 *          { "orderData": [ 1, 0 ] },
-		 *          { "orderData": 2 },
-		 *          null,
-		 *          null
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          { "orderData": [ 0, 1 ] },
+         *          { "orderData": [ 1, 0 ] },
+         *          { "orderData": 2 },
+         *          null,
+         *          null
+         *        ]
+         *      } );
+         *    } );
          */
         "aDataSort": null,
         "iDataSort": -1,
@@ -11717,28 +11770,28 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "orderSequence": [ "asc" ], "targets": [ 1 ] },
-		 *          { "orderSequence": [ "desc", "asc", "asc" ], "targets": [ 2 ] },
-		 *          { "orderSequence": [ "desc" ], "targets": [ 3 ] }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "orderSequence": [ "asc" ], "targets": [ 1 ] },
+         *          { "orderSequence": [ "desc", "asc", "asc" ], "targets": [ 2 ] },
+         *          { "orderSequence": [ "desc" ], "targets": [ 3 ] }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          null,
-		 *          { "orderSequence": [ "asc" ] },
-		 *          { "orderSequence": [ "desc", "asc", "asc" ] },
-		 *          { "orderSequence": [ "desc" ] },
-		 *          null
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          null,
+         *          { "orderSequence": [ "asc" ] },
+         *          { "orderSequence": [ "desc", "asc", "asc" ] },
+         *          { "orderSequence": [ "desc" ] },
+         *          null
+         *        ]
+         *      } );
+         *    } );
          */
         "asSorting": ['asc', 'desc'],
 
@@ -11754,24 +11807,24 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "searchable": false, "targets": [ 0 ] }
-		 *        ] } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "searchable": false, "targets": [ 0 ] }
+         *        ] } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          { "searchable": false },
-		 *          null,
-		 *          null,
-		 *          null,
-		 *          null
-		 *        ] } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          { "searchable": false },
+         *          null,
+         *          null,
+         *          null,
+         *          null
+         *        ] } );
+         *    } );
          */
         "bSearchable": true,
 
@@ -11787,24 +11840,24 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "orderable": false, "targets": [ 0 ] }
-		 *        ] } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "orderable": false, "targets": [ 0 ] }
+         *        ] } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          { "orderable": false },
-		 *          null,
-		 *          null,
-		 *          null,
-		 *          null
-		 *        ] } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          { "orderable": false },
+         *          null,
+         *          null,
+         *          null,
+         *          null
+         *        ] } );
+         *    } );
          */
         "bSortable": true,
 
@@ -11820,24 +11873,24 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "visible": false, "targets": [ 0 ] }
-		 *        ] } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "visible": false, "targets": [ 0 ] }
+         *        ] } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          { "visible": false },
-		 *          null,
-		 *          null,
-		 *          null,
-		 *          null
-		 *        ] } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          { "visible": false },
+         *          null,
+         *          null,
+         *          null,
+         *          null
+         *        ] } );
+         *    } );
          */
         "bVisible": true,
 
@@ -11859,17 +11912,17 @@
          *
          *  @example
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [ {
-		 *          "targets": [3],
-		 *          "createdCell": function (td, cellData, rowData, row, col) {
-		 *            if ( cellData == "1.7" ) {
-		 *              $(td).css('color', 'blue')
-		 *            }
-		 *          }
-		 *        } ]
-		 *      });
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [ {
+         *          "targets": [3],
+         *          "createdCell": function (td, cellData, rowData, row, col) {
+         *            if ( cellData == "1.7" ) {
+         *              $(td).css('color', 'blue')
+         *            }
+         *          }
+         *        } ]
+         *      });
+         *    } );
          */
         "fnCreatedCell": null,
 
@@ -11955,101 +12008,101 @@
          *    // Read table data from objects
          *    // JSON structure for each row:
          *    //   {
-		 *    //      "engine": {value},
-		 *    //      "browser": {value},
-		 *    //      "platform": {value},
-		 *    //      "version": {value},
-		 *    //      "grade": {value}
-		 *    //   }
+         *    //      "engine": {value},
+         *    //      "browser": {value},
+         *    //      "platform": {value},
+         *    //      "version": {value},
+         *    //      "grade": {value}
+         *    //   }
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "ajaxSource": "sources/objects.txt",
-		 *        "columns": [
-		 *          { "data": "engine" },
-		 *          { "data": "browser" },
-		 *          { "data": "platform" },
-		 *          { "data": "version" },
-		 *          { "data": "grade" }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "ajaxSource": "sources/objects.txt",
+         *        "columns": [
+         *          { "data": "engine" },
+         *          { "data": "browser" },
+         *          { "data": "platform" },
+         *          { "data": "version" },
+         *          { "data": "grade" }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Read information from deeply nested objects
          *    // JSON structure for each row:
          *    //   {
-		 *    //      "engine": {value},
-		 *    //      "browser": {value},
-		 *    //      "platform": {
-		 *    //         "inner": {value}
-		 *    //      },
-		 *    //      "details": [
-		 *    //         {value}, {value}
-		 *    //      ]
-		 *    //   }
+         *    //      "engine": {value},
+         *    //      "browser": {value},
+         *    //      "platform": {
+         *    //         "inner": {value}
+         *    //      },
+         *    //      "details": [
+         *    //         {value}, {value}
+         *    //      ]
+         *    //   }
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "ajaxSource": "sources/deep.txt",
-		 *        "columns": [
-		 *          { "data": "engine" },
-		 *          { "data": "browser" },
-		 *          { "data": "platform.inner" },
-		 *          { "data": "platform.details.0" },
-		 *          { "data": "platform.details.1" }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "ajaxSource": "sources/deep.txt",
+         *        "columns": [
+         *          { "data": "engine" },
+         *          { "data": "browser" },
+         *          { "data": "platform.inner" },
+         *          { "data": "details.0" },
+         *          { "data": "details.1" }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `data` as a function to provide different information for
          *    // sorting, filtering and display. In this case, currency (price)
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [ {
-		 *          "targets": [ 0 ],
-		 *          "data": function ( source, type, val ) {
-		 *            if (type === 'set') {
-		 *              source.price = val;
-		 *              // Store the computed dislay and filter values for efficiency
-		 *              source.price_display = val=="" ? "" : "$"+numberFormat(val);
-		 *              source.price_filter  = val=="" ? "" : "$"+numberFormat(val)+" "+val;
-		 *              return;
-		 *            }
-		 *            else if (type === 'display') {
-		 *              return source.price_display;
-		 *            }
-		 *            else if (type === 'filter') {
-		 *              return source.price_filter;
-		 *            }
-		 *            // 'sort', 'type' and undefined all just use the integer
-		 *            return source.price;
-		 *          }
-		 *        } ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [ {
+         *          "targets": [ 0 ],
+         *          "data": function ( source, type, val ) {
+         *            if (type === 'set') {
+         *              source.price = val;
+         *              // Store the computed dislay and filter values for efficiency
+         *              source.price_display = val=="" ? "" : "$"+numberFormat(val);
+         *              source.price_filter  = val=="" ? "" : "$"+numberFormat(val)+" "+val;
+         *              return;
+         *            }
+         *            else if (type === 'display') {
+         *              return source.price_display;
+         *            }
+         *            else if (type === 'filter') {
+         *              return source.price_filter;
+         *            }
+         *            // 'sort', 'type' and undefined all just use the integer
+         *            return source.price;
+         *          }
+         *        } ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using default content
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [ {
-		 *          "targets": [ 0 ],
-		 *          "data": null,
-		 *          "defaultContent": "Click to edit"
-		 *        } ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [ {
+         *          "targets": [ 0 ],
+         *          "data": null,
+         *          "defaultContent": "Click to edit"
+         *        } ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using array notation - outputting a list from an array
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [ {
-		 *          "targets": [ 0 ],
-		 *          "data": "name[, ]"
-		 *        } ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [ {
+         *          "targets": [ 0 ],
+         *          "data": "name[, ]"
+         *        } ]
+         *      } );
+         *    } );
          *
          */
         "mData": null,
@@ -12114,30 +12167,30 @@
          *  @example
          *    // Create a comma separated list from an array of objects
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "ajaxSource": "sources/deep.txt",
-		 *        "columns": [
-		 *          { "data": "engine" },
-		 *          { "data": "browser" },
-		 *          {
-		 *            "data": "platform",
-		 *            "render": "[, ].name"
-		 *          }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "ajaxSource": "sources/deep.txt",
+         *        "columns": [
+         *          { "data": "engine" },
+         *          { "data": "browser" },
+         *          {
+         *            "data": "platform",
+         *            "render": "[, ].name"
+         *          }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Execute a function to obtain data
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [ {
-		 *          "targets": [ 0 ],
-		 *          "data": null, // Use the full data source object for the renderer's source
-		 *          "render": "browserName()"
-		 *        } ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [ {
+         *          "targets": [ 0 ],
+         *          "data": null, // Use the full data source object for the renderer's source
+         *          "render": "browserName()"
+         *        } ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // As an object, extracting different data for the different types
@@ -12147,32 +12200,32 @@
          *    // (which has both forms) is used for filtering for if a user inputs either format, while
          *    // the formatted phone number is the one that is shown in the table.
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [ {
-		 *          "targets": [ 0 ],
-		 *          "data": null, // Use the full data source object for the renderer's source
-		 *          "render": {
-		 *            "_": "phone",
-		 *            "filter": "phone_filter",
-		 *            "display": "phone_display"
-		 *          }
-		 *        } ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [ {
+         *          "targets": [ 0 ],
+         *          "data": null, // Use the full data source object for the renderer's source
+         *          "render": {
+         *            "_": "phone",
+         *            "filter": "phone_filter",
+         *            "display": "phone_display"
+         *          }
+         *        } ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Use as a function to create a link from the data source
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [ {
-		 *          "targets": [ 0 ],
-		 *          "data": "download_link",
-		 *          "render": function ( data, type, full ) {
-		 *            return '<a href="'+data+'">Download</a>';
-		 *          }
-		 *        } ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [ {
+         *          "targets": [ 0 ],
+         *          "data": "download_link",
+         *          "render": function ( data, type, full ) {
+         *            return '<a href="'+data+'">Download</a>';
+         *          }
+         *        } ]
+         *      } );
+         *    } );
          */
         "mRender": null,
 
@@ -12190,13 +12243,13 @@
          *  @example
          *    // Make the first column use TH cells
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [ {
-		 *          "targets": [ 0 ],
-		 *          "cellType": "th"
-		 *        } ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [ {
+         *          "targets": [ 0 ],
+         *          "cellType": "th"
+         *        } ]
+         *      } );
+         *    } );
          */
         "sCellType": "td",
 
@@ -12212,26 +12265,26 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "class": "my_class", "targets": [ 0 ] }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "class": "my_class", "targets": [ 0 ] }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          { "class": "my_class" },
-		 *          null,
-		 *          null,
-		 *          null,
-		 *          null
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          { "class": "my_class" },
+         *          null,
+         *          null,
+         *          null,
+         *          null
+         *        ]
+         *      } );
+         *    } );
          */
         "sClass": "",
 
@@ -12254,17 +12307,17 @@
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          null,
-		 *          null,
-		 *          null,
-		 *          {
-		 *            "contentPadding": "mmm"
-		 *          }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          null,
+         *          null,
+         *          null,
+         *          {
+         *            "contentPadding": "mmm"
+         *          }
+         *        ]
+         *      } );
+         *    } );
          */
         "sContentPadding": "",
 
@@ -12282,32 +12335,32 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          {
-		 *            "data": null,
-		 *            "defaultContent": "Edit",
-		 *            "targets": [ -1 ]
-		 *          }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          {
+         *            "data": null,
+         *            "defaultContent": "Edit",
+         *            "targets": [ -1 ]
+         *          }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          null,
-		 *          null,
-		 *          null,
-		 *          {
-		 *            "data": null,
-		 *            "defaultContent": "Edit"
-		 *          }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          null,
+         *          null,
+         *          null,
+         *          {
+         *            "data": null,
+         *            "defaultContent": "Edit"
+         *          }
+         *        ]
+         *      } );
+         *    } );
          */
         "sDefaultContent": null,
 
@@ -12328,30 +12381,30 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "name": "engine", "targets": [ 0 ] },
-		 *          { "name": "browser", "targets": [ 1 ] },
-		 *          { "name": "platform", "targets": [ 2 ] },
-		 *          { "name": "version", "targets": [ 3 ] },
-		 *          { "name": "grade", "targets": [ 4 ] }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "name": "engine", "targets": [ 0 ] },
+         *          { "name": "browser", "targets": [ 1 ] },
+         *          { "name": "platform", "targets": [ 2 ] },
+         *          { "name": "version", "targets": [ 3 ] },
+         *          { "name": "grade", "targets": [ 4 ] }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          { "name": "engine" },
-		 *          { "name": "browser" },
-		 *          { "name": "platform" },
-		 *          { "name": "version" },
-		 *          { "name": "grade" }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          { "name": "engine" },
+         *          { "name": "browser" },
+         *          { "name": "platform" },
+         *          { "name": "version" },
+         *          { "name": "grade" }
+         *        ]
+         *      } );
+         *    } );
          */
         "sName": "",
 
@@ -12370,30 +12423,30 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "orderDataType": "dom-text", "targets": [ 2, 3 ] },
-		 *          { "type": "numeric", "targets": [ 3 ] },
-		 *          { "orderDataType": "dom-select", "targets": [ 4 ] },
-		 *          { "orderDataType": "dom-checkbox", "targets": [ 5 ] }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "orderDataType": "dom-text", "targets": [ 2, 3 ] },
+         *          { "type": "numeric", "targets": [ 3 ] },
+         *          { "orderDataType": "dom-select", "targets": [ 4 ] },
+         *          { "orderDataType": "dom-checkbox", "targets": [ 5 ] }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          null,
-		 *          null,
-		 *          { "orderDataType": "dom-text" },
-		 *          { "orderDataType": "dom-text", "type": "numeric" },
-		 *          { "orderDataType": "dom-select" },
-		 *          { "orderDataType": "dom-checkbox" }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          null,
+         *          null,
+         *          { "orderDataType": "dom-text" },
+         *          { "orderDataType": "dom-text", "type": "numeric" },
+         *          { "orderDataType": "dom-select" },
+         *          { "orderDataType": "dom-checkbox" }
+         *        ]
+         *      } );
+         *    } );
          */
         "sSortDataType": "std",
 
@@ -12410,26 +12463,26 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "title": "My column title", "targets": [ 0 ] }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "title": "My column title", "targets": [ 0 ] }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          { "title": "My column title" },
-		 *          null,
-		 *          null,
-		 *          null,
-		 *          null
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          { "title": "My column title" },
+         *          null,
+         *          null,
+         *          null,
+         *          null
+         *        ]
+         *      } );
+         *    } );
          */
         "sTitle": null,
 
@@ -12451,26 +12504,26 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "type": "html", "targets": [ 0 ] }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "type": "html", "targets": [ 0 ] }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          { "type": "html" },
-		 *          null,
-		 *          null,
-		 *          null,
-		 *          null
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          { "type": "html" },
+         *          null,
+         *          null,
+         *          null,
+         *          null
+         *        ]
+         *      } );
+         *    } );
          */
         "sType": null,
 
@@ -12489,26 +12542,26 @@
          *  @example
          *    // Using `columnDefs`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columnDefs": [
-		 *          { "width": "20%", "targets": [ 0 ] }
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columnDefs": [
+         *          { "width": "20%", "targets": [ 0 ] }
+         *        ]
+         *      } );
+         *    } );
          *
          *  @example
          *    // Using `columns`
          *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
-		 *        "columns": [
-		 *          { "width": "20%" },
-		 *          null,
-		 *          null,
-		 *          null,
-		 *          null
-		 *        ]
-		 *      } );
-		 *    } );
+         *      $('#example').dataTable( {
+         *        "columns": [
+         *          { "width": "20%" },
+         *          null,
+         *          null,
+         *          null,
+         *          null
+         *        ]
+         *      } );
+         *    } );
          */
         "sWidth": null
     };
@@ -13520,11 +13573,11 @@
          *
          *  @example
          *    $.fn.dataTable.ext.features.push( {
-		 *      "fnInit": function( oSettings ) {
-		 *        return new TableTools( { "oDTSettings": oSettings } );
-		 *      },
-		 *      "cFeature": "T"
-		 *    } );
+         *      "fnInit": function( oSettings ) {
+         *        return new TableTools( { "oDTSettings": oSettings } );
+         *      },
+         *      "cFeature": "T"
+         *    } );
          */
         feature: [],
 
@@ -13567,24 +13620,24 @@
          *    // from the end-user, matching the data in a certain range.
          *    $.fn.dataTable.ext.search.push(
          *      function( settings, data, dataIndex ) {
-		 *        var min = document.getElementById('min').value * 1;
-		 *        var max = document.getElementById('max').value * 1;
-		 *        var version = data[3] == "-" ? 0 : data[3]*1;
-		 *
-		 *        if ( min == "" && max == "" ) {
-		 *          return true;
-		 *        }
-		 *        else if ( min == "" && version < max ) {
-		 *          return true;
-		 *        }
-		 *        else if ( min < version && "" == max ) {
-		 *          return true;
-		 *        }
-		 *        else if ( min < version && version < max ) {
-		 *          return true;
-		 *        }
-		 *        return false;
-		 *      }
+         *        var min = document.getElementById('min').value * 1;
+         *        var max = document.getElementById('max').value * 1;
+         *        var version = data[3] == "-" ? 0 : data[3]*1;
+         *
+         *        if ( min == "" && max == "" ) {
+         *          return true;
+         *        }
+         *        else if ( min == "" && version < max ) {
+         *          return true;
+         *        }
+         *        else if ( min < version && "" == max ) {
+         *          return true;
+         *        }
+         *        else if ( min < version && version < max ) {
+         *          return true;
+         *        }
+         *        return false;
+         *      }
          *    );
          */
         search: [],
@@ -13694,8 +13747,8 @@
          *  @example
          *    // Show previous, next and current page buttons only
          *    $.fn.dataTableExt.oPagination.current = function ( page, pages ) {
-		 *      return [ 'previous', page, 'next' ];
-		 *    };
+         *      return [ 'previous', page, 'next' ];
+         *    };
          */
         pager: {},
 
@@ -13741,10 +13794,10 @@
          *    // Ordering using `input` node values
          *    $.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
          *    {
-		 *      return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
-		 *        return $('input', td).val();
-		 *      } );
-		 *    }
+         *      return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+         *        return $('input', td).val();
+         *      } );
+         *    }
          */
         order: {},
 
@@ -13787,17 +13840,17 @@
              *    // Currency type detection plug-in:
              *    $.fn.dataTable.ext.type.detect.push(
              *      function ( data, settings ) {
-			 *        // Check the numeric part
-			 *        if ( ! $.isNumeric( data.substring(1) ) ) {
-			 *          return null;
-			 *        }
-			 *
-			 *        // Check prefixed by currency
-			 *        if ( data.charAt(0) == '$' || data.charAt(0) == '&pound;' ) {
-			 *          return 'currency';
-			 *        }
-			 *        return null;
-			 *      }
+             *        // Check the numeric part
+             *        if ( ! data.substring(1).match(/[0-9]/) ) {
+             *          return null;
+             *        }
+             *
+             *        // Check prefixed by currency
+             *        if ( data.charAt(0) == '$' || data.charAt(0) == '&pound;' ) {
+             *          return 'currency';
+             *        }
+             *        return null;
+             *      }
              *    );
              */
             detect: [],
@@ -13836,8 +13889,8 @@
              *
              *  @example
              *    $.fn.dataTable.ext.type.search['title-numeric'] = function ( d ) {
-			 *      return d.replace(/\n/g," ").replace( /<.*?>/g, "" );
-			 *    }
+             *      return d.replace(/\n/g," ").replace( /<.*?>/g, "" );
+             *    }
              */
             search: {},
 
@@ -13889,22 +13942,22 @@
              *  @example
              *    // Numeric ordering of formatted numbers with a pre-formatter
              *    $.extend( $.fn.dataTable.ext.type.order, {
-			 *      "string-pre": function(x) {
-			 *        a = (a === "-" || a === "") ? 0 : a.replace( /[^\d\-\.]/g, "" );
-			 *        return parseFloat( a );
-			 *      }
-			 *    } );
+             *      "string-pre": function(x) {
+             *        a = (a === "-" || a === "") ? 0 : a.replace( /[^\d\-\.]/g, "" );
+             *        return parseFloat( a );
+             *      }
+             *    } );
              *
              *  @example
              *    // Case-sensitive string ordering, with no pre-formatting method
              *    $.extend( $.fn.dataTable.ext.order, {
-			 *      "string-case-asc": function(x,y) {
-			 *        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-			 *      },
-			 *      "string-case-desc": function(x,y) {
-			 *        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-			 *      }
-			 *    } );
+             *      "string-case-asc": function(x,y) {
+             *        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+             *      },
+             *      "string-case-desc": function(x,y) {
+             *        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+             *      }
+             *    } );
              */
             order: {}
         },
@@ -14363,7 +14416,8 @@
     $.extend(_ext.type.order, {
         // Dates
         "date-pre": function (d) {
-            return Date.parse(d) || -Infinity;
+            var ts = Date.parse(d);
+            return isNaN(ts) ? -Infinity : ts;
         },
 
         // html
@@ -14510,9 +14564,9 @@
      * @example
      *   // Column definition using the number renderer
      *   {
-	 *     data: "salary",
-	 *     render: $.fn.dataTable.render.number( '\'', '.', 0, '$' )
-	 *   }
+     *     data: "salary",
+     *     render: $.fn.dataTable.render.number( '\'', '.', 0, '$' )
+     *   }
      *
      * @namespace
      */
@@ -14554,7 +14608,8 @@
 
         text: function () {
             return {
-                display: __htmlEscapeEntities
+                display: __htmlEscapeEntities,
+                filter: __htmlEscapeEntities
             };
         }
     };
@@ -14678,6 +14733,7 @@
         _fnRenderer: _fnRenderer,
         _fnDataSource: _fnDataSource,
         _fnRowAttributes: _fnRowAttributes,
+        _fnExtend: _fnExtend,
         _fnCalculateEnd: function () {
         } // Used by a lot of plug-ins, but redundant
           // in 1.10, so this dead-end function is
@@ -14819,17 +14875,17 @@
      *  @example
      *     // Use a custom property returned from the server in another DOM element
      *     $('#table').dataTable().on('xhr.dt', function (e, settings, json) {
-	 *       $('#status').html( json.status );
-	 *     } );
+     *       $('#status').html( json.status );
+     *     } );
      *
      *  @example
      *     // Pre-process the data returned from the server
      *     $('#table').dataTable().on('xhr.dt', function (e, settings, json) {
-	 *       for ( var i=0, ien=json.aaData.length ; i<ien ; i++ ) {
-	 *         json.aaData[i].sum = json.aaData[i].one + json.aaData[i].two;
-	 *       }
-	 *       // Note no return - manipulate the data directly in the JSON object.
-	 *     } );
+     *       for ( var i=0, ien=json.aaData.length ; i<ien ; i++ ) {
+     *         json.aaData[i].sum = json.aaData[i].one + json.aaData[i].two;
+     *       }
+     *       // Note no return - manipulate the data directly in the JSON object.
+     *     } );
      */
 
     /**

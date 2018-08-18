@@ -36,12 +36,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "2.3.2",
-  "_release": "2.3.2",
+  "version": "2.4.1",
+  "_release": "2.4.1",
   "_resolution": {
     "type": "version",
-    "tag": "2.3.2",
-    "commit": "1c8cc03649f1463b69c180007a1bb33caa074e94"
+    "tag": "2.4.1",
+    "commit": "0179868ea491f156f87a10ca84a182ef68fae9ed"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-KeyTable-Bootstrap4.git",
   "_target": "^2.3.2",

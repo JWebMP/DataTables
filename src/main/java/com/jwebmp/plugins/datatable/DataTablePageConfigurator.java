@@ -45,37 +45,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
 		                    "It is a highly flexible " +
 		                    "tool, based upon the " +
 		                    "foundations of progressive " +
-		                    "enhancement, and will add " +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "" +
-		                    "advanced" +
-		                    "" +
-		                    "" +
-		                    " " +
-		                    "interaction " +
-		                    "" +
-		                    "controls " +
-		                    "to" +
-		                    " " +
-		                    "any " +
-		                    "HTML " +
-		                    "table" +
-		                    ".",
+		                    "enhancement, and will add advanced interaction  controls  to any  HTML  table .",
 		pluginVersion = "1.10.16",
 		pluginDependancyUniqueIDs = "jquery",
 		pluginCategories = "jquery,datatables, tables, ui, " + "web, framework",
@@ -115,8 +85,10 @@ public class DataTablePageConfigurator
 	 */
 	public static void switchTheme(DataTableThemes theme)
 	{
-		getThemes().clear();
-		getThemes().add(theme);
+		DataTablePageConfigurator.getThemes()
+		                         .clear();
+		DataTablePageConfigurator.getThemes()
+		                         .add(theme);
 	}
 
 	/**
@@ -126,11 +98,11 @@ public class DataTablePageConfigurator
 	 */
 	public static Set<DataTableThemes> getThemes()
 	{
-		if (themes == null)
+		if (DataTablePageConfigurator.themes == null)
 		{
-			themes = EnumSet.of(DataTableThemes.DataTables);
+			DataTablePageConfigurator.themes = EnumSet.of(DataTableThemes.DataTables);
 		}
-		return themes;
+		return DataTablePageConfigurator.themes;
 	}
 
 	/**
@@ -165,11 +137,11 @@ public class DataTablePageConfigurator
 	 */
 	public static Set<JavascriptReference> getExtensions()
 	{
-		if (extensions == null)
+		if (DataTablePageConfigurator.extensions == null)
 		{
-			extensions = new LinkedHashSet<>();
+			DataTablePageConfigurator.extensions = new LinkedHashSet<>();
 		}
-		return extensions;
+		return DataTablePageConfigurator.extensions;
 	}
 
 	@NotNull
@@ -183,15 +155,15 @@ public class DataTablePageConfigurator
 			page.getBody()
 			    .addJavaScriptReference(DataTableReferencePool.JQueryDataTables.getJavaScriptReference());
 
-			for (DataTableThemes theme : getThemes())
+			for (DataTableThemes theme : DataTablePageConfigurator.getThemes())
 			{
 				String themeBasePath = "bower_components/datatables.net-" + theme.getData() + "/js/dataTables." + theme.getFilename();
 
-				String themeBaseCssPath = "bower_components/datatables.net-" + theme.getData() + CssString;
+				String themeBaseCssPath = "bower_components/datatables.net-" + theme.getData() + DataTablePageConfigurator.CssString;
 				if (theme.getFilenameOverride() == null || theme.getFilenameOverride()
 				                                                .isEmpty())
 				{
-					themeBaseCssPath += DataTablesOperatorString + theme.getFilename();
+					themeBaseCssPath += DataTablePageConfigurator.DataTablesOperatorString + theme.getFilename();
 				}
 				else
 				{
@@ -201,12 +173,15 @@ public class DataTablePageConfigurator
 				if (!themeBasePath.contains("dataTables.dataTables"))
 				{
 					page.getBody()
-					    .addJavaScriptReference(new JavascriptReference(DataTablesNameString + "-" + theme.toString(), 1.1016, themeBasePath + JsMinString, 16).setPriority(
+					    .addJavaScriptReference(new JavascriptReference(DataTablePageConfigurator.DataTablesNameString + "-" + theme.toString(), 1.1016, themeBasePath +
+					                                                                                                                                     DataTablePageConfigurator.JsMinString,
+					                                                    16).setPriority(
 							    RequirementsPriority.Third));
 				}
 
 				page.getBody()
-				    .addCssReference(new CSSReference(DataTablesNameString + theme.toString(), 1.1016, themeBaseCssPath + CssMinString));
+				    .addCssReference(new CSSReference(DataTablePageConfigurator.DataTablesNameString + theme.toString(), 1.1016, themeBaseCssPath +
+				                                                                                                                 DataTablePageConfigurator.CssMinString));
 
 				configurePlugins(page, theme);
 			}
@@ -228,36 +203,42 @@ public class DataTablePageConfigurator
 	private void configurePlugins(Page page, DataTableThemes theme)
 	{
 		int sortOrder = 16;
-		for (DataTablePlugins plugin : getPlugins())
+		for (DataTablePlugins plugin : DataTablePageConfigurator.getPlugins())
 		{
 			String jsPath = null;
 			if (theme == DataTableThemes.DataTables)
 			{
-				jsPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + "/js/" + (plugin.isPlugin()
-				                                                                                                   ? DataTablesOperatorString + plugin.getFilename() + JsMinString
-				                                                                                                   : STRING_EMPTY);
+				jsPath = DataTablePageConfigurator.BowerComponentsString +
+				         DataTablePageConfigurator.BowerComponentDataTablesString + plugin.getFilename() + "/js/" + (plugin.isPlugin()
+				                                                                                                     ? DataTablePageConfigurator.DataTablesOperatorString +
+				                                                                                                       plugin.getFilename() +
+				                                                                                                       DataTablePageConfigurator.JsMinString
+				                                                                                                     : STRING_EMPTY);
 			}
 			else
 			{
-				jsPath = BowerComponentsString + BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() + "/js/" + (plugin.isPlugin()
-				                                                                                                                                   ? plugin.getFilename() +
-				                                                                                                                                     "." +
-				                                                                                                                                     theme.getFilename() +
-				                                                                                                                                     JsMinString
-				                                                                                                                                   : STRING_EMPTY);
+				jsPath = DataTablePageConfigurator.BowerComponentsString +
+				         DataTablePageConfigurator.BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() + "/js/" + (plugin.isPlugin()
+				                                                                                                                                     ? plugin.getFilename() +
+				                                                                                                                                       "." +
+				                                                                                                                                       theme.getFilename() +
+				                                                                                                                                       DataTablePageConfigurator.JsMinString
+				                                                                                                                                     : STRING_EMPTY);
 			}
 
 			if (theme == DataTableThemes.DataTables)
 			{
 				page.getBody()
-				    .addJavaScriptReference(new JavascriptReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, jsPath, sortOrder++).setPriority(
-						    RequirementsPriority.Fourth));
+				    .addJavaScriptReference(
+						    new JavascriptReference(DataTablePageConfigurator.DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, jsPath, sortOrder++).setPriority(
+								    RequirementsPriority.Fourth));
 			}
 			else
 			{
 				page.getBody()
-				    .addJavaScriptReference(new JavascriptReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, jsPath, sortOrder++).setPriority(
-						    RequirementsPriority.DontCare));
+				    .addJavaScriptReference(
+						    new JavascriptReference(DataTablePageConfigurator.DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, jsPath, sortOrder++).setPriority(
+								    RequirementsPriority.DontCare));
 			}
 
 			if (plugin.isCss())
@@ -265,38 +246,39 @@ public class DataTablePageConfigurator
 				String cssPath = null;
 				if (theme == DataTableThemes.DataTables)
 				{
-					cssPath = BowerComponentsString +
-					          BowerComponentDataTablesString +
+					cssPath = DataTablePageConfigurator.BowerComponentsString +
+					          DataTablePageConfigurator.BowerComponentDataTablesString +
 					          plugin.getFilename() +
 					          STRING_DASH +
 					          theme.getData() +
-					          CssString +
+					          DataTablePageConfigurator.CssString +
 					          plugin.getFilename() +
 					          STRING_DOT +
 					          (
 							          plugin.isPlugin()
-							          ? DataTablesOperatorString + CssMinString
+							          ? DataTablePageConfigurator.DataTablesOperatorString + DataTablePageConfigurator.CssMinString
 							          : STRING_EMPTY);
 				}
 				else
 				{
-					cssPath = BowerComponentsString +
-					          BowerComponentDataTablesString +
+					cssPath = DataTablePageConfigurator.BowerComponentsString +
+					          DataTablePageConfigurator.BowerComponentDataTablesString +
 					          plugin.getFilename() +
 					          STRING_DASH +
 					          theme.getData() +
-					          CssString +
+					          DataTablePageConfigurator.CssString +
 					          plugin.getFilename() +
 					          STRING_DOT +
 					          theme.getFilename() +
-					          CssMinString;
+					          DataTablePageConfigurator.CssMinString;
 				}
 				page.getBody()
-				    .addCssReference(new CSSReference(DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, cssPath.replace("..", ".")));
+				    .addCssReference(new CSSReference(DataTablePageConfigurator.DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, cssPath.replace("..", ".")));
 			}
 
-			getSortables().forEach(a -> page.getBody()
-			                                .addJavaScriptReference(a.getReference()));
+			DataTablePageConfigurator.getSortables()
+			                         .forEach(a -> page.getBody()
+			                                           .addJavaScriptReference(a.getReference()));
 		}
 	}
 
@@ -307,11 +289,11 @@ public class DataTablePageConfigurator
 	 */
 	public static Set<DataTablePlugins> getPlugins()
 	{
-		if (plugins == null)
+		if (DataTablePageConfigurator.plugins == null)
 		{
-			plugins = new LinkedHashSet<>();
+			DataTablePageConfigurator.plugins = new LinkedHashSet<>();
 		}
-		return plugins;
+		return DataTablePageConfigurator.plugins;
 	}
 
 	/**
@@ -321,10 +303,10 @@ public class DataTablePageConfigurator
 	 */
 	public static Set<DataTablesSortables> getSortables()
 	{
-		if (sortables == null)
+		if (DataTablePageConfigurator.sortables == null)
 		{
-			sortables = new LinkedHashSet<>();
+			DataTablePageConfigurator.sortables = new LinkedHashSet<>();
 		}
-		return sortables;
+		return DataTablePageConfigurator.sortables;
 	}
 }

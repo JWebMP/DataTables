@@ -1,15 +1,15 @@
-/*! RowGroup 1.0.2
- * ©2017 SpryMedia Ltd - datatables.net/license
+/*! RowGroup 1.0.4
+ * ©2017-2018 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     RowGroup
  * @description RowGrouping for DataTables
- * @version     1.0.2
+ * @version     1.0.4
  * @file        dataTables.rowGroup.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     datatables.net
- * @copyright   Copyright 2017 SpryMedia Ltd.
+ * @copyright   Copyright 2017-2018 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -140,6 +140,17 @@
         _constructor: function () {
             var that = this;
             var dt = this.s.dt;
+            var rows = dt.rows();
+            var groups = [];
+
+            rows.every(function () {
+                var d = this.data();
+                var group = that.s.dataFn(d);
+
+                if (groups.indexOf(group) == -1) {
+                    groups.push(group);
+                }
+            });
 
             dt.on('draw.dtrg', function () {
                 if (that.c.enable) {
@@ -195,6 +206,10 @@
                 var d = this.data();
                 var group = that.s.dataFn(d);
 
+                if (group === null || group === undefined) {
+                    group = that.c.emptyDataGroup;
+                }
+
                 if (last === undefined || group !== last) {
                     groupedRows.push([]);
                     last = group;
@@ -207,21 +222,24 @@
                 var group = groupedRows[i];
                 var firstRow = dt.row(group[0]);
                 var groupName = this.s.dataFn(firstRow.data());
+                var row;
 
                 if (this.c.startRender) {
                     display = this.c.startRender.call(this, dt.rows(group), groupName);
+                    row = this._rowWrap(display, this.c.startClassName);
 
-                    this
-                        ._rowWrap(display, this.c.startClassName)
-                        .insertBefore(firstRow.node());
+                    if (row) {
+                        row.insertBefore(firstRow.node());
+                    }
                 }
 
                 if (this.c.endRender) {
                     display = this.c.endRender.call(this, dt.rows(group), groupName);
+                    row = this._rowWrap(display, this.c.endClassName);
 
-                    this
-                        ._rowWrap(display, this.c.endClassName)
-                        .insertAfter(dt.row(group[group.length - 1]).node());
+                    if (row) {
+                        row.insertAfter(dt.row(group[group.length - 1]).node());
+                    }
                 }
             }
         },
@@ -235,6 +253,14 @@
          */
         _rowWrap: function (display, className) {
             var row;
+
+            if (display === null || display === undefined || display === '') {
+                display = this.c.emptyDataGroup;
+            }
+
+            if (display === null) {
+                return null;
+            }
 
             if (typeof display === 'object' && display.nodeName && display.nodeName.toLowerCase() === 'tr') {
                 row = $(display);
@@ -280,6 +306,12 @@
         dataSrc: 0,
 
         /**
+         * Text to show if no data is found for a group
+         * @type string
+         */
+        emptyDataGroup: 'No group',
+
+        /**
          * Initial enablement state
          * @boolean
          */
@@ -313,7 +345,7 @@
     };
 
 
-    RowGroup.version = "1.0.2";
+    RowGroup.version = "1.0.4";
 
 
     $.fn.dataTable.RowGroup = RowGroup;

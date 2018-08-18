@@ -34,12 +34,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "2.2.2",
-  "_release": "2.2.2",
+  "version": "2.3.1",
+  "_release": "2.3.1",
   "_resolution": {
     "type": "version",
-    "tag": "2.2.2",
-    "commit": "cf99f34b4a76ef2a3ac6b814adb7ab8172de4f52"
+    "tag": "2.3.1",
+    "commit": "30f0ecd5d505988e895c5e1a0fbcff2ac6327cbc"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-AutoFill.git",
   "_target": "^2.1.2",

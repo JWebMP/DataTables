@@ -104,6 +104,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 		setHeaderGroup(headerGroup);
 		setID(id);
 		addFeature(getFeature());
+		addClass("table table-responsive w-100 d-block d-md-table");
 	}
 
 	@SuppressWarnings({"unchecked"})
@@ -376,14 +377,14 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	}
 
 	@Override
-	public boolean equals(Object o)
-	{
-		return super.equals(o);
-	}
-
-	@Override
 	public int hashCode()
 	{
 		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		return super.equals(o);
 	}
 }

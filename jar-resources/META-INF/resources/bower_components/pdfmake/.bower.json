@@ -26,6 +26,7 @@
     "webpack.config.js",
     "README.md",
     "bower.json",
+    "CONTRIBUTING.md",
     "examples",
     "node_modules",
     "package.json",
@@ -35,15 +36,14 @@
     "composer.json",
     ".travis.yml"
   ],
-  "version": "0.1.35",
-  "_release": "0.1.35",
+  "version": "0.1.37",
+  "_release": "0.1.37",
   "_resolution": {
     "type": "version",
-    "tag": "0.1.35",
-    "commit": "b252d4e1abe98c42207e9ea49b45062687b3177b"
+    "tag": "0.1.37",
+    "commit": "41ed75396d19d4a80e759282362d7c617e8d351d"
   },
   "_source": "https://github.com/bpampuch/pdfmake.git",
   "_target": "^0.1.35",
-  "_originalSource": "pdfmake",
-  "_direct": true
+  "_originalSource": "pdfmake"
 }

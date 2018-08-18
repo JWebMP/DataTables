@@ -34,12 +34,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "1.4.1",
-  "_release": "1.4.1",
+  "version": "1.5.1",
+  "_release": "1.5.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.4.1",
-    "commit": "8e5b469e5a4463350d5d0c65f000923dc2dc76c0"
+    "tag": "1.5.1",
+    "commit": "917bb98be294e153df73603f40a388a6608c681a"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-ColReorder-jQueryUI.git",
   "_target": "^1.4.1",

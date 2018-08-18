@@ -34,12 +34,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "3.2.3",
-  "_release": "3.2.3",
+  "version": "3.2.6",
+  "_release": "3.2.6",
   "_resolution": {
     "type": "version",
-    "tag": "3.2.3",
-    "commit": "63ed4fbf02eaddf6298065b8beceb272e3d7f271"
+    "tag": "3.2.6",
+    "commit": "d40a322f162c98a639e4b345a272b5a3d98e2e9f"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-FixedColumns-DataTables.git",
   "_target": "^3.2.3",

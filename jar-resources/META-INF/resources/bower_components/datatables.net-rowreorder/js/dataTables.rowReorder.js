@@ -1,15 +1,15 @@
-/*! RowReorder 1.2.3
- * 2015-2017 SpryMedia Ltd - datatables.net/license
+/*! RowReorder 1.2.5
+ * 2015-2018 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     RowReorder
  * @description Row reordering extension for DataTables
- * @version     1.2.3
+ * @version     1.2.5
  * @file        dataTables.rowReorder.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2015-2017 SpryMedia Ltd.
+ * @copyright   Copyright 2015-2018 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -177,6 +177,11 @@
             $(dt.table().container()).on('mousedown.rowReorder touchstart.rowReorder', this.c.selector, function (e) {
                 if (!that.c.enable) {
                     return;
+                }
+
+                // Ignore excluded children of the selector
+                if ($(e.target).is(that.c.excludedChildren)) {
+                    return true;
                 }
 
                 var tr = $(this).closest('tr');
@@ -558,6 +563,11 @@
                         $.extend({submit: 'changed'}, this.c.formOptions)
                     )
                     .multiSet(dataSrc, idDiff)
+                    .one('preSubmitCancelled.rowReorder', function () {
+                        that.c.enable = true;
+                        that.c.editor.off('.rowReorder');
+                        dt.draw(false);
+                    })
                     .one('submitUnsuccessful.rowReorder', function () {
                         dt.draw(false);
                     })
@@ -718,7 +728,15 @@
          *
          * @type {Boolean}
          */
-        update: true
+        update: true,
+
+        /**
+         * Selector for children of the drag handle selector that mouseDown events
+         * will be passed through to and drag will not activate
+         *
+         * @type {String}
+         */
+        excludedChildren: 'a'
     };
 
 
@@ -759,7 +777,7 @@
      * @name RowReorder.version
      * @static
      */
-    RowReorder.version = '1.2.3';
+    RowReorder.version = '1.2.5';
 
 
     $.fn.dataTable.RowReorder = RowReorder;

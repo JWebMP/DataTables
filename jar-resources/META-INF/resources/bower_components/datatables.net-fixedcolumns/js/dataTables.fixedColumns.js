@@ -1,15 +1,15 @@
-/*! FixedColumns 3.2.3
- * ©2010-2016 SpryMedia Ltd - datatables.net/license
+/*! FixedColumns 3.2.6
+ * ©2010-2018 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     FixedColumns
  * @description Freeze columns in place on a scrolling DataTable
- * @version     3.2.3
+ * @version     3.2.6
  * @file        dataTables.fixedColumns.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2016 SpryMedia Ltd.
+ * @copyright   Copyright 2010-2018 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -76,8 +76,8 @@
      *
      *  @example
      *      var table = $('#example').dataTable( {
- *        "scrollX": "100%"
- *      } );
+     *        "scrollX": "100%"
+     *      } );
      *      new $.fn.dataTable.fixedColumns( table );
      */
     var FixedColumns = function (dt, init) {
@@ -320,8 +320,8 @@
          *  @returns {void}
          *  @example
          *      var table = $('#example').dataTable( {
-	 *          "scrollX": "100%"
-	 *      } );
+         *          "scrollX": "100%"
+         *      } );
          *      var fc = new $.fn.dataTable.fixedColumns( table );
          *
          *      // at some later point when the table has been manipulated....
@@ -339,8 +339,8 @@
          *  @returns {void}
          *  @example
          *      var table = $('#example').dataTable( {
-	 *          "scrollX": "100%"
-	 *      } );
+         *          "scrollX": "100%"
+         *      } );
          *      var fc = new $.fn.dataTable.fixedColumns( table );
          *
          *      // Resize the table container and then have FixedColumns adjust its layout....
@@ -362,8 +362,8 @@
          *  @returns {void}
          *  @example
          *      var table = $('#example').dataTable( {
-	 *          "scrollX": "100%"
-	 *      } );
+         *          "scrollX": "100%"
+         *      } );
          *      var fc = new $.fn.dataTable.fixedColumns( table );
          *
          *      // manipulate the table - mark the row as needing an update then update the table
@@ -385,8 +385,8 @@
          *  @returns {void}
          *  @example
          *      var table = $('#example').dataTable( {
-	 *          "scrollX": "100%"
-	 *      } );
+         *          "scrollX": "100%"
+         *      } );
          *      var fc = new $.fn.dataTable.fixedColumns( table );
          *
          *      // You may want to do this after manipulating a row in the fixed column
@@ -486,12 +486,14 @@
 
             // When the mouse is down (drag scroll) the mouse controller cannot
             // change, as the browser keeps the original element as the scrolling one
-            $(this.s.dt.nTableWrapper).on('mousedown.DTFC', function () {
-                mouseDown = true;
+            $(this.s.dt.nTableWrapper).on('mousedown.DTFC', function (e) {
+                if (e.button === 0) {
+                    mouseDown = true;
 
-                $(document).one('mouseup', function () {
-                    mouseDown = false;
-                });
+                    $(document).one('mouseup', function () {
+                        mouseDown = false;
+                    });
+                }
             });
 
             // When the body is scrolled - scroll the left and right columns
@@ -660,13 +662,17 @@
                     // account of it, but it isn't in any cell
                     if (that.s.aiOuterWidths.length === 0) {
                         border = $(that.s.dt.nTable).css('border-left-width');
-                        iWidth += typeof border === 'string' ? 1 : parseInt(border, 10);
+                        iWidth += typeof border === 'string' && border.indexOf('px') === -1 ?
+                            1 :
+                            parseInt(border, 10);
                     }
 
                     // Likewise with the final column on the right
                     if (that.s.aiOuterWidths.length === that.s.dt.aoColumns.length - 1) {
                         border = $(that.s.dt.nTable).css('border-right-width');
-                        iWidth += typeof border === 'string' ? 1 : parseInt(border, 10);
+                        iWidth += typeof border === 'string' && border.indexOf('px') === -1 ?
+                            1 :
+                            parseInt(border, 10);
                     }
 
                     that.s.aiOuterWidths.push(iWidth);
@@ -707,14 +713,14 @@
 
             var nSWrapper =
                 $('<div class="DTFC_ScrollWrapper" style="position:relative; clear:both;">' +
-                    '<div class="DTFC_LeftWrapper" style="position:absolute; top:0; left:0;">' +
+                    '<div class="DTFC_LeftWrapper" style="position:absolute; top:0; left:0;" aria-hidden="true">' +
                     '<div class="DTFC_LeftHeadWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div>' +
                     '<div class="DTFC_LeftBodyWrapper" style="position:relative; top:0; left:0; overflow:hidden;">' +
                     '<div class="DTFC_LeftBodyLiner" style="position:relative; top:0; left:0; overflow-y:scroll;"></div>' +
                     '</div>' +
                     '<div class="DTFC_LeftFootWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div>' +
                     '</div>' +
-                    '<div class="DTFC_RightWrapper" style="position:absolute; top:0; right:0;">' +
+                    '<div class="DTFC_RightWrapper" style="position:absolute; top:0; right:0;" aria-hidden="true">' +
                     '<div class="DTFC_RightHeadWrapper" style="position:relative; top:0; left:0;">' +
                     '<div class="DTFC_RightHeadBlocker DTFC_Blocker" style="position:absolute; top:0; bottom:0;"></div>' +
                     '</div>' +
@@ -793,8 +799,8 @@
             var that = this;
             var oGrid = this.dom.grid;
             var iWidth = $(oGrid.wrapper).width();
-            var iBodyHeight = $(this.s.dt.nTable.parentNode).outerHeight();
-            var iFullHeight = $(this.s.dt.nTable.parentNode.parentNode).outerHeight();
+            var iBodyHeight = this.s.dt.nTable.parentNode.offsetHeight;
+            var iFullHeight = this.s.dt.nTable.parentNode.parentNode.offsetHeight;
             var oOverflow = this._fnDTOverflow();
             var iLeftWidth = this.s.iLeftWidth;
             var iRightWidth = this.s.iRightWidth;
@@ -1166,7 +1172,7 @@
                             nClone = $(aTds[iColumn]).clone(true, true)[0];
                             nClone.removeAttribute('id');
                             nClone.setAttribute('data-dt-row', i);
-                            nClone.setAttribute('data-dt-column', dt.oApi._fnVisibleToColumnIndex(dt, iColumn));
+                            nClone.setAttribute('data-dt-column', iColumn);
                             n.appendChild(nClone);
                         }
                     }
@@ -1372,11 +1378,11 @@
          *  @static
          *  @example
          *      var  = $('#example').dataTable( {
-	 *          "scrollX": "100%"
-	 *      } );
+         *          "scrollX": "100%"
+         *      } );
          *      new $.fn.dataTable.fixedColumns( table, {
-	 *          "leftColumns": 2
-	 *      } );
+         *          "leftColumns": 2
+         *      } );
          */
         "iLeftColumns": 1,
 
@@ -1387,11 +1393,11 @@
          *  @static
          *  @example
          *      var table = $('#example').dataTable( {
-	 *          "scrollX": "100%"
-	 *      } );
+         *          "scrollX": "100%"
+         *      } );
          *      new $.fn.dataTable.fixedColumns( table, {
-	 *          "rightColumns": 1
-	 *      } );
+         *          "rightColumns": 1
+         *      } );
          */
         "iRightColumns": 0,
 
@@ -1402,13 +1408,13 @@
          *  @static
          *  @example
          *      var table = $('#example').dataTable( {
-	 *          "scrollX": "100%"
-	 *      } );
+         *          "scrollX": "100%"
+         *      } );
          *      new $.fn.dataTable.fixedColumns( table, {
-	 *          "drawCallback": function () {
-	 *	            alert( "FixedColumns redraw" );
-	 *	        }
-	 *      } );
+         *          "drawCallback": function () {
+         *	            alert( "FixedColumns redraw" );
+         *	        }
+         *      } );
          */
         "fnDrawCallback": null,
 
@@ -1423,11 +1429,11 @@
          *  @static
          *  @example
          *      var table = $('#example').dataTable( {
-	 *          "scrollX": "100%"
-	 *      } );
+         *          "scrollX": "100%"
+         *      } );
          *      new $.fn.dataTable.fixedColumns( table, {
-	 *          "heightMatch": "auto"
-	 *      } );
+         *          "heightMatch": "auto"
+         *      } );
          */
         "sHeightMatch": "semiauto"
     };
@@ -1444,7 +1450,7 @@
      *  @default   See code
      *  @static
      */
-    FixedColumns.version = "3.2.3";
+    FixedColumns.version = "3.2.6";
 
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
