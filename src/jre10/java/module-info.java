@@ -14,8 +14,10 @@ module com.jwebmp.plugins.datatable {
 
 	requires javax.servlet.api;
 	requires java.logging;
+	requires com.google.common;
 
 	provides IPageConfigurator with DataTablePageConfigurator;
+
 	opens com.jwebmp.plugins.datatable to com.fasterxml.jackson.databind, com.jwebmp.core;
 	opens com.jwebmp.plugins.datatable.enumerations to com.fasterxml.jackson.databind, com.jwebmp.core;
 	opens com.jwebmp.plugins.datatable.events to com.fasterxml.jackson.databind, com.jwebmp.core;
