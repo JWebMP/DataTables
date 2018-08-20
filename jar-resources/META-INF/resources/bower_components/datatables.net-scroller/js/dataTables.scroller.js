@@ -90,13 +90,13 @@
      *
      *  @example
      *    $(document).ready(function() {
- *        $('#example').DataTable( {
- *            "scrollY": "200px",
- *            "ajax": "media/dataset/large.txt",
- *            "dom": "frtiS",
- *            "deferRender": true
- *        } );
- *    } );
+     *        $('#example').DataTable( {
+     *            "scrollY": "200px",
+     *            "ajax": "media/dataset/large.txt",
+     *            "dom": "frtiS",
+     *            "deferRender": true
+     *        } );
+     *    } );
      */
     var Scroller = function (dt, opts) {
         /* Sanity check - you just know it will happen */
@@ -267,17 +267,17 @@
          *  @returns {int} Pixels
          *  @example
          *    $(document).ready(function() {
-	 *      $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sAjaxSource": "media/dataset/large.txt",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "fnInitComplete": function (o) {
-	 *          // Find where row 25 is
-	 *          alert( o.oScroller.fnRowToPixels( 25 ) );
-	 *        }
-	 *      } );
-	 *    } );
+         *      $('#example').dataTable( {
+         *        "sScrollY": "200px",
+         *        "sAjaxSource": "media/dataset/large.txt",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "fnInitComplete": function (o) {
+         *          // Find where row 25 is
+         *          alert( o.oScroller.fnRowToPixels( 25 ) );
+         *        }
+         *      } );
+         *    } );
          */
         "fnRowToPixels": function (rowIdx, intParse, virtual) {
             var pixels;
@@ -312,17 +312,17 @@
          *  @returns {int} Row index
          *  @example
          *    $(document).ready(function() {
-	 *      $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sAjaxSource": "media/dataset/large.txt",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "fnInitComplete": function (o) {
-	 *          // Find what row number is at 500px
-	 *          alert( o.oScroller.fnPixelsToRow( 500 ) );
-	 *        }
-	 *      } );
-	 *    } );
+         *      $('#example').dataTable( {
+         *        "sScrollY": "200px",
+         *        "sAjaxSource": "media/dataset/large.txt",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "fnInitComplete": function (o) {
+         *          // Find what row number is at 500px
+         *          alert( o.oScroller.fnPixelsToRow( 500 ) );
+         *        }
+         *      } );
+         *    } );
          */
         "fnPixelsToRow": function (pixels, intParse, virtual) {
             var diff = pixels - this.s.baseScrollTop;
@@ -343,21 +343,21 @@
          *  @returns {void}
          *  @example
          *    $(document).ready(function() {
-	 *      $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sAjaxSource": "media/dataset/large.txt",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "fnInitComplete": function (o) {
-	 *          // Immediately scroll to row 1000
-	 *          o.oScroller.fnScrollToRow( 1000 );
-	 *        }
-	 *      } );
+         *      $('#example').dataTable( {
+         *        "sScrollY": "200px",
+         *        "sAjaxSource": "media/dataset/large.txt",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "fnInitComplete": function (o) {
+         *          // Immediately scroll to row 1000
+         *          o.oScroller.fnScrollToRow( 1000 );
+         *        }
+         *      } );
          *
-	 *      // Sometime later on use the following to scroll to row 500...
-	 *          var oSettings = $('#example').dataTable().fnSettings();
-	 *      oSettings.oScroller.fnScrollToRow( 500 );
-	 *    } );
+         *      // Sometime later on use the following to scroll to row 500...
+         *          var oSettings = $('#example').dataTable().fnSettings();
+         *      oSettings.oScroller.fnScrollToRow( 500 );
+         *    } );
          */
         "fnScrollToRow": function (iRow, bAnimate) {
             var that = this;
@@ -416,25 +416,25 @@
          *  @returns {void}
          *  @example
          *    $(document).ready(function() {
-	 *      // Make the example container hidden to throw off the browser's sizing
-	 *      document.getElementById('container').style.display = "none";
-	 *      var oTable = $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sAjaxSource": "media/dataset/large.txt",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "fnInitComplete": function (o) {
-	 *          // Immediately scroll to row 1000
-	 *          o.oScroller.fnScrollToRow( 1000 );
-	 *        }
-	 *      } );
+         *      // Make the example container hidden to throw off the browser's sizing
+         *      document.getElementById('container').style.display = "none";
+         *      var oTable = $('#example').dataTable( {
+         *        "sScrollY": "200px",
+         *        "sAjaxSource": "media/dataset/large.txt",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "fnInitComplete": function (o) {
+         *          // Immediately scroll to row 1000
+         *          o.oScroller.fnScrollToRow( 1000 );
+         *        }
+         *      } );
          *
-	 *      setTimeout( function () {
-	 *        // Make the example container visible and recalculate the scroller sizes
-	 *        document.getElementById('container').style.display = "block";
-	 *        oTable.fnSettings().oScroller.fnMeasure();
-	 *      }, 3000 );
-	 */
+         *      setTimeout( function () {
+         *        // Make the example container visible and recalculate the scroller sizes
+         *        document.getElementById('container').style.display = "block";
+         *        oTable.fnSettings().oScroller.fnMeasure();
+         *      }, 3000 );
+         */
         "fnMeasure": function (bRedraw) {
             if (this.s.autoHeight) {
                 this._fnCalcRowHeight();
@@ -468,9 +468,9 @@
          *
          * @returns {object} info as an object:
          *  {
-	 *      start: {int}, // the 0-indexed record at the top of the viewport
-	 *      end:   {int}, // the 0-indexed record at the bottom of the viewport
-	 *  }
+         *      start: {int}, // the 0-indexed record at the top of the viewport
+         *      end:   {int}, // the 0-indexed record at the bottom of the viewport
+         *  }
          */
         "fnPageInfo": function () {
             var
@@ -1119,13 +1119,13 @@
          *  @static
          *  @example
          *    var oTable = $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "oScroller": {
-	 *          "trace": true
-	 *        }
-	 *    } );
+         *        "sScrollY": "200px",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "oScroller": {
+         *          "trace": true
+         *        }
+         *    } );
          */
         "trace": false,
 
@@ -1137,13 +1137,13 @@
          *  @static
          *  @example
          *    var oTable = $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "oScroller": {
-	 *          "rowHeight": 30
-	 *        }
-	 *    } );
+         *        "sScrollY": "200px",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "oScroller": {
+         *          "rowHeight": 30
+         *        }
+         *    } );
          */
         "rowHeight": "auto",
 
@@ -1156,13 +1156,13 @@
          *  @static
          *  @example
          *    var oTable = $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "oScroller": {
-	 *          "serverWait": 100
-	 *        }
-	 *    } );
+         *        "sScrollY": "200px",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "oScroller": {
+         *          "serverWait": 100
+         *        }
+         *    } );
          */
         "serverWait": 200,
 
@@ -1181,13 +1181,13 @@
          *  @static
          *  @example
          *    var oTable = $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "oScroller": {
-	 *          "displayBuffer": 10
-	 *        }
-	 *    } );
+         *        "sScrollY": "200px",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "oScroller": {
+         *          "displayBuffer": 10
+         *        }
+         *    } );
          */
         "displayBuffer": 9,
 
@@ -1203,13 +1203,13 @@
          *  @static
          *  @example
          *    var oTable = $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "oScroller": {
-	 *          "boundaryScale": 0.75
-	 *        }
-	 *    } );
+         *        "sScrollY": "200px",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "oScroller": {
+         *          "boundaryScale": 0.75
+         *        }
+         *    } );
          */
         "boundaryScale": 0.5,
 
@@ -1221,13 +1221,13 @@
          *  @static
          *  @example
          *    var oTable = $('#example').dataTable( {
-	 *        "sScrollY": "200px",
-	 *        "sDom": "frtiS",
-	 *        "bDeferRender": true,
-	 *        "oScroller": {
-	 *          "loadingIndicator": true
-	 *        }
-	 *    } );
+         *        "sScrollY": "200px",
+         *        "sDom": "frtiS",
+         *        "bDeferRender": true,
+         *        "oScroller": {
+         *          "loadingIndicator": true
+         *        }
+         *    } );
          */
         "loadingIndicator": false
     };

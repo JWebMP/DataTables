@@ -32,6 +32,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.jwebmp.core.utilities.StaticStrings.*;
+import static com.jwebmp.guicedservlets.GuicedServletKeys.*;
 
 @Singleton
 public class DataTablesServlet
@@ -43,7 +44,7 @@ public class DataTablesServlet
 	@Override
 	public void perform()
 	{
-		HttpServletRequest request = GuiceContext.get(HttpServletRequest.class);
+		HttpServletRequest request = GuiceContext.get(HttpServletRequestKey);
 		StringBuilder output = new StringBuilder();
 		Set<Class<? extends DataTableDataFetchEvent>> allEvents = GuiceContext.reflect()
 		                                                                      .getSubTypesOf(DataTableDataFetchEvent.class);
@@ -54,7 +55,7 @@ public class DataTablesServlet
 		if (allEvents.isEmpty())
 		{
 			writeOutput(output, HTML_HEADER_JAVASCRIPT, UTF8_CHARSET);
-			log.fine("DataTablesServlet could not find any specified data search class");
+			DataTablesServlet.log.fine("DataTablesServlet could not find any specified data search class");
 		}
 		else
 		{
@@ -73,7 +74,7 @@ public class DataTablesServlet
 			{
 				output.append(ExceptionUtils.getStackTrace(e));
 				writeOutput(output, HTML_HEADER_JAVASCRIPT, UTF8_CHARSET);
-				log.log(Level.SEVERE, "Unable to execute datatables ajax data fetch", e);
+				DataTablesServlet.log.log(Level.SEVERE, "Unable to execute datatables ajax data fetch", e);
 			}
 		}
 	}
