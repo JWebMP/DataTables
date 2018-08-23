@@ -34,8 +34,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
  * @since 2014 09 30
  */
 public class DataTableFeature
-		extends Feature<DataTableOptions, DataTableFeature>
-		implements GlobalFeatures
+		extends Feature<GlobalFeatures, DataTableOptions, DataTableFeature>
 {
 
 	private static final long serialVersionUID = 1L;

@@ -19,6 +19,7 @@ package com.jwebmp.plugins.datatable.events;
 
 import com.jwebmp.core.Event;
 import com.jwebmp.core.base.ComponentHierarchyBase;
+import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.plugins.datatable.DataTableData;
 import com.jwebmp.plugins.datatable.search.DataTableSearchRequest;
 
@@ -28,7 +29,7 @@ import com.jwebmp.plugins.datatable.search.DataTableSearchRequest;
  * @param <J>
  */
 public abstract class DataTableDataFetchEvent<J extends DataTableDataFetchEvent<J>>
-		extends Event<J>
+		extends Event<GlobalFeatures, J>
 {
 	public DataTableDataFetchEvent()
 	{

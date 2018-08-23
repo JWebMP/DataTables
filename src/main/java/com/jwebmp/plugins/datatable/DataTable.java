@@ -20,7 +20,8 @@ import com.google.common.base.Strings;
 import com.jwebmp.core.base.ComponentHierarchyBase;
 import com.jwebmp.core.base.html.*;
 import com.jwebmp.core.base.html.attributes.TableAttributes;
-import com.jwebmp.core.base.html.interfaces.GlobalChildren;
+import com.jwebmp.core.base.html.interfaces.children.TableHeaderGroupChildren;
+import com.jwebmp.core.base.html.interfaces.children.TableRowChildren;
 import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.options.DataTableColumnOptions;
@@ -41,12 +42,13 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
  * @version 1.0
  * @since 2014 09 30
  */
+@SuppressWarnings("MissingClassJavaDoc")
 @ComponentInformation(name = "Data Tables",
 		description = "The core data tables component",
 		url = "https://www.datatables.net/")
 public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 		extends Table<J>
-		implements GlobalChildren, IDataTable<T, J>
+		implements IDataTable<T, J>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -135,12 +137,13 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 		if (!isInitialized() && isEnableDynamicFeature())
 		{
 			TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
-			for (ComponentHierarchyBase child : group.getChildren())
+			for (TableHeaderGroupChildren child : group.getChildren())
 			{
 				TableRow<? extends TableRow> tr = (TableRow) child;
-				for (ComponentHierarchyBase rowChild : tr.getChildren())
+				for (TableRowChildren rowChild : tr.getChildren())
 				{
-					DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.getText(0)
+					DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.asBase()
+					                                                                          .getText(0)
 					                                                                          .toString());
 					getOptions().getColumns()
 					            .add(columnOptions);
