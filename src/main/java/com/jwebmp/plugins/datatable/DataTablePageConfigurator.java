@@ -61,22 +61,47 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
 public class DataTablePageConfigurator
 		implements IPageConfigurator
 {
-
 	private static final String DataTablesOperatorString = "dataTables.";
 	private static final String DataTablesNameString = "DataTables";
 	private static final String BowerComponentsString = "bower_components/";
 	private static final String BowerComponentDataTablesString = "datatables.net-";
 	private static final String CssString = "/css/";
-
 	private static final String JsMinString = ".min.js";
 	private static final String CssMinString = ".min.css";
-
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * If this configurator is enabled
+	 */
+	private static boolean enabled = true;
 	private static EnumSet<DataTableThemes> themes;
 	private static Set<DataTablePlugins> plugins;
 	private static Set<DataTablesSortables> sortables;
 	private static Set<JavascriptReference> extensions;
+
+	/**
+	 * Method isEnabled returns the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @return the enabled (type boolean) of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static boolean isEnabled()
+	{
+		return DataTablePageConfigurator.enabled;
+	}
+
+	/**
+	 * Method setEnabled sets the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @param mustEnable
+	 * 		the enabled of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static void setEnabled(boolean mustEnable)
+	{
+		DataTablePageConfigurator.enabled = mustEnable;
+	}
 
 	/**
 	 * Switches the theme used for the data table
@@ -192,6 +217,12 @@ public class DataTablePageConfigurator
 
 		}
 		return page;
+	}
+
+	@Override
+	public boolean enabled()
+	{
+		return DataTablePageConfigurator.enabled;
 	}
 
 	/**
