@@ -20,6 +20,7 @@ package com.jwebmp.plugins.datatable;
 import com.google.inject.Singleton;
 import com.jwebmp.core.base.servlets.JWDefaultServlet;
 import com.jwebmp.guicedinjection.GuiceContext;
+import com.jwebmp.guicedservlets.GuicedServletKeys;
 import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.search.DataTableSearchRequest;
@@ -32,7 +33,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.jwebmp.core.utilities.StaticStrings.*;
-import static com.jwebmp.guicedservlets.GuicedServletKeys.*;
 
 @Singleton
 public class DataTablesServlet
@@ -44,7 +44,7 @@ public class DataTablesServlet
 	@Override
 	public void perform()
 	{
-		HttpServletRequest request = GuiceContext.get(HttpServletRequestKey);
+		HttpServletRequest request = GuiceContext.get(GuicedServletKeys.getHttpServletRequestKey());
 		StringBuilder output = new StringBuilder();
 		Set<Class<? extends DataTableDataFetchEvent>> allEvents = GuiceContext.reflect()
 		                                                                      .getSubTypesOf(DataTableDataFetchEvent.class);
