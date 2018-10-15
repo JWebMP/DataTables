@@ -70,7 +70,8 @@
             },
             button: {
                 tag: 'a',
-                className: 'button small'
+                className: 'button small',
+                active: 'secondary'
             },
             buttonLiner: {
                 tag: null

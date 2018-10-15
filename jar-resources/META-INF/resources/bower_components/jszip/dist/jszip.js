@@ -161,8 +161,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 return output;
             };
 
-        }, {"./support": 30, "./utils": 32}],
-        2: [function (require, module, exports) {
+        }, {"./support": 30, "./utils": 32}], 2: [function (require, module, exports) {
             'use strict';
 
             var external = require("./external");
@@ -239,8 +238,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = CompressedObject;
 
-        }, {"./external": 6, "./stream/Crc32Probe": 25, "./stream/DataLengthProbe": 26, "./stream/DataWorker": 27}],
-        3: [function (require, module, exports) {
+        }, {"./external": 6, "./stream/Crc32Probe": 25, "./stream/DataLengthProbe": 26, "./stream/DataWorker": 27}], 3: [function (require, module, exports) {
             'use strict';
 
             var GenericWorker = require("./stream/GenericWorker");
@@ -256,8 +254,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             exports.DEFLATE = require('./flate');
 
-        }, {"./flate": 7, "./stream/GenericWorker": 28}],
-        4: [function (require, module, exports) {
+        }, {"./flate": 7, "./stream/GenericWorker": 28}], 4: [function (require, module, exports) {
             'use strict';
 
             var utils = require('./utils');
@@ -336,8 +333,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 }
             };
 
-        }, {"./utils": 32}],
-        5: [function (require, module, exports) {
+        }, {"./utils": 32}], 5: [function (require, module, exports) {
             'use strict';
             exports.base64 = false;
             exports.binary = false;
@@ -350,8 +346,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             exports.unixPermissions = null;
             exports.dosPermissions = null;
 
-        }, {}],
-        6: [function (require, module, exports) {
+        }, {}], 6: [function (require, module, exports) {
             /* global Promise */
             'use strict';
 
@@ -372,8 +367,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 Promise: ES6Promise
             };
 
-        }, {"lie": 58}],
-        7: [function (require, module, exports) {
+        }, {"lie": 58}], 7: [function (require, module, exports) {
             'use strict';
             var USE_TYPEDARRAY = (typeof Uint8Array !== 'undefined') && (typeof Uint16Array !== 'undefined') && (typeof Uint32Array !== 'undefined');
 
@@ -460,8 +454,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 return new FlateWorker("Inflate", {});
             };
 
-        }, {"./stream/GenericWorker": 28, "./utils": 32, "pako": 59}],
-        8: [function (require, module, exports) {
+        }, {"./stream/GenericWorker": 28, "./utils": 32, "pako": 59}], 8: [function (require, module, exports) {
             'use strict';
 
             var utils = require('../utils');
@@ -1003,8 +996,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = ZipFileWorker;
 
-        }, {"../crc32": 4, "../signature": 23, "../stream/GenericWorker": 28, "../utf8": 31, "../utils": 32}],
-        9: [function (require, module, exports) {
+        }, {"../crc32": 4, "../signature": 23, "../stream/GenericWorker": 28, "../utf8": 31, "../utils": 32}], 9: [function (require, module, exports) {
             'use strict';
 
             var compressions = require('../compressions');
@@ -1063,8 +1055,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 return zipFileWorker;
             };
 
-        }, {"../compressions": 3, "./ZipFileWorker": 8}],
-        10: [function (require, module, exports) {
+        }, {"../compressions": 3, "./ZipFileWorker": 8}], 10: [function (require, module, exports) {
             'use strict';
 
             /**
@@ -1119,8 +1110,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             JSZip.external = require("./external");
             module.exports = JSZip;
 
-        }, {"./defaults": 5, "./external": 6, "./load": 11, "./object": 15, "./support": 30}],
-        11: [function (require, module, exports) {
+        }, {"./defaults": 5, "./external": 6, "./load": 11, "./object": 15, "./support": 30}], 11: [function (require, module, exports) {
             'use strict';
             var utils = require('./utils');
             var external = require("./external");
@@ -1204,8 +1194,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                     });
             };
 
-        }, {"./external": 6, "./nodejsUtils": 14, "./stream/Crc32Probe": 25, "./utf8": 31, "./utils": 32, "./zipEntries": 33}],
-        12: [function (require, module, exports) {
+        }, {"./external": 6, "./nodejsUtils": 14, "./stream/Crc32Probe": 25, "./utf8": 31, "./utils": 32, "./zipEntries": 33}], 12: [function (require, module, exports) {
             "use strict";
 
             var utils = require('../utils');
@@ -1281,8 +1270,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = NodejsStreamInputAdapter;
 
-        }, {"../stream/GenericWorker": 28, "../utils": 32}],
-        13: [function (require, module, exports) {
+        }, {"../stream/GenericWorker": 28, "../utils": 32}], 13: [function (require, module, exports) {
             'use strict';
 
             var Readable = require('readable-stream').Readable;
@@ -1326,8 +1314,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = NodejsStreamOutputAdapter;
 
-        }, {"../utils": 32, "readable-stream": 16}],
-        14: [function (require, module, exports) {
+        }, {"../utils": 32, "readable-stream": 16}], 14: [function (require, module, exports) {
             'use strict';
 
             module.exports = {
@@ -1381,8 +1368,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 }
             };
 
-        }, {}],
-        15: [function (require, module, exports) {
+        }, {}], 15: [function (require, module, exports) {
             'use strict';
             var utf8 = require('./utf8');
             var utils = require('./utils');
@@ -1773,8 +1759,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             module.exports = out;
 
-        }, {"./compressedObject": 2, "./defaults": 5, "./generate": 9, "./nodejs/NodejsStreamInputAdapter": 12, "./nodejsUtils": 14, "./stream/GenericWorker": 28, "./stream/StreamHelper": 29, "./utf8": 31, "./utils": 32, "./zipObject": 35}],
-        16: [function (require, module, exports) {
+        }, {"./compressedObject": 2, "./defaults": 5, "./generate": 9, "./nodejs/NodejsStreamInputAdapter": 12, "./nodejsUtils": 14, "./stream/GenericWorker": 28, "./stream/StreamHelper": 29, "./utf8": 31, "./utils": 32, "./zipObject": 35}], 16: [function (require, module, exports) {
             /*
  * This file is used by module bundlers (browserify/webpack/etc) when
  * including a stream implementation. We use "readable-stream" to get a
@@ -1785,8 +1770,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
  */
             module.exports = require("stream");
 
-        }, {"stream": undefined}],
-        17: [function (require, module, exports) {
+        }, {"stream": undefined}], 17: [function (require, module, exports) {
             'use strict';
             var DataReader = require('./DataReader');
             var utils = require('../utils');
@@ -1846,8 +1830,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             module.exports = ArrayReader;
 
-        }, {"../utils": 32, "./DataReader": 18}],
-        18: [function (require, module, exports) {
+        }, {"../utils": 32, "./DataReader": 18}], 18: [function (require, module, exports) {
             'use strict';
             var utils = require('../utils');
 
@@ -1966,8 +1949,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             module.exports = DataReader;
 
-        }, {"../utils": 32}],
-        19: [function (require, module, exports) {
+        }, {"../utils": 32}], 19: [function (require, module, exports) {
             'use strict';
             var Uint8ArrayReader = require('./Uint8ArrayReader');
             var utils = require('../utils');
@@ -1989,8 +1971,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             module.exports = NodeBufferReader;
 
-        }, {"../utils": 32, "./Uint8ArrayReader": 21}],
-        20: [function (require, module, exports) {
+        }, {"../utils": 32, "./Uint8ArrayReader": 21}], 20: [function (require, module, exports) {
             'use strict';
             var DataReader = require('./DataReader');
             var utils = require('../utils');
@@ -2031,8 +2012,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             module.exports = StringReader;
 
-        }, {"../utils": 32, "./DataReader": 18}],
-        21: [function (require, module, exports) {
+        }, {"../utils": 32, "./DataReader": 18}], 21: [function (require, module, exports) {
             'use strict';
             var ArrayReader = require('./ArrayReader');
             var utils = require('../utils');
@@ -2057,8 +2037,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             module.exports = Uint8ArrayReader;
 
-        }, {"../utils": 32, "./ArrayReader": 17}],
-        22: [function (require, module, exports) {
+        }, {"../utils": 32, "./ArrayReader": 17}], 22: [function (require, module, exports) {
             'use strict';
 
             var utils = require('../utils');
@@ -2088,8 +2067,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 return new ArrayReader(utils.transformTo("array", data));
             };
 
-        }, {"../support": 30, "../utils": 32, "./ArrayReader": 17, "./NodeBufferReader": 19, "./StringReader": 20, "./Uint8ArrayReader": 21}],
-        23: [function (require, module, exports) {
+        }, {"../support": 30, "../utils": 32, "./ArrayReader": 17, "./NodeBufferReader": 19, "./StringReader": 20, "./Uint8ArrayReader": 21}], 23: [function (require, module, exports) {
             'use strict';
             exports.LOCAL_FILE_HEADER = "PK\x03\x04";
             exports.CENTRAL_FILE_HEADER = "PK\x01\x02";
@@ -2098,8 +2076,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             exports.ZIP64_CENTRAL_DIRECTORY_END = "PK\x06\x06";
             exports.DATA_DESCRIPTOR = "PK\x07\x08";
 
-        }, {}],
-        24: [function (require, module, exports) {
+        }, {}], 24: [function (require, module, exports) {
             'use strict';
 
             var GenericWorker = require('./GenericWorker');
@@ -2128,8 +2105,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             module.exports = ConvertWorker;
 
-        }, {"../utils": 32, "./GenericWorker": 28}],
-        25: [function (require, module, exports) {
+        }, {"../utils": 32, "./GenericWorker": 28}], 25: [function (require, module, exports) {
             'use strict';
 
             var GenericWorker = require('./GenericWorker');
@@ -2156,8 +2132,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             module.exports = Crc32Probe;
 
-        }, {"../crc32": 4, "../utils": 32, "./GenericWorker": 28}],
-        26: [function (require, module, exports) {
+        }, {"../crc32": 4, "../utils": 32, "./GenericWorker": 28}], 26: [function (require, module, exports) {
             'use strict';
 
             var utils = require('../utils');
@@ -2189,8 +2164,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             module.exports = DataLengthProbe;
 
 
-        }, {"../utils": 32, "./GenericWorker": 28}],
-        27: [function (require, module, exports) {
+        }, {"../utils": 32, "./GenericWorker": 28}], 27: [function (require, module, exports) {
             'use strict';
 
             var utils = require('../utils');
@@ -2308,8 +2282,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = DataWorker;
 
-        }, {"../utils": 32, "./GenericWorker": 28}],
-        28: [function (require, module, exports) {
+        }, {"../utils": 32, "./GenericWorker": 28}], 28: [function (require, module, exports) {
             'use strict';
 
             /**
@@ -2575,8 +2548,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = GenericWorker;
 
-        }, {}],
-        29: [function (require, module, exports) {
+        }, {}], 29: [function (require, module, exports) {
             'use strict';
 
             var utils = require('../utils');
@@ -2791,8 +2763,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = StreamHelper;
 
-        }, {"../base64": 1, "../external": 6, "../nodejs/NodejsStreamOutputAdapter": 13, "../support": 30, "../utils": 32, "./ConvertWorker": 24, "./GenericWorker": 28}],
-        30: [function (require, module, exports) {
+        }, {"../base64": 1, "../external": 6, "../nodejs/NodejsStreamOutputAdapter": 13, "../support": 30, "../utils": 32, "./ConvertWorker": 24, "./GenericWorker": 28}], 30: [function (require, module, exports) {
             'use strict';
 
             exports.base64 = true;
@@ -2832,8 +2803,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 exports.nodestream = false;
             }
 
-        }, {"readable-stream": 16}],
-        31: [function (require, module, exports) {
+        }, {"readable-stream": 16}], 31: [function (require, module, exports) {
             'use strict';
 
             var utils = require('./utils');
@@ -3130,8 +3100,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             exports.Utf8EncodeWorker = Utf8EncodeWorker;
 
-        }, {"./nodejsUtils": 14, "./stream/GenericWorker": 28, "./support": 30, "./utils": 32}],
-        32: [function (require, module, exports) {
+        }, {"./nodejsUtils": 14, "./stream/GenericWorker": 28, "./support": 30, "./utils": 32}], 32: [function (require, module, exports) {
             'use strict';
 
             var support = require('./support');
@@ -3611,8 +3580,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 });
             };
 
-        }, {"./base64": 1, "./external": 6, "./nodejsUtils": 14, "./support": 30, "core-js/library/fn/set-immediate": 36}],
-        33: [function (require, module, exports) {
+        }, {"./base64": 1, "./external": 6, "./nodejsUtils": 14, "./support": 30, "core-js/library/fn/set-immediate": 36}], 33: [function (require, module, exports) {
             'use strict';
             var readerFor = require('./reader/readerFor');
             var utils = require('./utils');
@@ -3878,8 +3846,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 // }}} end of ZipEntries
             module.exports = ZipEntries;
 
-        }, {"./reader/readerFor": 22, "./signature": 23, "./support": 30, "./utf8": 31, "./utils": 32, "./zipEntry": 34}],
-        34: [function (require, module, exports) {
+        }, {"./reader/readerFor": 22, "./signature": 23, "./support": 30, "./utf8": 31, "./utils": 32, "./zipEntry": 34}], 34: [function (require, module, exports) {
             'use strict';
             var readerFor = require('./reader/readerFor');
             var utils = require('./utils');
@@ -4174,8 +4141,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             };
             module.exports = ZipEntry;
 
-        }, {"./compressedObject": 2, "./compressions": 3, "./crc32": 4, "./reader/readerFor": 22, "./support": 30, "./utf8": 31, "./utils": 32}],
-        35: [function (require, module, exports) {
+        }, {"./compressedObject": 2, "./compressions": 3, "./crc32": 4, "./reader/readerFor": 22, "./support": 30, "./utf8": 31, "./utils": 32}], 35: [function (require, module, exports) {
             'use strict';
 
             var StreamHelper = require('./stream/StreamHelper');
@@ -4310,36 +4276,30 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             }
             module.exports = ZipObject;
 
-        }, {"./compressedObject": 2, "./stream/DataWorker": 27, "./stream/GenericWorker": 28, "./stream/StreamHelper": 29, "./utf8": 31}],
-        36: [function (require, module, exports) {
+        }, {"./compressedObject": 2, "./stream/DataWorker": 27, "./stream/GenericWorker": 28, "./stream/StreamHelper": 29, "./utf8": 31}], 36: [function (require, module, exports) {
             require('../modules/web.immediate');
             module.exports = require('../modules/_core').setImmediate;
-        }, {"../modules/_core": 40, "../modules/web.immediate": 56}],
-        37: [function (require, module, exports) {
+        }, {"../modules/_core": 40, "../modules/web.immediate": 56}], 37: [function (require, module, exports) {
             module.exports = function (it) {
                 if (typeof it != 'function') throw TypeError(it + ' is not a function!');
                 return it;
             };
-        }, {}],
-        38: [function (require, module, exports) {
+        }, {}], 38: [function (require, module, exports) {
             var isObject = require('./_is-object');
             module.exports = function (it) {
                 if (!isObject(it)) throw TypeError(it + ' is not an object!');
                 return it;
             };
-        }, {"./_is-object": 51}],
-        39: [function (require, module, exports) {
+        }, {"./_is-object": 51}], 39: [function (require, module, exports) {
             var toString = {}.toString;
 
             module.exports = function (it) {
                 return toString.call(it).slice(8, -1);
             };
-        }, {}],
-        40: [function (require, module, exports) {
+        }, {}], 40: [function (require, module, exports) {
             var core = module.exports = {version: '2.3.0'};
             if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
-        }, {}],
-        41: [function (require, module, exports) {
+        }, {}], 41: [function (require, module, exports) {
 // optional / simple context binding
             var aFunction = require('./_a-function');
             module.exports = function (fn, that, length) {
@@ -4363,8 +4323,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                     return fn.apply(that, arguments);
                 };
             };
-        }, {"./_a-function": 37}],
-        42: [function (require, module, exports) {
+        }, {"./_a-function": 37}], 42: [function (require, module, exports) {
 // Thank's IE8 for his funny defineProperty
             module.exports = !require('./_fails')(function () {
                 return Object.defineProperty({}, 'a', {
@@ -4373,8 +4332,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                     }
                 }).a != 7;
             });
-        }, {"./_fails": 45}],
-        43: [function (require, module, exports) {
+        }, {"./_fails": 45}], 43: [function (require, module, exports) {
             var isObject = require('./_is-object')
                 , document = require('./_global').document
                 // in old IE typeof document.createElement is 'object'
@@ -4382,8 +4340,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             module.exports = function (it) {
                 return is ? document.createElement(it) : {};
             };
-        }, {"./_global": 46, "./_is-object": 51}],
-        44: [function (require, module, exports) {
+        }, {"./_global": 46, "./_is-object": 51}], 44: [function (require, module, exports) {
             var global = require('./_global')
                 , core = require('./_core')
                 , ctx = require('./_ctx')
@@ -4450,8 +4407,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             $export.U = 64;  // safe
             $export.R = 128; // real proto method for `library`
             module.exports = $export;
-        }, {"./_core": 40, "./_ctx": 41, "./_global": 46, "./_hide": 47}],
-        45: [function (require, module, exports) {
+        }, {"./_core": 40, "./_ctx": 41, "./_global": 46, "./_hide": 47}], 45: [function (require, module, exports) {
             module.exports = function (exec) {
                 try {
                     return !!exec();
@@ -4459,14 +4415,12 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                     return true;
                 }
             };
-        }, {}],
-        46: [function (require, module, exports) {
+        }, {}], 46: [function (require, module, exports) {
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
             var global = module.exports = typeof window != 'undefined' && window.Math == Math
                 ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
             if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
-        }, {}],
-        47: [function (require, module, exports) {
+        }, {}], 47: [function (require, module, exports) {
             var dP = require('./_object-dp')
                 , createDesc = require('./_property-desc');
             module.exports = require('./_descriptors') ? function (object, key, value) {
@@ -4475,11 +4429,9 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 object[key] = value;
                 return object;
             };
-        }, {"./_descriptors": 42, "./_object-dp": 52, "./_property-desc": 53}],
-        48: [function (require, module, exports) {
+        }, {"./_descriptors": 42, "./_object-dp": 52, "./_property-desc": 53}], 48: [function (require, module, exports) {
             module.exports = require('./_global').document && document.documentElement;
-        }, {"./_global": 46}],
-        49: [function (require, module, exports) {
+        }, {"./_global": 46}], 49: [function (require, module, exports) {
             module.exports = !require('./_descriptors') && !require('./_fails')(function () {
                 return Object.defineProperty(require('./_dom-create')('div'), 'a', {
                     get: function () {
@@ -4487,8 +4439,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                     }
                 }).a != 7;
             });
-        }, {"./_descriptors": 42, "./_dom-create": 43, "./_fails": 45}],
-        50: [function (require, module, exports) {
+        }, {"./_descriptors": 42, "./_dom-create": 43, "./_fails": 45}], 50: [function (require, module, exports) {
 // fast apply, http://jsperf.lnkit.com/fast-apply/5
             module.exports = function (fn, args, that) {
                 var un = that === undefined;
@@ -4511,13 +4462,11 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 }
                 return fn.apply(that, args);
             };
-        }, {}],
-        51: [function (require, module, exports) {
+        }, {}], 51: [function (require, module, exports) {
             module.exports = function (it) {
                 return typeof it === 'object' ? it !== null : typeof it === 'function';
             };
-        }, {}],
-        52: [function (require, module, exports) {
+        }, {}], 52: [function (require, module, exports) {
             var anObject = require('./_an-object')
                 , IE8_DOM_DEFINE = require('./_ie8-dom-define')
                 , toPrimitive = require('./_to-primitive')
@@ -4535,8 +4484,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 if ('value' in Attributes) O[P] = Attributes.value;
                 return O;
             };
-        }, {"./_an-object": 38, "./_descriptors": 42, "./_ie8-dom-define": 49, "./_to-primitive": 55}],
-        53: [function (require, module, exports) {
+        }, {"./_an-object": 38, "./_descriptors": 42, "./_ie8-dom-define": 49, "./_to-primitive": 55}], 53: [function (require, module, exports) {
             module.exports = function (bitmap, value) {
                 return {
                     enumerable: !(bitmap & 1),
@@ -4545,8 +4493,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                     value: value
                 };
             };
-        }, {}],
-        54: [function (require, module, exports) {
+        }, {}], 54: [function (require, module, exports) {
             var ctx = require('./_ctx')
                 , invoke = require('./_invoke')
                 , html = require('./_html')
@@ -4622,8 +4569,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 set: setTask,
                 clear: clearTask
             };
-        }, {"./_cof": 39, "./_ctx": 41, "./_dom-create": 43, "./_global": 46, "./_html": 48, "./_invoke": 50}],
-        55: [function (require, module, exports) {
+        }, {"./_cof": 39, "./_ctx": 41, "./_dom-create": 43, "./_global": 46, "./_html": 48, "./_invoke": 50}], 55: [function (require, module, exports) {
 // 7.1.1 ToPrimitive(input [, PreferredType])
             var isObject = require('./_is-object');
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
@@ -4636,16 +4582,14 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
                 throw TypeError("Can't convert object to primitive value");
             };
-        }, {"./_is-object": 51}],
-        56: [function (require, module, exports) {
+        }, {"./_is-object": 51}], 56: [function (require, module, exports) {
             var $export = require('./_export')
                 , $task = require('./_task');
             $export($export.G + $export.B, {
                 setImmediate: $task.set,
                 clearImmediate: $task.clear
             });
-        }, {"./_export": 44, "./_task": 54}],
-        57: [function (require, module, exports) {
+        }, {"./_export": 44, "./_task": 54}], 57: [function (require, module, exports) {
             (function (global) {
                 'use strict';
                 var Mutation = global.MutationObserver || global.WebKitMutationObserver;
@@ -4720,8 +4664,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 }
 
             }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-        }, {}],
-        58: [function (require, module, exports) {
+        }, {}], 58: [function (require, module, exports) {
             'use strict';
             var immediate = require('immediate');
 
@@ -4987,8 +4930,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 }
             }
 
-        }, {"immediate": 57}],
-        59: [function (require, module, exports) {
+        }, {"immediate": 57}], 59: [function (require, module, exports) {
 // Top level file is just a mixin of submodules & constants
             'use strict';
 
@@ -5004,8 +4946,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = pako;
 
-        }, {"./lib/deflate": 60, "./lib/inflate": 61, "./lib/utils/common": 62, "./lib/zlib/constants": 65}],
-        60: [function (require, module, exports) {
+        }, {"./lib/deflate": 60, "./lib/inflate": 61, "./lib/utils/common": 62, "./lib/zlib/constants": 65}], 60: [function (require, module, exports) {
             'use strict';
 
 
@@ -5412,8 +5353,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             exports.deflateRaw = deflateRaw;
             exports.gzip = gzip;
 
-        }, {"./utils/common": 62, "./utils/strings": 63, "./zlib/deflate": 67, "./zlib/messages": 72, "./zlib/zstream": 74}],
-        61: [function (require, module, exports) {
+        }, {"./utils/common": 62, "./utils/strings": 63, "./zlib/deflate": 67, "./zlib/messages": 72, "./zlib/zstream": 74}], 61: [function (require, module, exports) {
             'use strict';
 
 
@@ -5792,8 +5732,8 @@ https://github.com/nodeca/pako/blob/master/LICENSE
              *   , output;
              *
              * try {
- *   output = pako.inflate(input);
- * } catch (err)
+             *   output = pako.inflate(input);
+             * } catch (err)
              *   console.log(err);
              * }
              * ```
@@ -5842,8 +5782,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
             exports.inflateRaw = inflateRaw;
             exports.ungzip = inflate;
 
-        }, {"./utils/common": 62, "./utils/strings": 63, "./zlib/constants": 65, "./zlib/gzheader": 68, "./zlib/inflate": 70, "./zlib/messages": 72, "./zlib/zstream": 74}],
-        62: [function (require, module, exports) {
+        }, {"./utils/common": 62, "./utils/strings": 63, "./zlib/constants": 65, "./zlib/gzheader": 68, "./zlib/inflate": 70, "./zlib/messages": 72, "./zlib/zstream": 74}], 62: [function (require, module, exports) {
             'use strict';
 
 
@@ -5953,8 +5892,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             exports.setTyped(TYPED_OK);
 
-        }, {}],
-        63: [function (require, module, exports) {
+        }, {}], 63: [function (require, module, exports) {
 // String encode/decode helpers
             'use strict';
 
@@ -6167,8 +6105,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 return (pos + _utf8len[buf[pos]] > max) ? pos : max;
             };
 
-        }, {"./common": 62}],
-        64: [function (require, module, exports) {
+        }, {"./common": 62}], 64: [function (require, module, exports) {
             'use strict';
 
 // Note: adler32 takes 12% for level 0 and 2% for level 6.
@@ -6221,8 +6158,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = adler32;
 
-        }, {}],
-        65: [function (require, module, exports) {
+        }, {}], 65: [function (require, module, exports) {
             'use strict';
 
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -6292,8 +6228,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
                 //Z_NULL:                 null // Use -1 or null inline, depending on var type
             };
 
-        }, {}],
-        66: [function (require, module, exports) {
+        }, {}], 66: [function (require, module, exports) {
             'use strict';
 
 // Note: we can't get significant speed boost here.
@@ -6354,8 +6289,7 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 
             module.exports = crc32;
 
-        }, {}],
-        67: [function (require, module, exports) {
+        }, {}], 67: [function (require, module, exports) {
             'use strict';
 
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -8330,8 +8264,7 @@ exports.deflatePrime = deflatePrime;
 exports.deflateTune = deflateTune;
 */
 
-        }, {"../utils/common": 62, "./adler32": 64, "./crc32": 66, "./messages": 72, "./trees": 73}],
-        68: [function (require, module, exports) {
+        }, {"../utils/common": 62, "./adler32": 64, "./crc32": 66, "./messages": 72, "./trees": 73}], 68: [function (require, module, exports) {
             'use strict';
 
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -8391,8 +8324,7 @@ exports.deflateTune = deflateTune;
 
             module.exports = GZheader;
 
-        }, {}],
-        69: [function (require, module, exports) {
+        }, {}], 69: [function (require, module, exports) {
             'use strict';
 
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -8770,8 +8702,7 @@ exports.deflateTune = deflateTune;
                 return;
             };
 
-        }, {}],
-        70: [function (require, module, exports) {
+        }, {}], 70: [function (require, module, exports) {
             'use strict';
 
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -10421,7 +10352,7 @@ exports.deflateTune = deflateTune;
                 //---
 
                 if (state.wsize || (_out !== strm.avail_out && state.mode < BAD &&
-                        (state.mode < CHECK || flush !== Z_FINISH))) {
+                    (state.mode < CHECK || flush !== Z_FINISH))) {
                     if (updatewindow(strm, strm.output, strm.next_out, _out - strm.avail_out)) {
                         state.mode = MEM;
                         return Z_MEM_ERROR;
@@ -10537,8 +10468,7 @@ exports.inflateSyncPoint = inflateSyncPoint;
 exports.inflateUndermine = inflateUndermine;
 */
 
-        }, {"../utils/common": 62, "./adler32": 64, "./crc32": 66, "./inffast": 69, "./inftrees": 71}],
-        71: [function (require, module, exports) {
+        }, {"../utils/common": 62, "./adler32": 64, "./crc32": 66, "./inffast": 69, "./inftrees": 71}], 71: [function (require, module, exports) {
             'use strict';
 
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -10922,8 +10852,7 @@ exports.inflateUndermine = inflateUndermine;
                 return 0;
             };
 
-        }, {"../utils/common": 62}],
-        72: [function (require, module, exports) {
+        }, {"../utils/common": 62}], 72: [function (require, module, exports) {
             'use strict';
 
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -10957,8 +10886,7 @@ exports.inflateUndermine = inflateUndermine;
                 '-6': 'incompatible version' /* Z_VERSION_ERROR (-6) */
             };
 
-        }, {}],
-        73: [function (require, module, exports) {
+        }, {}], 73: [function (require, module, exports) {
             'use strict';
 
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -12287,8 +12215,7 @@ exports.inflateUndermine = inflateUndermine;
             exports._tr_tally = _tr_tally;
             exports._tr_align = _tr_align;
 
-        }, {"../utils/common": 62}],
-        74: [function (require, module, exports) {
+        }, {"../utils/common": 62}], 74: [function (require, module, exports) {
             'use strict';
 
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler

@@ -91,7 +91,7 @@ Note: the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">
         //=========================
         (function () {
             {%
-                include_relative;
+                include_relative
                 get - binary - files - ajax.inc / jszip_utils.js %
             }
         })();
@@ -103,7 +103,7 @@ Note: the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">
             var elt = document.getElementById('fetch');
             if (typeof window.fetch === "function") {
                 {%
-                    include_relative;
+                    include_relative
                     get - binary - files - ajax.inc / fetch_api.js %
                 }
             } else {

@@ -46,9 +46,9 @@
     /* Set the defaults for DataTables initialisation */
     $.extend(true, DataTable.defaults, {
         dom:
-        '<"' + toolbar_prefix + 'tl ui-corner-tr"lfr>' +
-        't' +
-        '<"' + toolbar_prefix + 'bl ui-corner-br"ip>',
+            '<"' + toolbar_prefix + 'tl ui-corner-tr"lfr>' +
+            't' +
+            '<"' + toolbar_prefix + 'bl ui-corner-br"ip>',
         renderer: 'jqueryui'
     });
 
@@ -63,7 +63,7 @@
 
         /* Features */
         "sPaging": "dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi " +
-        "ui-buttonset-multi paging_", /* Note that the type is postfixed */
+            "ui-buttonset-multi paging_", /* Note that the type is postfixed */
 
         /* Sorting */
         "sSortAsc": "ui-state-default sorting_asc",

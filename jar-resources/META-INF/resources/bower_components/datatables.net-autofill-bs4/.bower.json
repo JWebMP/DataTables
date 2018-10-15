@@ -36,12 +36,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "2.3.1",
-  "_release": "2.3.1",
+  "version": "2.3.2",
+  "_release": "2.3.2",
   "_resolution": {
     "type": "version",
-    "tag": "2.3.1",
-    "commit": "d3977dc89e4d6eea504e2eac7a448322406594fc"
+    "tag": "2.3.2",
+    "commit": "d796abe5e3f3948e2a3c256cc944000db90262e9"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-AutoFill-Bootstrap4.git",
   "_target": "^2.2.2",

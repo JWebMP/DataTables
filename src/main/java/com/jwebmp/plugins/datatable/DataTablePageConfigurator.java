@@ -50,16 +50,16 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
 		pluginDependancyUniqueIDs = "jquery",
 		pluginCategories = "jquery,datatables, tables, ui, " + "web, framework",
 		pluginSubtitle = "DataTables is very simple to use as a jQuery plug-in with a huge range of customisable option",
-		pluginGitUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin",
+		pluginGitUrl = "https://github.com/GedMarc/JWebMP-DataTablesPlugin",
 		pluginSourceUrl = "https://datatables" + "" + ".net/download/index",
-		pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-DataTablesPlugin/wiki",
+		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-DataTablesPlugin/wiki",
 		pluginOriginalHomepage = "https://www.datatables.net/",
 		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/DataTablesPlugin.jar/download",
 		pluginIconUrl = "bower_components/datatables/icon.jpg",
 		pluginIconImageUrl = "bower_components/datatables/jqdatatables_logo.png",
 		pluginLastUpdatedDate = "2017/09/29")
 public class DataTablePageConfigurator
-		implements IPageConfigurator
+		implements IPageConfigurator<DataTablePageConfigurator>
 {
 	private static final String DataTablesOperatorString = "dataTables.";
 	private static final String DataTablesNameString = "DataTables";
@@ -68,7 +68,6 @@ public class DataTablePageConfigurator
 	private static final String CssString = "/css/";
 	private static final String JsMinString = ".min.js";
 	private static final String CssMinString = ".min.css";
-	private static final long serialVersionUID = 1L;
 	/**
 	 * If this configurator is enabled
 	 */
