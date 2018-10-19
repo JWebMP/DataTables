@@ -39,6 +39,7 @@ public enum DataTableReferencePool
 	PDFMakeVFSFonts(new JavascriptReference("PDFMakeVSFonts", 1.1010, "bower_components/pdfmake/build/vfs_fonts.min.js"), null, 19),
 
 	Buttons(new JavascriptReference("DTButtons", 1.0, "bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"), null, 18),
+
 	ButtonsColVis(new JavascriptReference("DYButtonsColVis", 1.0, "bower_components/datatables.net-buttons/js/buttons.colVis.min.js"),
 	              null, 21),
 	ButtonsHtml(new JavascriptReference("DTButtonsHtml5", 1.0, "bower_components/datatables.net-buttons/js/buttons.html5.min.js"), null,

@@ -23,9 +23,11 @@ import com.jwebmp.core.base.html.attributes.TableAttributes;
 import com.jwebmp.core.base.html.interfaces.children.TableHeaderGroupChildren;
 import com.jwebmp.core.base.html.interfaces.children.TableRowChildren;
 import com.jwebmp.core.plugins.ComponentInformation;
+import com.jwebmp.plugins.datatable.enumerations.DataTableButtons;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.options.DataTableColumnOptions;
 import com.jwebmp.plugins.datatable.options.DataTableOptions;
+import com.jwebmp.plugins.datatable.options.buttons.DataTablesButtonButtonsOptions;
 
 import javax.validation.constraints.NotNull;
 
@@ -157,6 +159,81 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	public DataTableOptions<?> getOptions()
 	{
 		return getFeature().getOptions();
+	}
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J addCopyButton(String className)
+	{
+		DataTablesButtonButtonsOptions dt = new DataTablesButtonButtonsOptions<>().setExtend(DataTableButtons.Copy);
+		if (className != null)
+		{
+			dt.setClassName(className);
+		}
+		getOptions()
+				.getButtons()
+				.add(dt);
+		return (J) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J addCsvButton(String className)
+	{
+		DataTablesButtonButtonsOptions dt = new DataTablesButtonButtonsOptions<>().setExtend(DataTableButtons.Csv);
+		if (className != null)
+		{
+			dt.setClassName(className);
+		}
+		getOptions()
+				.getButtons()
+				.add(dt);
+		return (J) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J addExcelButton(String className)
+	{
+		DataTablesButtonButtonsOptions dt = new DataTablesButtonButtonsOptions<>().setExtend(DataTableButtons.Excel);
+		if (className != null)
+		{
+			dt.setClassName(className);
+		}
+		getOptions()
+				.getButtons()
+				.add(dt);
+		return (J) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J addPdfButton(String className)
+	{
+		DataTablesButtonButtonsOptions dt = new DataTablesButtonButtonsOptions<>().setExtend(DataTableButtons.Pdf);
+		if (className != null)
+		{
+			dt.setClassName(className);
+		}
+		getOptions()
+				.getButtons()
+				.add(dt);
+		return (J) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J addPrintButton(String className)
+	{
+		DataTablesButtonButtonsOptions dt = new DataTablesButtonButtonsOptions<>().setExtend(DataTableButtons.Print);
+		if (className != null)
+		{
+			dt.setClassName(className);
+		}
+		getOptions()
+				.getButtons()
+				.add(dt);
+		return (J) this;
 	}
 
 	/**

@@ -27,7 +27,7 @@ class DataTablesDomOptionsTest
 	@Test
 	void fromString()
 	{
-		List<DataTablesDomOptions> rets = DataTablesDomOptions.fromString("Bfrtip");
+		List<IDataTableDomOptionType> rets = DataTablesDomOptions.getDefault();
 		System.out.println(rets);
 	}
 }

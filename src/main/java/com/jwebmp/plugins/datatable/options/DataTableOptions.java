@@ -23,6 +23,7 @@ import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
 import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesPagingTypes;
+import com.jwebmp.plugins.datatable.options.buttons.DataTablesButtonButtonsOptions;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -52,7 +53,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * the document object model layout
 	 */
 	@JsonIgnore
-	private List<DataTablesDomOptions> dom;
+	private List<IDataTableDomOptionType> dom;
 
 	/**
 	 * ajaxSince: DataTables 1.10
@@ -2454,8 +2455,12 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 */
 	@SuppressWarnings("all")
 	@NotNull
-	public List<DataTablesDomOptions> getDom()
+	public List<IDataTableDomOptionType> getDom()
 	{
+		if (dom == null)
+		{
+			dom = new ArrayList<>();
+		}
 		return dom;
 	}
 
@@ -2473,7 +2478,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 */
 	@SuppressWarnings("all")
 	@NotNull
-	public J setDom(List<DataTablesDomOptions> dom)
+	public J setDom(List<IDataTableDomOptionType> dom)
 	{
 		this.dom = dom;
 		return (J) this;
@@ -2596,6 +2601,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		if (buttons == null)
 		{
 			setButtons(new TreeSet<>());
+			DataTablePageConfigurator.configureButtons();
 		}
 		return buttons;
 	}
@@ -2627,7 +2633,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		{
 			DataTablePageConfigurator.getPlugins()
 			                         .add(DataTablePlugins.Buttons);
-
 			DataTablePageConfigurator.configureButtons();
 		}
 		return (J) this;

@@ -56,8 +56,8 @@
     /* Default class modification */
     $.extend(DataTable.ext.classes, {
         sWrapper: "dataTables_wrapper form-inline dt-bootstrap4",
-        sFilterInput: "form-control input-sm",
-        sLengthSelect: "form-control input-sm",
+        sFilterInput: "form-control",
+        sLengthSelect: "form-control",
         sProcessing: "dataTables_processing panel panel-default",
         sPageButton: "paginate_button page-item"
     });
