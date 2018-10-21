@@ -1,13 +1,12 @@
 package com.jwebmp.plugins.datatable.options;
 
+import com.jwebmp.plugins.datatable.options.responsive.DataTablesResponsiveBreakpoint;
 import org.junit.jupiter.api.Test;
 
-class DataTablesResponsiveBreakpointTest
-
+public class DataTablesResponsiveBreakpointTest
 {
-
 	@Test
-	void getWidth()
+	public void getWidth()
 	{
 		DataTablesResponsiveBreakpoint dt = new DataTablesResponsiveBreakpoint();
 		dt.setName("Namne");

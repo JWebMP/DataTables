@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jwebmp.plugins.datatable.options;
+package com.jwebmp.plugins.datatable.options.responsive;
 
 /**
  * inline - Use the first column to display the control element

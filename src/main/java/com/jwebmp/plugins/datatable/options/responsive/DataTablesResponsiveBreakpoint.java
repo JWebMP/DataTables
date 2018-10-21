@@ -1,4 +1,4 @@
-package com.jwebmp.plugins.datatable.options;
+package com.jwebmp.plugins.datatable.options.responsive;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 

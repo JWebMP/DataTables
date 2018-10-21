@@ -19,7 +19,7 @@ package com.jwebmp.plugins.datatable.options;
 
 import org.junit.jupiter.api.Test;
 
-class DataTablesScrollerOptionsTest
+public class DataTablesScrollerOptionsTest
 
 {
 

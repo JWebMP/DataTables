@@ -47,6 +47,11 @@ public enum DataTableReferencePool
 	ButtonsPrint(new JavascriptReference("DTButtonsPrint", 1.0, "bower_components/datatables.net-buttons/js/buttons.print.min.js"), null,
 	             22),
 
+	ColReorder(new JavascriptReference("DTColReorder", 1.0, "bower_components/datatables.net-colreorder/js/dataTables.colReorder.min.js"), null, 18),
+	FixedColumns(new JavascriptReference("DTFixedColumns", 1.0, "bower_components/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"), null, 18),
+	FixedHeaders(new JavascriptReference("DTFixedHeaders", 1.0, "bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"), null, 18),
+	KeyTable(new JavascriptReference("DTKeyTable", 1.0, "bower_components/datatables.net-keytable/js/dataTables.keyTable.min.js"), null, 18),
+
 	JSZip(new JavascriptReference("JSZip", 1.1010, "bower_components/jszip/dist/jszip.min.js"), null, 17),
 	;
 

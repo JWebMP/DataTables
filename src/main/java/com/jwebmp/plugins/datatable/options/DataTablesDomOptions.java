@@ -37,22 +37,120 @@ public enum DataTablesDomOptions
 	{
 		List<IDataTableDomOptionType> options = new ArrayList<>();
 		options.add(StartDiv);
-		options.add(TopRowSectionJustified);
-		options.add(FilteringIinputControl);
+		options.add(TopSection);
 		options.add(LengthChangeControl);
-		options.add(PaginationControl);
-		options.add(DataTablesDomOptions.InformationSummary);
+		options.add(FilteringIinputControl);
+
 		options.add(EndDiv);
+
 		options.add(StartDiv);
 		options.add(ClearSection);
 		options.add(EndDiv);
 
-		options.add(DataTablesDomOptions.ProcessingDisplayElement);
-		options.add(DataTablesDomOptions.DataTable);
+		options.add(ProcessingDisplayElement);
+		options.add(DataTable);
 
 		options.add(StartDiv);
-		options.add(DataTablesDomDivisionOptions.BottomRowJustifiedSection);
-		options.add(DataTablesDomOptions.InformationSummary);
+		options.add(BottomSection);
+		options.add(InformationSummary);
+		options.add(PaginationControl);
+
+		options.add(EndDiv);
+
+		return options;
+	}
+
+	@SuppressWarnings("Duplicates")
+	public static List<IDataTableDomOptionType> getDefaultTopAndBottom()
+	{
+		List<IDataTableDomOptionType> options = new ArrayList<>();
+		options.add(StartDiv);
+		options.add(TopSection);
+		options.add(FilteringIinputControl);
+		options.add(LengthChangeControl);
+		options.add(EndDiv);
+
+		options.add(StartDiv);
+		options.add(TopRowSectionJustified);
+		options.add(PaginationControl);
+		options.add(InformationSummary);
+		options.add(EndDiv);
+
+		options.add(StartDiv);
+		options.add(ClearSection);
+		options.add(EndDiv);
+
+		options.add(ProcessingDisplayElement);
+		options.add(DataTable);
+
+		options.add(StartDiv);
+		options.add(BottomSection);
+		options.add(PaginationControl);
+		options.add(InformationSummary);
+		options.add(EndDiv);
+
+		return options;
+	}
+
+	@SuppressWarnings("Duplicates")
+	public static List<IDataTableDomOptionType> getDefaultTopAndBottomBS()
+	{
+		List<IDataTableDomOptionType> options = new ArrayList<>();
+		options.add(StartDiv);
+		options.add(TopRowSection);
+		options.add(FilteringIinputControl);
+		options.add(LengthChangeControl);
+		options.add(EndDiv);
+
+		options.add(StartDiv);
+		options.add(TopRowSection);
+		options.add(PaginationControl);
+		options.add(InformationSummary);
+		options.add(EndDiv);
+
+		options.add(StartDiv);
+		options.add(ClearSection);
+		options.add(EndDiv);
+
+		options.add(ProcessingDisplayElement);
+		options.add(DataTable);
+
+		options.add(StartDiv);
+		options.add(BottomRowSection);
+		options.add(PaginationControl);
+		options.add(InformationSummary);
+		options.add(EndDiv);
+
+		return options;
+	}
+
+	@SuppressWarnings("Duplicates")
+	public static List<IDataTableDomOptionType> getDefaultTopAndBottomBSJustified()
+	{
+		List<IDataTableDomOptionType> options = new ArrayList<>();
+		options.add(StartDiv);
+		options.add(TopRowSectionJustified);
+		options.add(FilteringIinputControl);
+		options.add(LengthChangeControl);
+		options.add(EndDiv);
+
+		options.add(StartDiv);
+		options.add(TopRowSectionJustified);
+		options.add(PaginationControl);
+		options.add(InformationSummary);
+		options.add(EndDiv);
+
+		options.add(StartDiv);
+		options.add(ClearSection);
+		options.add(EndDiv);
+
+		options.add(ProcessingDisplayElement);
+		options.add(DataTable);
+
+		options.add(StartDiv);
+		options.add(BottomRowJustifiedSection);
+		options.add(PaginationControl);
+		options.add(InformationSummary);
 		options.add(EndDiv);
 
 		return options;

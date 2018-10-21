@@ -23,7 +23,7 @@ import com.jwebmp.plugins.datatable.DataTable;
 import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
 import org.junit.jupiter.api.Test;
 
-class DataTablePluginsTest
+public class DataTablePluginsTest
 {
 
 	@Test
@@ -37,8 +37,75 @@ class DataTablePluginsTest
 
 		p.getBody()
 		 .add(dt);
+
+
+		dt.addCopyButton("btn ")
+		  .addCsvButton("btn ")
+		  .addExcelButton("btn ")
+		  .addPdfButton("btn ")
+		  .addPrintButton("btn ");
+
+
 		System.out.println(p.toString(0));
 
+	}
+
+	@Test
+	public void testColReorderPlugins()
+	{
+		Page<?> p = new Page<>();
+		DataTable dt = new DataTable("id", new TableHeaderGroup());
+
+		dt.getOptions()
+		  .getColReorder();
+
+		p.getBody()
+		 .add(dt);
+		System.out.println(p.toString(0));
+
+	}
+
+	@Test
+	public void testFixedHeaderPlugins()
+	{
+		Page<?> p = new Page<>();
+		DataTable dt = new DataTable("id", new TableHeaderGroup());
+
+		dt.getOptions()
+		  .getFixedHeader();
+
+		p.getBody()
+		 .add(dt);
+		System.out.println(p.toString(0));
+	}
+
+
+	@Test
+	public void testFixedColumnsPlugins()
+	{
+		Page<?> p = new Page<>();
+		DataTable dt = new DataTable("id", new TableHeaderGroup());
+
+		dt.getOptions()
+		  .getFixedColumns();
+
+		p.getBody()
+		 .add(dt);
+		System.out.println(p.toString(0));
+	}
+
+	@Test
+	public void testKeyTablePlugins()
+	{
+		Page<?> p = new Page<>();
+		DataTable dt = new DataTable("id", new TableHeaderGroup());
+
+		dt.getOptions()
+		  .getKeys();
+
+		p.getBody()
+		 .add(dt);
+		System.out.println(p.toString(0));
 	}
 
 	@Test

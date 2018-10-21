@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jwebmp.plugins.datatable.options;
+package com.jwebmp.plugins.datatable.options.responsive;
 
 /**
  * responsive.details.rendererSince: Responsive Responsive 1.0.0

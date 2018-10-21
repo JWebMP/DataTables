@@ -1,4 +1,4 @@
-package com.jwebmp.plugins.datatable.options;
+package com.jwebmp.plugins.datatable.options.responsive;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
@@ -93,6 +93,7 @@ public class DataTablesResponsiveDetailOptions<J extends DataTablesResponsiveDet
 	 * Single option: tableClass - the class name to apply to the created table.
 	 */
 	private DataTablesResponsiveDetailRenderer renderer;
+
 
 	/**
 	 * responsive.detailsSince: Responsive Responsive 1.0.0

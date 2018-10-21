@@ -21,11 +21,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-class DataTablesDomOptionsTest
+public class DataTablesDomOptionsTest
 {
 
 	@Test
-	void fromString()
+	public void fromString()
 	{
 		List<IDataTableDomOptionType> rets = DataTablesDomOptions.getDefault();
 		System.out.println(rets);

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jwebmp.plugins.datatable.options;
+package com.jwebmp.plugins.datatable.options.buttons;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 

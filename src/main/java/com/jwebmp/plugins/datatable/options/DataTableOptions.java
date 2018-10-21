@@ -20,16 +20,19 @@ import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.htmlbuilder.css.measurement.MeasurementCSSImpl;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
+import com.jwebmp.plugins.datatable.DataTableReferencePool;
 import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesPagingTypes;
 import com.jwebmp.plugins.datatable.options.buttons.DataTablesButtonButtonsOptions;
+import com.jwebmp.plugins.datatable.options.responsive.DataTablesResponsiveOptions;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.*;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
+import static com.jwebmp.plugins.datatable.enumerations.DataTablePlugins.*;
 
 /**
  * The Options for the Data Table
@@ -2679,6 +2682,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		{
 			DataTablePageConfigurator.getPlugins()
 			                         .add(DataTablePlugins.ColReorder);
+
+			DataTablePageConfigurator.getExtensions()
+			                         .add(DataTableReferencePool.ColReorder.getJavaScriptReference());
 		}
 		return (J) this;
 	}
@@ -2753,6 +2759,8 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		{
 			DataTablePageConfigurator.getPlugins()
 			                         .add(DataTablePlugins.FixedColumns);
+			DataTablePageConfigurator.getExtensions()
+			                         .add(DataTableReferencePool.FixedColumns.getJavaScriptReference());
 		}
 		return (J) this;
 	}
@@ -2808,7 +2816,10 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		if (fixedHeader != null)
 		{
 			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.FixedHeader);
+			                         .add(FixedHeader);
+			DataTablePageConfigurator.getExtensions()
+			                         .add(DataTableReferencePool.FixedHeaders.getJavaScriptReference());
+
 		}
 		return (J) this;
 	}
@@ -2873,6 +2884,8 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		{
 			DataTablePageConfigurator.getPlugins()
 			                         .add(DataTablePlugins.KeyTable);
+			DataTablePageConfigurator.getExtensions()
+			                         .add(DataTableReferencePool.KeyTable.getJavaScriptReference());
 		}
 		return (J) this;
 	}
@@ -2928,6 +2941,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		{
 			DataTablePageConfigurator.getPlugins()
 			                         .add(DataTablePlugins.Responsive);
+
+			DataTablePageConfigurator.getExtensions()
+			                         .add(DataTableReferencePool.KeyTable.getJavaScriptReference());
 		}
 		return (J) this;
 	}

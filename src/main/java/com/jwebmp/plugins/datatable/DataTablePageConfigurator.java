@@ -168,6 +168,20 @@ public class DataTablePageConfigurator
 		return DataTablePageConfigurator.extensions;
 	}
 
+	/**
+	 * Returns the sortables to apply
+	 *
+	 * @return
+	 */
+	public static Set<DataTablesSortables> getSortables()
+	{
+		if (DataTablePageConfigurator.sortables == null)
+		{
+			DataTablePageConfigurator.sortables = new LinkedHashSet<>();
+		}
+		return DataTablePageConfigurator.sortables;
+	}
+
 	@NotNull
 	@Override
 	public Page configure(Page page)
@@ -232,7 +246,7 @@ public class DataTablePageConfigurator
 	 */
 	private void configurePlugins(Page page, DataTableThemes theme)
 	{
-		int sortOrder = 16;
+		int sortOrder = 160;
 		for (DataTablePlugins plugin : DataTablePageConfigurator.getPlugins())
 		{
 			String jsPath = null;
@@ -305,10 +319,6 @@ public class DataTablePageConfigurator
 				page.getBody()
 				    .addCssReference(new CSSReference(DataTablePageConfigurator.DataTablesNameString + theme.getData() + plugin.getFilename(), 1.0, cssPath.replace("..", ".")));
 			}
-
-			DataTablePageConfigurator.getSortables()
-			                         .forEach(a -> page.getBody()
-			                                           .addJavaScriptReference(a.getReference()));
 		}
 	}
 
@@ -324,19 +334,5 @@ public class DataTablePageConfigurator
 			DataTablePageConfigurator.plugins = new LinkedHashSet<>();
 		}
 		return DataTablePageConfigurator.plugins;
-	}
-
-	/**
-	 * Returns the sortables to apply
-	 *
-	 * @return
-	 */
-	public static Set<DataTablesSortables> getSortables()
-	{
-		if (DataTablePageConfigurator.sortables == null)
-		{
-			DataTablePageConfigurator.sortables = new LinkedHashSet<>();
-		}
-		return DataTablePageConfigurator.sortables;
 	}
 }

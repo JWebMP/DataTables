@@ -6,6 +6,8 @@ import com.jwebmp.plugins.datatable.DataTablesSiteBinder;
 module com.jwebmp.plugins.datatable {
 	exports com.jwebmp.plugins.datatable;
 	exports com.jwebmp.plugins.datatable.options;
+	exports com.jwebmp.plugins.datatable.options.buttons;
+	exports com.jwebmp.plugins.datatable.options.responsive;
 	exports com.jwebmp.plugins.datatable.enumerations;
 	exports com.jwebmp.plugins.datatable.events;
 	exports com.jwebmp.plugins.datatable.search;
@@ -32,8 +34,6 @@ module com.jwebmp.plugins.datatable {
 	opens com.jwebmp.plugins.datatable.events to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
 	opens com.jwebmp.plugins.datatable.options to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
 	opens com.jwebmp.plugins.datatable.options.buttons to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
+	opens com.jwebmp.plugins.datatable.options.responsive to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
 	opens com.jwebmp.plugins.datatable.search to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
-
-	exports com.jwebmp.plugins.datatable.options.buttons;
-
 }

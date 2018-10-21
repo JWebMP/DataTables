@@ -23,9 +23,9 @@ public enum DataTablePlugins
 
 	Buttons("buttons", true, true),
 
-	ColReorder("colreorder"),
-	FixedColumns("fixedcolumns"),
-	FixedHeader("fixedheader"),
+	ColReorder("colReorder", true, true),
+	FixedColumns("fixedColumns", true, true),
+	FixedHeader("fixedHeader", true, true),
 	KeyTable("keyTable"),
 	Responsive("responsive", false, true),
 	RowGroup("rowGroup"),
