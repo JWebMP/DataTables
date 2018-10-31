@@ -34,7 +34,7 @@ import javax.validation.constraints.NotNull;
 public class DataTablesButtonsDomOptions<J extends DataTablesButtonsDomOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * buttons.dom.containerSince: Buttons 1.0.0
 	 * DOM configuration of the Buttons container element. Please note - this property requires the Buttons extension for DataTables.

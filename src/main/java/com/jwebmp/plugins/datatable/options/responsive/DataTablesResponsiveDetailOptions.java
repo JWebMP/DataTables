@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
 public class DataTablesResponsiveDetailOptions<J extends DataTablesResponsiveDetailOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * responsive.details.typeSince: Responsive Responsive 1.0.0

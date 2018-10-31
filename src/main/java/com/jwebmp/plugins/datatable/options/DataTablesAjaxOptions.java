@@ -53,7 +53,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
 public class DataTablesAjaxOptions<J extends DataTablesAjaxOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The url to hit for the call
 	 */

@@ -41,7 +41,7 @@ import java.util.TreeSet;
 public class DataTablesResponsiveOptions<J extends DataTablesResponsiveOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * responsive.breakpointsSince: Responsive Responsive 1.0.0
 	 * Set the breakpoints for a Responsive instance. Please note - this property requires the Responsive extension for DataTables.

@@ -39,7 +39,7 @@ import javax.validation.constraints.NotNull;
 public class DataTableFixedHeaderOptions<J extends DataTableFixedHeaderOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * fixedHeader.footerSince: FixedHeader 3.0.0
 	 * Enable / disable fixed footer. Please note - this property requires the FixedHeader extension for DataTables.

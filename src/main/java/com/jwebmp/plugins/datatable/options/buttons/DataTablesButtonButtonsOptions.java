@@ -46,7 +46,7 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 		extends JavaScriptPart<J>
 		implements Comparable<DataTablesButtonButtonsOptions<J>>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * buttons.buttons.attrSince: Buttons 1.5.0

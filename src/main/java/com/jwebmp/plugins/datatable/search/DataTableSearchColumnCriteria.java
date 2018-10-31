@@ -13,7 +13,7 @@ public class DataTableSearchColumnCriteria<J extends DataTableSearchColumnCriter
 		extends JavaScriptPart<J>
 		implements Comparable<DataTableSearchColumnCriteria<J>>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	private Integer columnNumber;
 	/**

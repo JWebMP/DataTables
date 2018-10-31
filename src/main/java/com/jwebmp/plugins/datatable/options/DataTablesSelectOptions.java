@@ -24,7 +24,7 @@ import javax.validation.constraints.NotNull;
 public class DataTablesSelectOptions<J extends DataTablesSelectOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * select.blurableSince: Select 1.0.0
 	 * Indicate if the selected items will be removed when clicking outside of the table. Please note - this property requires the Select

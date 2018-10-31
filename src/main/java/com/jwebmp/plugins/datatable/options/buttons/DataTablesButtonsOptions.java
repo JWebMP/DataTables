@@ -50,7 +50,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
 public class DataTablesButtonsOptions<J extends DataTablesButtonsOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * buttons.nameSince: Buttons 1.0.0

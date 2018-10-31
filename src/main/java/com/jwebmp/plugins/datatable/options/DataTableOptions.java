@@ -50,7 +50,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		extends JavaScriptPart<J>
 {
 
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * the document object model layout

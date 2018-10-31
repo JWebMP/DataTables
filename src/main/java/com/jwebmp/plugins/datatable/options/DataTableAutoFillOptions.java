@@ -23,7 +23,7 @@ public class DataTableAutoFillOptions<J extends DataTableAutoFillOptions<J>>
 		extends JavaScriptPart<J>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Description
 	 * When an auto fill is completed by the end user, AutoFill will determine how many data fill plug-ins can be used for the data that

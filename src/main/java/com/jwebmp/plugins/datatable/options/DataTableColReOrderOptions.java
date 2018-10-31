@@ -18,7 +18,7 @@ import java.util.Set;
 public class DataTableColReOrderOptions<J extends DataTableColReOrderOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * colReorder.fixedColumnsLeft

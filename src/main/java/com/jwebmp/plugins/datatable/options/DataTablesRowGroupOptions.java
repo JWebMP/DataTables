@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
 public class DataTablesRowGroupOptions<J extends DataTablesRowGroupOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * rowGroup.startClassNameSince: RowGroup RowGroup 1.0.0
 	 * Set the class name to be used for the grouping start rows. Please note - this property requires the RowGroup extension for

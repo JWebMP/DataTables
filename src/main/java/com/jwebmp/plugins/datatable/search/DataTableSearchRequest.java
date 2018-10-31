@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 public class DataTableSearchRequest<J extends DataTableSearchRequest<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	private static final Pattern columnPattern = Pattern.compile("columns\\[(\\d)\\]\\[(.*)\\].*");
 	private static final Pattern orderPattern = Pattern.compile("order\\[(\\d)\\]\\[(.*)\\].*");

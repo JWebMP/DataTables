@@ -38,7 +38,7 @@ import java.util.Set;
 public class DataTableKeyTableOptions<J extends DataTableKeyTableOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * keys.blurableSince: KeyTable KeyTable 2.0.0

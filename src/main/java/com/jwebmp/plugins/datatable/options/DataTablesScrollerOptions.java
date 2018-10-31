@@ -30,7 +30,7 @@ import javax.validation.constraints.NotNull;
 public class DataTablesScrollerOptions<J extends DataTablesScrollerOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * scroller.boundaryScale

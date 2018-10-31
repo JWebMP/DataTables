@@ -37,7 +37,7 @@ public class DataTableFeature
 		extends Feature<GlobalFeatures, DataTableOptions, DataTableFeature>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	private static final String DataTableOpeningString = "DataTable(";
 	private DataTableOptions options;
 

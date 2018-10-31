@@ -39,7 +39,7 @@ import javax.validation.constraints.NotNull;
 public class DataTablesRowReorder<J extends DataTablesRowReorder<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * rowReorder.dataSrc

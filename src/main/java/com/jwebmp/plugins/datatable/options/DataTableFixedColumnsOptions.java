@@ -48,7 +48,7 @@ import javax.validation.constraints.NotNull;
 public class DataTableFixedColumnsOptions<J extends DataTableFixedColumnsOptions<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * none - will result in no height matching being applied by FixedColumns (height matching could be forced by CSS in this case)

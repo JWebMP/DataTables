@@ -33,7 +33,7 @@ public class DataTablesResponsiveBreakpoint<J extends DataTablesResponsiveBreakp
 		extends JavaScriptPart<J>
 		implements Comparable
 {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * name - the breakpoint name allowing class targeting. This can be a single word, or append \-[a-z] to provide sub-breakpoints as the

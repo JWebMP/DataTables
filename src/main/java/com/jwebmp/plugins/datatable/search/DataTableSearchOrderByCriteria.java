@@ -30,7 +30,7 @@ import javax.validation.constraints.NotNull;
 public class DataTableSearchOrderByCriteria<J extends DataTableSearchOrderByCriteria<J>>
 		extends JavaScriptPart<J>
 {
-	private static final long serialVersionUID = 1L;
+
 	private Integer columnNumber;
 	private DataTableSorts dir;
 

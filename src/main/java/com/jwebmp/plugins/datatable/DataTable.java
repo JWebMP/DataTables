@@ -53,7 +53,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 		implements IDataTable<T, J>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The associated feature for the data table
 	 */
