@@ -1,5 +1,6 @@
 package com.jwebmp.plugins.datatable;
 
+import com.google.inject.Key;
 import com.jwebmp.guicedservlets.services.GuiceSiteInjectorModule;
 import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 import com.jwebmp.logger.LogFactory;
@@ -15,8 +16,7 @@ public class DataTablesSiteBinder
 	public void onBind(GuiceSiteInjectorModule module)
 	{
 		DataTablesSiteBinder.log.info("Serving Data Tables Data at /jwdatatables");
-		module.serveRegex$("/jwdatatables")
-		      .with(DataTablesServlet.class);
-
+		module.serve$("/jwdatatables")
+		      .with(Key.get(DataTablesServlet.class));
 	}
 }
