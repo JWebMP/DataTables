@@ -17,12 +17,10 @@
 package com.jwebmp.plugins.datatable;
 
 import com.jwebmp.core.Page;
-import com.jwebmp.core.base.angular.AngularPageConfigurator;
 import com.jwebmp.core.base.references.CSSReference;
 import com.jwebmp.core.base.references.JavascriptReference;
 import com.jwebmp.core.base.servlets.enumarations.RequirementsPriority;
 import com.jwebmp.core.plugins.PluginInformation;
-import com.jwebmp.core.plugins.jquery.JQueryPageConfigurator;
 import com.jwebmp.core.services.IPageConfigurator;
 import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
@@ -188,8 +186,6 @@ public class DataTablePageConfigurator
 	{
 		if (!page.isConfigured())
 		{
-			JQueryPageConfigurator.setRequired(true);
-			AngularPageConfigurator.setRequired(true);
 			page.getBody()
 			    .addJavaScriptReference(DataTableReferencePool.JQueryDataTables.getJavaScriptReference());
 
@@ -230,12 +226,6 @@ public class DataTablePageConfigurator
 
 		}
 		return page;
-	}
-
-	@Override
-	public boolean enabled()
-	{
-		return DataTablePageConfigurator.enabled;
 	}
 
 	/**
@@ -334,5 +324,11 @@ public class DataTablePageConfigurator
 			DataTablePageConfigurator.plugins = new LinkedHashSet<>();
 		}
 		return DataTablePageConfigurator.plugins;
+	}
+
+	@Override
+	public boolean enabled()
+	{
+		return DataTablePageConfigurator.enabled;
 	}
 }
