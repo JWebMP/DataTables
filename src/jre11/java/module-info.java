@@ -1,10 +1,3 @@
-import com.jwebmp.core.services.IPageConfigurator;
-import com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions;
-import com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions;
-import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
-import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
-import com.jwebmp.plugins.datatable.DataTablesSiteBinder;
-
 module com.jwebmp.plugins.datatable {
 	exports com.jwebmp.plugins.datatable;
 	exports com.jwebmp.plugins.datatable.options;
@@ -29,11 +22,11 @@ module com.jwebmp.plugins.datatable {
 	requires com.jwebmp.guicedservlets;
 	requires org.apache.commons.lang3;
 
-	provides IPageConfigurator with DataTablePageConfigurator;
-	provides IGuiceSiteBinder with DataTablesSiteBinder;
+	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.datatable.DataTablePageConfigurator;
+	provides com.jwebmp.guicedservlets.services.IGuiceSiteBinder with com.jwebmp.plugins.datatable.DataTablesSiteBinder;
 
-	provides IGuiceScanModuleExclusions with com.jwebmp.plugins.datatable.implementations.DataTablesExclusionsModule;
-	provides IGuiceScanJarExclusions with com.jwebmp.plugins.datatable.implementations.DataTablesExclusionsModule;
+	provides com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions with com.jwebmp.plugins.datatable.implementations.DataTablesExclusionsModule;
+	provides com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions with com.jwebmp.plugins.datatable.implementations.DataTablesExclusionsModule;
 
 	opens com.jwebmp.plugins.datatable to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
 	opens com.jwebmp.plugins.datatable.enumerations to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
