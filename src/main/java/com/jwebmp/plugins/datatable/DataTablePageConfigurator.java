@@ -184,7 +184,7 @@ public class DataTablePageConfigurator
 	@Override
 	public Page configure(Page page)
 	{
-		if (!page.isConfigured())
+		if (!page.isConfigured() && enabled())
 		{
 			page.getBody()
 			    .addJavaScriptReference(DataTableReferencePool.JQueryDataTables.getJavaScriptReference());
@@ -226,6 +226,12 @@ public class DataTablePageConfigurator
 
 		}
 		return page;
+	}
+
+	@Override
+	public boolean enabled()
+	{
+		return DataTablePageConfigurator.enabled;
 	}
 
 	/**
@@ -324,11 +330,5 @@ public class DataTablePageConfigurator
 			DataTablePageConfigurator.plugins = new LinkedHashSet<>();
 		}
 		return DataTablePageConfigurator.plugins;
-	}
-
-	@Override
-	public boolean enabled()
-	{
-		return DataTablePageConfigurator.enabled;
 	}
 }
