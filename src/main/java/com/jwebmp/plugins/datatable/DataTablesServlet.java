@@ -27,6 +27,8 @@ import com.jwebmp.plugins.datatable.search.DataTableSearchRequest;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -42,12 +44,13 @@ public class DataTablesServlet
 	                                            .getLogger("DataTablesServlet");
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void perform()
 	{
 		HttpServletRequest request = GuiceContext.get(GuicedServletKeys.getHttpServletRequestKey());
 		StringBuilder output = new StringBuilder();
-		Set<Class<? extends DataTableDataFetchEvent>> allEvents = GuiceContext.reflect()
-		                                                                      .getSubTypesOf(DataTableDataFetchEvent.class);
+		Set<Class<? extends DataTableDataFetchEvent>> allEvents = new HashSet(GuiceContext.instance().getScanResult()
+		                                                                                                                   .getSubclasses(DataTableDataFetchEvent.class.getCanonicalName()).loadClasses());
 		Map<String, String[]> params = request.getParameterMap();
 		String className = params.get("c")[0];
 		allEvents.removeIf(a -> !a.getCanonicalName()
@@ -65,7 +68,7 @@ public class DataTablesServlet
 			{
 				Class<? extends DataTableDataFetchEvent> event = allEvents.iterator()
 				                                                          .next();
-				DataTableDataFetchEvent dtd = GuiceContext.getInstance(event);
+				DataTableDataFetchEvent dtd = GuiceContext.get(event);
 				DataTableData d = dtd.returnData(searchRequest);
 				output.append(d.toString());
 				writeOutput(output, HTML_HEADER_JSON, UTF8_CHARSET);
