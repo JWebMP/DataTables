@@ -35,12 +35,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "1.2.7",
-  "_release": "1.2.7",
+  "version": "1.3.0",
+  "_release": "1.3.0",
   "_resolution": {
     "type": "version",
-    "tag": "1.2.7",
-    "commit": "095e979530b5f4ed06f9a321ece6e7d081f0fd96"
+    "tag": "1.3.0",
+    "commit": "4713b72a273b805ce9e3ac02c78e89bf86133102"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Select-jQueryUI.git",
   "_target": "^1.2.3",

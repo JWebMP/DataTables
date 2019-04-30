@@ -36,12 +36,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "2.3.2",
-  "_release": "2.3.2",
+  "version": "2.3.3",
+  "_release": "2.3.3",
   "_resolution": {
     "type": "version",
-    "tag": "2.3.2",
-    "commit": "3781556c5e7cb8e546bbd2fb75de08799c3b1590"
+    "tag": "2.3.3",
+    "commit": "1902871be91468be9f73868ff33f895de2acb932"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-AutoFill-jQueryUI.git",
   "_target": "^2.2.2",
