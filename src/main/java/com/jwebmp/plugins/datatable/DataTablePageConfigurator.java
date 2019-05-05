@@ -219,11 +219,9 @@ public class DataTablePageConfigurator
 
 				configurePlugins(page, theme);
 			}
-
 			DataTablePageConfigurator.getExtensions()
 			                         .forEach(a -> page.getBody()
 			                                           .addJavaScriptReference(a));
-
 		}
 		return page;
 	}
@@ -265,7 +263,6 @@ public class DataTablePageConfigurator
 				                                                                                                                                       DataTablePageConfigurator.JsMinString
 				                                                                                                                                     : STRING_EMPTY);
 			}
-
 			if (theme == DataTableThemes.DataTables)
 			{
 				page.getBody()

@@ -27,7 +27,7 @@ public enum DataTablePlugins
 	FixedColumns("fixedColumns", true, true),
 	FixedHeader("fixedHeader", true, true),
 	KeyTable("keyTable"),
-	Responsive("responsive", false, true),
+	Responsive("responsive", true, true),
 	RowGroup("rowGroup"),
 	RowReorder("rowReorder"),
 	Scroller("scroller"),
