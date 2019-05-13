@@ -16,6 +16,7 @@
  */
 package com.jwebmp.plugins.datatable;
 
+import com.google.common.base.Strings;
 import com.jwebmp.core.Page;
 import com.jwebmp.core.base.references.CSSReference;
 import com.jwebmp.core.base.references.JavascriptReference;
@@ -31,6 +32,7 @@ import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import static com.jwebmp.core.base.servlets.enumarations.RequirementsPriority.*;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
@@ -243,6 +245,11 @@ public class DataTablePageConfigurator
 		int sortOrder = 160;
 		for (DataTablePlugins plugin : DataTablePageConfigurator.getPlugins())
 		{
+			if(!Strings.isNullOrEmpty(plugin.getPluginRootJSPath()))
+			{
+				page.addJavaScriptReference(new JavascriptReference("dtplugin" + plugin.name(), 1.0, plugin.getPluginRootJSPath(),Third));
+			}
+
 			String jsPath = null;
 			if (theme == DataTableThemes.DataTables)
 			{

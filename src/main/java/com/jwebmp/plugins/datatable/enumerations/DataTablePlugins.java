@@ -19,25 +19,26 @@ package com.jwebmp.plugins.datatable.enumerations;
 
 public enum DataTablePlugins
 {
-	AutoFill("autoFill", true, true),
+	AutoFill("autoFill", true, true, "bower_components/datatables.net-autofill/js/dataTables.autoFill.min.js"),
 
-	Buttons("buttons", true, true),
+	Buttons("buttons", true, true,"bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"),
 
-	ColReorder("colReorder", true, true),
-	FixedColumns("fixedColumns", true, true),
-	FixedHeader("fixedHeader", true, true),
-	KeyTable("keyTable"),
-	Responsive("responsive", true, true),
-	RowGroup("rowGroup"),
-	RowReorder("rowReorder"),
-	Scroller("scroller"),
-	Select("select"),
-	Sortable("sortable"),
+	ColReorder("colReorder", true, true,"bower_components/datatables.net-colreorder/js/dataTables.colReorder.min.js"),
+	FixedColumns("fixedColumns", true, true,"bower_components/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"),
+	FixedHeader("fixedHeader", true, true,"bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"),
+	KeyTable("keyTable",true,true,"bower_components/datatables.net-keytable/js/dataTables.keyTable.min.js"),
+	Responsive("responsive", true, true, "bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"),
+	RowGroup("rowGroup",true,true,"bower_components/datatables.net-rowgroup/js/dataTables.rowGroup.min.js"),
+	RowReorder("rowReorder",true,true,"bower_components/datatables.net-rowreorder/js/dataTables.rowReorder.min.js"),
+	Scroller("scroller",true,true,"bower_components/datatables.net-scroller/js/dataTables.scroller.min.js"),
+	Select("select",true,true,"bower_components/datatables.net-select/js/dataTables.select.min.js"),
+	Sortable("sortable",false,false,null),
 	;
 
 	private String filename;
 	private boolean isPlugin;
 	private boolean isCss;
+	private String pluginRootJSPath;
 
 	DataTablePlugins(String filename)
 	{
@@ -51,6 +52,12 @@ public enum DataTablePlugins
 
 	DataTablePlugins(String filename, boolean isPlugin, boolean isCss)
 	{
+		this(filename, isPlugin, isCss, null);
+	}
+
+	DataTablePlugins(String filename, boolean isPlugin, boolean isCss, String pluginRootJSPath)
+	{
+		this.pluginRootJSPath = pluginRootJSPath;
 		this.filename = filename;
 		this.isPlugin = isPlugin;
 		this.isCss = isCss;
@@ -71,4 +78,8 @@ public enum DataTablePlugins
 		return isCss;
 	}
 
+	public String getPluginRootJSPath()
+	{
+		return pluginRootJSPath;
+	}
 }

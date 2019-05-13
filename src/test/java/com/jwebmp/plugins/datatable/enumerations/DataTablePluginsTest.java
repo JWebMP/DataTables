@@ -66,6 +66,21 @@ public class DataTablePluginsTest
 	}
 
 	@Test
+	public void testResponsiveTests()
+	{
+		Page<?> p = new Page<>();
+		DataTable dt = new DataTable("id", new TableHeaderGroup());
+
+		DataTablePageConfigurator.getPlugins().add(DataTablePlugins.Responsive);
+
+		p.getBody()
+		 .add(dt);
+		System.out.println(p.toString(0));
+
+	}
+
+
+	@Test
 	public void testFixedHeaderPlugins()
 	{
 		Page<?> p = new Page<>();
