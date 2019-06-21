@@ -23,11 +23,26 @@ public enum DataTableButtons
 	Excel,
 	Print,
 	Csv,
-	Pdf;
+	Pdf,
+	Colvis,
+	ColumnsToggle("columnsToggle");
+
+	private String data;
+
+	DataTableButtons()
+	{
+	}
+
+	DataTableButtons(String data)
+	{
+		this.data = data;
+	}
 
 	@Override
 	public String toString()
 	{
+		if(data == null)
 		return name().toLowerCase();
+		else return data;
 	}
 }

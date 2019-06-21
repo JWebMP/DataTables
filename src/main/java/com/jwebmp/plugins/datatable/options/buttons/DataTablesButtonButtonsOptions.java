@@ -46,8 +46,6 @@ public class DataTablesButtonButtonsOptions<J extends DataTablesButtonButtonsOpt
 		extends JavaScriptPart<J>
 		implements Comparable<DataTablesButtonButtonsOptions<J>>
 {
-
-
 	/**
 	 * buttons.buttons.attrSince: Buttons 1.5.0
 	 * Collection of attribute key / values to set for a button. Please note - this property requires the Buttons extension for DataTables.
