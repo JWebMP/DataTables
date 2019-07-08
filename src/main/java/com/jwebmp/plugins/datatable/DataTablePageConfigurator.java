@@ -134,6 +134,9 @@ public class DataTablePageConfigurator
 	 */
 	public static void configureButtons()
 	{
+		DataTablePageConfigurator.getPlugins()
+		                         .add(DataTablePlugins.Buttons);
+
 		DataTablePageConfigurator.getExtensions()
 		                         .add(DataTableReferencePool.Buttons.getJavaScriptReference());
 
