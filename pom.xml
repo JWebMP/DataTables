@@ -19,7 +19,7 @@
     </issueManagement>
     <dependencies>
         <dependency>
-            <groupId>com.jwebmp.jpms.guicedee.servlets</groupId>
+            <groupId>com.guicedee.servlets</groupId>
             <artifactId>guiced-servlets</artifactId><type>jar</type>
             </dependency>
         <dependency>
