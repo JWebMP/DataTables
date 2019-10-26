@@ -19,9 +19,9 @@ package com.jwebmp.plugins.datatable;
 
 import com.google.inject.Singleton;
 import com.jwebmp.core.base.servlets.JWDefaultServlet;
-import com.jwebmp.guicedinjection.GuiceContext;
+import com.guicedee.guicedinjection.GuiceContext;
 import com.jwebmp.guicedservlets.GuicedServletKeys;
-import com.jwebmp.logger.LogFactory;
+import com.guicedee.logger.LogFactory;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.search.DataTableSearchRequest;
 import org.apache.commons.lang3.exception.ExceptionUtils;
