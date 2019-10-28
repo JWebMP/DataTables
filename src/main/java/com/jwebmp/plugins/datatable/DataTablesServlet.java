@@ -20,7 +20,7 @@ package com.jwebmp.plugins.datatable;
 import com.google.inject.Singleton;
 import com.jwebmp.core.base.servlets.JWDefaultServlet;
 import com.guicedee.guicedinjection.GuiceContext;
-import com.jwebmp.guicedservlets.GuicedServletKeys;
+import com.guicedee.guicedservlets.GuicedServletKeys;
 import com.guicedee.logger.LogFactory;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.search.DataTableSearchRequest;
