@@ -22,7 +22,7 @@
             <groupId>com.guicedee.servlets</groupId>
             <artifactId>guiced-servlets</artifactId>
             <type>jar</type>
-            <version>${project.version}</version>
+            <version>${guicedee.version}</version>
         </dependency>
         <dependency>
             <groupId>com.jwebmp.core</groupId>
