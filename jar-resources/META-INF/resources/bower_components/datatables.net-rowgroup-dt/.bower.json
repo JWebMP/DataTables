@@ -34,12 +34,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "1.1.0",
-  "_release": "1.1.0",
+  "version": "1.1.1",
+  "_release": "1.1.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.1.0",
-    "commit": "fdf83b7f9bd915874d849aabe5622848ee55ea25"
+    "tag": "1.1.1",
+    "commit": "873e4ac4045f41c3b3e2743158105afa1fc9f9d6"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-RowGroup-DataTables.git",
   "_target": "^1.0.2",

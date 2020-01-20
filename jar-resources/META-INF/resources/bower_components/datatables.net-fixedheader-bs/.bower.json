@@ -35,12 +35,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "3.1.5",
-  "_release": "3.1.5",
+  "version": "3.1.6",
+  "_release": "3.1.6",
   "_resolution": {
     "type": "version",
-    "tag": "3.1.5",
-    "commit": "e0e934ced78722cdcc092b8e955bd267cbe1caaa"
+    "tag": "3.1.6",
+    "commit": "1d13ee4dc044b1d67b4b2fa06864e938f71cd59d"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-FixedHeader-Bootstrap.git",
   "_target": "^3.1.3",

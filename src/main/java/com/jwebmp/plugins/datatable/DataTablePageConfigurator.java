@@ -266,7 +266,7 @@ public class DataTablePageConfigurator
 			else
 			{
 				jsPath = DataTablePageConfigurator.BowerComponentsString +
-				         DataTablePageConfigurator.BowerComponentDataTablesString + plugin.getFilename() + STRING_DASH + theme.getData() + "/js/" + (plugin.isPlugin()
+				         DataTablePageConfigurator.BowerComponentDataTablesString + plugin.getDirectoryName() + STRING_DASH + theme.getData() + "/js/" + (plugin.isPlugin()
 				                                                                                                                                     ? plugin.getFilename() +
 				                                                                                                                                       "." +
 				                                                                                                                                       theme.getFilename() +
@@ -295,7 +295,7 @@ public class DataTablePageConfigurator
 				{
 					cssPath = DataTablePageConfigurator.BowerComponentsString +
 					          DataTablePageConfigurator.BowerComponentDataTablesString +
-					          plugin.getFilename() +
+					          plugin.getDirectoryName() +
 					          STRING_DASH +
 					          theme.getData() +
 					          DataTablePageConfigurator.CssString +
@@ -310,7 +310,7 @@ public class DataTablePageConfigurator
 				{
 					cssPath = DataTablePageConfigurator.BowerComponentsString +
 					          DataTablePageConfigurator.BowerComponentDataTablesString +
-					          plugin.getFilename() +
+					          plugin.getDirectoryName() +
 					          STRING_DASH +
 					          theme.getData() +
 					          DataTablePageConfigurator.CssString +

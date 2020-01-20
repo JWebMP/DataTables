@@ -30,7 +30,8 @@ package com.jwebmp.plugins.datatable.enumerations;
 public enum DataTableKeyTableEditorKeys
 {
 	Naviation_Only,
-	Tab_Only;
+	Tab_Only
+	;
 
 	@Override
 	public String toString()

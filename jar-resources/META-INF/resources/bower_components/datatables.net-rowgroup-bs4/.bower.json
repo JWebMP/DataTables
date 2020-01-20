@@ -34,12 +34,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "1.1.0",
-  "_release": "1.1.0",
+  "version": "1.1.1",
+  "_release": "1.1.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.1.0",
-    "commit": "924156a3a405c6f7d35741b098266c0d6b6c1a7c"
+    "tag": "1.1.1",
+    "commit": "cebac1d34a5a31b06046b61249db5ab78b68a96b"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-RowGroup-Bootstrap4.git",
   "_target": "^1.0.2",
