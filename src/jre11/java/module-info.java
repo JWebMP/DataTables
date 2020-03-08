@@ -27,7 +27,6 @@ module com.jwebmp.plugins.datatable {
 	provides com.guicedee.guicedservlets.services.IGuiceSiteBinder with com.jwebmp.plugins.datatable.DataTablesSiteBinder;
 
 	provides com.guicedee.guicedinjection.interfaces.IGuiceScanModuleExclusions with com.jwebmp.plugins.datatable.implementations.DataTablesExclusionsModule;
-	provides com.guicedee.guicedinjection.interfaces.IGuiceScanJarExclusions with com.jwebmp.plugins.datatable.implementations.DataTablesExclusionsModule;
 
 	opens com.jwebmp.plugins.datatable to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
 	opens com.jwebmp.plugins.datatable.enumerations to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
