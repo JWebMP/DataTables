@@ -15,7 +15,7 @@ module com.jwebmp.plugins.datatable {
 	requires com.google.guice;
 	requires com.guicedee.guicedinjection;
 
-	requires javax.servlet.api;
+	requires java.servlet;
 	requires io.github.classgraph;
 
 	requires java.logging;
