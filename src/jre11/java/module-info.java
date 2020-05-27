@@ -9,14 +9,12 @@ module com.jwebmp.plugins.datatable {
 
 	requires com.jwebmp.core;
 	requires com.guicedee.logmaster;
-	requires com.fasterxml.jackson.annotation;
 
 	requires java.validation;
 	requires com.google.guice;
 	requires com.guicedee.guicedinjection;
 
 	requires java.servlet;
-	requires io.github.classgraph;
 
 	requires java.logging;
 	requires com.google.common;
