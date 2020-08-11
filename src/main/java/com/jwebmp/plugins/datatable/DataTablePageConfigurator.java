@@ -265,6 +265,7 @@ public class DataTablePageConfigurator
 			}
 			else
 			{
+				if(!plugin.getDirectoryName().contains("sortable"))
 				jsPath = DataTablePageConfigurator.BowerComponentsString +
 				         DataTablePageConfigurator.BowerComponentDataTablesString + plugin.getDirectoryName() + STRING_DASH + theme.getData() + "/js/" + (plugin.isPlugin()
 				                                                                                                                                     ? plugin.getFilename() +
@@ -273,6 +274,7 @@ public class DataTablePageConfigurator
 				                                                                                                                                       DataTablePageConfigurator.JsMinString
 				                                                                                                                                     : STRING_EMPTY);
 			}
+			if(jsPath != null)
 			if (theme == DataTableThemes.DataTables)
 			{
 				page.getBody()
