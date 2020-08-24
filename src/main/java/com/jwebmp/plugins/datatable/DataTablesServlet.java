@@ -18,6 +18,7 @@
 package com.jwebmp.plugins.datatable;
 
 import com.google.inject.Singleton;
+import com.guicedee.guicedinjection.json.StaticStrings;
 import com.jwebmp.core.base.servlets.JWDefaultServlet;
 import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.guicedservlets.GuicedServletKeys;
@@ -34,6 +35,8 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_DOT;
+import static com.guicedee.guicedinjection.json.StaticStrings.UTF_CHARSET;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 
 @Singleton
@@ -54,10 +57,10 @@ public class DataTablesServlet
 		Map<String, String[]> params = request.getParameterMap();
 		String className = params.get("c")[0];
 		allEvents.removeIf(a -> !a.getCanonicalName()
-		                          .equals(className.replace(CHAR_UNDERSCORE, CHAR_DOT)));
+		                          .equals(className.replace(StaticStrings.CHAR_UNDERSCORE, CHAR_DOT)));
 		if (allEvents.isEmpty())
 		{
-			writeOutput(output, HTML_HEADER_JAVASCRIPT, UTF8_CHARSET);
+			writeOutput(output, HTML_HEADER_JAVASCRIPT, UTF_CHARSET);
 			DataTablesServlet.log.fine("DataTablesServlet could not find any specified data search class");
 		}
 		else
@@ -71,12 +74,12 @@ public class DataTablesServlet
 				DataTableDataFetchEvent dtd = GuiceContext.get(event);
 				DataTableData d = dtd.returnData(searchRequest);
 				output.append(d.toString());
-				writeOutput(output, HTML_HEADER_JSON, UTF8_CHARSET);
+				writeOutput(output, HTML_HEADER_JSON, UTF_CHARSET);
 			}
 			catch (Exception e)
 			{
 				output.append(ExceptionUtils.getStackTrace(e));
-				writeOutput(output, HTML_HEADER_JAVASCRIPT, UTF8_CHARSET);
+				writeOutput(output, HTML_HEADER_JAVASCRIPT, UTF_CHARSET);
 				DataTablesServlet.log.log(Level.SEVERE, "Unable to execute datatables ajax data fetch", e);
 			}
 		}

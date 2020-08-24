@@ -32,6 +32,7 @@ import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import static com.guicedee.guicedinjection.json.StaticStrings.*;
 import static com.jwebmp.core.base.servlets.enumarations.RequirementsPriority.*;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 

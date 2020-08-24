@@ -17,6 +17,8 @@
 
 package com.jwebmp.plugins.datatable.enumerations;
 
+import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_PLUS;
+import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_UNDERSCORE;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**

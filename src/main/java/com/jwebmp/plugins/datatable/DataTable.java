@@ -31,6 +31,8 @@ import com.jwebmp.plugins.datatable.options.buttons.DataTablesButtonButtonsOptio
 
 import javax.validation.constraints.NotNull;
 
+import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_DOT;
+import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_UNDERSCORE;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**

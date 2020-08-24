@@ -35,12 +35,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "3.1.6",
-  "_release": "3.1.6",
+  "version": "3.1.7",
+  "_release": "3.1.7",
   "_resolution": {
     "type": "version",
-    "tag": "3.1.6",
-    "commit": "876a09078f061b64e639aac2a58fadd0f3d00139"
+    "tag": "3.1.7",
+    "commit": "e1c923fc13ae8f86e85b228ff13700e7e2cd52f4"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-FixedHeader-jQueryUI.git",
   "_target": "^3.1.3",

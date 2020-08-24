@@ -36,12 +36,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "2.5.1",
-  "_release": "2.5.1",
+  "version": "2.5.2",
+  "_release": "2.5.2",
   "_resolution": {
     "type": "version",
-    "tag": "2.5.1",
-    "commit": "01eb39e84af8751a411710c301021b7a6c5e7811"
+    "tag": "2.5.2",
+    "commit": "cef6a3b26a6b9302269ac40e7d32b2c3847c5729"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-KeyTable-jQueryUI.git",
   "_target": "^2.3.2",
