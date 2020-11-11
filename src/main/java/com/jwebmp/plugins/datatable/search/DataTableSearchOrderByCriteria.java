@@ -20,7 +20,7 @@ package com.jwebmp.plugins.datatable.search;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.enumerations.DataTableSorts;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * A Search Order By Criteria

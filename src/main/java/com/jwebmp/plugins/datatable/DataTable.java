@@ -29,7 +29,7 @@ import com.jwebmp.plugins.datatable.options.DataTableColumnOptions;
 import com.jwebmp.plugins.datatable.options.DataTableOptions;
 import com.jwebmp.plugins.datatable.options.buttons.DataTablesButtonButtonsOptions;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_DOT;
 import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_UNDERSCORE;

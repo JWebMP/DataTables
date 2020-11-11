@@ -2,7 +2,7 @@ package com.jwebmp.plugins.datatable.search;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * The search criteria returned from a data tables search

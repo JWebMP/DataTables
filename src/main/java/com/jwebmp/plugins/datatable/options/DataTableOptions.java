@@ -27,7 +27,7 @@ import com.jwebmp.plugins.datatable.enumerations.DataTablesPagingTypes;
 import com.jwebmp.plugins.datatable.options.buttons.DataTablesButtonButtonsOptions;
 import com.jwebmp.plugins.datatable.options.responsive.DataTablesResponsiveOptions;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.*;

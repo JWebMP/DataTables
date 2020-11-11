@@ -19,7 +19,7 @@ package com.jwebmp.plugins.datatable.options.buttons;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * buttons.domSince: Buttons 1.0.0

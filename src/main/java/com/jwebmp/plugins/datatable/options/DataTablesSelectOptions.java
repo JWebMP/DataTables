@@ -4,7 +4,7 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesSelectItems;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesSelectStyles;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * selectSince: Select 1.0.0

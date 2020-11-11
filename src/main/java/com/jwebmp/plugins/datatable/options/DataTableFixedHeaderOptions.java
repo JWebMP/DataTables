@@ -19,7 +19,7 @@ package com.jwebmp.plugins.datatable.options;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * When displaying tables with a particularly large amount of data shown on each page, it can be useful to have the table's header and /

@@ -2,7 +2,7 @@ package com.jwebmp.plugins.datatable;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Any DataTables data class that can be returned as data from a asynchronous servlet

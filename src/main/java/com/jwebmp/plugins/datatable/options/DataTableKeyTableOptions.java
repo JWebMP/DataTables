@@ -20,7 +20,7 @@ package com.jwebmp.plugins.datatable.options;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.enumerations.DataTableKeyTableEditorKeys;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;

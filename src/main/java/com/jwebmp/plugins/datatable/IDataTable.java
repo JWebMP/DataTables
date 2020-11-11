@@ -21,7 +21,7 @@ import com.jwebmp.core.base.html.*;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.options.DataTableOptions;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
 {

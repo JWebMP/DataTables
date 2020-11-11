@@ -2,7 +2,7 @@ package com.jwebmp.plugins.datatable.options.responsive;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * responsive.detailsSince: Responsive Responsive 1.0.0
