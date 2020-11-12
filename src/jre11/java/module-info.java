@@ -10,7 +10,7 @@ module com.jwebmp.plugins.datatable {
 	requires com.jwebmp.core;
 	requires com.guicedee.logmaster;
 
-	requires java.validation;
+	requires jakarta.validation;
 	requires com.google.guice;
 	requires com.guicedee.guicedinjection;
 
