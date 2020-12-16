@@ -34,12 +34,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "3.3.1",
-  "_release": "3.3.1",
+  "version": "3.3.2",
+  "_release": "3.3.2",
   "_resolution": {
     "type": "version",
-    "tag": "3.3.1",
-    "commit": "df8428fe5bd038850ed7fb32a1712da940764e4d"
+    "tag": "3.3.2",
+    "commit": "71b6d1413b0dfb48181c210cc44441376525945d"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-FixedColumns-jQueryUI.git",
   "_target": "^3.2.3",

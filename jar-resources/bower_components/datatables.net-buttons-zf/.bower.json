@@ -40,12 +40,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "1.6.3",
-  "_release": "1.6.3",
+  "version": "1.6.5",
+  "_release": "1.6.5",
   "_resolution": {
     "type": "version",
-    "tag": "1.6.3",
-    "commit": "b41df518d5eca0841146bede940d91f808925f69"
+    "tag": "1.6.5",
+    "commit": "6484abec28c64d4d3ba9f44e99299fb7d4802053"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Buttons-Foundation.git",
   "_target": "*",

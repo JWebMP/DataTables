@@ -46,5 +46,5 @@ public abstract class DataTableDataFetchEvent<J extends DataTableDataFetchEvent<
 	 *
 	 * @return
 	 */
-	public abstract DataTableData returnData(DataTableSearchRequest searchRequest);
+	public abstract DataTableData<?> returnData(DataTableSearchRequest<?> searchRequest);
 }

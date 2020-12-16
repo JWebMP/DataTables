@@ -18,6 +18,7 @@
 package com.jwebmp.plugins.datatable.enumerations;
 
 import com.jwebmp.core.Page;
+import com.jwebmp.core.base.html.DivSimple;
 import com.jwebmp.core.base.html.TableHeaderGroup;
 import com.jwebmp.plugins.datatable.DataTable;
 import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
@@ -36,7 +37,7 @@ public class DataTablePluginsTest
 		  .getButtons();
 
 		p.getBody()
-		 .add(dt);
+		 .add(new DivSimple<>().add(dt));
 
 
 		dt.addCopyButton("btn ")
@@ -58,9 +59,9 @@ public class DataTablePluginsTest
 
 		dt.getOptions()
 		  .getColReorder();
-
+		
 		p.getBody()
-		 .add(dt);
+		 .add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 
 	}
@@ -72,9 +73,9 @@ public class DataTablePluginsTest
 		DataTable dt = new DataTable("id", new TableHeaderGroup());
 
 		DataTablePageConfigurator.getPlugins().add(DataTablePlugins.Responsive);
-
+		
 		p.getBody()
-		 .add(dt);
+		 .add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 
 	}
@@ -88,9 +89,9 @@ public class DataTablePluginsTest
 
 		dt.getOptions()
 		  .getFixedHeader();
-
+		
 		p.getBody()
-		 .add(dt);
+		 .add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 	}
 
@@ -103,9 +104,9 @@ public class DataTablePluginsTest
 
 		dt.getOptions()
 		  .getFixedColumns();
-
+		
 		p.getBody()
-		 .add(dt);
+		 .add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 	}
 
@@ -117,9 +118,9 @@ public class DataTablePluginsTest
 
 		dt.getOptions()
 		  .getKeys();
-
+		
 		p.getBody()
-		 .add(dt);
+		 .add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 	}
 
@@ -133,9 +134,9 @@ public class DataTablePluginsTest
 
 		dt.getOptions()
 		  .getButtons();
-
+		
 		p.getBody()
-		 .add(dt);
+		 .add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 
 	}

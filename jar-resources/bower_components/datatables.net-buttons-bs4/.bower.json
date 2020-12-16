@@ -40,12 +40,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "1.6.3",
-  "_release": "1.6.3",
+  "version": "1.6.5",
+  "_release": "1.6.5",
   "_resolution": {
     "type": "version",
-    "tag": "1.6.3",
-    "commit": "bcf78455da21b580c3b75b15e5f6d6e3853fa676"
+    "tag": "1.6.5",
+    "commit": "530f2498c0be6c59cf747da30030c105881b92f6"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Buttons-Bootstrap4.git",
   "_target": "^1.4.2",

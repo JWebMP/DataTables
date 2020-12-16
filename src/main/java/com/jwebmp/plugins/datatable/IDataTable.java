@@ -23,7 +23,7 @@ import com.jwebmp.plugins.datatable.options.DataTableOptions;
 
 import jakarta.validation.constraints.NotNull;
 
-public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
+public interface IDataTable<T extends TableRow<?>, J extends IDataTable<T, J>>
 {
 	/**
 	 * Configures the data table to use the AJAX data loading
@@ -32,16 +32,16 @@ public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
 	 *
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	J addServerDataSource(Class<? extends DataTableDataFetchEvent> event);
+	J addServerDataSource(Class<? extends DataTableDataFetchEvent<?>> event);
 
 	/**
 	 * If dynamic features are enabled
 	 *
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	
 	boolean isEnableDynamicFeature();
 
 	/**
@@ -49,9 +49,8 @@ public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
 	 *
 	 * @return
 	 */
-	@SuppressWarnings({"unchecked"})
 	@NotNull
-	TableHeaderGroup getHeaderGroup();
+	TableHeaderGroup<?> getHeaderGroup();
 
 	/**
 	 * Sets the header group for this table
@@ -59,9 +58,8 @@ public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
 	 *
 	 * @param headerGroup
 	 */
-	@SuppressWarnings({"unchecked"})
 	@NotNull
-	J setHeaderGroup(TableHeaderGroup headerGroup);
+	J setHeaderGroup(TableHeaderGroup<?> headerGroup);
 
 	/**
 	 * Returns all the options with this class
@@ -69,7 +67,7 @@ public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
 	 * @return
 	 */
 	@NotNull
-	DataTableOptions getOptions();
+	DataTableOptions<?> getOptions();
 
 	/**
 	 * Sets if the dynamic features of this table must be rendered
@@ -78,7 +76,7 @@ public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
 	 *
 	 * @return
 	 */
-	@SuppressWarnings({"unchecked"})
+	
 	@NotNull
 	J setEnableDynamicFeature(boolean enableDynamicFeature);
 
@@ -87,9 +85,9 @@ public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
 	 *
 	 * @return
 	 */
-	@SuppressWarnings({"unchecked"})
+	
 	@NotNull
-	TableFooterGroup getFooterGroup();
+	TableFooterGroup<?> getFooterGroup();
 
 	/**
 	 * sets the footer group for this table
@@ -97,25 +95,25 @@ public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
 	 *
 	 * @param footerGroup
 	 */
-	@SuppressWarnings({"unchecked"})
+	
 	@NotNull
-	J setFooterGroup(TableFooterGroup footerGroup);
+	J setFooterGroup(TableFooterGroup<?> footerGroup);
 
 	/**
 	 * Gets the body group for this data table
 	 *
 	 * @return
 	 */
-	@SuppressWarnings({"unchecked"})
+	
 	@NotNull
-	TableBodyGroup getBodyGroup();
+	TableBodyGroup<?> getBodyGroup();
 
 	/**
 	 * Returns the Table Caption associated with this object plus positioning utilities
 	 *
 	 * @return
 	 */
-	TableCaption getCaptionOfTable();
+	TableCaption<?> getCaptionOfTable();
 
 	/**
 	 * Sets the body group for the table
@@ -123,16 +121,16 @@ public interface IDataTable<T extends TableRow, J extends DataTable<T, J>>
 	 *
 	 * @param bodyGroup
 	 */
-	@SuppressWarnings({"unchecked"})
+	
 	@NotNull
-	J setBodyGroup(TableBodyGroup bodyGroup);
+	J setBodyGroup(TableBodyGroup<?> bodyGroup);
 
 	/**
 	 * Sets the caption for the table
 	 *
 	 * @param captionOfTable
 	 */
-	@SuppressWarnings({"unchecked"})
+	
 	@NotNull
-	J setCaptionOfTable(TableCaption captionOfTable);
+	J setCaptionOfTable(TableCaption<?> captionOfTable);
 }

@@ -50,7 +50,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
 @ComponentInformation(name = "Data Tables",
 		description = "The core data tables component",
 		url = "https://www.datatables.net/")
-public class DataTable<T extends TableRow, J extends DataTable<T, J>>
+public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		extends Table<J>
 		implements IDataTable<T, J>
 {
@@ -63,19 +63,19 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	/**
 	 * The header grouping for a data table
 	 */
-	private TableHeaderGroup headerGroup;
+	private TableHeaderGroup<?> headerGroup;
 	/**
 	 * The footer grouping for a data table
 	 */
-	private TableFooterGroup footerGroup;
+	private TableFooterGroup<?> footerGroup;
 	/**
 	 * The table grouping for a data table
 	 */
-	private TableBodyGroup bodyGroup;
+	private TableBodyGroup<?> bodyGroup;
 	/**
 	 * The caption item for a table
 	 */
-	private TableCaption captionOfTable;
+	private TableCaption<?> captionOfTable;
 	/**
 	 * If the dynamic features are enabled on this data table
 	 */
@@ -88,7 +88,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	 * @param headerGroup
 	 * 		The table header group creating for
 	 */
-	public DataTable(String id, TableHeaderGroup headerGroup)
+	public DataTable(String id, TableHeaderGroup<?> headerGroup)
 	{
 		this(id, headerGroup, false);
 	}
@@ -102,7 +102,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	 * @param enableDynamicFeature
 	 * 		Enables the DataTable Feature
 	 */
-	public DataTable(String id, TableHeaderGroup headerGroup, boolean enableDynamicFeature)
+	public DataTable(String id, TableHeaderGroup<?> headerGroup, boolean enableDynamicFeature)
 	{
 		this.enableDynamicFeature = enableDynamicFeature;
 		addAttribute(TableAttributes.CellSpacing, 0);
@@ -112,8 +112,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 		addFeature(getFeature());
 		addClass("table table-responsive w-100 d-block d-md-table");
 	}
-
-	@SuppressWarnings({"unchecked"})
+	
 	@NotNull
 	public final DataTableFeature getFeature()
 	{
@@ -140,7 +139,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	{
 		if (!isInitialized() && isEnableDynamicFeature())
 		{
-			TableHeaderGroup<? extends TableHeaderGroup> group = getHeaderGroup();
+			TableHeaderGroup<? extends TableHeaderGroup<?>> group = getHeaderGroup();
 			for (TableHeaderGroupChildren child : group.getChildren())
 			{
 				TableRow<? extends TableRow> tr = (TableRow) child;
@@ -248,7 +247,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J addServerDataSource(Class<? extends DataTableDataFetchEvent> event)
+	public J addServerDataSource(Class<? extends DataTableDataFetchEvent<?>> event)
 	{
 		getOptions().setServerSide(true);
 		getOptions().getAjax()
@@ -294,7 +293,6 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public boolean isEnableDynamicFeature()
 	{
 		return enableDynamicFeature;
@@ -306,13 +304,12 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings({"unchecked"})
 	@NotNull
-	public TableHeaderGroup getHeaderGroup()
+	public TableHeaderGroup<?> getHeaderGroup()
 	{
 		if (headerGroup == null)
 		{
-			setHeaderGroup(new TableHeaderGroup());
+			setHeaderGroup(new TableHeaderGroup<>());
 		}
 		return headerGroup;
 	}
@@ -326,7 +323,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
-	public J setHeaderGroup(TableHeaderGroup headerGroup)
+	public J setHeaderGroup(TableHeaderGroup<?> headerGroup)
 	{
 		getChildren().remove(this.headerGroup);
 		this.headerGroup = headerGroup;
@@ -362,12 +359,12 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
-	public TableFooterGroup getFooterGroup()
+	public TableFooterGroup<?> getFooterGroup()
 	{
 
 		if (footerGroup == null)
 		{
-			setFooterGroup(new TableFooterGroup());
+			setFooterGroup(new TableFooterGroup<>());
 		}
 		return footerGroup;
 	}
@@ -381,7 +378,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
-	public J setFooterGroup(TableFooterGroup footerGroup)
+	public J setFooterGroup(TableFooterGroup<?> footerGroup)
 	{
 		getChildren().remove(this.footerGroup);
 		this.footerGroup = footerGroup;
@@ -398,13 +395,12 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings({"unchecked"})
 	@NotNull
-	public TableBodyGroup getBodyGroup()
+	public TableBodyGroup<?> getBodyGroup()
 	{
 		if (bodyGroup == null)
 		{
-			setBodyGroup(new TableBodyGroup());
+			setBodyGroup(new TableBodyGroup<>());
 		}
 		return bodyGroup;
 	}
@@ -415,11 +411,11 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	 * @return
 	 */
 	@Override
-	public TableCaption getCaptionOfTable()
+	public TableCaption<?> getCaptionOfTable()
 	{
 		if (captionOfTable == null)
 		{
-			setCaptionOfTable(new TableCaption(null));
+			setCaptionOfTable(new TableCaption<>(null));
 		}
 		return captionOfTable;
 	}
@@ -432,7 +428,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
-	public J setCaptionOfTable(TableCaption captionOfTable)
+	public J setCaptionOfTable(TableCaption<?> captionOfTable)
 	{
 		this.captionOfTable = captionOfTable;
 		return (J) this;
@@ -447,7 +443,7 @@ public class DataTable<T extends TableRow, J extends DataTable<T, J>>
 	@Override
 	@SuppressWarnings({"unchecked"})
 	@NotNull
-	public J setBodyGroup(TableBodyGroup bodyGroup)
+	public J setBodyGroup(TableBodyGroup<?> bodyGroup)
 	{
 		getChildren().remove(this.bodyGroup);
 		this.bodyGroup = bodyGroup;

@@ -15,7 +15,7 @@ public class DataTablesSiteBinder
 	@Override
 	public void onBind(GuiceSiteInjectorModule module)
 	{
-		DataTablesSiteBinder.log.info("Serving Data Tables Data at /jwdatatables");
+		DataTablesSiteBinder.log.config("Serving Data Tables Data at /jwdatatables");
 		module.serve$("/jwdatatables")
 		      .with(Key.get(DataTablesServlet.class));
 	}

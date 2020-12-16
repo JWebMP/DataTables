@@ -16,76 +16,77 @@
  */
 package com.jwebmp.plugins.datatable;
 
-import com.jwebmp.core.Component;
 import com.jwebmp.core.Feature;
 import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.plugins.datatable.options.DataTableOptions;
 
 import static com.guicedee.guicedinjection.json.StaticStrings.STRING_CLOSING_BRACKET_SEMICOLON;
-import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * Implements the jQuery DataTable plugin
  * <p>
  *
  * @author MMagon
- * 		<p>
- * 		<p>
+ * <p>
+ * <p>
  * @version 1.0
  * @since 2014 09 30
  */
 public class DataTableFeature
-		extends Feature<GlobalFeatures, DataTableOptions, DataTableFeature>
+		extends Feature<GlobalFeatures, DataTableOptions<?>, DataTableFeature>
 {
-
-
+	
+	
 	private static final String DataTableOpeningString = "DataTable(";
-	private DataTableOptions options;
-
+	private DataTableOptions<?> options;
+	
 	/**
 	 * Construct a new JW Data Table
 	 * <p>
 	 *
-	 * @param component
-	 * 		The Table to apply the Data Table features to.
+	 * @param component The Table to apply the Data Table features to.
 	 */
-	public DataTableFeature(Component component)
+	public DataTableFeature(IComponentHierarchyBase<?, ?> component)
 	{
 		super("JWDataFeature");
 		setComponent(component);
-		component.addVariable(getDTID());
+		component.asFeatureBase().addVariable(getDTID());
 	}
-
+	
 	public String getDTID()
 	{
-		return "dt_" + getComponent().getID();
+		return "dt_" + getComponent().asBase()
+		                             .getID();
 	}
-
+	
 	@Override
 	public int hashCode()
 	{
 		return super.hashCode();
 	}
-
+	
 	@Override
 	public boolean equals(Object o)
 	{
 		return super.equals(o);
 	}
-
+	
 	@Override
-	public DataTableOptions getOptions()
+	public DataTableOptions<?> getOptions()
 	{
 		if (options == null)
 		{
-			options = new DataTableOptions();
+			options = new DataTableOptions<>();
 		}
 		return options;
 	}
-
+	
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		addQuery(getComponent().getJQueryID() + DataTableFeature.DataTableOpeningString + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
+		addQuery(getComponent().asBase()
+		                       .getJQueryID() + DataTableFeature.DataTableOpeningString +
+				         getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
 	}
 }

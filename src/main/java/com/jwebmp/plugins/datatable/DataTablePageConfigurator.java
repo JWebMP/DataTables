@@ -22,6 +22,7 @@ import com.jwebmp.core.base.references.CSSReference;
 import com.jwebmp.core.base.references.JavascriptReference;
 import com.jwebmp.core.base.servlets.enumarations.RequirementsPriority;
 import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.plugins.PluginStatus;
 import com.jwebmp.core.services.IPageConfigurator;
 import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
@@ -47,7 +48,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
 		                    "tool, based upon the " +
 		                    "foundations of progressive " +
 		                    "enhancement, and will add advanced interaction  controls  to any  HTML  table .",
-		pluginVersion = "1.10.16",
+		pluginVersion = "1.10.22",
 		pluginDependancyUniqueIDs = "jquery",
 		pluginCategories = "jquery,datatables, tables, ui, " + "web, framework",
 		pluginSubtitle = "DataTables is very simple to use as a jQuery plug-in with a huge range of customisable option",
@@ -55,10 +56,15 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
 		pluginSourceUrl = "https://datatables" + "" + ".net/download/index",
 		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-DataTablesPlugin/wiki",
 		pluginOriginalHomepage = "https://www.datatables.net/",
-		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/DataTablesPlugin.jar/download",
-		pluginIconUrl = "bower_components/datatables/icon.jpg",
-		pluginIconImageUrl = "bower_components/datatables/jqdatatables_logo.png",
-		pluginLastUpdatedDate = "2017/09/29")
+		pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.forms/jwebmp-data-tables",
+		pluginIconUrl = "",
+		pluginIconImageUrl = "",
+		pluginLastUpdatedDate = "2020/12/16",
+		pluginGroupId = "com.jwebmp.plugins.forms",
+		pluginArtifactId = "jwebmp-data-tables",
+		pluginModuleName = "com.jwebmp.plugins.datatable",
+		pluginStatus = PluginStatus.Released
+)
 public class DataTablePageConfigurator
 		implements IPageConfigurator<DataTablePageConfigurator>
 {

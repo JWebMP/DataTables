@@ -35,12 +35,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "2.2.5",
-  "_release": "2.2.5",
+  "version": "2.2.6",
+  "_release": "2.2.6",
   "_resolution": {
     "type": "version",
-    "tag": "2.2.5",
-    "commit": "561d7f64e530c6f730816a86300bd59f4811cae1"
+    "tag": "2.2.6",
+    "commit": "b3bd494a3d86f22a90c354b440244ef7c2fcd3a0"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Responsive-jQueryUI.git",
   "_target": "^2.2.0",

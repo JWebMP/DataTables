@@ -1,6 +1,7 @@
 package com.jwebmp.plugins.datatable.options;
 
 import com.jwebmp.core.Page;
+import com.jwebmp.core.base.html.DivSimple;
 import com.jwebmp.core.base.html.TableHeader;
 import com.jwebmp.core.base.html.TableHeaderGroup;
 import com.jwebmp.core.base.html.TableRow;
@@ -25,7 +26,7 @@ public class DataTablesButtonsTest
 
 		Page<?> page = new Page<>();
 		page.getBody()
-		    .add(table);
+		    .add(new DivSimple<>().add(table));
 		System.out.println(page.toString(0));
 
 	}

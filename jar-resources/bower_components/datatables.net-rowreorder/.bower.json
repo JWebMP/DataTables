@@ -41,6 +41,6 @@
     "commit": "ca372e21a8d036541ad6bccb59ed278fdb1ceeac"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-RowReorder.git",
-  "_target": ">=1.0.0",
+  "_target": ">=1.2.0",
   "_originalSource": "datatables.net-rowreorder"
 }

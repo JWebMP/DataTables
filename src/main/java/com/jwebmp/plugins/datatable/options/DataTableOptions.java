@@ -55,7 +55,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * the document object model layout
 	 */
 	@JsonIgnore
-	private List<IDataTableDomOptionType> dom;
+	private List<IDataTableDomOptionType<?>> dom;
 
 	/**
 	 * ajaxSince: DataTables 1.10
@@ -2367,12 +2367,11 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * @return
 	 */
 	@NotNull
-	@SuppressWarnings("unchecked")
 	public DataTablesAjaxOptions<?> getAjax()
 	{
 		if (ajax == null)
 		{
-			setAjax(new DataTablesAjaxOptions());
+			setAjax(new DataTablesAjaxOptions<>());
 		}
 		return ajax;
 	}
@@ -2449,7 +2448,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * <p>
 	 * In addition to this, you can also use dom to create multiple instances of these table controls. Simply include the feature's
 	 * identification letter where you want it to appear, as many times as
-	 * you wish, and the controls will all sync up (note that obviously the table (t) should be included only once).
+	 * you wish, and the controls will sync up (note that obviously the table (t) should be included only once).
 	 * <p>
 	 * This is shown in the demo below where for four key build-in features are duplicated above and below the table.
 	 *
@@ -2457,7 +2456,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 */
 	@SuppressWarnings("all")
 	@NotNull
-	public List<IDataTableDomOptionType> getDom()
+	public List<IDataTableDomOptionType<?>> getDom()
 	{
 		if (dom == null)
 		{
@@ -2480,7 +2479,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 */
 	@SuppressWarnings("all")
 	@NotNull
-	public J setDom(List<IDataTableDomOptionType> dom)
+	public J setDom(List<IDataTableDomOptionType<?>> dom)
 	{
 		this.dom = dom;
 		return (J) this;
@@ -2548,7 +2547,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		if (autoFill == null)
 		{
-			setAutoFill(new DataTableAutoFillOptions());
+			setAutoFill(new DataTableAutoFillOptions<>());
 			DataTablePageConfigurator.getPlugins()
 			                         .add(DataTablePlugins.AutoFill);
 		}
@@ -2655,7 +2654,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		if (colReorder == null)
 		{
-			setColReorder(new DataTableColReOrderOptions());
+			setColReorder(new DataTableColReOrderOptions<>());
 		}
 		return colReorder;
 	}
@@ -2713,12 +2712,11 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * @return
 	 */
 	@NotNull
-	@SuppressWarnings("unchecked")
 	public DataTableFixedColumnsOptions<?> getFixedColumns()
 	{
 		if (fixedColumns == null)
 		{
-			setFixedColumns(new DataTableFixedColumnsOptions());
+			setFixedColumns(new DataTableFixedColumnsOptions<>());
 		}
 		return fixedColumns;
 	}
@@ -2780,12 +2778,11 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * @return
 	 */
 	@NotNull
-	@SuppressWarnings("unchecked")
 	public DataTableFixedHeaderOptions<?> getFixedHeader()
 	{
 		if (fixedHeader == null)
 		{
-			setFixedHeader(new DataTableFixedHeaderOptions());
+			setFixedHeader(new DataTableFixedHeaderOptions<>());
 		}
 		return fixedHeader;
 	}
@@ -2848,7 +2845,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		if (keys == null)
 		{
-			setKeys(new DataTableKeyTableOptions());
+			setKeys(new DataTableKeyTableOptions<>());
 		}
 		return keys;
 	}
@@ -2910,7 +2907,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		if (responsive == null)
 		{
-			setResponsive(new DataTablesResponsiveOptions());
+			setResponsive(new DataTablesResponsiveOptions<>());
 		}
 		return responsive;
 	}
@@ -2971,7 +2968,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		if (search == null)
 		{
-			setSearch(new DataTablesSearchOptions());
+			setSearch(new DataTablesSearchOptions<>());
 		}
 		return search;
 	}

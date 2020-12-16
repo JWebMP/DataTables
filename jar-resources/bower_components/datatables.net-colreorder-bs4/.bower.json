@@ -34,12 +34,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "1.5.2",
-  "_release": "1.5.2",
+  "version": "1.5.3",
+  "_release": "1.5.3",
   "_resolution": {
     "type": "version",
-    "tag": "1.5.2",
-    "commit": "8a6fe519184fd984564633f084a30b55beb0efb6"
+    "tag": "1.5.3",
+    "commit": "a37a1aea00bdd789cc464059d1479a1a242f2eb8"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-ColReorder-Bootstrap4.git",
   "_target": "^1.4.1",

@@ -40,12 +40,12 @@
   ],
   "homepage": "https://datatables.net",
   "license": "MIT",
-  "version": "1.6.3",
-  "_release": "1.6.3",
+  "version": "1.6.5",
+  "_release": "1.6.5",
   "_resolution": {
     "type": "version",
-    "tag": "1.6.3",
-    "commit": "ad1227dd6ad92dcfb7fd7a9abb85c08ea4206d8f"
+    "tag": "1.6.5",
+    "commit": "75146e61508a34e17e642a5404b8eed6e49253e0"
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Buttons-jQueryUI.git",
   "_target": "^1.4.2",
