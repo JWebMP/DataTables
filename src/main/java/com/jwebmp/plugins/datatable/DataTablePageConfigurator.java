@@ -245,7 +245,7 @@ public class DataTablePageConfigurator
 	}
 
 	/**
-	 * Configures all the page plugins with the theme
+	 * Configures all the Page<?> plugins with the theme
 	 *
 	 * @param page
 	 * @param theme

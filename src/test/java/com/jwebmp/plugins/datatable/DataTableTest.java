@@ -18,6 +18,7 @@
 package com.jwebmp.plugins.datatable;
 
 import com.jwebmp.core.Page;
+import com.jwebmp.core.base.html.DivSimple;
 import com.jwebmp.core.base.html.TableHeaderGroup;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
 import org.junit.jupiter.api.Test;
@@ -33,8 +34,8 @@ public class DataTableTest
 		TableHeaderGroup thg = new TableHeaderGroup();
 		DataTable dt = new DataTable("id", thg);
 
-		Page p = new Page();
-		p.add(dt);
+		Page<?> p = new Page();
+		p.add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 	}
 
@@ -47,8 +48,8 @@ public class DataTableTest
 		DataTablePageConfigurator.getPlugins()
 		                         .add(Responsive);
 
-		Page p = new Page();
-		p.add(dt);
+		Page<?> p = new Page();
+		p.add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 	}
 
@@ -62,8 +63,8 @@ public class DataTableTest
 		                         .add(Responsive);
 		DataTablePageConfigurator.switchTheme(DataTableThemes.Bootstrap4);
 
-		Page p = new Page();
-		p.add(dt);
+		Page<?> p = new Page();
+		p.add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 	}
 
@@ -77,8 +78,8 @@ public class DataTableTest
 		                         .add(Responsive);
 		DataTablePageConfigurator.switchTheme(JQueryUI);
 
-		Page p = new Page();
-		p.add(dt);
+		Page<?> p = new Page();
+		p.add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 	}
 }
