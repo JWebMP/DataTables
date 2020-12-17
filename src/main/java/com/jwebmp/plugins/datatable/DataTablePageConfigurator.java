@@ -194,7 +194,7 @@ public class DataTablePageConfigurator
 
 	@NotNull
 	@Override
-	public Page configure(Page page)
+	public Page<?> configure(Page<?> page)
 	{
 		if (!page.isConfigured() && enabled())
 		{
@@ -203,9 +203,9 @@ public class DataTablePageConfigurator
 
 			for (DataTableThemes theme : DataTablePageConfigurator.getThemes())
 			{
-				String themeBasePath = "bower_components/datatables.net-" + theme.getData() + "/js/dataTables." + theme.getFilename();
+				String themeBasePath = "bower_components/datatables.net-" + theme.getData().toLowerCase() + "/js/dataTables." + theme.getFilename();
 
-				String themeBaseCssPath = "bower_components/datatables.net-" + theme.getData() + DataTablePageConfigurator.CssString;
+				String themeBaseCssPath = "bower_components/datatables.net-" + theme.getData().toLowerCase() + DataTablePageConfigurator.CssString;
 				if (theme.getFilenameOverride() == null || theme.getFilenameOverride()
 				                                                .isEmpty())
 				{
@@ -250,7 +250,7 @@ public class DataTablePageConfigurator
 	 * @param page
 	 * @param theme
 	 */
-	private void configurePlugins(Page page, DataTableThemes theme)
+	private void configurePlugins(Page<?> page, DataTableThemes theme)
 	{
 		int sortOrder = 160;
 		for (DataTablePlugins plugin : DataTablePageConfigurator.getPlugins())
@@ -264,7 +264,7 @@ public class DataTablePageConfigurator
 			if (theme == DataTableThemes.DataTables)
 			{
 				jsPath = DataTablePageConfigurator.BowerComponentsString +
-				         DataTablePageConfigurator.BowerComponentDataTablesString + plugin.getFilename() + "/js/" + (plugin.isPlugin()
+				         DataTablePageConfigurator.BowerComponentDataTablesString + plugin.getFilename().toLowerCase() + "/js/" + (plugin.isPlugin()
 				                                                                                                     ? DataTablePageConfigurator.DataTablesOperatorString +
 				                                                                                                       plugin.getFilename() +
 				                                                                                                       DataTablePageConfigurator.JsMinString
@@ -274,7 +274,7 @@ public class DataTablePageConfigurator
 			{
 				if(!plugin.getDirectoryName().contains("sortable"))
 				jsPath = DataTablePageConfigurator.BowerComponentsString +
-				         DataTablePageConfigurator.BowerComponentDataTablesString + plugin.getDirectoryName() + STRING_DASH + theme.getData() + "/js/" + (plugin.isPlugin()
+				         DataTablePageConfigurator.BowerComponentDataTablesString + plugin.getDirectoryName().toLowerCase() + STRING_DASH + theme.getData() + "/js/" + (plugin.isPlugin()
 				                                                                                                                                     ? plugin.getFilename() +
 				                                                                                                                                       "." +
 				                                                                                                                                       theme.getFilename() +

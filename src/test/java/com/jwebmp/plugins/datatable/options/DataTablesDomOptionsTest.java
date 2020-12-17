@@ -27,7 +27,7 @@ public class DataTablesDomOptionsTest
 	@Test
 	public void fromString()
 	{
-		List<IDataTableDomOptionType> rets = DataTablesDomOptions.getDefault();
+		List<IDataTableDomOptionType<?>> rets = DataTablesDomOptions.getDefault();
 		System.out.println(rets);
 	}
 }

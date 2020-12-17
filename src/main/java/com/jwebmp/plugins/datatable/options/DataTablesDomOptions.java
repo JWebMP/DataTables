@@ -33,9 +33,9 @@ public enum DataTablesDomOptions
 		this.identifier = identifier;
 	}
 
-	public static List<IDataTableDomOptionType> getDefault()
+	public static List<IDataTableDomOptionType<?>> getDefault()
 	{
-		List<IDataTableDomOptionType> options = new ArrayList<>();
+		List<IDataTableDomOptionType<?>> options = new ArrayList<>();
 		options.add(StartDiv);
 		options.add(TopSection);
 		options.add(LengthChangeControl);
@@ -61,9 +61,9 @@ public enum DataTablesDomOptions
 	}
 
 	@SuppressWarnings("Duplicates")
-	public static List<IDataTableDomOptionType> getDefaultTopAndBottom()
+	public static List<IDataTableDomOptionType<?>> getDefaultTopAndBottom()
 	{
-		List<IDataTableDomOptionType> options = new ArrayList<>();
+		List<IDataTableDomOptionType<?>> options = new ArrayList<>();
 		options.add(StartDiv);
 		options.add(TopSection);
 		options.add(FilteringIinputControl);
@@ -93,9 +93,9 @@ public enum DataTablesDomOptions
 	}
 
 	@SuppressWarnings("Duplicates")
-	public static List<IDataTableDomOptionType> getDefaultTopAndBottomBS()
+	public static List<IDataTableDomOptionType<?>> getDefaultTopAndBottomBS()
 	{
-		List<IDataTableDomOptionType> options = new ArrayList<>();
+		List<IDataTableDomOptionType<?>> options = new ArrayList<>();
 		options.add(StartDiv);
 		options.add(TopRowSection);
 		options.add(FilteringIinputControl);
@@ -125,9 +125,9 @@ public enum DataTablesDomOptions
 	}
 
 	@SuppressWarnings("Duplicates")
-	public static List<IDataTableDomOptionType> getDefaultTopAndBottomBSJustified()
+	public static List<IDataTableDomOptionType<?>> getDefaultTopAndBottomBSJustified()
 	{
-		List<IDataTableDomOptionType> options = new ArrayList<>();
+		List<IDataTableDomOptionType<?>> options = new ArrayList<>();
 		options.add(StartDiv);
 		options.add(TopRowSectionJustified);
 		options.add(FilteringIinputControl);

@@ -39,8 +39,8 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>>
 	private static final Pattern columnPattern = Pattern.compile("columns\\[(\\d)\\]\\[(.*)\\].*");
 	private static final Pattern orderPattern = Pattern.compile("order\\[(\\d)\\]\\[(.*)\\].*");
 
-	private Map<Integer, DataTableSearchColumnCriteria> columns;
-	private Map<Integer, DataTableSearchOrderByCriteria> orderBys;
+	private Map<Integer, DataTableSearchColumnCriteria<?>> columns;
+	private Map<Integer, DataTableSearchOrderByCriteria<?>> orderBys;
 
 	private Integer length;
 	private Integer start;
@@ -121,9 +121,9 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>>
 
 			if (getColumns().get(Integer.parseInt(group1)) == null)
 			{
-				getColumns().put(Integer.parseInt(group1), new DataTableSearchColumnCriteria());
+				getColumns().put(Integer.parseInt(group1), new DataTableSearchColumnCriteria<>());
 			}
-			DataTableSearchColumnCriteria column = getColumns().get(Integer.parseInt(group1));
+			DataTableSearchColumnCriteria<?> column = getColumns().get(Integer.parseInt(group1));
 			switch (group2)
 			{
 				case "name":
@@ -170,9 +170,9 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>>
 			               .replaceAll("\\[", "");
 			if (getOrderBys().get(Integer.parseInt(group1)) == null)
 			{
-				getOrderBys().put(Integer.parseInt(group1), new DataTableSearchOrderByCriteria());
+				getOrderBys().put(Integer.parseInt(group1), new DataTableSearchOrderByCriteria<>());
 			}
-			DataTableSearchOrderByCriteria column = getOrderBys().get(Integer.parseInt(group1));
+			DataTableSearchOrderByCriteria<?> column = getOrderBys().get(Integer.parseInt(group1));
 			switch (group2)
 			{
 				case "column":
@@ -199,7 +199,7 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>>
 	 * @return
 	 */
 	@NotNull
-	public Map<Integer, DataTableSearchColumnCriteria> getColumns()
+	public Map<Integer, DataTableSearchColumnCriteria<?>> getColumns()
 	{
 		if (columns == null)
 		{
@@ -213,7 +213,7 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>>
 	 *
 	 * @return
 	 */
-	public Map<Integer, DataTableSearchOrderByCriteria> getOrderBys()
+	public Map<Integer, DataTableSearchOrderByCriteria<?>> getOrderBys()
 	{
 		if (orderBys == null)
 		{
@@ -231,7 +231,7 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>>
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setOrderBys(Map<Integer, DataTableSearchOrderByCriteria> orderBys)
+	public J setOrderBys(Map<Integer, DataTableSearchOrderByCriteria<?>> orderBys)
 	{
 		this.orderBys = orderBys;
 		return (J) this;
@@ -246,7 +246,7 @@ public class DataTableSearchRequest<J extends DataTableSearchRequest<J>>
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setColumns(Map<Integer, DataTableSearchColumnCriteria> columns)
+	public J setColumns(Map<Integer, DataTableSearchColumnCriteria<?>> columns)
 	{
 		this.columns = columns;
 		return (J) this;

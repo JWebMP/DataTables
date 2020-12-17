@@ -73,7 +73,7 @@ public class DataTablesButtonsOptions<J extends DataTablesButtonsOptions<J>>
 	 * The markup that is created by Buttons is quite flexible in that you can control the tags used and the class names. You can also
 	 * optionally control the structure of the markup for the buttons.
 	 */
-	private DataTablesButtonsDomOptions dom;
+	private DataTablesButtonsDomOptions<?> dom;
 	/**
 	 * buttons.buttonsSince: Buttons 1.0.0
 	 * List of buttons to be created. Please note - this property requires the Buttons extension for DataTables.
@@ -157,11 +157,11 @@ public class DataTablesButtonsOptions<J extends DataTablesButtonsOptions<J>>
 	 *
 	 * @return
 	 */
-	public DataTablesButtonsDomOptions getDom()
+	public DataTablesButtonsDomOptions<?> getDom()
 	{
 		if (dom == null)
 		{
-			dom = new DataTablesButtonsDomOptions();
+			dom = new DataTablesButtonsDomOptions<>();
 		}
 		return dom;
 	}
@@ -180,7 +180,7 @@ public class DataTablesButtonsOptions<J extends DataTablesButtonsOptions<J>>
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setDom(DataTablesButtonsDomOptions dom)
+	public J setDom(DataTablesButtonsDomOptions<?> dom)
 	{
 		this.dom = dom;
 		return (J) this;

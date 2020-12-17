@@ -116,6 +116,7 @@ public class DataTableColReOrderOptions<J extends DataTableColReOrderOptions<J>>
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public J setFixedColumnsLeft(Integer fixedColumnsLeft)
 	{
 		this.fixedColumnsLeft = fixedColumnsLeft;
@@ -157,6 +158,7 @@ public class DataTableColReOrderOptions<J extends DataTableColReOrderOptions<J>>
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public J setFixedColumnsRight(Integer fixedColumnsRight)
 	{
 		this.fixedColumnsRight = fixedColumnsRight;
@@ -197,6 +199,7 @@ public class DataTableColReOrderOptions<J extends DataTableColReOrderOptions<J>>
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public J setOrder(Set<Integer> order)
 	{
 		this.order = order;
@@ -234,6 +237,7 @@ public class DataTableColReOrderOptions<J extends DataTableColReOrderOptions<J>>
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public J setRealtime(Boolean realtime)
 	{
 		this.realtime = realtime;

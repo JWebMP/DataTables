@@ -19,6 +19,7 @@ package com.jwebmp.plugins.datatable.options;
 
 import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.base.ComponentHierarchyBase;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.base.servlets.enumarations.ComponentTypes;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
@@ -126,7 +127,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * string
 	 */
 	@JsonIgnore
-	private ComponentHierarchyBase defaultContent;
+	private IComponentHierarchyBase<?,?> defaultContent;
 	/**
 	 * Description
 	 * Using this parameter, you can remove the end user's ability to order upon a column. This might be useful for generated content
@@ -482,7 +483,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 *
 	 * @return
 	 */
-	public ComponentHierarchyBase getDefaultContent()
+	public IComponentHierarchyBase<?,?> getDefaultContent()
 	{
 		return defaultContent;
 	}
@@ -507,7 +508,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 */
 	@NotNull
 	@SuppressWarnings("unchecked")
-	public J setDefaultContent(ComponentHierarchyBase defaultContent)
+	public J setDefaultContent(IComponentHierarchyBase<?,?> defaultContent)
 	{
 		this.defaultContent = defaultContent;
 		return (J) this;
@@ -661,7 +662,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * @return
 	 */
 	@NotNull
-	@SuppressWarnings("unchecked")
 	public List<DataTableSorts> getOrderSequence()
 	{
 		if (orderSequence == null)
