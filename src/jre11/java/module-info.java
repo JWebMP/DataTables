@@ -16,7 +16,7 @@ module com.jwebmp.plugins.datatable {
 	requires com.google.guice;
 	requires com.guicedee.guicedinjection;
 
-	requires java.servlet;
+	requires jakarta.servlet;
 
 	requires java.logging;
 	requires com.google.common;
