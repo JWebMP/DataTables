@@ -28,34 +28,29 @@ import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.options.DataTableColumnOptions;
 import com.jwebmp.plugins.datatable.options.DataTableOptions;
 import com.jwebmp.plugins.datatable.options.buttons.DataTablesButtonButtonsOptions;
-
 import jakarta.validation.constraints.NotNull;
 
-import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_DOT;
-import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_UNDERSCORE;
-import static com.jwebmp.core.utilities.StaticStrings.*;
+import static com.guicedee.guicedinjection.json.StaticStrings.*;
 
 /**
  * The JWDataTable implementation
  *
- * @param <T>
- * 		The table row type this table reflects
+ * @param <T> The table row type this table reflects
  * @param <J>
- *
  * @author MMagon
  * @version 1.0
  * @since 2014 09 30
  */
 @SuppressWarnings("MissingClassJavaDoc")
 @ComponentInformation(name = "Data Tables",
-		description = "The core data tables component",
-		url = "https://www.datatables.net/")
+                      description = "The core data tables component",
+                      url = "https://www.datatables.net/")
 public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		extends Table<J>
 		implements IDataTable<T, J>
 {
-
-
+	
+	
 	/**
 	 * The associated feature for the data table
 	 */
@@ -80,27 +75,24 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 	 * If the dynamic features are enabled on this data table
 	 */
 	private boolean enableDynamicFeature;
-
+	
 	/**
 	 * Construct a new interactive table that is theme compatible, with cell spacing and padding as 0. Sets dynamic feature to disabled
 	 * <p>
 	 *
-	 * @param headerGroup
-	 * 		The table header group creating for
+	 * @param headerGroup The table header group creating for
 	 */
 	public DataTable(String id, TableHeaderGroup<?> headerGroup)
 	{
 		this(id, headerGroup, false);
 	}
-
+	
 	/**
 	 * Construct a new interactive table that is theme compatible, with cell spacing and padding as 0.
 	 * <p>
 	 *
-	 * @param headerGroup
-	 * 		The table header group creating for
-	 * @param enableDynamicFeature
-	 * 		Enables the DataTable Feature
+	 * @param headerGroup          The table header group creating for
+	 * @param enableDynamicFeature Enables the DataTable Feature
 	 */
 	public DataTable(String id, TableHeaderGroup<?> headerGroup, boolean enableDynamicFeature)
 	{
@@ -122,7 +114,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		}
 		return feature;
 	}
-
+	
 	/**
 	 * Returns this class as a trimmed down accessor for ease of use
 	 *
@@ -132,7 +124,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 	{
 		return this;
 	}
-
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	public void init()
@@ -155,13 +147,24 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		}
 		super.init();
 	}
-
+	
+	/**
+	 * Creates a new feature that will destroy this graph,
+	 * Necessary for ajax or mass calling
+	 *
+	 * @return
+	 */
+	public DataTableDestroyFeature createDestroyFeature()
+	{
+		return new DataTableDestroyFeature(this);
+	}
+	
 	@Override
 	public DataTableOptions<?> getOptions()
 	{
 		return getFeature().getOptions();
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addCopyButton(String className)
@@ -176,7 +179,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 				.add(dt);
 		return (J) this;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addCsvButton(String className)
@@ -191,7 +194,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 				.add(dt);
 		return (J) this;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addExcelButton(String className)
@@ -206,7 +209,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 				.add(dt);
 		return (J) this;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addPdfButton(String className)
@@ -221,7 +224,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 				.add(dt);
 		return (J) this;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addPrintButton(String className)
@@ -236,12 +239,11 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 				.add(dt);
 		return (J) this;
 	}
-
+	
 	/**
 	 * Configures the data table to use the AJAX data loading
 	 *
 	 * @param event
-	 *
 	 * @return
 	 */
 	@Override
@@ -253,14 +255,14 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		getOptions().getAjax()
 		            .setUrl("/jwdatatables?c=" + event.getCanonicalName()
 		                                              .replace(CHAR_DOT, CHAR_UNDERSCORE));
-
+		
 		TableRow<?> row = (TableRow) getHeaderGroup().getChildren()
 		                                             .iterator()
 		                                             .next();
-
+		
 		int headers = row.getChildren()
 		                 .size();
-
+		
 		for (int i = 0; i < headers; i++)
 		{
 			ComponentHierarchyBase[] arrs = new ComponentHierarchyBase[headers];
@@ -269,7 +271,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 			ComponentHierarchyBase me = arrs[i];
 			String text = me.getText(0)
 			                .toString();
-
+			
 			if (Strings.isNullOrEmpty(text) && !me.getChildren()
 			                                      .isEmpty())
 			{
@@ -279,14 +281,14 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 				text = me.getText(0)
 				         .toString();
 			}
-
+			
 			getOptions().getColumns()
 			            .add(new DataTableColumnOptions<>(text));
 		}
-
+		
 		return (J) this;
 	}
-
+	
 	/**
 	 * If dynamic features are enabled
 	 *
@@ -297,7 +299,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 	{
 		return enableDynamicFeature;
 	}
-
+	
 	/**
 	 * Gets the header group for this Data Table
 	 *
@@ -313,7 +315,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		}
 		return headerGroup;
 	}
-
+	
 	/**
 	 * Sets the header group for this table
 	 * <p>
@@ -331,15 +333,14 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		{
 			add(headerGroup);
 		}
-
+		
 		return (J) this;
 	}
-
+	
 	/**
 	 * Sets if the dynamic features of this table must be rendered
 	 *
 	 * @param enableDynamicFeature
-	 *
 	 * @return
 	 */
 	@Override
@@ -350,7 +351,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		this.enableDynamicFeature = enableDynamicFeature;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Gets the footer group for this data table
 	 *
@@ -361,14 +362,14 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 	@NotNull
 	public TableFooterGroup<?> getFooterGroup()
 	{
-
+		
 		if (footerGroup == null)
 		{
 			setFooterGroup(new TableFooterGroup<>());
 		}
 		return footerGroup;
 	}
-
+	
 	/**
 	 * sets the footer group for this table
 	 * <p>
@@ -388,7 +389,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * Gets the body group for this data table
 	 *
@@ -404,7 +405,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		}
 		return bodyGroup;
 	}
-
+	
 	/**
 	 * Returns the Table Caption associated with this object plus positioning utilities
 	 *
@@ -419,7 +420,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		}
 		return captionOfTable;
 	}
-
+	
 	/**
 	 * Sets the caption for the table
 	 *
@@ -433,7 +434,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		this.captionOfTable = captionOfTable;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Sets the body group for the table
 	 * <p>
@@ -453,13 +454,13 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		}
 		return (J) this;
 	}
-
+	
 	@Override
 	public int hashCode()
 	{
 		return super.hashCode();
 	}
-
+	
 	@Override
 	public boolean equals(Object o)
 	{

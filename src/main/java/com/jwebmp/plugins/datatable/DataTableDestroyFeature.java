@@ -18,10 +18,7 @@ package com.jwebmp.plugins.datatable;
 
 import com.jwebmp.core.Feature;
 import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
-import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.plugins.datatable.options.DataTableOptions;
-
-import static com.guicedee.guicedinjection.json.StaticStrings.*;
 
 /**
  * Implements the jQuery DataTable plugin
@@ -33,26 +30,21 @@ import static com.guicedee.guicedinjection.json.StaticStrings.*;
  * @version 1.0
  * @since 2014 09 30
  */
-public class DataTableFeature
-		extends Feature<GlobalFeatures, DataTableOptions<?>, DataTableFeature>
+public class DataTableDestroyFeature
+		extends Feature<GlobalFeatures, DataTableOptions<?>, DataTableDestroyFeature>
 {
-	
-	
-	private static final String DataTableOpeningString = "DataTable(";
-	private DataTableOptions<?> options;
-	
 	/**
 	 * Construct a new JW Data Table
 	 * <p>
 	 *
 	 * @param component The Table to apply the Data Table features to.
 	 */
-	public DataTableFeature(IComponentHierarchyBase<?, ?> component)
+	public DataTableDestroyFeature(DataTable<?, ?> component)
 	{
-		super("JWDataFeature");
+		super("JWDataTableDestroyFeature");
 		setComponent(component);
 	}
-
+	
 	@Override
 	public int hashCode()
 	{
@@ -66,27 +58,12 @@ public class DataTableFeature
 	}
 	
 	@Override
-	public DataTableOptions<?> getOptions()
-	{
-		if (options == null)
-		{
-			options = new DataTableOptions<>();
-		}
-		return options;
-	}
-	
-	@Override
 	public void assignFunctionsToComponent()
 	{
-		addQuery("if(jw.datatables === undefined) jw.datatables = {};  " +
-		         "" +
-		      /*   "if(jw.datatables." + getComponent().asBase()
-		                                             .getID() + " !== null) try{jw.datatables." + getComponent().asBase()
-		                                                                                                         .getID() + ".destroy();}finally{}" +
-		         "" +*/
-		         "jw.datatables." + getComponent().asBase()
-		                                          .getID() + " = " + getComponent().asBase()
-		                                                                           .getJQueryID() + DataTableFeature.DataTableOpeningString +
-		         getOptions() + STRING_CLOSING_BRACKET_SEMICOLON + getNewLine());
+		addQuery("if(jw.datatables." + getComponent().asBase()
+		                                             .getID() + " !== null) {jw.datatables." + getComponent().asBase()
+		                                                                                                     .getID() + ".destroy();" +
+		      //   "alert('destroyed datatable');" +
+		         "}");
 	}
 }
