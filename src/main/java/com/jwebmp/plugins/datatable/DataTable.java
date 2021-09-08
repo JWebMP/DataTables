@@ -137,9 +137,9 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 				TableRow<? extends TableRow> tr = (TableRow) child;
 				for (TableRowChildren rowChild : tr.getChildren())
 				{
-					DataTableColumnOptions columnOptions = new DataTableColumnOptions(rowChild.asBase()
-					                                                                          .getText(0)
-					                                                                          .toString());
+					DataTableColumnOptions<?> columnOptions = new DataTableColumnOptions<>(getOptions(), rowChild.asBase()
+					                                                                                             .getText(0)
+					                                                                                             .toString());
 					getOptions().getColumns()
 					            .add(columnOptions);
 				}
@@ -283,7 +283,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 			}
 			
 			getOptions().getColumns()
-			            .add(new DataTableColumnOptions<>(text));
+			            .add(new DataTableColumnOptions<>(getOptions(), text));
 		}
 		
 		return (J) this;

@@ -71,9 +71,6 @@ public class DataTablePluginsTest
 	{
 		Page<?> p = new Page<>();
 		DataTable dt = new DataTable("id", new TableHeaderGroup());
-
-		DataTablePageConfigurator.getPlugins().add(DataTablePlugins.Responsive);
-		
 		p.getBody()
 		 .add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
@@ -129,9 +126,6 @@ public class DataTablePluginsTest
 	{
 		Page<?> p = new Page<>();
 		DataTable dt = new DataTable("id", new TableHeaderGroup());
-		DataTablePageConfigurator.getThemes()
-		                         .add(DataTableThemes.JQueryUI);
-
 		dt.getOptions()
 		  .getButtons();
 		

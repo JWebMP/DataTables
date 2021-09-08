@@ -18,20 +18,15 @@
 package com.jwebmp.plugins.datatable.options;
 
 import com.fasterxml.jackson.annotation.*;
-import com.jwebmp.core.base.ComponentHierarchyBase;
 import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.base.servlets.enumarations.ComponentTypes;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
-import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
-import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
 import com.jwebmp.plugins.datatable.enumerations.DataTableSorts;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesSortables;
-
+import com.jwebmp.plugins.datatable.options.searchpanes.DataTablesSearchPanesOptions;
 import jakarta.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.*;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
@@ -53,15 +48,16 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
  * @param <J>
  */
 @JsonAutoDetect(fieldVisibility = ANY,
-		getterVisibility = NONE,
-		setterVisibility = NONE)
+                getterVisibility = NONE,
+                setterVisibility = NONE)
 @JsonInclude(NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		extends JavaScriptPart<J>
 {
-
-
+	@JsonIgnore
+	private final DataTableOptions<?> tableOptions;
+	
 	private String name;
 	/**
 	 * This columnDefs.targets option provides the information required by DataTables for which columns in the table the column definition
@@ -127,7 +123,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * string
 	 */
 	@JsonIgnore
-	private IComponentHierarchyBase<?,?> defaultContent;
+	private IComponentHierarchyBase<?, ?> defaultContent;
 	/**
 	 * Description
 	 * Using this parameter, you can remove the end user's ability to order upon a column. This might be useful for generated content
@@ -248,7 +244,12 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * single column, the columns.responsivePriority value will always be used.
 	 */
 	private Integer responsivePriority;
-
+	
+	/**
+	 * Configure column specific search pane settings
+	 */
+	private DataTablesSearchPanesOptions searchPanes;
+	
 	/**
 	 * This columnDefs.targets option provides the information required by DataTables for which columns in the table the column definition
 	 * object should be applied.
@@ -264,11 +265,34 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 *
 	 * @param name
 	 */
-	public DataTableColumnOptions(@NotNull String name)
+	public DataTableColumnOptions(DataTableOptions<?> tableOptions, @NotNull String name)
 	{
+		this.tableOptions = tableOptions;
 		this.name = name;
 	}
-
+	
+	/**
+	 * This columnDefs.targets option provides the information required by DataTables for which columns in the table the column definition
+	 * object should be applied.
+	 * <p>
+	 * It can be:
+	 * <p>
+	 * 0 or a positive integer - column index counting from the left
+	 * A negative integer - column index counting from the right
+	 * A string - class name will be matched on the TH for the column (without a leading .)
+	 * The string "_all" - all columns (i.e. assign a default)
+	 * Additionally, targets can be either a single option from the list above, or an array of options (the different types can be mixed
+	 * in the array if required). For example targets: [ -1, -2 ] would target the last and second last columns in the table.
+	 *
+	 * @param name
+	 */
+	public DataTableColumnOptions(DataTableOptions<?> tableOptions, @NotNull Integer columnNumber)
+	{
+		this.tableOptions = tableOptions;
+		setTargets(columnNumber);
+	}
+	
+	
 	/**
 	 * @return
 	 */
@@ -277,7 +301,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return name;
 	}
-
+	
 	@SuppressWarnings({"unchecked"})
 	@NotNull
 	public J setName(String name)
@@ -285,7 +309,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.name = name;
 		return (J) this;
 	}
-
+	
 	/**
 	 * This columnDefs.targets option provides the information required by DataTables for which columns in the table the column definition
 	 * object should be applied.
@@ -305,7 +329,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return targets;
 	}
-
+	
 	/**
 	 * This columnDefs.targets option provides the information required by DataTables for which columns in the table the column definition
 	 * object should be applied.
@@ -320,7 +344,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * in the array if required). For example targets: [ -1, -2 ] would target the last and second last columns in the table.
 	 *
 	 * @param targets
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -330,7 +353,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.targets = targets;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Change the cell type created for the column - either TD cells or TH cells.
 	 * <p>
@@ -349,7 +372,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return cellType;
 	}
-
+	
 	/**
 	 * Change the cell type created for the column - either TD cells or TH cells.
 	 * <p>
@@ -363,7 +386,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * Default
 	 *
 	 * @param cellType
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -373,7 +395,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.cellType = cellType;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * Quite simply this option adds a class to each cell in a column, regardless of if the table source is from DOM, Javascript or Ajax.
@@ -390,7 +412,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return className;
 	}
-
+	
 	/**
 	 * Description
 	 * Quite simply this option adds a class to each cell in a column, regardless of if the table source is from DOM, Javascript or Ajax.
@@ -402,7 +424,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * string
 	 *
 	 * @param className
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -412,7 +433,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.className = className;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Use mmm or iii
 	 * Description
@@ -430,7 +451,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return contentPadding;
 	}
-
+	
 	/**
 	 * Use mmm or iii
 	 * <p>
@@ -444,7 +465,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * append its value to the text that is found to be the longest string for the column - i.e. padding.
 	 *
 	 * @param contentPadding
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -454,7 +474,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.contentPadding = contentPadding;
 		return (J) this;
 	}
-
+	
 	@JsonProperty("defaultContent")
 	@SuppressWarnings("unused")
 	private String getDefaultContentJson()
@@ -466,7 +486,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		defaultContent.setTiny(true);
 		return defaultContent.toString(0);
 	}
-
+	
 	/**
 	 * Description
 	 * Often you may wish to have static content in a column, for example simple edit and / or delete buttons, which have events assigned
@@ -483,11 +503,11 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 *
 	 * @return
 	 */
-	public IComponentHierarchyBase<?,?> getDefaultContent()
+	public IComponentHierarchyBase<?, ?> getDefaultContent()
 	{
 		return defaultContent;
 	}
-
+	
 	/**
 	 * Description
 	 * Often you may wish to have static content in a column, for example simple edit and / or delete buttons, which have events assigned
@@ -503,17 +523,16 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * string
 	 *
 	 * @param defaultContent
-	 *
 	 * @return
 	 */
 	@NotNull
 	@SuppressWarnings("unchecked")
-	public J setDefaultContent(IComponentHierarchyBase<?,?> defaultContent)
+	public J setDefaultContent(IComponentHierarchyBase<?, ?> defaultContent)
 	{
 		this.defaultContent = defaultContent;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * Using this parameter, you can remove the end user's ability to order upon a column. This might be useful for generated content
@@ -533,7 +552,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return orderable;
 	}
-
+	
 	/**
 	 * Description
 	 * Using this parameter, you can remove the end user's ability to order upon a column. This might be useful for generated content
@@ -548,7 +567,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * boolean
 	 *
 	 * @param orderable
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -558,7 +576,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.orderable = orderable;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * Allows a column's sorting to take either the data from a different (often hidden) column as the data to sort, or data from multiple
@@ -579,7 +597,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		}
 		return orderData;
 	}
-
+	
 	/**
 	 * Description
 	 * Allows a column's sorting to take either the data from a different (often hidden) column as the data to sort, or data from multiple
@@ -591,7 +609,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * that orthogonal data is an alternative method that can be used for this.
 	 *
 	 * @param orderData
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -601,7 +618,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.orderData = orderData;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * DataTables' primary order method (the ordering feature) makes use of data that has been cached in memory rather than reading the
@@ -623,7 +640,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		}
 		return orderDataType;
 	}
-
+	
 	/**
 	 * Description
 	 * DataTables' primary order method (the ordering feature) makes use of data that has been cached in memory rather than reading the
@@ -636,7 +653,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * DataTables sorting plug-ins page for further information.
 	 *
 	 * @param orderDataType
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -646,7 +662,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.orderDataType = orderDataType;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * You can control the default ordering direction, and even alter the behaviour of the order handler (i.e. only allow ascending
@@ -670,7 +686,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		}
 		return orderSequence;
 	}
-
+	
 	/**
 	 * Description
 	 * You can control the default ordering direction, and even alter the behaviour of the order handler (i.e. only allow ascending
@@ -684,7 +700,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * Value: [ 'asc', 'desc' ]
 	 *
 	 * @param orderSequence
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -694,7 +709,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.orderSequence = orderSequence;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * Using this parameter, you can defined if DataTables should include this column in the filterable data in the table. You may want
@@ -711,7 +726,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return searchable;
 	}
-
+	
 	/**
 	 * Description
 	 * Using this parameter, you can defined if DataTables should include this column in the filterable data in the table. You may want
@@ -723,7 +738,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * boolean
 	 *
 	 * @param searchable
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -733,7 +747,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.searchable = searchable;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * The titles of columns are typically read directly from the DOM (from the cells in the THEAD element), but it can often be useful to
@@ -750,7 +764,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return title;
 	}
-
+	
 	/**
 	 * Description
 	 * The titles of columns are typically read directly from the DOM (from the cells in the THEAD element), but it can often be useful to
@@ -762,7 +776,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * standard DOM / jQuery methods.
 	 *
 	 * @param title
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -772,7 +785,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.title = title;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * DataTables and show and hide columns dynamically through use of this option and the column().visible() / columns().visible()
@@ -793,7 +806,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return visible;
 	}
-
+	
 	/**
 	 * Description
 	 * DataTables and show and hide columns dynamically through use of this option and the column().visible() / columns().visible()
@@ -809,7 +822,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * boolean
 	 *
 	 * @param visible
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -819,7 +831,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.visible = visible;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * This parameter can be used to define the width of a column, and may take any CSS value (3em, 20px etc).
@@ -843,7 +855,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return width;
 	}
-
+	
 	/**
 	 * Description
 	 * This parameter can be used to define the width of a column, and may take any CSS value (3em, 20px etc).
@@ -870,7 +882,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.width = width;
 		return (J) this;
 	}
-
+	
 	/**
 	 * columns.responsivePrioritySince: Responsive Responsive 2.0.0
 	 * Set column's visibility priority. Please note - this property requires the Responsive extension for DataTables.
@@ -897,7 +909,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	{
 		return responsivePriority;
 	}
-
+	
 	/**
 	 * columns.responsivePrioritySince: Responsive Responsive 2.0.0
 	 * Set column's visibility priority. Please note - this property requires the Responsive extension for DataTables.
@@ -919,7 +931,6 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * single column, the columns.responsivePriority value will always be used.
 	 *
 	 * @param responsivePriority
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -927,11 +938,26 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	public J setResponsivePriority(Integer responsivePriority)
 	{
 		this.responsivePriority = responsivePriority;
-		if (this.responsivePriority != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.Responsive);
-		}
 		return (J) this;
+	}
+	
+	/**
+	 * Configure column specific search pane settings
+	 *
+	 * @return
+	 */
+	public DataTablesSearchPanesOptions getSearchPanes()
+	{
+		if (searchPanes == null)
+		{
+			searchPanes = new DataTablesSearchPanesOptions(tableOptions, true);
+		}
+		return searchPanes;
+	}
+	
+	public DataTableColumnOptions<J> setSearchPanes(DataTablesSearchPanesOptions searchPanes)
+	{
+		this.searchPanes = searchPanes;
+		return this;
 	}
 }

@@ -17,13 +17,6 @@ public class DataTablesButtonsTest
 	public void testDatatablesButtons()
 	{
 		DataTable table = new DataTable("newDT", new TableHeaderGroup<>().add(new TableRow<>().add(new TableHeader("Test Header"))));
-		DataTablePageConfigurator.switchTheme(DataTableThemes.Bootstrap4);
-
-
-
-		DataTablePageConfigurator.getPlugins()
-		                         .add(DataTablePlugins.Buttons);
-
 		Page<?> page = new Page<>();
 		page.getBody()
 		    .add(new DivSimple<>().add(table));

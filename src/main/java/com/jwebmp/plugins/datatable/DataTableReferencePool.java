@@ -29,30 +29,12 @@ public enum DataTableReferencePool
 		implements ReferencePool
 {
 
-	JQueryDataTables(new JavascriptReference("JQueryDataTables", 1.1010, "bower_components/datatables.net/js/jquery.dataTables.min.js",
-	                                         "https://cdn.datatables.net/1.10.10/js/jquery.datatables.js", 15).setPriority(
+	JQueryDataTables(new JavascriptReference("JQueryDataTables", 1.1010, "datatables/datatables.min.js",
+	                                         "https://cdn.datatables.net/v/bs4/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/cr-1.5.4/date-1.1.1/fc-3.3.3/fh-3.1.9/kt-2.6.4/r-2.2.9/rg-1.1.3/rr-1.2.8/sc-2.0.5/sb-1.2.0/sp-1.4.0/sl-1.3.3/datatables.min.js", 15).setPriority(
 			RequirementsPriority.Second),
-	                 new CSSReference("JQueryDTCss", 1.1010, "bower_components/datatables.net-dt/css/jquery.dataTables.min.css",
-	                                  "https://cdn.datatables.net/1.10.10/css/jquery.dataTables.css"), 15),
+	                 new CSSReference("JQueryDTCss", 1.1010, "datatables/datatables.min.css",
+	                                  "https://cdn.datatables.net/v/bs4/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/cr-1.5.4/date-1.1.1/fc-3.3.3/fh-3.1.9/kt-2.6.4/r-2.2.9/rg-1.1.3/rr-1.2.8/sc-2.0.5/sb-1.2.0/sp-1.4.0/sl-1.3.3/datatables.min.css"), 15),
 
-	PDFMake(new JavascriptReference("PDFMake", 1.1010, "bower_components/pdfmake/build/pdfmake.min.js"), null, 19),
-	PDFMakeVFSFonts(new JavascriptReference("PDFMakeVSFonts", 1.1010, "bower_components/pdfmake/build/vfs_fonts.min.js"), null, 19),
-
-	Buttons(new JavascriptReference("DTButtons", 1.0, "bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"), null, 18),
-
-	ButtonsColVis(new JavascriptReference("DYButtonsColVis", 1.0, "bower_components/datatables.net-buttons/js/buttons.colVis.min.js"),
-	              null, 21),
-	ButtonsHtml(new JavascriptReference("DTButtonsHtml5", 1.0, "bower_components/datatables.net-buttons/js/buttons.html5.min.js"), null,
-	            20),
-	ButtonsPrint(new JavascriptReference("DTButtonsPrint", 1.0, "bower_components/datatables.net-buttons/js/buttons.print.min.js"), null,
-	             22),
-
-	ColReorder(new JavascriptReference("DTColReorder", 1.0, "bower_components/datatables.net-colreorder/js/dataTables.colReorder.min.js"), null, 18),
-	FixedColumns(new JavascriptReference("DTFixedColumns", 1.0, "bower_components/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"), null, 18),
-	FixedHeaders(new JavascriptReference("DTFixedHeaders", 1.0, "bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"), null, 18),
-	KeyTable(new JavascriptReference("DTKeyTable", 1.0, "bower_components/datatables.net-keytable/js/dataTables.keyTable.min.js"), null, 18),
-
-	JSZip(new JavascriptReference("JSZip", 1.1010, "bower_components/jszip/dist/jszip.min.js"), null, 17),
 	;
 
 	private JavascriptReference javaScriptReference;

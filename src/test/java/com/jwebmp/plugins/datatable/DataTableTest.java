@@ -38,48 +38,4 @@ public class DataTableTest
 		p.add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
 	}
-
-	@Test
-	public void testDataTablesResponsive()
-	{
-		TableHeaderGroup thg = new TableHeaderGroup();
-		DataTable dt = new DataTable("id", thg);
-
-		DataTablePageConfigurator.getPlugins()
-		                         .add(Responsive);
-
-		Page<?> p = new Page();
-		p.add(new DivSimple<>().add(dt));
-		System.out.println(p.toString(0));
-	}
-
-	@Test
-	public void testDataTablesResponsiveBs4()
-	{
-		TableHeaderGroup thg = new TableHeaderGroup();
-		DataTable dt = new DataTable("id", thg);
-
-		DataTablePageConfigurator.getPlugins()
-		                         .add(Responsive);
-		DataTablePageConfigurator.switchTheme(DataTableThemes.Bootstrap4);
-
-		Page<?> p = new Page();
-		p.add(new DivSimple<>().add(dt));
-		System.out.println(p.toString(0));
-	}
-
-	@Test
-	public void testDataTablesResponsiveJQUI()
-	{
-		TableHeaderGroup thg = new TableHeaderGroup();
-		DataTable dt = new DataTable("id", thg);
-
-		DataTablePageConfigurator.getPlugins()
-		                         .add(Responsive);
-		DataTablePageConfigurator.switchTheme(JQueryUI);
-
-		Page<?> p = new Page();
-		p.add(new DivSimple<>().add(dt));
-		System.out.println(p.toString(0));
-	}
 }

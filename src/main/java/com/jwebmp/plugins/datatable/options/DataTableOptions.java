@@ -19,15 +19,14 @@ package com.jwebmp.plugins.datatable.options;
 import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.htmlbuilder.css.measurement.MeasurementCSSImpl;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
-import com.jwebmp.plugins.datatable.DataTablePageConfigurator;
-import com.jwebmp.plugins.datatable.DataTableReferencePool;
-import com.jwebmp.plugins.datatable.enumerations.DataTablePlugins;
+import com.jwebmp.core.htmlbuilder.javascript.JavascriptLiteralFunction;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesPagingTypes;
 import com.jwebmp.plugins.datatable.options.buttons.DataTablesButtonButtonsOptions;
 import com.jwebmp.plugins.datatable.options.responsive.DataTablesResponsiveOptions;
-
+import com.jwebmp.plugins.datatable.options.searchpanes.DataTablesSearchPanesOptions;
 import jakarta.validation.constraints.NotNull;
+
 import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.*;
@@ -42,21 +41,19 @@ import static com.jwebmp.plugins.datatable.enumerations.DataTablePlugins.*;
  * @since 09 May 2015
  */
 @JsonAutoDetect(fieldVisibility = ANY,
-		getterVisibility = NONE,
-		setterVisibility = NONE)
+                getterVisibility = NONE,
+                setterVisibility = NONE)
 @JsonInclude(NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DataTableOptions<J extends DataTableOptions<J>>
 		extends JavaScriptPart<J>
 {
-
-
 	/**
 	 * the document object model layout
 	 */
 	@JsonIgnore
-	private List<IDataTableDomOptionType<?>> dom;
-
+	private List<String> dom;
+	
 	/**
 	 * ajaxSince: DataTables 1.10
 	 * Load data for the table's content from an Ajax source.
@@ -431,7 +428,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * This option can be given in the following type(s):
 	 */
 	private Integer searchDelay;
-
+	
 	/**
 	 * stateDurationSince: DataTables 1.10
 	 * Saved state validity duration.
@@ -482,7 +479,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * } );
 	 */
 	private Set<String> stripeClasses;
-
+	
 	/**
 	 * Feature control search (filtering) abilities
 	 */
@@ -515,7 +512,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Value: 0
 	 */
 	private Integer tabIndex;
-
+	
 	/**
 	 * If the data table should be destroyed
 	 */
@@ -704,7 +701,78 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Exactly what selection the user can make and how depends upon the options selected.
 	 */
 	private DataTablesSelectOptions<?> select;
-
+	
+	/**
+	 * It can often be useful to know when your table has fully been initialised, data loaded and drawn, particularly when using an ajax data source. In such a case, the table will complete its initial run before the data has been loaded (Ajax is asynchronous after all!) so this callback is provided to let you know when the data is fully loaded.
+	 * <p>
+	 * Additionally the callback is passed in the JSON data received from the server when Ajax loading data, which can be useful for configuring components connected to your table, for example Editor fields.
+	 */
+	private JavascriptLiteralFunction<?> initComplete;
+	
+	/**
+	 * It can often be useful to know when your table has fully been initialised, data loaded and drawn, particularly when using an ajax data source. In such a case, the table will complete its initial run before the data has been loaded (Ajax is asynchronous after all!) so this callback is provided to let you know when the data is fully loaded.
+	 * <p>
+	 * Additionally the callback is passed in the JSON data received from the server when Ajax loading data, which can be useful for configuring components connected to your table, for example Editor fields.
+	 *
+	 * @return
+	 */
+	public JavascriptLiteralFunction<?> getInitComplete()
+	{
+		return initComplete;
+	}
+	
+	/**
+	 * It can often be useful to know when your table has fully been initialised, data loaded and drawn, particularly when using an ajax data source. In such a case, the table will complete its initial run before the data has been loaded (Ajax is asynchronous after all!) so this callback is provided to let you know when the data is fully loaded.
+	 * <p>
+	 * Additionally the callback is passed in the JSON data received from the server when Ajax loading data, which can be useful for configuring components connected to your table, for example Editor fields.
+	 *
+	 * @param initComplete
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public J setInitComplete(JavascriptLiteralFunction<?> initComplete)
+	{
+		this.initComplete = initComplete;
+		return (J) this;
+	}
+	
+	/**
+	 * SearchPanes adds panes to the DataTable with the capability to search the DataTable by selecting rows in the panes. This is very useful when it comes to adding a more accessible searching feature and custom search capabilities.
+	 * <p>
+	 * SearchPanes can search DataTables for multiple values that have been selected across multiple panes. They also provide the ability to define custom search functions which cannot be achieved through a simple searchBox.
+	 */
+	private DataTablesSearchPanesOptions searchPanes;
+	
+	/**
+	 * SearchPanes adds panes to the DataTable with the capability to search the DataTable by selecting rows in the panes. This is very useful when it comes to adding a more accessible searching feature and custom search capabilities.
+	 * <p>
+	 * SearchPanes can search DataTables for multiple values that have been selected across multiple panes. They also provide the ability to define custom search functions which cannot be achieved through a simple searchBox.
+	 *
+	 * @return
+	 */
+	public DataTablesSearchPanesOptions getSearchPanes()
+	{
+		if (searchPanes == null)
+		{
+			searchPanes = new DataTablesSearchPanesOptions(this, true);
+		}
+		return searchPanes;
+	}
+	
+	/**
+	 * SearchPanes adds panes to the DataTable with the capability to search the DataTable by selecting rows in the panes. This is very useful when it comes to adding a more accessible searching feature and custom search capabilities.
+	 * <p>
+	 * SearchPanes can search DataTables for multiple values that have been selected across multiple panes. They also provide the ability to define custom search functions which cannot be achieved through a simple searchBox.
+	 *
+	 * @param searchPanes
+	 * @return
+	 */
+	public DataTableOptions<J> setSearchPanes(DataTablesSearchPanesOptions searchPanes)
+	{
+		this.searchPanes = searchPanes;
+		return this;
+	}
+	
 	/**
 	 * The list of data table options
 	 */
@@ -712,7 +780,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		//Nothing Needed
 	}
-
+	
 	/**
 	 * autoWidthSince: DataTables 1.10
 	 * Feature control DataTables' smart column width handling.
@@ -732,7 +800,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return autoWidth;
 	}
-
+	
 	/**
 	 * autoWidthSince: DataTables 1.10
 	 * Feature control DataTables' smart column width handling.
@@ -747,7 +815,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * boolean
 	 *
 	 * @param autoWidth
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -757,7 +824,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.autoWidth = autoWidth;
 		return (J) this;
 	}
-
+	
 	/**
 	 * deferLoadingSince: DataTables 1.10
 	 * Delay the loading of server-side data until second draw.
@@ -783,7 +850,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return deferRender;
 	}
-
+	
 	/**
 	 * deferLoadingSince: DataTables 1.10
 	 * Delay the loading of server-side data until second draw.
@@ -804,7 +871,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Note that this option only has effect when serverSide is enabled. It does not have any effect when using client-side processing.
 	 *
 	 * @param deferRender
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -814,7 +880,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.deferRender = deferRender;
 		return (J) this;
 	}
-
+	
 	/**
 	 * nfoSince: DataTables 1.10
 	 * Feature control table information display field.
@@ -838,7 +904,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return info;
 	}
-
+	
 	/**
 	 * nfoSince: DataTables 1.10
 	 * Feature control table information display field.
@@ -857,7 +923,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Value: true
 	 *
 	 * @param info
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -867,7 +932,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.info = info;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Enables JQuery UI Theming within the data table
 	 * <p>
@@ -880,7 +945,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return jQueryUI;
 	}
-
+	
 	/**
 	 * Enables JQuery UI Theming within the data table
 	 * <p>
@@ -896,7 +961,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.jQueryUI = jQueryUI;
 		return (J) this;
 	}
-
+	
 	/**
 	 * lengthChangeSince: DataTables 1.10
 	 * Feature control the end user's ability to change the paging display length of the table.
@@ -920,7 +985,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return lengthChange;
 	}
-
+	
 	/**
 	 * lengthChangeSince: DataTables 1.10
 	 * Feature control the end user's ability to change the paging display length of the table.
@@ -939,7 +1004,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * when the is no pagination.
 	 *
 	 * @param lengthChange
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -949,7 +1013,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.lengthChange = lengthChange;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * This parameter allows you to readily specify the entries in the length drop down select list that DataTables shows when pagination
@@ -979,7 +1043,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return lengthMenu;
 	}
-
+	
 	/**
 	 * Description
 	 * This parameter allows you to readily specify the entries in the length drop down select list that DataTables shows when pagination
@@ -1016,7 +1080,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.lengthMenu = lengthMenu;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * Allows control over whether DataTables should use the top (true) unique cell that is found for a single column, or the bottom
@@ -1028,14 +1092,13 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return orderCellsTop;
 	}
-
+	
 	/**
 	 * Description
 	 * Allows control over whether DataTables should use the top (true) unique cell that is found for a single column, or the bottom
 	 * (false - default) to attach the default order listener. This is useful when using complex headers.
 	 *
 	 * @param orderCellsTop
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1045,7 +1108,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.orderCellsTop = orderCellsTop;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Description
 	 * DataTables highlight the columns which are used to order the content in the table's body by adding a class to the cells in that
@@ -1065,7 +1128,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return orderClasses;
 	}
-
+	
 	/**
 	 * Description
 	 * DataTables highlight the columns which are used to order the content in the table's body by adding a class to the cells in that
@@ -1080,7 +1143,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * to be disabled with working with old browsers or large data sets.
 	 *
 	 * @param orderClasses
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1090,7 +1152,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.orderClasses = orderClasses;
 		return (J) this;
 	}
-
+	
 	/**
 	 * orderFixedSince: DataTables 1.10
 	 * Ordering to always be applied to the table.
@@ -1118,7 +1180,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return orderFixed;
 	}
-
+	
 	/**
 	 * orderFixedSince: DataTables 1.10
 	 * Ordering to always be applied to the table.
@@ -1141,7 +1203,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * column for example, or for grouping similar rows together.
 	 *
 	 * @param orderFixed
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1151,7 +1212,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.orderFixed = orderFixed;
 		return (J) this;
 	}
-
+	
 	/**
 	 * orderMultiSince: DataTables 1.10
 	 * Multiple column ordering ability control.
@@ -1178,7 +1239,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return orderMulti;
 	}
-
+	
 	/**
 	 * orderMultiSince: DataTables 1.10
 	 * Multiple column ordering ability control.
@@ -1200,7 +1261,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * true
 	 *
 	 * @param orderMulti
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1210,7 +1270,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.orderMulti = orderMulti;
 		return (J) this;
 	}
-
+	
 	/**
 	 * orderingSince: DataTables 1.10
 	 * Feature control ordering (sorting) abilities in DataTables.
@@ -1228,7 +1288,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return ordering;
 	}
-
+	
 	/**
 	 * orderingSince: DataTables 1.10
 	 * Feature control ordering (sorting) abilities in DataTables.
@@ -1241,7 +1301,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * column. This parameter is a global option - when disabled, there are no sorting actions applied by DataTables at all.
 	 *
 	 * @param ordering
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1251,7 +1310,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.ordering = ordering;
 		return (J) this;
 	}
-
+	
 	/**
 	 * pageLengthSince: DataTables 1.10
 	 * Change the initial page length (number of rows per page).
@@ -1275,7 +1334,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return pageLength;
 	}
-
+	
 	/**
 	 * pageLengthSince: DataTables 1.10
 	 * Change the initial page length (number of rows per page).
@@ -1294,7 +1353,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Value: 10
 	 *
 	 * @param pageLength
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1304,7 +1362,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.pageLength = pageLength;
 		return (J) this;
 	}
-
+	
 	/**
 	 * pagingTypeSince: DataTables 1.10
 	 * Pagination button display options.
@@ -1335,7 +1393,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return pagingType;
 	}
-
+	
 	/**
 	 * pagingTypeSince: DataTables 1.10
 	 * Pagination button display options.
@@ -1361,7 +1419,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * string
 	 *
 	 * @param pagingType
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1371,7 +1428,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.pagingType = pagingType;
 		return (J) this;
 	}
-
+	
 	/**
 	 * pagingSince: DataTables 1.10
 	 * Enable or disable table pagination.
@@ -1394,7 +1451,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return paging;
 	}
-
+	
 	/**
 	 * pagingSince: DataTables 1.10
 	 * Enable or disable table pagination.
@@ -1412,7 +1469,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * true
 	 *
 	 * @param paging
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1422,7 +1478,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.paging = paging;
 		return (J) this;
 	}
-
+	
 	/**
 	 * processingSince: DataTables 1.10
 	 * Feature control the processing indicator.
@@ -1444,7 +1500,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return processing;
 	}
-
+	
 	/**
 	 * processingSince: DataTables 1.10
 	 * Feature control the processing indicator.
@@ -1461,7 +1517,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * false
 	 *
 	 * @param processing
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1471,7 +1526,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.processing = processing;
 		return (J) this;
 	}
-
+	
 	/**
 	 * rendererSince: DataTables 1.10
 	 * Display component renderer types.
@@ -1523,7 +1578,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return renderer;
 	}
-
+	
 	/**
 	 * rendererSince: DataTables 1.10
 	 * Display component renderer types.
@@ -1570,7 +1625,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * } );
 	 *
 	 * @param renderer
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1580,7 +1634,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.renderer = renderer;
 		return (J) this;
 	}
-
+	
 	/**
 	 * retrieveSince: DataTables 1.10
 	 * Retrieve an existing DataTables instance.
@@ -1606,7 +1660,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return retrieve;
 	}
-
+	
 	/**
 	 * retrieveSince: DataTables 1.10
 	 * Retrieve an existing DataTables instance.
@@ -1627,7 +1681,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Value: true
 	 *
 	 * @param retrieve
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1637,12 +1690,12 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.retrieve = retrieve;
 		return (J) this;
 	}
-
+	
 	public String getRowId()
 	{
 		return rowId;
 	}
-
+	
 	/**
 	 * rowIdSince: DataTables 1.10.8
 	 * Data property name that DataTables will use to set tr element DOM IDs.
@@ -1675,7 +1728,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * string
 	 *
 	 * @param rowId
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1685,7 +1737,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.rowId = rowId;
 		return (J) this;
 	}
-
+	
 	/**
 	 * scrollCollapseSince: DataTables 1.10
 	 * Allow the table to reduce in height when a limited number of rows are shown.
@@ -1707,7 +1759,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return scrollCollapse;
 	}
-
+	
 	/**
 	 * scrollCollapseSince: DataTables 1.10
 	 * Allow the table to reduce in height when a limited number of rows are shown.
@@ -1724,7 +1776,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * boolean
 	 *
 	 * @param scrollCollapse
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1734,7 +1785,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.scrollCollapse = scrollCollapse;
 		return (J) this;
 	}
-
+	
 	/**
 	 * scrollXSince: DataTables 1.10
 	 * Horizontal scrolling.
@@ -1752,7 +1803,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return scrollX;
 	}
-
+	
 	/**
 	 * scrollXSince: DataTables 1.10
 	 * Horizontal scrolling.
@@ -1765,7 +1816,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * (in which case it will be treated as a pixel measurement).
 	 *
 	 * @param scrollX
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1775,7 +1825,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.scrollX = scrollX;
 		return (J) this;
 	}
-
+	
 	/**
 	 * scrollXSince: DataTables 1.10
 	 * Horizontal scrolling.
@@ -1793,7 +1843,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return scrollXNum;
 	}
-
+	
 	/**
 	 * scrollXSince: DataTables 1.10
 	 * Horizontal scrolling.
@@ -1806,7 +1856,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * (in which case it will be treated as a pixel measurement).
 	 *
 	 * @param scrollXNum
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1816,7 +1865,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.scrollXNum = scrollXNum;
 		return (J) this;
 	}
-
+	
 	/**
 	 * scrollYSince: DataTables 1.10
 	 * Vertical scrolling.
@@ -1840,7 +1889,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return scrollY;
 	}
-
+	
 	/**
 	 * scrollYSince: DataTables 1.10
 	 * Vertical scrolling.
@@ -1859,7 +1908,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * string
 	 *
 	 * @param scrollY
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1869,7 +1917,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.scrollY = scrollY;
 		return (J) this;
 	}
-
+	
 	/**
 	 * searchDelaySince: DataTables 1.10.3
 	 * Set a throttle frequency for searching.
@@ -1903,7 +1951,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return searchDelay;
 	}
-
+	
 	/**
 	 * searchDelaySince: DataTables 1.10.3
 	 * Set a throttle frequency for searching.
@@ -1932,7 +1980,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * This option can be given in the following type(s):
 	 *
 	 * @param searchDelay
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -1942,7 +1989,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.searchDelay = searchDelay;
 		return (J) this;
 	}
-
+	
 	/**
 	 * stateDurationSince: DataTables 1.10
 	 * Saved state validity duration.
@@ -1971,7 +2018,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return stateDuration;
 	}
-
+	
 	/**
 	 * stateDurationSince: DataTables 1.10
 	 * Saved state validity duration.
@@ -1995,7 +2042,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * integer
 	 *
 	 * @param stateDuration
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -2005,7 +2051,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.stateDuration = stateDuration;
 		return (J) this;
 	}
-
+	
 	/**
 	 * stripeClassesSince: DataTables 1.10
 	 * Set the zebra stripe class names for the rows in the table.
@@ -2042,7 +2088,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return stripeClasses;
 	}
-
+	
 	/**
 	 * stripeClassesSince: DataTables 1.10
 	 * Set the zebra stripe class names for the rows in the table.
@@ -2070,7 +2116,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * } );
 	 *
 	 * @param stripeClasses
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -2080,7 +2125,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.stripeClasses = stripeClasses;
 		return (J) this;
 	}
-
+	
 	/**
 	 * searchingSince: DataTables 1.10
 	 * Feature control search (filtering) abilities.
@@ -2110,7 +2155,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return searching;
 	}
-
+	
 	/**
 	 * searchingSince: DataTables 1.10
 	 * Feature control search (filtering) abilities.
@@ -2135,7 +2180,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Value: true
 	 *
 	 * @param searching
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -2145,7 +2189,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.searching = searching;
 		return (J) this;
 	}
-
+	
 	/**
 	 * serverSideSince: DataTables 1.10
 	 * Feature control DataTables' server-side processing mode.
@@ -2180,7 +2224,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return serverSide;
 	}
-
+	
 	/**
 	 * serverSideSince: DataTables 1.10
 	 * Feature control DataTables' server-side processing mode.
@@ -2210,7 +2254,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * false
 	 *
 	 * @param serverSide
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -2220,7 +2263,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.serverSide = serverSide;
 		return (J) this;
 	}
-
+	
 	/**
 	 * stateSaveSince: DataTables 1.10
 	 * State saving - restore table state on page reload.
@@ -2253,7 +2296,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return stateSave;
 	}
-
+	
 	/**
 	 * stateSaveSince: DataTables 1.10
 	 * State saving - restore table state on page reload.
@@ -2281,7 +2324,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Value: false
 	 *
 	 * @param stateSave
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -2291,7 +2333,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.stateSave = stateSave;
 		return (J) this;
 	}
-
+	
 	/**
 	 * tabIndexSince: DataTables 1.10
 	 * Tab index control for keyboard navigation.
@@ -2317,7 +2359,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return tabIndex;
 	}
-
+	
 	/**
 	 * tabIndexSince: DataTables 1.10
 	 * Tab index control for keyboard navigation.
@@ -2338,7 +2380,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Value: 0
 	 *
 	 * @param tabIndex
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -2348,7 +2389,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.tabIndex = tabIndex;
 		return (J) this;
 	}
-
+	
 	/**
 	 * ajaxSince: DataTables 1.10
 	 * Load data for the table's content from an Ajax source.
@@ -2375,7 +2416,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return ajax;
 	}
-
+	
 	/**
 	 * ajaxSince: DataTables 1.10
 	 * Load data for the table's content from an Ajax source.
@@ -2392,7 +2433,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * function - Custom data get function
 	 *
 	 * @param ajax
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -2402,12 +2442,12 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.ajax = ajax;
 		return (J) this;
 	}
-
+	
 	public String getData()
 	{
 		return data;
 	}
-
+	
 	@NotNull
 	@SuppressWarnings("unchecked")
 	public J setData(String data)
@@ -2415,7 +2455,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.data = data;
 		return (J) this;
 	}
-
+	
 	/**
 	 * If the data table should be destroyed
 	 *
@@ -2425,12 +2465,11 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	{
 		return destroy;
 	}
-
+	
 	/**
 	 * If the data table should be destroyed
 	 *
 	 * @param destroy
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -2440,7 +2479,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.destroy = destroy;
 		return (J) this;
 	}
-
+	
 	/**
 	 * <p>
 	 * As is described by the basic DOM positioning example you can use the dom initialisation parameter to move DataTables features
@@ -2456,7 +2495,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 */
 	@SuppressWarnings("all")
 	@NotNull
-	public List<IDataTableDomOptionType<?>> getDom()
+	public List<String> getDom()
 	{
 		if (dom == null)
 		{
@@ -2464,7 +2503,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return dom;
 	}
-
+	
 	/**
 	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
 	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
@@ -2474,17 +2513,16 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * important if you are interacting with the table using the API.
 	 *
 	 * @param dom
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("all")
 	@NotNull
-	public J setDom(List<IDataTableDomOptionType<?>> dom)
+	public J setDom(List<String> dom)
 	{
 		this.dom = dom;
 		return (J) this;
 	}
-
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	@JsonProperty("dom")
 	private String jsonDom()
@@ -2500,7 +2538,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return sb.toString();
 	}
-
+	
 	/**
 	 * Returns the list of columns
 	 *
@@ -2515,12 +2553,11 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return columns;
 	}
-
+	
 	/**
 	 * Sets the list of columns
 	 *
 	 * @param columns
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -2530,7 +2567,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.columns = columns;
 		return (J) this;
 	}
-
+	
 	/**
 	 * Spreadsheets such as Excel and Google Docs have a very handy data duplication option of an auto fill tool. The AutoFill library for
 	 * DataTables provides a similar interface for DataTables and extends upon this interface paradigm to provide complex data
@@ -2548,12 +2585,10 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		if (autoFill == null)
 		{
 			setAutoFill(new DataTableAutoFillOptions<>());
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.AutoFill);
 		}
 		return autoFill;
 	}
-
+	
 	/**
 	 * Spreadsheets such as Excel and Google Docs have a very handy data duplication option of an auto fill tool. The AutoFill library for
 	 * DataTables provides a similar interface for DataTables and extends upon this interface paradigm to provide complex data
@@ -2564,7 +2599,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * to use on your page and have a single Javascript and CSS file created and hosted for you.
 	 *
 	 * @param autoFill
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -2572,14 +2606,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setAutoFill(DataTableAutoFillOptions<?> autoFill)
 	{
 		this.autoFill = autoFill;
-		if (autoFill == null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.AutoFill);
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * Buttons
 	 * A common UI paradigm to use with interactive tables is to present buttons that will trigger some action - that may be to alter the
@@ -2602,11 +2631,10 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		if (buttons == null)
 		{
 			setButtons(new TreeSet<>());
-			DataTablePageConfigurator.configureButtons();
 		}
 		return buttons;
 	}
-
+	
 	/**
 	 * Buttons
 	 * A common UI paradigm to use with interactive tables is to present buttons that will trigger some action - that may be to alter the
@@ -2622,7 +2650,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * interactions performed with your tables.
 	 *
 	 * @param buttons
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -2630,15 +2657,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setButtons(Set<DataTablesButtonButtonsOptions<?>> buttons)
 	{
 		this.buttons = buttons;
-		if (buttons != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.Buttons);
-			DataTablePageConfigurator.configureButtons();
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
 	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
@@ -2658,7 +2679,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return colReorder;
 	}
-
+	
 	/**
 	 * ColReorder adds the ability for the end user to be able to reorder columns in a DataTable through a click and drag operation. This
 	 * can be useful when presenting data in a table, letting the user move columns that they wish to compare next to each other for
@@ -2668,7 +2689,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * important if you are interacting with the table using the API.
 	 *
 	 * @param colReorder
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -2676,17 +2696,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setColReorder(DataTableColReOrderOptions<?> colReorder)
 	{
 		this.colReorder = colReorder;
-		if (colReorder != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.ColReorder);
-
-			DataTablePageConfigurator.getExtensions()
-			                         .add(DataTableReferencePool.ColReorder.getJavaScriptReference());
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * FixedColumns
 	 * When making use of DataTables' x-axis scrolling feature (scrollX), you may wish to fix the left or right most columns in place.
@@ -2720,7 +2732,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return fixedColumns;
 	}
-
+	
 	/**
 	 * FixedColumns
 	 * When making use of DataTables' x-axis scrolling feature (scrollX), you may wish to fix the left or right most columns in place.
@@ -2744,7 +2756,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * that it will introduce into your software.
 	 *
 	 * @param fixedColumns
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -2752,16 +2763,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setFixedColumns(DataTableFixedColumnsOptions<?> fixedColumns)
 	{
 		this.fixedColumns = fixedColumns;
-		if (fixedColumns != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.FixedColumns);
-			DataTablePageConfigurator.getExtensions()
-			                         .add(DataTableReferencePool.FixedColumns.getJavaScriptReference());
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * When displaying tables with a particularly large amount of data shown on each page, it can be useful to have the table's header and
 	 * / or footer fixed to the top or bottom of the scrolling window. This lets your users quickly determine what each column refers to
@@ -2786,7 +2790,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return fixedHeader;
 	}
-
+	
 	/**
 	 * When displaying tables with a particularly large amount of data shown on each page, it can be useful to have the table's header and
 	 * / or footer fixed to the top or bottom of the scrolling window. This lets your users quickly determine what each column refers to
@@ -2801,7 +2805,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * (scrollX / scrollY). Please refer to the compatibility table for full compatibility details.
 	 *
 	 * @param fixedHeader
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -2809,17 +2812,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setFixedHeader(DataTableFixedHeaderOptions<?> fixedHeader)
 	{
 		this.fixedHeader = fixedHeader;
-		if (fixedHeader != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(FixedHeader);
-			DataTablePageConfigurator.getExtensions()
-			                         .add(DataTableReferencePool.FixedHeaders.getJavaScriptReference());
-
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * keysSince: KeyTable KeyTable 2.0.0
 	 * Enable and configure the KeyTable extension for DataTables. Please note - this property requires the KeyTable extension for
@@ -2849,7 +2844,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return keys;
 	}
-
+	
 	/**
 	 * keysSince: KeyTable KeyTable 2.0.0
 	 * Enable and configure the KeyTable extension for DataTables. Please note - this property requires the KeyTable extension for
@@ -2869,23 +2864,15 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * options. This property should be set in the DataTables initialisation object.
 	 *
 	 * @param keys
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	public J setKeys(DataTableKeyTableOptions<?> keys)
 	{
 		this.keys = keys;
-		if (keys != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.KeyTable);
-			DataTablePageConfigurator.getExtensions()
-			                         .add(DataTableReferencePool.KeyTable.getJavaScriptReference());
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * responsiveSince: Responsive Responsive 1.0.0
 	 * Enable and configure the Responsive extension for DataTables. Please note - this property requires the Responsive extension for
@@ -2911,7 +2898,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return responsive;
 	}
-
+	
 	/**
 	 * responsiveSince: Responsive Responsive 1.0.0
 	 * Enable and configure the Responsive extension for DataTables. Please note - this property requires the Responsive extension for
@@ -2926,24 +2913,15 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * DataTables options. This property should be set in the DataTables initialisation object.
 	 *
 	 * @param responsive
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	public J setResponsive(DataTablesResponsiveOptions<?> responsive)
 	{
 		this.responsive = responsive;
-		if (responsive != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.Responsive);
-
-			DataTablePageConfigurator.getExtensions()
-			                         .add(DataTableReferencePool.KeyTable.getJavaScriptReference());
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * searchSince: DataTables 1.10
 	 * Set an initial filter in DataTables and / or filtering options.
@@ -2972,7 +2950,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return search;
 	}
-
+	
 	/**
 	 * searchSince: DataTables 1.10
 	 * Set an initial filter in DataTables and / or filtering options.
@@ -2991,7 +2969,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * search.search - Set an initial global filter.
 	 *
 	 * @param search
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -3001,7 +2978,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.search = search;
 		return (J) this;
 	}
-
+	
 	/**
 	 * searchColsSince: DataTables 1.10
 	 * Define an initial search for individual columns.
@@ -3029,7 +3006,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return searchCols;
 	}
-
+	
 	/**
 	 * searchColsSince: DataTables 1.10
 	 * Define an initial search for individual columns.
@@ -3047,7 +3024,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * array
 	 *
 	 * @param searchCols
-	 *
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -3057,7 +3033,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.searchCols = searchCols;
 		return (J) this;
 	}
-
+	
 	/**
 	 * rowGroupSince: RowGroup RowGroup 1.0.0
 	 * Enable and configure the RowGroup extension for DataTables. Please note - this property requires the RowGroup extension for
@@ -3087,7 +3063,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return rowGroup;
 	}
-
+	
 	/**
 	 * rowGroupSince: RowGroup RowGroup 1.0.0
 	 * Enable and configure the RowGroup extension for DataTables. Please note - this property requires the RowGroup extension for
@@ -3107,7 +3083,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * options. This property should be set in the DataTables initialisation object.
 	 *
 	 * @param rowGroup
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -3115,14 +3090,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setRowGroup(DataTablesRowGroupOptions<?> rowGroup)
 	{
 		this.rowGroup = rowGroup;
-		if (rowGroup != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.RowGroup);
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * rowReorder
 	 * Enable and configure the RowReorder extension for DataTables. Please note - this property requires the RowReorder extension for
@@ -3147,7 +3117,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return rowReorder;
 	}
-
+	
 	/**
 	 * rowReorder
 	 * Enable and configure the RowReorder extension for DataTables. Please note - this property requires the RowReorder extension for
@@ -3162,7 +3132,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * DataTables options. This property should be set in the DataTables initialisation object.
 	 *
 	 * @param rowReorder
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -3170,14 +3139,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setRowReorder(DataTablesRowReorder<?> rowReorder)
 	{
 		this.rowReorder = rowReorder;
-		if (rowReorder != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.RowReorder);
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * scroller
 	 * Enable and configure the Scroller extension for DataTables. Please note - this property requires the Scroller extension for
@@ -3211,7 +3175,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		}
 		return scroller;
 	}
-
+	
 	/**
 	 * scroller
 	 * Enable and configure the Scroller extension for DataTables. Please note - this property requires the Scroller extension for
@@ -3235,7 +3199,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * options. This property should be set in the DataTables initialisation object.
 	 *
 	 * @param scroller
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -3243,14 +3206,9 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setScroller(DataTablesScrollerOptions<?> scroller)
 	{
 		this.scroller = scroller;
-		if (scroller != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.Scroller);
-		}
 		return (J) this;
 	}
-
+	
 	/**
 	 * selectSince: Select 1.0.0
 	 * Select configuration object. Please note - this property requires the Select extension for DataTables.
@@ -3273,10 +3231,10 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		{
 			setSelect(new DataTablesSelectOptions<>());
 		}
-
+		
 		return select;
 	}
-
+	
 	/**
 	 * selectSince: Select 1.0.0
 	 * Select configuration object. Please note - this property requires the Select extension for DataTables.
@@ -3291,7 +3249,6 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Exactly what selection the user can make and how depends upon the options selected.
 	 *
 	 * @param select
-	 *
 	 * @return
 	 */
 	@NotNull
@@ -3299,12 +3256,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setSelect(DataTablesSelectOptions<?> select)
 	{
 		this.select = select;
-		if (select != null)
-		{
-			DataTablePageConfigurator.getPlugins()
-			                         .add(DataTablePlugins.Select);
-		}
 		return (J) this;
 	}
-
+	
 }

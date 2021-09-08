@@ -36,4 +36,6 @@ module com.jwebmp.plugins.datatable {
 	opens com.jwebmp.plugins.datatable.options.buttons to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
 	opens com.jwebmp.plugins.datatable.options.responsive to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
 	opens com.jwebmp.plugins.datatable.search to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
+	exports com.jwebmp.plugins.datatable.options.searchpanes;
+	opens com.jwebmp.plugins.datatable.options.searchpanes to com.fasterxml.jackson.databind, com.google.guice, com.jwebmp.core;
 }
