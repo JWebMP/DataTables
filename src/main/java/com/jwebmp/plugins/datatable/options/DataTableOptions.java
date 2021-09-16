@@ -31,7 +31,6 @@ import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.*;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
-import static com.jwebmp.plugins.datatable.enumerations.DataTablePlugins.*;
 
 /**
  * The Options for the Data Table
@@ -512,6 +511,15 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Value: 0
 	 */
 	private Integer tabIndex;
+	
+	/**
+	 * Callback that defines how the table state is stored and where
+	 */
+	private JavascriptLiteralFunction<?> stateSaveCallback;
+	/**
+	 * Callback that defines where and how a saved state should be loaded.
+	 */
+	private JavascriptLiteralFunction<?> stateLoadCallback;
 	
 	/**
 	 * If the data table should be destroyed
@@ -2331,6 +2339,46 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	public J setStateSave(Boolean stateSave)
 	{
 		this.stateSave = stateSave;
+		if (stateSave)
+		{
+			setStateSaveCallback(new JavascriptLiteralFunction()
+			{
+				{
+					getFunctionArugments().add("settings");
+					getFunctionArugments().add("data");
+				}
+				
+				@Override
+				public StringBuilder getLiteralFunction()
+				{
+					StringBuilder sb = new StringBuilder();
+					sb.append("sessionStorage.setItem( 'DataTables_' + settings.sInstance, JSON.stringify(data) );" +
+					          "for (var i = 0; i < localStorage.length; i++){ " +
+					          "    var key = localStorage.key(i); " +
+					          "    if(key.startsWith('DataTables_DataTables_'))" +
+					          "        {" +
+					          "            localStorage.removeItem(key);" +
+					          "        }" +
+					          "}");
+					return sb;
+				}
+			});
+			
+			setStateLoadCallback(new JavascriptLiteralFunction()
+			{
+				{
+					getFunctionArugments().add("settings");
+				}
+				
+				@Override
+				public StringBuilder getLiteralFunction()
+				{
+					StringBuilder sb = new StringBuilder();
+					sb.append("return JSON.parse( sessionStorage.getItem( 'DataTables_' + settings.sInstance ) )");
+					return sb;
+				}
+			});
+		}
 		return (J) this;
 	}
 	
@@ -3259,4 +3307,47 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		return (J) this;
 	}
 	
+	/**
+	 * Callback that defines how the table state is stored and where
+	 *
+	 * @return
+	 */
+	public JavascriptLiteralFunction<?> getStateSaveCallback()
+	{
+		return stateSaveCallback;
+	}
+	
+	/**
+	 * Callback that defines how the table state is stored and where
+	 *
+	 * @param stateSaveCallback
+	 * @return
+	 */
+	public J setStateSaveCallback(JavascriptLiteralFunction<?> stateSaveCallback)
+	{
+		this.stateSaveCallback = stateSaveCallback;
+		return (J) this;
+	}
+	
+	/**
+	 * Callback that defines where and how a saved state should be loaded.
+	 *
+	 * @return
+	 */
+	public JavascriptLiteralFunction<?> getStateLoadCallback()
+	{
+		return stateLoadCallback;
+	}
+	
+	/**
+	 * Callback that defines where and how a saved state should be loaded.
+	 *
+	 * @param stateLoadCallback
+	 * @return
+	 */
+	public J setStateLoadCallback(JavascriptLiteralFunction<?> stateLoadCallback)
+	{
+		this.stateLoadCallback = stateLoadCallback;
+		return (J) this;
+	}
 }
