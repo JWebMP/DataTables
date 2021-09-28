@@ -446,6 +446,7 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 	@NotNull
 	public J setBodyGroup(TableBodyGroup<?> bodyGroup)
 	{
+		bodyGroup.setID(getID() + "_bodygroup");
 		getChildren().remove(this.bodyGroup);
 		this.bodyGroup = bodyGroup;
 		if (!getChildren().contains(bodyGroup))
