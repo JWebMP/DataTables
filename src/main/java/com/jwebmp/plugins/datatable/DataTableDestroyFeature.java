@@ -62,8 +62,10 @@ public class DataTableDestroyFeature
 	{
 		addQuery("if(jw.datatables." + getComponent().asBase()
 		                                             .getID() + " !== null) {jw.datatables." + getComponent().asBase()
-		                                                                                                     .getID() + ".destroy();" +
-		      //   "alert('destroyed datatable');" +
+		                                                                                                     .getID() + ".clear().destroy();" +
+		         getComponent().asBase()
+		                       .getJQueryID() + "empty();" +
+		         //"alert('destroyed datatable');" +
 		         "}");
 	}
 }
