@@ -12,7 +12,7 @@
 
     <artifactId>jwebmp-data-tables</artifactId>
     <packaging>jar</packaging>
-
+    <version>0.0.0_0-SNAPSHOT</version>
     <name>Data Tables Plugin</name>
     <description>The JWebSwing implementation for Data Tables</description>
     <url>https://github.com/GedMarc/Data-Tables-Plugin</url>
