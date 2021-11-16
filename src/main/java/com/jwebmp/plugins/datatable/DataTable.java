@@ -23,6 +23,7 @@ import com.jwebmp.core.base.html.attributes.TableAttributes;
 import com.jwebmp.core.base.html.interfaces.children.TableHeaderGroupChildren;
 import com.jwebmp.core.base.html.interfaces.children.TableRowChildren;
 import com.jwebmp.core.plugins.ComponentInformation;
+import com.jwebmp.core.utilities.*;
 import com.jwebmp.plugins.datatable.enumerations.DataTableButtons;
 import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
 import com.jwebmp.plugins.datatable.options.DataTableColumnOptions;
@@ -50,11 +51,10 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		implements IDataTable<T, J>
 {
 	
-	
 	/**
-	 * The associated feature for the data table
+	 *
 	 */
-	private DataTableFeature feature;
+	private DataTableOptions<?> options;
 	/**
 	 * The header grouping for a data table
 	 */
@@ -101,19 +101,10 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		addAttribute(TableAttributes.CellPadding, 0);
 		setHeaderGroup(headerGroup);
 		setID(id);
-		addFeature(getFeature());
+		addAttribute("datatables", "");
 		addClass("table table-responsive w-100 d-block d-md-table");
 	}
 	
-	@NotNull
-	public final DataTableFeature getFeature()
-	{
-		if (feature == null)
-		{
-			feature = new DataTableFeature(this);
-		}
-		return feature;
-	}
 	
 	/**
 	 * Returns this class as a trimmed down accessor for ease of use
@@ -129,40 +120,29 @@ public class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 	@SuppressWarnings("unchecked")
 	public void init()
 	{
-		if (!isInitialized() && isEnableDynamicFeature())
+		if(getOptions().getDom() != null && !getOptions().getDom().isEmpty())
 		{
-			TableHeaderGroup<? extends TableHeaderGroup<?>> group = getHeaderGroup();
-			for (TableHeaderGroupChildren child : group.getChildren())
+			StringBuilder domString = new StringBuilder();
+			for (String s : getOptions().getDom())
 			{
-				TableRow<? extends TableRow> tr = (TableRow) child;
-				for (TableRowChildren rowChild : tr.getChildren())
-				{
-					DataTableColumnOptions<?> columnOptions = new DataTableColumnOptions<>(getOptions(), rowChild.asBase()
-					                                                                                             .getText(0)
-					                                                                                             .toString());
-					getOptions().getColumns()
-					            .add(columnOptions);
-				}
+				domString.append(s);
 			}
+			addAttribute("dom", domString.toString());
+			getOptions().setDom(null);
 		}
+		addAttribute("options", getOptions().toString(true));
+		setInvertColonRender(true);
 		super.init();
-	}
-	
-	/**
-	 * Creates a new feature that will destroy this graph,
-	 * Necessary for ajax or mass calling
-	 *
-	 * @return
-	 */
-	public DataTableDestroyFeature createDestroyFeature()
-	{
-		return new DataTableDestroyFeature(this);
 	}
 	
 	@Override
 	public DataTableOptions<?> getOptions()
 	{
-		return getFeature().getOptions();
+		if (options == null)
+		{
+			options = new DataTableOptions<>();
+		}
+		return options;
 	}
 	
 	@SuppressWarnings("unchecked")

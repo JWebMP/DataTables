@@ -30,6 +30,12 @@
             <groupId>com.jwebmp.core</groupId>
             <artifactId>jwebmp-core</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.jwebmp.plugins.angular</groupId>
+            <artifactId>jwebmp-plugins-angularjs</artifactId>
+        </dependency>
+
     </dependencies>
     <scm>
         <url>https://github.com/GedMarc?tab=repositories</url>
