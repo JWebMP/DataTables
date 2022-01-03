@@ -18,7 +18,7 @@ JW_APP_NAME.directive('datatables', ['$rootScope', '$interval', '$timeout', func
                     options = {};
                 }
 
-                if (options.stateSave) {
+                /*if (options.stateSave) {
                     options.stateSaveCallback = function (settings, data) {
                        // alert('state save');
                         sessionStorage.setItem("DataTables_" + settings.sInstance, JSON.stringify(data));
@@ -34,14 +34,24 @@ JW_APP_NAME.directive('datatables', ['$rootScope', '$interval', '$timeout', func
                       //  alert('state load');
                         return JSON.parse(sessionStorage.getItem("DataTables_" + settings.sInstance))
                     }
-                }
+                }*/
                 if ($scope.dom !== undefined) {
                     options.dom = $scope.dom;
                 }
                 options.destroy = true;
-                options.deferRender = true;
+                //options.deferRender = true;
                 // alert('creating datatable');
                 $scope.datatable = element.DataTable(options);
+
+                $scope.$on('$destroy', function () {
+                    try {
+                        $scope.datatable.destroy();
+                    }catch(e)
+                    {
+                        console.log(e);
+                    }
+                    $scope.datatable = undefined;
+                });
             };
         }],
 
@@ -49,6 +59,12 @@ JW_APP_NAME.directive('datatables', ['$rootScope', '$interval', '$timeout', func
             $scope.ctrlFn(element);
 
             element.on('$destroy', function () {
+                try {
+                    $scope.datatable.destroy();
+                }catch(e)
+                {
+                    console.log(e);
+                }
                 $scope.datatable = undefined;
             });
         }
