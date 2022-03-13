@@ -23,7 +23,7 @@ module com.jwebmp.plugins.datatable {
 	requires com.google.common;
 	requires com.guicedee.guicedservlets;
 	requires org.apache.commons.lang3;
-	requires com.jwebmp.core.angularjs;
+	requires com.jwebmp.core.angular;
 	
 	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.datatable.DataTablePageConfigurator;
 	provides com.guicedee.guicedservlets.services.IGuiceSiteBinder with com.jwebmp.plugins.datatable.DataTablesSiteBinder;
