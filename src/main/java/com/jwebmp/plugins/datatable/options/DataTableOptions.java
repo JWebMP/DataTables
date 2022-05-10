@@ -304,7 +304,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	 * Default
 	 * Value: false
 	 */
-	private Boolean retrieve = true;
+	private Boolean retrieve;
 	/**
 	 * rowIdSince: DataTables 1.10.8
 	 * Data property name that DataTables will use to set tr element DOM IDs.
@@ -2533,6 +2533,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	}
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
+	@JsonInclude(NON_EMPTY)
 	@JsonProperty("dom")
 	private String jsonDom()
 	{

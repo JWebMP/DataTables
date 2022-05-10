@@ -18,32 +18,11 @@
 package com.jwebmp.plugins.datatable;
 
 import com.jwebmp.core.base.html.*;
-import com.jwebmp.plugins.datatable.events.DataTableDataFetchEvent;
-import com.jwebmp.plugins.datatable.options.DataTableOptions;
-
-import jakarta.validation.constraints.NotNull;
+import com.jwebmp.plugins.datatable.options.*;
+import jakarta.validation.constraints.*;
 
 public interface IDataTable<T extends TableRow<?>, J extends IDataTable<T, J>>
 {
-	/**
-	 * Configures the data table to use the AJAX data loading
-	 *
-	 * @param event
-	 *
-	 * @return
-	 */
-	
-	@NotNull
-	J addServerDataSource(Class<? extends DataTableDataFetchEvent<?>> event);
-
-	/**
-	 * If dynamic features are enabled
-	 *
-	 * @return
-	 */
-	
-	boolean isEnableDynamicFeature();
-
 	/**
 	 * Gets the header group for this Data Table
 	 *
@@ -60,7 +39,9 @@ public interface IDataTable<T extends TableRow<?>, J extends IDataTable<T, J>>
 	 */
 	@NotNull
 	J setHeaderGroup(TableHeaderGroup<?> headerGroup);
-
+	
+	TableRow<?> addDataRow();
+	
 	/**
 	 * Returns all the options with this class
 	 *
@@ -68,18 +49,7 @@ public interface IDataTable<T extends TableRow<?>, J extends IDataTable<T, J>>
 	 */
 	@NotNull
 	DataTableOptions<?> getOptions();
-
-	/**
-	 * Sets if the dynamic features of this table must be rendered
-	 *
-	 * @param enableDynamicFeature
-	 *
-	 * @return
-	 */
 	
-	@NotNull
-	J setEnableDynamicFeature(boolean enableDynamicFeature);
-
 	/**
 	 * Gets the footer group for this data table
 	 *

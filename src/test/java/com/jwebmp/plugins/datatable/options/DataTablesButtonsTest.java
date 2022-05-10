@@ -16,7 +16,7 @@ public class DataTablesButtonsTest
 	@Test
 	public void testDatatablesButtons()
 	{
-		DataTable table = new DataTable("newDT", new TableHeaderGroup<>().add(new TableRow<>().add(new TableHeader("Test Header"))));
+		DataTable table = new DataTable("newDT", new TableHeaderGroup<>().add(new TableRow<>().add(new TableHeader("Test Header")))){};
 		Page<?> page = new Page<>();
 		page.getBody()
 		    .add(new DivSimple<>().add(table));

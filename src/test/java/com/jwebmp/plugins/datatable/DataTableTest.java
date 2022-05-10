@@ -32,7 +32,7 @@ public class DataTableTest
 	public void testDataTables()
 	{
 		TableHeaderGroup thg = new TableHeaderGroup();
-		DataTable dt = new DataTable("id", thg);
+		DataTable dt = new DataTable("id", thg){};
 
 		Page<?> p = new Page();
 		p.add(new DivSimple<>().add(dt));

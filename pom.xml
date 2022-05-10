@@ -21,14 +21,15 @@
         <url>https://github.com/GedMarc/Data-Tables-Plugin/issues</url>
     </issueManagement>
     <dependencies>
-        <dependency>
-            <groupId>com.guicedee.servlets</groupId>
-            <artifactId>guiced-servlets</artifactId>
-            <version>${guicedee.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.jwebmp.core</groupId>
             <artifactId>jwebmp-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jwebmp.plugins.jquery</groupId>
+            <artifactId>jwebmp-jquery</artifactId>
         </dependency>
 
         <dependency>

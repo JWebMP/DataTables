@@ -31,7 +31,7 @@ public class DataTablePluginsTest
 	public void testButtonsPlugins()
 	{
 		Page<?> p = new Page<>();
-		DataTable dt = new DataTable("id", new TableHeaderGroup());
+		DataTable dt = new DataTable("id", new TableHeaderGroup()){};
 
 		dt.getOptions()
 		  .getButtons();
@@ -55,7 +55,7 @@ public class DataTablePluginsTest
 	public void testColReorderPlugins()
 	{
 		Page<?> p = new Page<>();
-		DataTable dt = new DataTable("id", new TableHeaderGroup());
+		DataTable dt = new DataTable("id", new TableHeaderGroup()){};
 
 		dt.getOptions()
 		  .getColReorder();
@@ -70,7 +70,7 @@ public class DataTablePluginsTest
 	public void testResponsiveTests()
 	{
 		Page<?> p = new Page<>();
-		DataTable dt = new DataTable("id", new TableHeaderGroup());
+		DataTable dt = new DataTable("id", new TableHeaderGroup()){};
 		p.getBody()
 		 .add(new DivSimple<>().add(dt));
 		System.out.println(p.toString(0));
@@ -82,7 +82,7 @@ public class DataTablePluginsTest
 	public void testFixedHeaderPlugins()
 	{
 		Page<?> p = new Page<>();
-		DataTable dt = new DataTable("id", new TableHeaderGroup());
+		DataTable dt = new DataTable("id", new TableHeaderGroup()){};
 
 		dt.getOptions()
 		  .getFixedHeader();
@@ -97,7 +97,7 @@ public class DataTablePluginsTest
 	public void testFixedColumnsPlugins()
 	{
 		Page<?> p = new Page<>();
-		DataTable dt = new DataTable("id", new TableHeaderGroup());
+		DataTable dt = new DataTable("id", new TableHeaderGroup()){};
 
 		dt.getOptions()
 		  .getFixedColumns();
@@ -111,7 +111,7 @@ public class DataTablePluginsTest
 	public void testKeyTablePlugins()
 	{
 		Page<?> p = new Page<>();
-		DataTable dt = new DataTable("id", new TableHeaderGroup());
+		DataTable dt = new DataTable("id", new TableHeaderGroup()){};
 
 		dt.getOptions()
 		  .getKeys();
@@ -125,7 +125,7 @@ public class DataTablePluginsTest
 	public void testButtonsPluginsJQUI()
 	{
 		Page<?> p = new Page<>();
-		DataTable dt = new DataTable("id", new TableHeaderGroup());
+		DataTable dt = new DataTable("id", new TableHeaderGroup()){};
 		dt.getOptions()
 		  .getButtons();
 		
