@@ -83,7 +83,11 @@ import static com.jwebmp.core.base.angular.client.services.interfaces.Annotation
          "  private tableRef? : ElementRef;")
 @NgField("private datatable? :any;")
 
-@NgImportReference(value = "Subscription",reference = "rxjs")
+//@NgField("private isNew : boolean = false;")
+
+
+
+@NgImportReference(value = "Subscription", reference = "rxjs")
 @NgField("private subscription? : Subscription")
 @NgOnDestroy("this.subscription?.unsubscribe();")
 
@@ -170,16 +174,20 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 	@Override
 	public List<String> onInit()
 	{
-		List<String> out =  INgComponent.super.onInit();
-		out.add("this.subscription =  this." + getServiceName() + ".onUpdate.subscribe(data => {\n" +
-		        "         if (data) {\n" +
-		     //   "                alert('new data in');\n" +
-		        "                this.cdref.detectChanges();\n" +
-		        "                this.datatable = $('#' + this.tableRef?.nativeElement.id).DataTable({\n" +
-		        "                    ...this.dtOptions\n" +
-		        "                });\n" +
-		        "            }" +
-		        "        });");
+		List<String> out = INgComponent.super.onInit();
+		out.add("\t\tthis." + getServiceName() + ".checkData();\n" +
+		        "\t\tthis.subscription =  this." + getServiceName() + ".onUpdate\n" +
+		        "" +
+		        "\t\t.subscribe(data => {\n" +
+		        "\t\t\t if (data) {\n" +
+		        //   "                alert('new data in');\n" +
+		        "\t\t\t\tthis.cdref.detectChanges();\n" +
+		     //   "\t\t\t\tthis.isNew = true;\n" +
+		        "\t\t\t\tthis.datatable = $('#' + this.tableRef?.nativeElement.id).DataTable({\n" +
+		        "\t\t\t\t\t...this.dtOptions\n" +
+		        "\t\t\t\t});\n" +
+		        "\t\t\t}\n" +
+		        "\t\t});\n");
 		return out;
 	}
 	
@@ -188,7 +196,7 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 	{
 		List<String> out = INgComponent.super.constructorBody();
 		
-	//	out.add("this." + getServiceName() + ".checkData();");
+		//	out.add("this." + getServiceName() + ".checkData();");
 		return out;
 	}
 	
@@ -206,14 +214,14 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 			        "            }\n" +
 			        "            this.isNew = false;\n" +
 			        "        }");*/
-			//out.add("this." + getServiceName() + ".fetchData();");
+		//out.add("this." + getServiceName() + ".fetchData();");
 		return out;
 	}
 	
 	@Override
 	public List<String> afterContentChecked()
 	{
-		List<String> out =  INgComponent.super.afterContentChecked();
+		List<String> out = INgComponent.super.afterContentChecked();
 		//out.add("this.cdref.detectChanges();");
 		return out;
 	}
@@ -238,7 +246,7 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 	public TableRow<?> addDataRow(String innerLoopVariableName)
 	{
 		TableRow<?> tableRow = new TableRow<>().addAttribute("*ngFor", "let " + innerLoopVariableName + " of " + getServiceName() + "." + dataService.getAnnotation()
-		                                                                                                                    .variableName());
+		                                                                                                                                             .variableName());
 		getBodyGroup().add(tableRow);
 		return tableRow;
 	}
@@ -249,6 +257,22 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 	{
 		List<String> out = INgComponent.super.componentFields();
 		out.add("private dtOptions :any = " + getOptions().toJson() + ";");
+		return out;
+	}
+	
+	public boolean resetProviderOnDestroy()
+	{
+		return true;
+	}
+	
+	@Override
+	public List<String> onDestroy()
+	{
+		List<String> out = INgComponent.super.onDestroy();
+		if (resetProviderOnDestroy())
+		{
+			out.add("this." + getServiceName() + ".reset();");
+		}
 		return out;
 	}
 	
