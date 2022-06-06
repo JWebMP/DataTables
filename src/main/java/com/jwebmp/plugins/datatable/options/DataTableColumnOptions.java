@@ -960,4 +960,22 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		this.searchPanes = searchPanes;
 		return this;
 	}
+	
+	public String data;
+	
+	public DataTableOptions<?> getTableOptions()
+	{
+		return tableOptions;
+	}
+	
+	public String getData()
+	{
+		return data;
+	}
+	
+	public DataTableColumnOptions<J> setData(String data)
+	{
+		this.data = data;
+		return this;
+	}
 }

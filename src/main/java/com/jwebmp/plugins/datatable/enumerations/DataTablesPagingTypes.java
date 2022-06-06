@@ -46,27 +46,27 @@ public enum DataTablesPagingTypes
 	/**
 	 * Page number buttons only (1.10.8)
 	 */
-	Numbers,
+	numbers,
 	/**
 	 * 'Previous' and 'Next' buttons only
 	 */
-	Simple,
+	simple,
 	/**
 	 * 'Previous' and 'Next' buttons, plus page numbers
 	 */
-	Simple_Numbers,
+	simple_numbers,
 	/**
 	 * 'First', 'Previous', 'Next' and 'Last' buttons
 	 */
-	Full,
+	full,
 	/**
 	 * 'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers
 	 */
-	Full_Numbers,
+	full_numbers,
 	/**
 	 * 'First' and 'Last' buttons, plus page numbers
 	 */
-	First_Last_Numbers;
+	first_last_numbers;
 
 	@Override
 	public String toString()

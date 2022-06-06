@@ -42,6 +42,8 @@ public interface IDataTable<T extends TableRow<?>, J extends IDataTable<T, J>>
 	
 	TableRow<?> addDataRow();
 	
+	TableRow<?> addDataRow(String innerLoopVariableName);
+	
 	/**
 	 * Returns all the options with this class
 	 *

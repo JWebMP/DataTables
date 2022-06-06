@@ -16,12 +16,14 @@
  */
 package com.jwebmp.plugins.datatable;
 
-import com.jwebmp.core.base.angular.services.annotations.angularconfig.*;
-import com.jwebmp.core.base.angular.services.annotations.references.*;
-import com.jwebmp.core.base.angular.services.annotations.structures.*;
-import com.jwebmp.core.base.angular.services.interfaces.*;
+
+import com.jwebmp.core.base.angular.client.annotations.angularconfig.*;
+import com.jwebmp.core.base.angular.client.annotations.constructors.*;
+import com.jwebmp.core.base.angular.client.annotations.functions.*;
+import com.jwebmp.core.base.angular.client.annotations.references.*;
+import com.jwebmp.core.base.angular.client.annotations.structures.*;
+import com.jwebmp.core.base.angular.client.services.interfaces.*;
 import com.jwebmp.core.base.html.*;
-import com.jwebmp.core.base.html.attributes.*;
 import com.jwebmp.core.plugins.*;
 import com.jwebmp.plugins.datatable.enumerations.*;
 import com.jwebmp.plugins.datatable.options.*;
@@ -29,7 +31,8 @@ import com.jwebmp.plugins.datatable.options.buttons.*;
 import jakarta.validation.constraints.*;
 
 import java.util.List;
-import java.util.*;
+
+import static com.jwebmp.core.base.angular.client.services.interfaces.AnnotationUtils.*;
 
 /**
  * The JWDataTable implementation
@@ -44,8 +47,6 @@ import java.util.*;
 @ComponentInformation(name = "Data Tables",
                       description = "The core data tables component",
                       url = "https://www.datatables.net/")
-
-@NgImportReference(name = "AfterViewInit,AfterViewChecked", reference = "@angular/core")
 
 @NgScript(value = "jszip/dist/jszip.min.js", sortOrder = 50)
 @NgScript(value = "pdfmake/build/pdfmake.min.js", sortOrder = 50)
@@ -73,20 +74,26 @@ import java.util.*;
 @NgScript(value = "datatables.net-select/js/dataTables.select.js", sortOrder = 52)
 @NgScript(value = "datatables.net-staterestore/js/dataTables.stateRestore.js", sortOrder = 52)
 
-@NgImportReference(name = "ElementRef, ViewChild, OnDestroy", reference = "@angular/core")
+@NgImportReference(value = "ElementRef, ViewChild", reference = "@angular/core")
+
+@NgImportReference(value = "Location", reference = "@angular/common")
+@NgConstructorParameter("public location: Location")
 
 @NgField("@ViewChild('datatable')\n" +
          "  private tableRef? : ElementRef;")
+@NgField("private datatable? :any;")
 
+@NgImportReference(value = "Subscription",reference = "rxjs")
+@NgField("private subscription? : Subscription")
+@NgOnDestroy("this.subscription?.unsubscribe();")
+
+@NgOnDestroy("this.datatable?.destroy();")
 public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
 		extends Table<J>
 		implements IDataTable<T, J>, INgComponent<J>
 {
-	private DataTableDataService<?> dataService;
+	private INgServiceProvider<?> dataService;
 	
-	/**
-	 *
-	 */
 	private DataTableOptions<?> options;
 	/**
 	 * The header grouping for a data table
@@ -117,13 +124,22 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 		this(id, headerGroup, null);
 	}
 	
-	public DataTable(String id, TableHeaderGroup<?> headerGroup, DataTableDataService<?> dataService)
+	public DataTable(String id, TableHeaderGroup<?> headerGroup, INgServiceProvider<?> dataService)
 	{
-		addAttribute(TableAttributes.CellSpacing, 0);
-		addAttribute(TableAttributes.CellPadding, 0);
 		setHeaderGroup(headerGroup);
 		setID(id);
 		this.dataService = dataService;
+	}
+	
+	@Override
+	public List<NgComponentReference> getComponentReferences()
+	{
+		List<NgComponentReference> out = INgComponent.super.getComponentReferences();
+		if (this.dataService != null)
+		{
+			out.add(getNgComponentReference((Class<? extends IComponent<?>>) this.dataService.getClass()));
+		}
+		return out;
 	}
 	
 	/**
@@ -152,50 +168,54 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 	}
 	
 	@Override
-	public List<String> componentInterfaces()
+	public List<String> onInit()
 	{
-		return List.of("AfterViewInit",
-				"OnDestroy",
-				"AfterViewChecked"
-		);
+		List<String> out =  INgComponent.super.onInit();
+		out.add("this.subscription =  this." + getServiceName() + ".onUpdate.subscribe(data => {\n" +
+		        "         if (data) {\n" +
+		     //   "                alert('new data in');\n" +
+		        "                this.cdref.detectChanges();\n" +
+		        "                this.datatable = $('#' + this.tableRef?.nativeElement.id).DataTable({\n" +
+		        "                    ...this.dtOptions\n" +
+		        "                });\n" +
+		        "            }" +
+		        "        });");
+		return out;
 	}
 	
 	@Override
-	public List<String> componentMethods()
+	public List<String> constructorBody()
 	{
-		return List.of(
-				"ngAfterViewInit(): void {\n" +
-				"        this.dataTableDataServiceExample.data.subscribe((dd) => {\n" +
-			//	"            console.log(\"data loaded///\");\n" +
-				"            this.data = dd;\n" +
-				"            this.updated = true;\n" +
-				"        });\n" +
-				"    }" +
-				"" +
-				"ngOnDestroy(): void {\n" +
-				"this.datatable?.destroy();" +
-				"\t}" +
-				"" +
-				"ngAfterViewChecked(): void {\n" +
-			//	"        console.log(\"after view changed///\");\n" +
-				"\n" +
-				"        if(this.data && this.data.out && this.data.out.length > 0 && this.updated) {\n" +
-		//		"            console.log(\"doing table...\");\n" +
-				"            this.updated = false;\n" +
-				"            if (!this.datatable) {\n" +
-				"                this.datatable = $('#' + this.tableRef?.nativeElement.id).dataTable({\n" +
-				"                    ...this.dtOptions\n" +
-				"                });\n" +
-				"            } else {\n" +
-		//		"                console.log(\"recreating the table...\"); " +
-				"               this.datatable = $('#' + this.tableRef?.nativeElement.id).dataTable({\n" +
-				"                    ...this.dtOptions,\n" +
-				"                    retrieve: true\n" +
-				"                });\n" +
-				"            }\n" +
-				"        }\n" +
-				"    }"
-		);
+		List<String> out = INgComponent.super.constructorBody();
+		
+	//	out.add("this." + getServiceName() + ".checkData();");
+		return out;
+	}
+	
+	@Override
+	public List<String> afterViewChecked()
+	{
+		List<String> out = INgComponent.super.afterViewInit();
+		/*	out.add("if(this.isNew && this." + getServiceName() + "." + dataService.getAnnotation().variableName() + ".length > 0) {\n" +
+			        "            try {\n" +
+			        "                this.datatable = $('#' + this.tableRef?.nativeElement.id).DataTable({\n" +
+			        "                    ...this.dtOptions\n" +
+			        "                });\n" +
+			        "            } catch (e) {\n" +
+			        "                console.log('error on dt', e);\n" +
+			        "            }\n" +
+			        "            this.isNew = false;\n" +
+			        "        }");*/
+			//out.add("this." + getServiceName() + ".fetchData();");
+		return out;
+	}
+	
+	@Override
+	public List<String> afterContentChecked()
+	{
+		List<String> out =  INgComponent.super.afterContentChecked();
+		//out.add("this.cdref.detectChanges();");
+		return out;
 	}
 	
 	/**
@@ -206,20 +226,30 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 	@Override
 	public TableRow<?> addDataRow()
 	{
-		TableRow<?> tableRow = new TableRow<>().addAttribute("*ngFor", "let data of data?.out");
+		return addDataRow("data");
+	}
+	
+	/**
+	 * Creates a new row with the variable 'data' available
+	 *
+	 * @return
+	 */
+	@Override
+	public TableRow<?> addDataRow(String innerLoopVariableName)
+	{
+		TableRow<?> tableRow = new TableRow<>().addAttribute("*ngFor", "let " + innerLoopVariableName + " of " + getServiceName() + "." + dataService.getAnnotation()
+		                                                                                                                    .variableName());
 		getBodyGroup().add(tableRow);
 		return tableRow;
 	}
 	
+	
 	@Override
 	public List<String> componentFields()
 	{
-		return List.of("private dtOptions :any = " + getOptions().toJson() + ";",
-				"private datatable? :any;" +
-				"" +
-				"data?: any;" +
-				"private updated : boolean = false;"
-		);
+		List<String> out = INgComponent.super.componentFields();
+		out.add("private dtOptions :any = " + getOptions().toJson() + ";");
+		return out;
 	}
 	
 	@Override
@@ -453,22 +483,7 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 		{
 			return "dataTableDataService";
 		}
-		String name = ITSComponent.getTsFilename(dataService.getClass());
-		name = name.substring(0, 1)
-		           .toLowerCase() + name.substring(1);
-		return name;
+		return dataService.getAnnotation()
+		                  .referenceName();
 	}
-	
-	@Override
-	public List<String> componentConstructorParameters()
-	{
-		List<String> out = new ArrayList<>();
-		if (dataService != null)
-		{
-			out.add("public " + getServiceName() + " : " + dataService.getClass()
-			                                                          .getSimpleName());
-		}
-		return out;
-	}
-	
 }

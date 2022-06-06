@@ -20,11 +20,13 @@ import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.htmlbuilder.css.measurement.MeasurementCSSImpl;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.core.htmlbuilder.javascript.JavascriptLiteralFunction;
+import com.jwebmp.plugins.datatable.*;
 import com.jwebmp.plugins.datatable.enumerations.DataTableThemes;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesPagingTypes;
 import com.jwebmp.plugins.datatable.options.buttons.DataTablesButtonButtonsOptions;
 import com.jwebmp.plugins.datatable.options.responsive.DataTablesResponsiveOptions;
 import com.jwebmp.plugins.datatable.options.searchpanes.DataTablesSearchPanesOptions;
+import com.jwebmp.plugins.datatable.options.state.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.*;
@@ -73,6 +75,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	/**
 	 * Data to use as the display data for the table.
 	 */
+	@JsonRawValue
 	private String data;
 	/**
 	 * Feature control DataTables' smart column width handling
@@ -516,11 +519,11 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	/**
 	 * Callback that defines how the table state is stored and where
 	 */
-//	private JavascriptLiteralFunction<?> stateSaveCallback;
+	private JavascriptLiteralFunction<?> stateSaveCallback;
 	/**
 	 * Callback that defines where and how a saved state should be loaded.
 	 */
-//	private JavascriptLiteralFunction<?> stateLoadCallback;
+	private JavascriptLiteralFunction<?> stateLoadCallback;
 	
 	/**
 	 * If the data table should be destroyed
@@ -529,7 +532,7 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 	/**
 	 * The list of columns
 	 */
-	@JsonProperty("columnDefs")
+	@JsonProperty("columns")
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private List<DataTableColumnOptions<?>> columns;
 	/**
@@ -2343,6 +2346,16 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		return (J) this;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J setStateSave(DataTable<?,?> table)
+	{
+		setStateSave(true);
+		setStateSaveCallback(new StateSaveToLocalStorageCallBack(table));
+		setStateLoadCallback(new StateGetFromLocalStorageCallBack(table));
+		return (J)this;
+	}
+	
 	/**
 	 * tabIndexSince: DataTables 1.10
 	 * Tab index control for keyboard navigation.
@@ -3268,50 +3281,48 @@ public class DataTableOptions<J extends DataTableOptions<J>>
 		this.select = select;
 		return (J) this;
 	}
-	/*
-	*//**
+	/**
 	 * Callback that defines how the table state is stored and where
 	 *
 	 * @return
-	 *//*
+	 */
 	public JavascriptLiteralFunction<?> getStateSaveCallback()
 	{
 		return stateSaveCallback;
 	}
 	
-	*//**
+	/**
 	 * Callback that defines how the table state is stored and where
 	 *
 	 * @param stateSaveCallback
 	 * @return
-	 *//*
+	 */
 	public J setStateSaveCallback(JavascriptLiteralFunction<?> stateSaveCallback)
 	{
 		this.stateSaveCallback = stateSaveCallback;
 		return (J) this;
 	}
 	
-	*//**
+	/**
 	 * Callback that defines where and how a saved state should be loaded.
 	 *
 	 * @return
-	 *//*
+	 */
 	public JavascriptLiteralFunction<?> getStateLoadCallback()
 	{
 		return stateLoadCallback;
 	}
 	
-	*//**
+	/**
 	 * Callback that defines where and how a saved state should be loaded.
 	 *
 	 * @param stateLoadCallback
 	 * @return
-	 *//*
+	 */
 	public J setStateLoadCallback(JavascriptLiteralFunction<?> stateLoadCallback)
 	{
 		this.stateLoadCallback = stateLoadCallback;
 		return (J) this;
 	}
 	
-	*/
 }

@@ -16,22 +16,14 @@
  */
 package com.jwebmp.plugins.datatable;
 
-import com.google.common.base.Strings;
-import com.jwebmp.core.Page;
-import com.jwebmp.core.base.angular.services.annotations.*;
-import com.jwebmp.core.base.references.CSSReference;
-import com.jwebmp.core.base.references.JavascriptReference;
-import com.jwebmp.core.base.servlets.enumarations.RequirementsPriority;
-import com.jwebmp.core.plugins.PluginInformation;
-import com.jwebmp.core.plugins.PluginStatus;
-import com.jwebmp.core.services.IPageConfigurator;
+import com.jwebmp.core.*;
+import com.jwebmp.core.base.angular.client.annotations.typescript.*;
+import com.jwebmp.core.plugins.*;
+import com.jwebmp.core.services.*;
 import com.jwebmp.plugins.datatable.enumerations.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import java.util.*;
-
-import static com.guicedee.guicedinjection.json.StaticStrings.*;
-import static com.jwebmp.core.base.servlets.enumarations.RequirementsPriority.*;
 
 /**
  * @author GedMarc
@@ -62,7 +54,7 @@ import static com.jwebmp.core.base.servlets.enumarations.RequirementsPriority.*;
                    pluginStatus = PluginStatus.Released
 )
 
-@TsDependency(value = "jszip",version = "^3.9.1")
+@TsDependency(value = "jszip", version = "^3.9.1")
 @TsDependency(value = "pdfmake",version = "^0.1.36")
 
 

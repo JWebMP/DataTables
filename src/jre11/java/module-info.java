@@ -11,7 +11,8 @@ module com.jwebmp.plugins.datatable {
 	
 	
 	requires org.apache.commons.lang3;
-	requires com.jwebmp.core.angular;
+	requires transitive com.jwebmp.core.base.angular.client ;
+	
 	requires com.jwebmp.plugins.jquery;
 	
 	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.datatable.DataTablePageConfigurator;
