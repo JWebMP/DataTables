@@ -245,6 +245,7 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 	@Override
 	public TableRow<?> addDataRow(String innerLoopVariableName)
 	{
+		addAttribute("*ngIf",getServiceName() + "." + dataService.getAnnotation().variableName() + "[0]");
 		TableRow<?> tableRow = new TableRow<>().addAttribute("*ngFor", "let " + innerLoopVariableName + " of " + getServiceName() + "." + dataService.getAnnotation()
 		                                                                                                                                             .variableName());
 		getBodyGroup().add(tableRow);
