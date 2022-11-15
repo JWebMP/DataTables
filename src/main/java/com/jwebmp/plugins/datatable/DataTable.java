@@ -171,11 +171,17 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 		super.init();
 	}
 	
+	public boolean renderTable()
+	{
+		return true;
+	}
+	
 	@Override
 	public List<String> onInit()
 	{
 		List<String> out = INgComponent.super.onInit();
-		out.add("\t\tthis." + getServiceName() + ".checkData();\n" +
+		out.add(
+				//"\t\tthis." + getServiceName() + ".checkData();\n" +
 		        "\t\tthis.subscription =  this." + getServiceName() + ".onUpdate\n" +
 		        "" +
 		        "\t\t.subscribe(data => {\n" +
@@ -183,11 +189,32 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 		        //   "                alert('new data in');\n" +
 		        "\t\t\t\tthis.cdref.detectChanges();\n" +
 		     //   "\t\t\t\tthis.isNew = true;\n" +
-		        "\t\t\t\tthis.datatable = $('#' + this.tableRef?.nativeElement.id).DataTable({\n" +
-		        "\t\t\t\t\t...this.dtOptions\n" +
-		        "\t\t\t\t});\n" +
+		        // "\t\t\t\tthis.datatable.destroy();" +
+		       
+		        (!renderTable() ? "" :
+				        "\t\t\t\tsetTimeout(()=> {\n" +
+		        "                    this.datatable = $('#' + this.tableRef?.nativeElement.id).DataTable({\n" +
+		        "                        ...this.dtOptions\n" +
+		        "                    });\n" +
+				"                },50);\n"
+		        ) +
 		        "\t\t\t}\n" +
 		        "\t\t});\n");
+		return out;
+	}
+	
+	@Override
+	public List<String> componentMethods()
+	{
+		List<String> out =  INgComponent.super.componentMethods();
+		out.add("public renderTable() {\n" +
+		        "  \n" +
+		        "                    this.datatable = $('#' + this.tableRef?.nativeElement.id).DataTable({\n" +
+		        "                        ...this.dtOptions\n" +
+		        "                    });\n" +
+		        "  \n" +
+		        "}\n");
+		
 		return out;
 	}
 	
@@ -198,6 +225,14 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 		
 		//	out.add("this." + getServiceName() + ".checkData();");
 		return out;
+	}
+	
+	@Override
+	public List<String> afterViewInit()
+	{
+		List<String> strings = INgComponent.super.afterViewInit();
+		strings.add("this." + getServiceName() + ".checkData();");
+		return strings;
 	}
 	
 	@Override
@@ -245,7 +280,7 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 	@Override
 	public TableRow<?> addDataRow(String innerLoopVariableName)
 	{
-		addAttribute("*ngIf",getServiceName() + "." + dataService.getAnnotation().variableName() + "[0]");
+		//addAttribute("*ngIf",getServiceName() + "." + dataService.getAnnotation().variableName() + "[0]");
 		TableRow<?> tableRow = new TableRow<>().addAttribute("*ngFor", "let " + innerLoopVariableName + " of " + getServiceName() + "." + dataService.getAnnotation()
 		                                                                                                                                             .variableName());
 		getBodyGroup().add(tableRow);
