@@ -14,6 +14,7 @@ module com.jwebmp.plugins.datatable {
 	requires transitive com.jwebmp.core.base.angular.client ;
 	
 	requires com.jwebmp.plugins.jquery;
+	requires com.guicedee.jsonrepresentation;
 	
 	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.datatable.DataTablePageConfigurator;
 	provides com.guicedee.guicedinjection.interfaces.IGuiceScanModuleInclusions with DataTablesInclusionModule;
