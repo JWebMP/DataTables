@@ -16,14 +16,16 @@
  */
 package com.jwebmp.plugins.datatable;
 
-import com.jwebmp.core.*;
-import com.jwebmp.core.base.angular.client.annotations.typescript.*;
-import com.jwebmp.core.plugins.*;
-import com.jwebmp.core.services.*;
-import com.jwebmp.plugins.datatable.enumerations.*;
-import jakarta.validation.constraints.*;
+import com.jwebmp.core.Page;
+import com.jwebmp.core.base.angular.client.annotations.typescript.TsDependency;
+import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.plugins.PluginStatus;
+import com.jwebmp.core.services.IPageConfigurator;
+import com.jwebmp.plugins.datatable.enumerations.DataTablesSortables;
+import jakarta.validation.constraints.NotNull;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * @author GedMarc
@@ -54,8 +56,9 @@ import java.util.*;
                    pluginStatus = PluginStatus.Released
 )
 
-@TsDependency(value = "jszip", version = "^3.9.1")
-@TsDependency(value = "pdfmake",version = "^0.1.36")
+@TsDependency(value = "jszip", version = "^3.10.1")
+@TsDependency(value = "pdfmake",version = "^0.1.72")
+
 
 
 public class DataTablePageConfigurator
