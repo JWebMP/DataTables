@@ -16,10 +16,10 @@
  */
 package com.jwebmp.plugins.datatable;
 
-import com.jwebmp.core.Page;
 import com.jwebmp.core.base.angular.client.annotations.typescript.TsDependency;
 import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.plugins.PluginStatus;
+import com.jwebmp.core.services.IPage;
 import com.jwebmp.core.services.IPageConfigurator;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesSortables;
 import jakarta.validation.constraints.NotNull;
@@ -31,65 +31,64 @@ import java.util.Set;
  * @author GedMarc
  */
 @PluginInformation(pluginName = "Data Tables",
-                   pluginUniqueName = "data-tables",
-                   pluginDescription = "DataTables is a plug-in for the " +
-                                       "jQuery Javascript library. " +
-                                       "It is a highly flexible " +
-                                       "tool, based upon the " +
-                                       "foundations of progressive " +
-                                       "enhancement, and will add advanced interaction  controls  to any  HTML  table .",
-                   pluginVersion = "1.10.22",
-                   pluginDependancyUniqueIDs = "jquery",
-                   pluginCategories = "jquery,datatables, tables, ui, " + "web, framework",
-                   pluginSubtitle = "DataTables is very simple to use as a jQuery plug-in with a huge range of customisable option",
-                   pluginGitUrl = "https://github.com/GedMarc/JWebMP-DataTablesPlugin",
-                   pluginSourceUrl = "https://datatables" + "" + ".net/download/index",
-                   pluginWikiUrl = "https://github.com/GedMarc/JWebMP-DataTablesPlugin/wiki",
-                   pluginOriginalHomepage = "https://www.datatables.net/",
-                   pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.forms/jwebmp-data-tables",
-                   pluginIconUrl = "",
-                   pluginIconImageUrl = "",
-                   pluginLastUpdatedDate = "2021/09/05",
-                   pluginGroupId = "com.jwebmp.plugins.forms",
-                   pluginArtifactId = "jwebmp-data-tables",
-                   pluginModuleName = "com.jwebmp.plugins.datatable",
-                   pluginStatus = PluginStatus.Released
+        pluginUniqueName = "data-tables",
+        pluginDescription = "DataTables is a plug-in for the " +
+                "jQuery Javascript library. " +
+                "It is a highly flexible " +
+                "tool, based upon the " +
+                "foundations of progressive " +
+                "enhancement, and will add advanced interaction  controls  to any  HTML  table .",
+        pluginVersion = "1.10.22",
+        pluginDependancyUniqueIDs = "jquery",
+        pluginCategories = "jquery,datatables, tables, ui, " + "web, framework",
+        pluginSubtitle = "DataTables is very simple to use as a jQuery plug-in with a huge range of customisable option",
+        pluginGitUrl = "https://github.com/GedMarc/JWebMP-DataTablesPlugin",
+        pluginSourceUrl = "https://datatables" + "" + ".net/download/index",
+        pluginWikiUrl = "https://github.com/GedMarc/JWebMP-DataTablesPlugin/wiki",
+        pluginOriginalHomepage = "https://www.datatables.net/",
+        pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.forms/jwebmp-data-tables",
+        pluginIconUrl = "",
+        pluginIconImageUrl = "",
+        pluginLastUpdatedDate = "2021/09/05",
+        pluginGroupId = "com.jwebmp.plugins.forms",
+        pluginArtifactId = "jwebmp-data-tables",
+        pluginModuleName = "com.jwebmp.plugins.datatable",
+        pluginStatus = PluginStatus.Released
 )
 
 @TsDependency(value = "jszip", version = "^3.10.1")
-@TsDependency(value = "pdfmake",version = "^0.1.72")
-
+@TsDependency(value = "pdfmake", version = "^0.1.72")
 
 
 public class DataTablePageConfigurator
-		implements IPageConfigurator<DataTablePageConfigurator>
+        implements IPageConfigurator<DataTablePageConfigurator>
 {
-	private static Set<DataTablesSortables> sortables;
+    private static Set<DataTablesSortables> sortables;
 
-	/**
-	 * Returns the sortables to apply
-	 *
-	 * @return
-	 */
-	public static Set<DataTablesSortables> getSortables()
-	{
-		if (DataTablePageConfigurator.sortables == null)
-		{
-			DataTablePageConfigurator.sortables = new LinkedHashSet<>();
-		}
-		return DataTablePageConfigurator.sortables;
-	}
-	
-	@NotNull
-	@Override
-	public Page<?> configure(Page<?> page)
-	{
-		return page;
-	}
-	
-	@Override
-	public boolean enabled()
-	{
-		return true;
-	}
+    /**
+     * Returns the sortables to apply
+     *
+     * @return
+     */
+    public static Set<DataTablesSortables> getSortables()
+    {
+        if (DataTablePageConfigurator.sortables == null)
+        {
+            DataTablePageConfigurator.sortables = new LinkedHashSet<>();
+        }
+        return DataTablePageConfigurator.sortables;
+    }
+
+    @NotNull
+    @Override
+    public IPage<?> configure(IPage<?> page)
+    {
+        return page;
+    }
+
+    @Override
+    public boolean enabled()
+    {
+        return true;
+    }
 }
