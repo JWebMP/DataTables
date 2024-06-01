@@ -19,7 +19,6 @@ package com.jwebmp.plugins.datatable.enumerations;
 
 import static com.guicedee.services.jsonrepresentation.json.StaticStrings.CHAR_PLUS;
 import static com.guicedee.services.jsonrepresentation.json.StaticStrings.CHAR_UNDERSCORE;
-import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * select.styleSince: Select 1.0.0
@@ -38,32 +37,32 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
  */
 public enum DataTablesSelectStyles
 {
-	/**
-	 * - Selection can only be performed via the API
-	 */
-	Api,
-	/**
-	 * Only a single item can be selected, any other selected items will be automatically deselected when a new item is selected
-	 */
-	Single,
-	/**
-	 * Multiple items can be selected. Selection is performed by simply clicking on the items to be selected
-	 */
-	Multi,
-	/**
-	 * Operating System (OS) style selection. This is the most comprehensive option and provides complex behaviours such as ctrl/cmd
-	 * clicking to select / deselect individual items, shift clicking to select ranges and an unmodified click to select a single item.
-	 */
-	Os,
-	/**
-	 * a hybrid between the os style and multi, allowing easy multi-row selection without immediate de-selection when clicking on a row.
-	 */
-	Multi_Shift;
+    /**
+     * - Selection can only be performed via the API
+     */
+    Api,
+    /**
+     * Only a single item can be selected, any other selected items will be automatically deselected when a new item is selected
+     */
+    Single,
+    /**
+     * Multiple items can be selected. Selection is performed by simply clicking on the items to be selected
+     */
+    Multi,
+    /**
+     * Operating System (OS) style selection. This is the most comprehensive option and provides complex behaviours such as ctrl/cmd
+     * clicking to select / deselect individual items, shift clicking to select ranges and an unmodified click to select a single item.
+     */
+    Os,
+    /**
+     * a hybrid between the os style and multi, allowing easy multi-row selection without immediate de-selection when clicking on a row.
+     */
+    Multi_Shift;
 
-	@Override
-	public String toString()
-	{
-		return name().toLowerCase()
-		             .replace(CHAR_UNDERSCORE, CHAR_PLUS);
-	}
+    @Override
+    public String toString()
+    {
+        return name().toLowerCase()
+                     .replace(CHAR_UNDERSCORE, CHAR_PLUS);
+    }
 }
