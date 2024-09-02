@@ -22,6 +22,7 @@ import com.jwebmp.core.base.angular.client.annotations.references.NgComponentRef
 import com.jwebmp.core.base.angular.client.annotations.references.NgImportReference;
 import com.jwebmp.core.base.angular.client.annotations.structures.NgField;
 import com.jwebmp.core.base.angular.client.annotations.typescript.TsDevDependency;
+import com.jwebmp.core.base.angular.client.services.interfaces.AnnotationUtils;
 import com.jwebmp.core.base.angular.client.services.interfaces.IComponent;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgComponent;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgServiceProvider;
@@ -89,6 +90,11 @@ import static com.jwebmp.core.base.angular.client.services.interfaces.Annotation
 @NgOnDestroy("this.subscription?.unsubscribe();")
 
 @NgOnDestroy("this.datatable?.destroy();")
+
+
+@NgImportReference(value = "ChangeDetectorRef", reference = "@angular/core")
+@NgConstructorParameter("private cdref : ChangeDetectorRef")
+
 public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
         extends Table<J>
         implements IDataTable<T, J>, INgComponent<J>
@@ -130,6 +136,10 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
         setHeaderGroup(headerGroup);
         setID(id);
         this.dataService = dataService;
+        if (this.dataService != null)
+        {
+            addConfiguration(AnnotationUtils.getNgComponentReference((Class<? extends IComponent<?>>) dataService.getClass()));
+        }
     }
 
     @Override
@@ -162,7 +172,7 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
     }
 
     @Override
-    public void init()
+    protected void init()
     {
         addAttribute("#datatable", "");
         super.init();
@@ -199,14 +209,14 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
     }
 
     @Override
-    public List<String> componentMethods()
+    public List<String> methods()
     {
-        List<String> out = INgComponent.super.componentMethods();
-        out.add("public renderTable() {\n" +
-                        "  \n" +
-                        "        this.datatable = new DataTable('#' + this.tableRef?.nativeElement.id, {...this.dtOptions});\n" +
-                        "  \n" +
-                        "}\n");
+        List<String> out = INgComponent.super.methods();
+        out.add("""
+                        public renderTable() {
+                                this.datatable = new DataTable('#' + this.tableRef?.nativeElement.id, {...this.dtOptions});
+                        }
+                        """);
 
         return out;
     }
@@ -282,9 +292,9 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
 
 
     @Override
-    public List<String> componentFields()
+    public List<String> fields()
     {
-        List<String> out = INgComponent.super.componentFields();
+        List<String> out = INgComponent.super.fields();
         out.add("private dtOptions :any = " + getOptions().toJson() + ";");
         return out;
     }
