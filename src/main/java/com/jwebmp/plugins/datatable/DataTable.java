@@ -48,21 +48,22 @@ import static com.jwebmp.core.base.angular.client.services.interfaces.Annotation
  */
 @SuppressWarnings("MissingClassJavaDoc")
 @ComponentInformation(name = "Data Tables",
-                      description = "The core data tables component",
-                      url = "https://www.datatables.net/")
+        description = "The core data tables component",
+        url = "https://www.datatables.net/")
 
 @TsDevDependency(value = "@types/pdfmake", version = "*")
 
-@NgImportReference(value = "!jszip", reference = "jszip")
-@NgImportReference(value = "!pdfmake", reference = "pdfmake")
-@NgImportReference(value = "!DataTable", reference = "datatables.net-bs5")
+@NgImportReference(value = "jszip", reference = "jszip", wrapValueInBraces = false)
+@NgImportReference(value = "pdfmake", reference = "pdfmake", wrapValueInBraces = false)
+@NgImportReference(value = "DataTable", reference = "datatables.net-bs5", wrapValueInBraces = false)
+@NgImportReference(value = "DateTime", reference = "datatables.net-datetime", wrapValueInBraces = false)
+
 @NgImportReference(value = "datatables.net-autofill-bs5", reference = "", direct = true)
 @NgImportReference(value = "datatables.net-buttons-bs5", reference = "", direct = true)
 @NgImportReference(value = "datatables.net-buttons/js/buttons.colVis.mjs", reference = "", direct = true)
 @NgImportReference(value = "datatables.net-buttons/js/buttons.html5.mjs", reference = "", direct = true)
 @NgImportReference(value = "datatables.net-buttons/js/buttons.print.mjs", reference = "", direct = true)
 @NgImportReference(value = "datatables.net-colreorder-bs5", reference = "", direct = true)
-@NgImportReference(value = "!DateTime", reference = "datatables.net-datetime")
 @NgImportReference(value = "datatables.net-fixedcolumns-bs5", reference = "", direct = true)
 @NgImportReference(value = "datatables.net-fixedheader-bs5", reference = "", direct = true)
 @NgImportReference(value = "datatables.net-responsive-bs5", reference = "", direct = true)
@@ -213,10 +214,10 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
     {
         List<String> out = INgComponent.super.methods();
         out.add("""
-                        public renderTable() {
-                                this.datatable = new DataTable('#' + this.tableRef?.nativeElement.id, {...this.dtOptions});
-                        }
-                        """);
+                public renderTable() {
+                        this.datatable = new DataTable('#' + this.tableRef?.nativeElement.id, {...this.dtOptions});
+                }
+                """);
 
         return out;
     }
@@ -285,7 +286,7 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
     {
         //addAttribute("*ngIf",getServiceName() + "." + dataService.getAnnotation().variableName() + "[0]");
         TableRow<?> tableRow = new TableRow<>().addAttribute("*ngFor", "let " + innerLoopVariableName + " of " + getServiceName() + "." + dataService.getAnnotation()
-                                                                                                                                                     .variableName());
+                .variableName());
         getBodyGroup().add(tableRow);
         return tableRow;
     }
@@ -547,6 +548,6 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
             return "dataTableDataService";
         }
         return dataService.getAnnotation()
-                          .referenceName();
+                .referenceName();
     }
 }
