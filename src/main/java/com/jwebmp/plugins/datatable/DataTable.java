@@ -22,6 +22,7 @@ import com.jwebmp.core.base.angular.client.annotations.references.NgComponentRef
 import com.jwebmp.core.base.angular.client.annotations.references.NgImportReference;
 import com.jwebmp.core.base.angular.client.annotations.structures.NgField;
 import com.jwebmp.core.base.angular.client.annotations.typescript.TsDevDependency;
+import com.jwebmp.core.base.angular.client.services.EventBusListenerDirective;
 import com.jwebmp.core.base.angular.client.services.interfaces.AnnotationUtils;
 import com.jwebmp.core.base.angular.client.services.interfaces.IComponent;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgComponent;
@@ -95,7 +96,7 @@ import static com.jwebmp.core.base.angular.client.services.interfaces.Annotation
 
 @NgImportReference(value = "ChangeDetectorRef", reference = "@angular/core")
 @NgConstructorParameter("private cdref : ChangeDetectorRef")
-
+@NgComponentReference(EventBusListenerDirective.class)
 public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>>
         extends Table<J>
         implements IDataTable<T, J>, INgComponent<J>
