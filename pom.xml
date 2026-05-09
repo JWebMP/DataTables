@@ -7,18 +7,16 @@
         <version>2.0.0-SNAPSHOT</version>
     </parent>
 
-
     <groupId>com.jwebmp.plugins</groupId>
     <artifactId>data-tables</artifactId>
     <packaging>jar</packaging>
     <version>2.0.0-SNAPSHOT</version>
     <name>Data Tables Plugin</name>
-    <description>The JWebSwing implementation for Data Tables</description>
+    <description>DataTables.net integration for JWebMP — advanced interactive HTML tables with sorting, filtering, pagination, AJAX, and extensions</description>
 
     <dependencies>
-
         <dependency>
-            <groupId>com.jwebmp.core</groupId>
+            <groupId>com.jwebmp</groupId>
             <artifactId>jwebmp-core</artifactId>
         </dependency>
 
@@ -49,13 +47,20 @@
             </dependency>
 
             <dependency>
-                <groupId>com.jwebmp</groupId>
-                <artifactId>jwebmp-bom</artifactId>
+                <groupId>com.guicedee</groupId>
+                <artifactId>fasterxml-bom</artifactId>
                 <type>pom</type>
                 <scope>import</scope>
                 <version>${guicedee.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.jwebmp</groupId>
+                <artifactId>jwebmp-bom</artifactId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${jwebmp.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -64,6 +69,10 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

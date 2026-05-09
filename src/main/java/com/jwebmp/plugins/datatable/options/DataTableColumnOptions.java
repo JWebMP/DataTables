@@ -955,10 +955,11 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		return searchPanes;
 	}
 	
-	public DataTableColumnOptions<J> setSearchPanes(DataTablesSearchPanesOptions searchPanes)
+	@SuppressWarnings("unchecked")
+	public J setSearchPanes(DataTablesSearchPanesOptions searchPanes)
 	{
 		this.searchPanes = searchPanes;
-		return this;
+		return (J) this;
 	}
 	
 	public String data;
@@ -973,9 +974,10 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 		return data;
 	}
 	
-	public DataTableColumnOptions<J> setData(String data)
+	@SuppressWarnings("unchecked")
+	public J setData(String data)
 	{
 		this.data = data;
-		return this;
+		return (J) this;
 	}
 }

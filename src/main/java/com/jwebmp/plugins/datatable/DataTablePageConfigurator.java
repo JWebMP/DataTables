@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2017 GedMarc
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.jwebmp.plugins.datatable;
 
 import com.jwebmp.core.base.angular.client.annotations.typescript.TsDependency;
@@ -22,44 +6,38 @@ import com.jwebmp.core.plugins.PluginStatus;
 import com.jwebmp.core.services.IPage;
 import com.jwebmp.core.services.IPageConfigurator;
 import com.jwebmp.plugins.datatable.enumerations.DataTablesSortables;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * @author GedMarc
+ * DataTables page configurator — registers DataTables.net dependencies for
+ * advanced interactive HTML tables with sorting, filtering, pagination, and extensions.
  */
 @PluginInformation(pluginName = "Data Tables",
         pluginUniqueName = "data-tables",
-        pluginDescription = "DataTables is a plug-in for the " +
-                "jQuery Javascript library. " +
-                "It is a highly flexible " +
-                "tool, based upon the " +
-                "foundations of progressive " +
-                "enhancement, and will add advanced interaction  controls  to any  HTML  table .",
-        pluginVersion = "1.10.22",
+        pluginDescription = "DataTables is a jQuery plug-in that adds advanced interaction controls to HTML tables — sorting, filtering, pagination, AJAX data loading, and dozens of extensions.",
+        pluginVersion = "2.3.8",
         pluginDependancyUniqueIDs = "jquery",
-        pluginCategories = "jquery,datatables, tables, ui, " + "web, framework",
-        pluginSubtitle = "DataTables is very simple to use as a jQuery plug-in with a huge range of customisable option",
-        pluginGitUrl = "https://github.com/GedMarc/JWebMP-DataTablesPlugin",
-        pluginSourceUrl = "https://datatables" + "" + ".net/download/index",
-        pluginWikiUrl = "https://github.com/GedMarc/JWebMP-DataTablesPlugin/wiki",
+        pluginCategories = "jquery, datatables, tables, ui, web, framework",
+        pluginSubtitle = "Advanced interaction controls for HTML tables with sorting, filtering, pagination, and extensions.",
+        pluginGitUrl = "https://github.com/JWebMP/JWebMP",
+        pluginSourceUrl = "https://datatables.net/",
+        pluginWikiUrl = "https://datatables.net/manual/",
         pluginOriginalHomepage = "https://www.datatables.net/",
-        pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.forms/jwebmp-data-tables",
+        pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins/data-tables",
         pluginIconUrl = "",
         pluginIconImageUrl = "",
-        pluginLastUpdatedDate = "2021/09/05",
-        pluginGroupId = "com.jwebmp.plugins.forms",
-        pluginArtifactId = "jwebmp-data-tables",
+        pluginLastUpdatedDate = "2026/05/04",
+        pluginGroupId = "com.jwebmp.plugins",
+        pluginArtifactId = "data-tables",
         pluginModuleName = "com.jwebmp.plugins.datatable",
         pluginStatus = PluginStatus.Released
 )
-
+@TsDependency(value = "datatables.net", version = "^2.3.8")
+@TsDependency(value = "datatables.net-dt", version = "^2.3.8")
 @TsDependency(value = "jszip", version = "^3.10.1")
-@TsDependency(value = "pdfmake", version = "^0.1.72")
-
-
+@TsDependency(value = "pdfmake", version = "^0.3.7")
 public class DataTablePageConfigurator
         implements IPageConfigurator<DataTablePageConfigurator>
 {
@@ -79,7 +57,6 @@ public class DataTablePageConfigurator
         return DataTablePageConfigurator.sortables;
     }
 
-    @NotNull
     @Override
     public IPage<?> configure(IPage<?> page)
     {

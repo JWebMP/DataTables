@@ -17,8 +17,8 @@
 
 package com.jwebmp.plugins.datatable.enumerations;
 
-import static com.guicedee.services.jsonrepresentation.json.StaticStrings.CHAR_PLUS;
-import static com.guicedee.services.jsonrepresentation.json.StaticStrings.CHAR_UNDERSCORE;
+import static com.guicedee.modules.services.jsonrepresentation.json.StaticStrings.CHAR_PLUS;
+import static com.guicedee.modules.services.jsonrepresentation.json.StaticStrings.CHAR_UNDERSCORE;
 
 /**
  * select.styleSince: Select 1.0.0
