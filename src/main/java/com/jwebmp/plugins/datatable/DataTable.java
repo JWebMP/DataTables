@@ -429,7 +429,6 @@ public abstract class DataTable<T extends TableRow<?>, J extends DataTable<T, J>
      * @return
      */
     @Override
-    @SuppressWarnings({"unchecked"})
     @NotNull
     public TableFooterGroup<?> getFooterGroup()
     {
