@@ -22,12 +22,12 @@ module com.jwebmp.plugins.datatable {
     provides IPageConfigurator with DataTablePageConfigurator;
     provides IGuiceScanModuleInclusions with DataTablesInclusionModule;
 
-    opens com.jwebmp.plugins.datatable to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice, com.jwebmp.core.angular;
-    opens com.jwebmp.plugins.datatable.enumerations to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
-    opens com.jwebmp.plugins.datatable.options to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
-    opens com.jwebmp.plugins.datatable.options.buttons to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
-    opens com.jwebmp.plugins.datatable.options.responsive to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
-    opens com.jwebmp.plugins.datatable.search to com.fasterxml.jackson.databind, com.jwebmp.core, com.google.guice;
-    opens com.jwebmp.plugins.datatable.options.searchpanes to com.fasterxml.jackson.databind, com.google.guice, com.jwebmp.core;
+    opens com.jwebmp.plugins.datatable to tools.jackson.databind, com.jwebmp.core, com.google.guice, com.jwebmp.core.angular;
+    opens com.jwebmp.plugins.datatable.enumerations to tools.jackson.databind, com.jwebmp.core, com.google.guice;
+    opens com.jwebmp.plugins.datatable.options to tools.jackson.databind, com.jwebmp.core, com.google.guice;
+    opens com.jwebmp.plugins.datatable.options.buttons to tools.jackson.databind, com.jwebmp.core, com.google.guice;
+    opens com.jwebmp.plugins.datatable.options.responsive to tools.jackson.databind, com.jwebmp.core, com.google.guice;
+    opens com.jwebmp.plugins.datatable.search to tools.jackson.databind, com.jwebmp.core, com.google.guice;
+    opens com.jwebmp.plugins.datatable.options.searchpanes to tools.jackson.databind, com.google.guice, com.jwebmp.core;
     opens com.jwebmp.plugins.datatable.implementations to com.google.guice;
 }
