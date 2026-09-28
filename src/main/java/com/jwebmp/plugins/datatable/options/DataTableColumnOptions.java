@@ -284,7 +284,7 @@ public class DataTableColumnOptions<J extends DataTableColumnOptions<J>>
 	 * Additionally, targets can be either a single option from the list above, or an array of options (the different types can be mixed
 	 * in the array if required). For example targets: [ -1, -2 ] would target the last and second last columns in the table.
 	 *
-	 * @param name
+	 * @param columnNumber the zero-based column index to target
 	 */
 	public DataTableColumnOptions(DataTableOptions<?> tableOptions, @NotNull Integer columnNumber)
 	{
